@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@color/transparent"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="50dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/video_play_rate_shape"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/rate_one"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@drawable/video_play_rate_click_shape"
+            android:gravity="center"
+            android:text="0.5"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/rate_two"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@drawable/video_play_rate_click_shape"
+            android:gravity="center"
+            android:text="0.75"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/rate_three"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@drawable/video_play_rate_click_shape"
+            android:gravity="center"
+            android:text="1.0"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/rate_four"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@drawable/video_play_rate_click_shape"
+            android:gravity="center"
+            android:text="1.25"
+            android:textColor="@color/white" />
+
+        <TextView
+            android:id="@+id/rate_five"
+            android:layout_width="match_parent"
+            android:layout_height="25dp"
+            android:background="@drawable/video_play_rate_click_shape"
+            android:gravity="center"
+            android:text="1.5"
+            android:textColor="@color/white" />
+    </LinearLayout>
+
+
+</LinearLayout>

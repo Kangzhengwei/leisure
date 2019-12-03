@@ -1,0 +1,75 @@
+package com.kzw.leisure.base;
+
+import android.app.Application;
+import android.content.Context;
+import android.util.Log;
+
+import com.kzw.leisure.utils.AppUtils;
+import com.kzw.leisure.utils.NetworkUtils;
+import com.kzw.leisure.utils.SPUtils;
+import com.tencent.smtt.sdk.QbSdk;
+
+import androidx.multidex.MultiDex;
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
+
+/**
+ * author: kang4
+ * Date: 2019/11/19
+ * Description:
+ */
+public class BaseApplication extends Application {
+
+    private static Application instance;
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        instance = this;
+        init();
+        initX5();
+        initDataBase();
+    }
+
+    public static Application getInstance() {
+        return instance;
+    }
+
+    private void init() {
+        MultiDex.install(this);
+        AppUtils.init(this);
+        NetworkUtils.startNetService(this);
+        SPUtils.init(this, getPackageName() + "_preference", Context.MODE_MULTI_PROCESS);
+    }
+
+
+    private void initX5() {
+        //x5内核初始化接口
+        QbSdk.initX5Environment(this, new QbSdk.PreInitCallback() {
+            @Override
+            public void onViewInitFinished(boolean arg0) {
+                // TODO Auto-generated method stub
+                //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
+                Log.d("app", " onViewInitFinished is " + arg0);
+            }
+
+            @Override
+            public void onCoreInitFinished() {
+                // TODO Auto-generated method stub
+            }
+        });
+    }
+
+    /**
+     * 初始化数据库
+     */
+    private void initDataBase() {
+        Realm.init(this);
+        RealmConfiguration config = new RealmConfiguration.Builder()
+                .name("myrealm.realm")
+                .schemaVersion(1)
+                .deleteRealmIfMigrationNeeded()
+                .build();
+        Realm.setDefaultConfiguration(config);
+    }
+}

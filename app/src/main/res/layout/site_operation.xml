@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/site_operation_pop_bg_shape"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/delete"
+        android:layout_width="100dp"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center"
+        android:text="@string/delete_site"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="@color/white" />
+
+    <TextView
+        android:id="@+id/move"
+        android:layout_width="100dp"
+        android:layout_height="@dimen/dp_40"
+        android:gravity="center"
+        android:text="@string/move_top"
+        android:textColor="@color/white"
+        android:textSize="14sp" />
+</LinearLayout>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">leisure</string>
+    <string name="video">影视</string>
+    <string name="video_collect">视频</string>
+    <string name="bookself">书架</string>
+    <string name="collect">收藏</string>
+    <string name="navigation_drawer_open">打开侧边栏</string>
+    <string name="navigation_drawer_close">关闭侧边栏</string>
+    <string name="setting">设置</string>
+    <string name="delete_site">删除该链接</string>
+    <string name="move_top">移动至顶部</string>
+    <string name="add_to_website_list">添加到网站列表</string>
+    <string name="add_to_collect">添加到收藏</string>
+    <string name="custom_add_to_web">自定义添加</string>
+    <string name="clear_cache">清除缓存</string>
+    <string name="net_error_10001">没有网络</string>
+    <string name="net_error_10002">网络连接超时</string>
+    <string name="net_error_10003">数据解析失败</string>
+</resources>
