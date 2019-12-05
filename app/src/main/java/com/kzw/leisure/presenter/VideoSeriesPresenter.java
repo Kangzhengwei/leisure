@@ -1,11 +1,9 @@
 package com.kzw.leisure.presenter;
 
 import com.kzw.leisure.bean.SearchItem;
-import com.kzw.leisure.bean.SeriesBean;
+import com.kzw.leisure.bean.VideoBean;
 import com.kzw.leisure.contract.VideoSeriesContract;
 import com.kzw.leisure.rxJava.RxSubscriber;
-
-import java.util.List;
 
 /**
  * author: kang4
@@ -15,16 +13,16 @@ import java.util.List;
 public class VideoSeriesPresenter extends VideoSeriesContract.Presenter {
     @Override
     public void getHtml(SearchItem item) {
-        mRxManage.addSubscribe(mModel.getHtml(item).subscribeWith(new RxSubscriber<List<SeriesBean>>() {
+        mRxManage.addSubscribe(mModel.getHtml(item).subscribeWith(new RxSubscriber<VideoBean>() {
 
             @Override
-            protected void _onNext(List<SeriesBean> seriesBeans) {
-
+            protected void _onNext(VideoBean seriesBeans) {
+                mView.returnResult(seriesBeans);
             }
 
             @Override
             protected void _onError(String message) {
-
+                mView.returnFail(message);
             }
         }));
     }

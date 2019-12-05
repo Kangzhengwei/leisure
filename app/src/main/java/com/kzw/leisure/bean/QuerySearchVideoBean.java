@@ -23,6 +23,24 @@ public class QuerySearchVideoBean  {
     private String rulePlayType;
     private String ruleItem;
     private String ruleTypeList;
+    private String ruleVideoName;
+    private String ruleVideoImage;
+
+    public String getRuleVideoName() {
+        return ruleVideoName;
+    }
+
+    public void setRuleVideoName(String ruleVideoName) {
+        this.ruleVideoName = ruleVideoName;
+    }
+
+    public String getRuleVideoImage() {
+        return ruleVideoImage;
+    }
+
+    public void setRuleVideoImage(String ruleVideoImage) {
+        this.ruleVideoImage = ruleVideoImage;
+    }
 
     public String getRuleTypeList() {
         return ruleTypeList;

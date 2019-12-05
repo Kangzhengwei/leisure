@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="4dp"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="4dp">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.makeramen.roundedimageview.RoundedImageView
+                android:id="@+id/video_pic"
+                android:layout_width="100dp"
+                android:layout_height="125dp"
+                android:layout_marginBottom="@dimen/dp_4"
+                android:layout_alignParentStart="true"
+                android:scaleType="centerCrop"
+                android:src="@mipmap/video_img_default" />
+
+            <TextView
+                android:id="@+id/video_name"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:layout_centerHorizontal="true"
+                android:layout_alignBottom="@+id/video_pic"
+                android:layout_marginTop="4dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxWidth="80dp"
+                android:singleLine="true"
+                android:text="逆天邪神"
+                android:textColor="@color/blank"
+                android:textSize="14sp" />
+
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

@@ -18,7 +18,9 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -75,6 +77,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
      * presenter初始化
      */
     abstract protected void initPresenter();
+
     /**
      * 初始化数据
      */
@@ -168,6 +171,19 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
 
         }
         return super.onMenuOpened(featureId, menu);
+    }
+
+    protected void setToolbar(Toolbar toolbar) {
+        setSupportActionBar(toolbar);
+    }
+
+    //设置ToolBar
+    protected void setupActionBar(boolean isShowTitle) {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setDisplayShowTitleEnabled(isShowTitle);
+        }
     }
 
 }

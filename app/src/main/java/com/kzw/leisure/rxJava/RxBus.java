@@ -1,71 +1,144 @@
 package com.kzw.leisure.rxJava;
 
 
-import java.util.Collection;
-import java.util.List;
+import com.kzw.leisure.utils.LogUtils;
+import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
+import com.trello.rxlifecycle2.LifecycleProvider;
+
+import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import androidx.annotation.NonNull;
-import io.reactivex.Flowable;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.reactivex.subjects.PublishSubject;
 import io.reactivex.subjects.Subject;
 
-
 public class RxBus {
-    private static RxBus instance;
-
-    public static synchronized RxBus getInstance() {
-        if (null == instance) {
-            instance = new RxBus();
-        }
-        return instance;
-    }
+    private volatile static RxBus mDefaultInstance;
+    private final Subject<Object> mBus;
+    private final Map<Class<?>, Object> mStickyEventMap;
 
     private RxBus() {
+        mBus = PublishSubject.create().toSerialized();
+        mStickyEventMap = new ConcurrentHashMap<>();
     }
 
-    private ConcurrentHashMap<Object, List<Subject>> subjectMapper = new ConcurrentHashMap<Object, List<Subject>>();
-
-
-    /**
-     * 取消监听
-     *
-     * @param tag
-     * @param observable
-     * @return
-     */
-    public RxBus unregister(@NonNull Object tag, @NonNull Flowable<?> observable) {
-        if (null == observable)
-            return getInstance();
-        List<Subject> subjects = subjectMapper.get(tag);
-        if (null != subjects) {
-            subjects.remove(observable);
-            if (isEmpty(subjects)) {
-                subjectMapper.remove(tag);
+    public static RxBus getInstance() {
+        if (mDefaultInstance == null) {
+            synchronized (RxBus.class) {
+                if (mDefaultInstance == null) {
+                    mDefaultInstance = new RxBus();
+                }
             }
         }
-        return getInstance();
-    }
-
-    public void post(@NonNull Object content) {
-        post(content.getClass().getName(), content);
+        return mDefaultInstance;
     }
 
     /**
-     * 触发事件
-     *
-     * @param content
+     * 发送事件
      */
-    public void post(@NonNull Object tag, @NonNull Object content) {
-        List<Subject> subjectList = subjectMapper.get(tag);
-        if (!isEmpty(subjectList)) {
-            for (Subject subject : subjectList) {
-                subject.onNext(content);
+    public void post(Object event) {
+        mBus.onNext(event);
+    }
+
+    public <T> Observable<T> toObservable(LifecycleOwner owner, final Class<T> eventType) {
+        return toObservable(owner, eventType, Lifecycle.Event.ON_DESTROY);
+    }
+
+    /**
+     * 使用Rxlifecycle解决RxJava引起的内存泄漏
+     */
+    public <T> Observable<T> toObservable(LifecycleOwner owner, Class<T> eventType, Lifecycle.Event event) {
+        LifecycleProvider<Lifecycle.Event> provider = AndroidLifecycle.createLifecycleProvider(owner);
+        return mBus.ofType(eventType)
+                .doOnDispose(() -> LogUtils.i("RxBus", "RxBus取消订阅"))
+                .compose(provider.<T>bindUntilEvent(event))
+                .subscribeOn(Schedulers.io())
+                .unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread());
+    }
+
+    /**
+     * 判断是否有订阅者
+     */
+    public boolean hasObservers() {
+        return mBus.hasObservers();
+    }
+
+    public void reset() {
+        mDefaultInstance = null;
+    }
+
+
+    /**
+     * Stciky 相关
+     */
+
+    /**
+     * 发送一个新Sticky事件
+     */
+    public void postSticky(Object event) {
+        synchronized (mStickyEventMap) {
+            mStickyEventMap.put(event.getClass(), event);
+        }
+        post(event);
+    }
+
+    public <T> Observable<T> toObservableSticky(LifecycleOwner owner, final Class<T> eventType) {
+        return toObservableSticky(owner, eventType, Lifecycle.Event.ON_DESTROY);
+    }
+
+    /**
+     * 根据传递的 eventType 类型返回特定类型(eventType)的 被观察者
+     * 使用Rxlifecycle解决RxJava引起的内存泄漏
+     */
+    public <T> Observable<T> toObservableSticky(LifecycleOwner owner, final Class<T> eventType, Lifecycle.Event e) {
+        synchronized (mStickyEventMap) {
+            LifecycleProvider<Lifecycle.Event> provider = AndroidLifecycle.createLifecycleProvider(owner);
+            Observable<T> observable = mBus.ofType(eventType)
+                    .doOnDispose(() -> LogUtils.i("RxBus", "RxBus取消订阅"))
+                    .compose(provider.<T>bindUntilEvent(e))
+                    .subscribeOn(Schedulers.io())
+                    .unsubscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread());
+            final Object event = mStickyEventMap.get(eventType);
+
+            if (event != null) {
+                return observable.mergeWith(Observable.create(subscriber -> subscriber.onNext(eventType.cast(event))));
+            } else {
+                return observable;
             }
         }
     }
 
-    public static boolean isEmpty(Collection<Subject> collection) {
-        return null == collection || collection.isEmpty();
+    /**
+     * 根据eventType获取Sticky事件
+     */
+    public <T> T getStickyEvent(Class<T> eventType) {
+        synchronized (mStickyEventMap) {
+            return eventType.cast(mStickyEventMap.get(eventType));
+        }
+    }
+
+    /**
+     * 移除指定eventType的Sticky事件
+     */
+    public <T> T removeStickyEvent(Class<T> eventType) {
+        synchronized (mStickyEventMap) {
+            return eventType.cast(mStickyEventMap.remove(eventType));
+        }
+    }
+
+    /**
+     * 移除所有的Sticky事件
+     */
+    public void removeAllStickyEvents() {
+        synchronized (mStickyEventMap) {
+            mStickyEventMap.clear();
+        }
     }
 
 }

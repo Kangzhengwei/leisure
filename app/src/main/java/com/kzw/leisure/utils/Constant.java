@@ -5,6 +5,35 @@ package com.kzw.leisure.utils;
  */
 
 public class Constant {
+    //public static final String DEFAULT_URL = "http://www.yongjiuzy.cc";
+    public static final String DEFAULT_URL = "http://www.2w2w.tv/";
+
+    public static final String bookRuleSource = "[" +
+            "{" +
+            "\"baseUrl\":\"https://www.bhzw.cc/\"," +
+            "\"siteName\":\"冰火中文网\"," +
+            "\"ruleBookAuthor\":\"class.zuozhe@text\"," +
+            "\"ruleBookContent\":\"\"," +
+            "\"ruleBookInfoInit\":\"class.intro@text\"," +
+            "\"ruleBookKind\":\"\"," +
+            "\"ruleBookLastChapter\":\"class.name@tag.a@text\"," +
+            "\"ruleBookName\":\"class.page-title page-title1@text\"," +
+            "\"ruleBookUrlPattern\":\"\"," +
+            "\"ruleCoverUrl\":\"class.pic@tag.img@src\"," +
+            "\"ruleChapterList\":\"class.float-list fill-block@tag.li\"," +
+            "\"ruleChapterName\":\"tag.a@text\"," +
+            "\"ruleChapterUrl\":\"tag.a@href\"," +
+            "\"ruleSearchAuthor\":\"tag.td.3@tag.a@text\"," +
+            "\"ruleSearchCoverUrl\":\"\"," +
+            "\"ruleSearchIntroduce\":\"\"," +
+            "\"ruleSearchKind\":\"tag.td.1@text\"," +
+            "\"ruleSearchLastChapter\":\"tag.td.2@tag.a.1@text\"," +
+            "\"ruleSearchList\":\"class.bd@tag.tbody@tag.tr\"," +
+            "\"ruleSearchName\":\"tag.td.2@tag.a.0@text\"," +
+            "\"ruleSearchNoteUrl\":\"tag.td.2.@tag.a.0@href\"," +
+            "\"ruleSearchUrl\":\"modules/article/search.php@searchkey=ruleKeyword|char=gbk\"" +
+            "}" +
+            "]\n";
     public static final String ruleSource = "[" +
             "{" +
             "\"params\":{\"submit\":\"search\",\"wd\":\"searchKey\"}," +
@@ -18,6 +47,8 @@ public class Constant {
             "\"ruleSeriesNoteUrl\":\"  \"," +
             "\"rulePlayType\":\"class.suf@text\"," +
             "\"ruleTypeList\":\"class.suf\"," +
+            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
+            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
             "\"siteName\":\"酷云资源网\"," +
             "\"videoSourceUrl\":\"https://www.okzy.co\"" +
             "}," +
@@ -32,7 +63,9 @@ public class Constant {
             "\"ruleSeriesName\":\"tag.a@text\"," +
             "\"ruleSeriesNoteUrl\":\"  \"," +
             "\"rulePlayType\":\"li@text\"," +
-            "\"ruleTypeList\":\"class.movievod@tag.li!children\"," +
+            "\"ruleTypeList\":\"class.movievod@tag.li\"," +
+            "\"ruleVideoName\":\"class.videoDetail@tag.li.0@text\"," +
+            "\"ruleVideoImage\":\"class.videoPic@tag.img@src\"," +
             "\"siteName\":\"永久资源网\"," +
             "\"videoSourceUrl\":\"http://www.yongjiuzy1.com\"" +
             "}," +
@@ -48,6 +81,8 @@ public class Constant {
             "\"ruleSeriesNoteUrl\":\"  \"," +
             "\"rulePlayType\":\"h3@text\"," +
             "\"ruleTypeList\":\"h3\"," +
+            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
+            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
             "\"siteName\":\"酷哈资源网\"," +
             "\"videoSourceUrl\":\"http://www.666zy.com\"" +
             "}," +
@@ -63,14 +98,13 @@ public class Constant {
             "\"ruleSeriesNoteUrl\":\"  \"," +
             "\"rulePlayType\":\"class.suf@text\"," +
             "\"ruleTypeList\":\"class.suf\"," +
+            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
+            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
             "\"siteName\":\"最大资源网\"," +
             "\"videoSourceUrl\":\"http://www.zuidazy1.com\"" +
             "}" +
             "]\n";
 
-
-    public static final String DEFAULT_URL = "http://www.2w2w.tv/";
-    //public static final String DEFAULT_URL = "http://www.yongjiuzy.cc";
     public static final String webSite = "[\n" +
             "    {\n" +
             "        \"url\": \"http://www.81ju.cn/ \",\n" +

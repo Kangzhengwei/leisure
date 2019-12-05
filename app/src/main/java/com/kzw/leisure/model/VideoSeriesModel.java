@@ -1,7 +1,7 @@
 package com.kzw.leisure.model;
 
 import com.kzw.leisure.bean.SearchItem;
-import com.kzw.leisure.bean.SeriesBean;
+import com.kzw.leisure.bean.VideoBean;
 import com.kzw.leisure.contract.VideoSeriesContract;
 import com.kzw.leisure.network.RetrofitHelper;
 import com.kzw.leisure.rxJava.RxHelper;
@@ -15,6 +15,7 @@ import org.reactivestreams.Publisher;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.functions.Function;
 
@@ -25,48 +26,53 @@ import io.reactivex.functions.Function;
  */
 public class VideoSeriesModel implements VideoSeriesContract.Model {
     @Override
-    public Flowable<List<SeriesBean>> getHtml(SearchItem item) {
+    public Flowable<VideoBean> getHtml(SearchItem item) {
         return RetrofitHelper
                 .getInstance()
                 .getResponse(item.getVideoSourceUrl(), item.getUrl())
-                .flatMap(new Function<String, Publisher<List<SeriesBean>>>() {
-                    @Override
-                    public Publisher<List<SeriesBean>> apply(String s) throws Exception {
-                        analyze(s, item);
-                        return null;
-                    }
-                })
+                .flatMap((Function<String, Publisher<VideoBean>>) s -> analyze(s, item))
                 .compose(RxHelper.handleResult())
                 .compose(RxSchedulers.io_main());
     }
 
-    private void analyze(String body, SearchItem item) {
-        AnalyzeRule analyzer = new AnalyzeRule(null);
-        analyzer.setContent(body, item.getUrl());
-        try {
-            List<Object> collections = analyzer.getElements(item.getRuleSeriesList());
-            List<Object> videoTypelist = analyzer.getElements(item.getRuleTypeList());
-            for (int i = 0; i < collections.size(); i++) {
-                SeriesBean bean = new SeriesBean();
-                analyzer.setContent(videoTypelist.get(i));
-                bean.setUrlType(analyzer.getString(item.getRulePlayType()));
-                Object o = collections.get(i);
-                analyzer.setContent(o);
-                List<Object> list = analyzer.getElements(item.getRuleItem());
-                List<SeriesBean.Url> urList = new ArrayList();
-                LogUtils.e(bean.getUrlType());
-                for (Object ob : list) {
-                    SeriesBean.Url urlBean = new SeriesBean.Url();
-                    analyzer.setContent(ob, item.getUrl());
-                    urlBean.setVideoSeries(StringUtils.subString(analyzer.getString(item.getRuleSeriesName()), 0));
-                    urlBean.setVideoUrl(StringUtils.subString(analyzer.getString(item.getRuleSeriesName()), 1));
-                    urList.add(urlBean);
-                    LogUtils.e(urlBean.getVideoSeries() + "/" + urlBean.getVideoUrl());
+    private Flowable<VideoBean> analyze(String body, SearchItem item) {
+        return Flowable.create(emitter -> {
+            AnalyzeRule analyzer = new AnalyzeRule(null);
+            VideoBean video = new VideoBean();
+            try {
+                analyzer.setContent(body, item.getUrl());
+                video.setVideoImage(analyzer.getString(item.getRuleVideoImage()));
+                video.setVideoName(analyzer.getString(item.getRuleVideoName()));
+                List<VideoBean.Series> seriesList = new ArrayList<>();
+                List<Object> collections = analyzer.getElements(item.getRuleSeriesList());
+                List<Object> videoTypelist = analyzer.getElements(item.getRuleTypeList());
+                for (int i = 0; i < collections.size(); i++) {
+                    VideoBean.Series series = new VideoBean.Series();
+                    analyzer.setContent(videoTypelist.get(i));
+                    series.setUrlType(analyzer.getString(item.getRulePlayType()));
+                    Object o = collections.get(i);
+                    analyzer.setContent(o);
+                    List<Object> list = analyzer.getElements(item.getRuleItem());
+                    List<VideoBean.Series.Url> urList = new ArrayList();
+                    LogUtils.e(series.getUrlType());
+                    for (Object ob : list) {
+                        VideoBean.Series.Url urlBean = new VideoBean.Series.Url();
+                        analyzer.setContent(ob, item.getUrl());
+                        urlBean.setVideoSeries(StringUtils.subString(analyzer.getString(item.getRuleSeriesName()), 0));
+                        urlBean.setVideoUrl(StringUtils.subString(analyzer.getString(item.getRuleSeriesName()), 1));
+                        urList.add(urlBean);
+                        LogUtils.e(urlBean.getVideoSeries() + "/" + urlBean.getVideoUrl());
+                    }
+                    series.setList(urList);
+                    seriesList.add(series);
                 }
-                bean.setList(urList);
+                video.setList(seriesList);
+            } catch (Exception e) {
+                LogUtils.e(e.toString());
+                e.printStackTrace();
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+            emitter.onNext(video);
+            emitter.onComplete();
+        }, BackpressureStrategy.ERROR);
     }
 }

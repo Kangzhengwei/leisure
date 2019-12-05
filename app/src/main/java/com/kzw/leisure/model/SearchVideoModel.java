@@ -56,6 +56,8 @@ public class SearchVideoModel implements SearchVideoContract.Model {
                     item.setRulePlayType(bean.getRulePlayType());
                     item.setRuleItem(bean.getRuleItem());
                     item.setRuleTypeList(bean.getRuleTypeList());
+                    item.setRuleVideoImage(bean.getRuleVideoImage());
+                    item.setRuleVideoName(bean.getRuleVideoName());
                     listString.add(item);
                 }
             } catch (Exception e) {

@@ -21,14 +21,32 @@ public class SearchItem implements Serializable {
     public int type;
     private Map<String, String> variableMap;
     private String variable;
-    public String videoSourceUrl;
 
+    public String videoSourceUrl;
     private String ruleSeriesList;
     private String ruleSeriesName;
     private String ruleSeriesNoteUrl;
     private String rulePlayType;
     private String ruleItem;
     private String ruleTypeList;
+    private String ruleVideoName;
+    private String ruleVideoImage;
+
+    public String getRuleVideoName() {
+        return ruleVideoName;
+    }
+
+    public void setRuleVideoName(String ruleVideoName) {
+        this.ruleVideoName = ruleVideoName;
+    }
+
+    public String getRuleVideoImage() {
+        return ruleVideoImage;
+    }
+
+    public void setRuleVideoImage(String ruleVideoImage) {
+        this.ruleVideoImage = ruleVideoImage;
+    }
 
     public String getRuleTypeList() {
         return ruleTypeList;

@@ -26,7 +26,7 @@ import butterknife.Unbinder;
  * Date: 2019/11/19
  * Description:
  */
-public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel>  extends Fragment {
+public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel> extends Fragment {
 
     public E mModel;
     public T mPresenter;
@@ -314,6 +314,17 @@ public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel>
             if (actionBar != null) {
                 actionBar.setDisplayHomeAsUpEnabled(true);
                 actionBar.setDisplayShowTitleEnabled(isShowTitle);
+            }
+        }
+    }
+
+    protected void setupActionBar() {
+        AppCompatActivity appCompatActivity = ((AppCompatActivity) getActivity());
+        if (appCompatActivity != null) {
+            ActionBar actionBar = appCompatActivity.getSupportActionBar();
+            if (actionBar != null) {
+                actionBar.setDisplayHomeAsUpEnabled(false);
+                actionBar.setDisplayShowTitleEnabled(false);
             }
         }
     }

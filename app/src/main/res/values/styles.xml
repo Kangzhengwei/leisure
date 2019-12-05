@@ -61,4 +61,15 @@
         <item name="android:windowExitAnimation">@anim/pop_diss</item>
     </style>
 
+    <style name="alertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert" />
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="CollapsingToolbarTitleStyle.About" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
+    <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 </resources>

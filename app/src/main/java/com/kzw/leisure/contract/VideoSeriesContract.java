@@ -4,9 +4,7 @@ import com.kzw.leisure.base.BaseModel;
 import com.kzw.leisure.base.BasePresenter;
 import com.kzw.leisure.base.BaseView;
 import com.kzw.leisure.bean.SearchItem;
-import com.kzw.leisure.bean.SeriesBean;
-
-import java.util.List;
+import com.kzw.leisure.bean.VideoBean;
 
 import io.reactivex.Flowable;
 
@@ -17,11 +15,11 @@ import io.reactivex.Flowable;
  */
 public interface VideoSeriesContract {
     interface Model extends BaseModel {
-        Flowable<List<SeriesBean>> getHtml(SearchItem item);
+        Flowable<VideoBean> getHtml(SearchItem item);
     }
 
     interface View extends BaseView {
-        void returnResult(List<SeriesBean> strings );
+        void returnResult(VideoBean bean );
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {

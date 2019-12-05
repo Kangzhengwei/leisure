@@ -3,7 +3,11 @@ package com.kzw.leisure.utils;
 import android.content.Context;
 import android.content.Intent;
 
+import com.kzw.leisure.bean.BookSourceRule;
+import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.bean.SearchItem;
+import com.kzw.leisure.ui.activity.BookDetailActivity;
+import com.kzw.leisure.ui.activity.SearchBookActivity;
 import com.kzw.leisure.ui.activity.SearchVideoActivity;
 import com.kzw.leisure.ui.activity.VideoPlayActivity;
 
@@ -21,4 +25,14 @@ public class IntentUtils {
     public static void intentToVideoPlay(Context context, SearchItem item) {
         context.startActivity(new Intent(context, VideoPlayActivity.class).putExtra("Item", item));
     }
+
+    public static void intentToSearchBook(Context context) {
+        context.startActivity(new Intent(context, SearchBookActivity.class));
+    }
+
+    public static void intentToBookDetailActivity(Context context, SearchBookBean searchBookBean, BookSourceRule rule) {
+        context.startActivity(new Intent(context, BookDetailActivity.class).putExtra("SearchBook", searchBookBean).putExtra("BookRule", rule));
+    }
+
+
 }

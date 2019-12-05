@@ -13,11 +13,12 @@ import com.google.gson.reflect.TypeToken;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.WebSiteAdapter;
 import com.kzw.leisure.base.BaseWebViewFragment;
+import com.kzw.leisure.event.WebCollectEvent;
 import com.kzw.leisure.realm.CollectDataBean;
 import com.kzw.leisure.realm.CollectDataList;
 import com.kzw.leisure.realm.WebSiteBean;
 import com.kzw.leisure.realm.WebSiteList;
-import com.kzw.leisure.ui.activity.MainActivity;
+import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.CacheUtils;
 import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.DimenUtil;
@@ -208,10 +209,7 @@ public class MovieFragment extends BaseWebViewFragment {
                             CollectDataList newlist = realm.createObject(CollectDataList.class);
                             newlist.getCollectList().add(data);
                         }
-                        MainActivity activity = (MainActivity) mActivity;
-                        if (activity != null) {
-                            activity.referData();
-                        }
+                        RxBus.getInstance().post(new WebCollectEvent());
                     }
                 });
                 break;

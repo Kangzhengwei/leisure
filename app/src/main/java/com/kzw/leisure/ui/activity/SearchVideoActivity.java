@@ -2,11 +2,9 @@ package com.kzw.leisure.ui.activity;
 
 
 import android.os.Bundle;
-import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.EditText;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.gson.reflect.TypeToken;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.SearchListAdapter;

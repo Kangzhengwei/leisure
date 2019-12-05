@@ -20,7 +20,12 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.activity.VideoPlayActivity"></activity>
+        <activity android:name=".ui.activity.BookDetailActivity"/>
+        <activity android:name=".ui.activity.SearchBookActivity" />
+        <activity
+            android:name=".ui.activity.VideoPlayActivity"
+            android:configChanges="keyboard|orientation|keyboardHidden|screenSize"
+            android:screenOrientation="portrait" />
         <activity android:name=".ui.activity.SearchVideoActivity" />
         <activity
             android:name=".ui.activity.MainActivity"

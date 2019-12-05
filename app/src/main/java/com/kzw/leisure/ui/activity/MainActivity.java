@@ -36,14 +36,10 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void initPresenter() {
-
-    }
+    protected void initPresenter() { }
 
     @Override
-    public void initData() {
-
-    }
+    public void initData() { }
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -95,13 +91,6 @@ public class MainActivity extends BaseActivity {
             fragment.loadUrl(url);
             switchFragment(MovieFragment.class, null);
             navigationBar.getMenu().getItem(0).setChecked(true);
-        }
-    }
-
-    public void referData() {
-        CollectFragment fragment = (CollectFragment) getFragment(CollectFragment.class);
-        if (fragment != null) {
-            fragment.initList();
         }
     }
 

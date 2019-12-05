@@ -8,4 +8,5 @@
     <color name="bg_divider_line">#FFD4D4D4</color>
     <color name="blank">#000000</color>
     <color name="transparent">#00000000</color>
+    <color name="background_menu">#fcfcfc</color>
 </resources>
