@@ -11,14 +11,15 @@ import com.google.gson.reflect.TypeToken;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.SearchBookAdapter;
 import com.kzw.leisure.base.BaseActivity;
-import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.bean.BookSourceRule;
+import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.contract.SearchBookContract;
 import com.kzw.leisure.model.SearchBookModel;
 import com.kzw.leisure.presenter.SearchBookPresenter;
 import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.widgets.ChangeSourceDialog;
 import com.kzw.leisure.widgets.dialog.ProgressDialog;
 
@@ -65,7 +66,6 @@ public class SearchBookActivity extends BaseActivity<SearchBookPresenter, Search
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                 dialog.show();
                 bookList.clear();
-                rule = sourceList.get(0);
                 try {
                     rule.setMap(v.getText().toString());
                 } catch (Exception e) {
@@ -91,6 +91,11 @@ public class SearchBookActivity extends BaseActivity<SearchBookPresenter, Search
     public void initData() {
         sourceList = GsonUtil.getInstance().fromJson(Constant.bookRuleSource, new TypeToken<List<BookSourceRule>>() {
         }.getType());
+        rule = SPUtils.getInstance().getObject("defaultRule", BookSourceRule.class);
+        if (rule == null) {
+            rule = sourceList.get(0);
+            SPUtils.getInstance().putObject("defaultRule", rule);
+        }
     }
 
 
@@ -109,9 +114,8 @@ public class SearchBookActivity extends BaseActivity<SearchBookPresenter, Search
             case R.id.change_source:
                 ChangeSourceDialog.builder(mContext)
                         .setList(sourceList)
-                        .setListener(bean -> {
-
-                        }).show();
+                        .setListener(bean -> SPUtils.getInstance().putObject("defaultRule", bean))
+                        .show();
                 break;
         }
         return super.onOptionsItemSelected(item);

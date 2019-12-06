@@ -11,19 +11,148 @@ import io.realm.RealmObject;
  */
 public class BookRealm extends RealmObject implements Serializable {
 
-    private String bookAuthor;
-    private String bookContent;
-    private String bookInfoInit;
-    private String bookKind;
-    private String bookLastChapter;
-    private String bookName;
-    private String bookUrlPattern;
-    private String coverUrl;
-    private String chapterName;
-    private String url;
-    private String chapterListUrl;
-    private int position;//目前章节数
-    private int durChapterPage = 0;  // 当前章节位置   用页码
+    private String bookAuthor="";
+    private String bookContent="";
+    private String bookInfoInit="";
+    private String bookKind="";
+    private String bookLastChapter="";
+    private String bookName="";
+    private String bookUrlPattern="";
+    private String coverUrl="";
+    private String durChapterUrl="";
+    private String chapterListUrl="";
+    private String durChapterName="";
+    private Integer durChapter=0;   //当前章节 （包括番外）
+    private Integer durChapterPage=0;  // 当前章节位置   用页码
+    private Long finalDate = System.currentTimeMillis();  //最后阅读时间
+    private Boolean hasUpdate = false;  //是否有更新
+    private Integer newChapters = 0;  //更新章节数
+    private String tag="";
+    private Integer serialNumber = 0; //手动排序
+    private Long finalRefreshData = System.currentTimeMillis();  //章节最后更新时间
+    private Integer group = 0;
+    private String lastChapterName="";
+    private Integer chapterListSize=0;
+    private Boolean allowUpdate = true;
+    private Boolean useReplaceRule = true;
+    private String variable="";
+
+
+    public Integer getDurChapter() {
+        return durChapter;
+    }
+
+    public void setDurChapter(Integer durChapter) {
+        this.durChapter = durChapter;
+    }
+
+    public void setDurChapterPage(Integer durChapterPage) {
+        this.durChapterPage = durChapterPage;
+    }
+
+    public Long getFinalDate() {
+        return finalDate;
+    }
+
+    public void setFinalDate(Long finalDate) {
+        this.finalDate = finalDate;
+    }
+
+    public Boolean getHasUpdate() {
+        return hasUpdate;
+    }
+
+    public void setHasUpdate(Boolean hasUpdate) {
+        this.hasUpdate = hasUpdate;
+    }
+
+    public Integer getNewChapters() {
+        return newChapters;
+    }
+
+    public void setNewChapters(Integer newChapters) {
+        this.newChapters = newChapters;
+    }
+
+    public String getTag() {
+        return tag;
+    }
+
+    public void setTag(String tag) {
+        this.tag = tag;
+    }
+
+    public Integer getSerialNumber() {
+        return serialNumber;
+    }
+
+    public void setSerialNumber(Integer serialNumber) {
+        this.serialNumber = serialNumber;
+    }
+
+    public Long getFinalRefreshData() {
+        return finalRefreshData;
+    }
+
+    public void setFinalRefreshData(Long finalRefreshData) {
+        this.finalRefreshData = finalRefreshData;
+    }
+
+    public Integer getGroup() {
+        return group;
+    }
+
+    public void setGroup(Integer group) {
+        this.group = group;
+    }
+
+    public String getDurChapterName() {
+        return durChapterName;
+    }
+
+    public void setDurChapterName(String durChapterName) {
+        this.durChapterName = durChapterName;
+    }
+
+    public String getLastChapterName() {
+        return lastChapterName;
+    }
+
+    public void setLastChapterName(String lastChapterName) {
+        this.lastChapterName = lastChapterName;
+    }
+
+    public Integer getChapterListSize() {
+        return chapterListSize;
+    }
+
+    public void setChapterListSize(Integer chapterListSize) {
+        this.chapterListSize = chapterListSize;
+    }
+
+    public Boolean getAllowUpdate() {
+        return allowUpdate;
+    }
+
+    public void setAllowUpdate(Boolean allowUpdate) {
+        this.allowUpdate = allowUpdate;
+    }
+
+    public Boolean getUseReplaceRule() {
+        return useReplaceRule;
+    }
+
+    public void setUseReplaceRule(Boolean useReplaceRule) {
+        this.useReplaceRule = useReplaceRule;
+    }
+
+    public String getVariable() {
+        return variable;
+    }
+
+    public void setVariable(String variable) {
+        this.variable = variable;
+    }
 
     public String getChapterListUrl() {
         return chapterListUrl;
@@ -97,35 +226,18 @@ public class BookRealm extends RealmObject implements Serializable {
         this.coverUrl = coverUrl;
     }
 
-    public String getChapterName() {
-        return chapterName;
+
+    public String getDurChapterUrl() {
+        return durChapterUrl;
     }
 
-    public void setChapterName(String chapterName) {
-        this.chapterName = chapterName;
+    public void setDurChapterUrl(String url) {
+        this.durChapterUrl = url;
     }
 
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public int getPosition() {
-        return position;
-    }
-
-    public void setPosition(int position) {
-        this.position = position;
-    }
 
     public int getDurChapterPage() {
         return durChapterPage;
     }
 
-    public void setDurChapterPage(int durChapterPage) {
-        this.durChapterPage = durChapterPage;
-    }
 }

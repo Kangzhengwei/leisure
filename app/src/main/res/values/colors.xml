@@ -9,4 +9,5 @@
     <color name="blank">#000000</color>
     <color name="transparent">#00000000</color>
     <color name="background_menu">#fcfcfc</color>
+    <color name="tv_text_default">#de000000</color>
 </resources>

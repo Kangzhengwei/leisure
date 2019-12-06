@@ -6,8 +6,6 @@ import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.contract.BookDetailContract;
 import com.kzw.leisure.rxJava.RxSubscriber;
 
-import java.util.List;
-
 /**
  * author: kang4
  * Date: 2019/12/5

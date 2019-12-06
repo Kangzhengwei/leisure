@@ -20,7 +20,8 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".ui.activity.BookDetailActivity"/>
+        <activity android:name=".ui.activity.ReadBookActivity"></activity>
+        <activity android:name=".ui.activity.BookDetailActivity" />
         <activity android:name=".ui.activity.SearchBookActivity" />
         <activity
             android:name=".ui.activity.VideoPlayActivity"

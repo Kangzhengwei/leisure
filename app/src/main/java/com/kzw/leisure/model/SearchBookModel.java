@@ -1,7 +1,7 @@
 package com.kzw.leisure.model;
 
-import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.bean.BookSourceRule;
+import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.contract.SearchBookContract;
 import com.kzw.leisure.network.RetrofitHelper;
 import com.kzw.leisure.rxJava.RxHelper;

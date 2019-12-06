@@ -72,4 +72,17 @@
     </style>
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+    <style name="Style.Shadow.Bottom" parent="android:Widget">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:background">@mipmap/bg_shadow_bottom</item>
+    </style>
+
+    <style name="Style.Shadow.Top" parent="android:Widget">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:background">@mipmap/bg_shadow_top</item>
+    </style>
+
 </resources>

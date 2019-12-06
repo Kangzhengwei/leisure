@@ -1,7 +1,6 @@
 package com.kzw.leisure.utils;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;

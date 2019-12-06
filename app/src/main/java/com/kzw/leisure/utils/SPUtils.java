@@ -37,6 +37,9 @@ public class SPUtils {
 
     private SPUtils() {
     }
+    public SharedPreferences getPrefs(){
+        return prefs;
+    }
 
 
     public boolean getBoolean(String key, boolean defaultVal) {

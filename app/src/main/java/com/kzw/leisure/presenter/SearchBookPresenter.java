@@ -1,7 +1,7 @@
 package com.kzw.leisure.presenter;
 
-import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.bean.BookSourceRule;
+import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.contract.SearchBookContract;
 import com.kzw.leisure.rxJava.RxSubscriber;
 

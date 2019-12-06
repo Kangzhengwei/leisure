@@ -14,6 +14,15 @@ public class Chapter implements Serializable {
     private String chapterUrlNext;
     private String contentUrl;
     private String contentUrlNext;
+    private int index;
+
+    public int getIndex() {
+        return index;
+    }
+
+    public void setIndex(int index) {
+        this.index = index;
+    }
 
     public String getChapterName() {
         return chapterName;

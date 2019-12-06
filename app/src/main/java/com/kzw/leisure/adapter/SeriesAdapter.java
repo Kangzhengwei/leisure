@@ -30,7 +30,7 @@ public class SeriesAdapter extends BaseQuickAdapter<VideoBean.Series, BaseViewHo
         helper.setText(R.id.type, item.getUrlType());
         View view = helper.getView(R.id.recyclerView);
         if (view instanceof RecyclerView) {
-            ((RecyclerView) view).setLayoutManager(new LinearLayoutManager(mContext,LinearLayoutManager.HORIZONTAL,false));
+            ((RecyclerView) view).setLayoutManager(new LinearLayoutManager(mContext, LinearLayoutManager.HORIZONTAL, false));
             SeriesChildAdapter adapter = new SeriesChildAdapter();
             ((RecyclerView) view).setAdapter(adapter);
             adapter.setNewData(item.getList());

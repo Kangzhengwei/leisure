@@ -3,16 +3,16 @@ package com.kzw.leisure.ui.fragment;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.BookListAdapter;
 import com.kzw.leisure.base.BaseFragment;
+import com.kzw.leisure.bean.BookSourceRule;
 import com.kzw.leisure.event.AddBookEvent;
 import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.SPUtils;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,11 +57,9 @@ public class BookFragment extends BaseFragment {
         bookList.setItemAnimator(new DefaultItemAnimator());
         adapter = new BookListAdapter();
         bookList.setAdapter(adapter);
-        adapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
-
-            }
+        adapter.setOnItemClickListener((adapter, view, position) -> {
+            BookRealm book = list.get(position);
+            IntentUtils.intentToBookReadActivity(mContext, book);
         });
     }
 

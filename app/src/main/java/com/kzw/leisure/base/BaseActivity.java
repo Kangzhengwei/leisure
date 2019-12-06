@@ -5,6 +5,7 @@ import android.content.Context;
 import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -183,6 +184,19 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
             actionBar.setDisplayShowTitleEnabled(isShowTitle);
+        }
+    }
+
+
+    protected void setActionBar(String title, boolean homeDisplay, Toolbar toolbar) {
+        setToolbar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(homeDisplay);
+            if (TextUtils.isEmpty(title)) {
+                getSupportActionBar().setDisplayShowTitleEnabled(false);
+            } else {
+                getSupportActionBar().setTitle(title);
+            }
         }
     }
 

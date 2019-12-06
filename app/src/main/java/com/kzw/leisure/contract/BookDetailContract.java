@@ -7,8 +7,6 @@ import com.kzw.leisure.bean.BookBean;
 import com.kzw.leisure.bean.BookSourceRule;
 import com.kzw.leisure.bean.SearchBookBean;
 
-import java.util.List;
-
 import io.reactivex.Flowable;
 
 /**

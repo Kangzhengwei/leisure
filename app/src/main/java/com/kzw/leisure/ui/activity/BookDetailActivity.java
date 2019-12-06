@@ -1,11 +1,9 @@
 package com.kzw.leisure.ui.activity;
 
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -14,6 +12,7 @@ import com.kzw.leisure.adapter.ChapterAdapter;
 import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.bean.BookBean;
 import com.kzw.leisure.bean.BookSourceRule;
+import com.kzw.leisure.bean.Chapter;
 import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.contract.BookDetailContract;
 import com.kzw.leisure.event.AddBookEvent;
@@ -23,6 +22,7 @@ import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.GlideUtil;
+import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.StatusBarUtil;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -97,7 +97,20 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
         adapter = new ChapterAdapter();
         catalogRv.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter, view, position) -> {
-
+            Object object = adapter.getData().get(position);
+            if (object instanceof Chapter) {
+                Chapter chapter = (Chapter) object;
+                BookRealm book = new BookRealm();
+                book.setBookName(mBook.getBookName());
+                book.setBookAuthor(mBook.getBookAuthor());
+                book.setChapterListUrl(searchBookBean.getSearchNoteUrl());
+                book.setDurChapterName(chapter.getChapterName());
+                book.setDurChapterUrl(chapter.getChapterUrl());
+                book.setDurChapter(position);
+                book.setDurChapterPage(0);
+                book.setChapterListSize(adapter.getData().size());
+                IntentUtils.intentToBookReadActivity(mContext, book);
+            }
         });
     }
 
@@ -142,7 +155,6 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
                 data.setChapterListUrl(searchBookBean.getSearchNoteUrl());
                 showToast("添加成功");
                 RxBus.getInstance().post(new AddBookEvent());
-
             }
         });
 

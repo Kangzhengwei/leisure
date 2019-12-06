@@ -9,6 +9,7 @@ import java.util.List;
  * Description:
  */
 public class BookBean implements Serializable {
+
     private String bookAuthor;
     private String bookContent;
     private String bookInfoInit;
