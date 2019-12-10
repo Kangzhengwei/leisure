@@ -23,6 +23,7 @@ import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.GlideUtil;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.StatusBarUtil;
 import com.makeramen.roundedimageview.RoundedImageView;
 
@@ -109,7 +110,8 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
                 book.setDurChapter(position);
                 book.setDurChapterPage(0);
                 book.setChapterListSize(adapter.getData().size());
-                IntentUtils.intentToBookReadActivity(mContext, book);
+                RealmHelper.getInstance().setBook(book);
+                IntentUtils.intentToBookReadActivity(mContext);
             }
         });
     }

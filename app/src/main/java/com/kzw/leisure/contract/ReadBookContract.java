@@ -19,14 +19,17 @@ import io.reactivex.Flowable;
  */
 public interface ReadBookContract {
     interface Model extends BaseModel {
-        Flowable<List<Chapter>> getChapterList(BookSourceRule rule, BookRealm bookRealm);
+        Flowable<List<Chapter>> getChapterList(BookSourceRule rule, String path);
+
     }
 
     interface View extends BaseView {
         void returnResult(List<Chapter> list);
+
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
-        public abstract void getChapterList(BookSourceRule rule, BookRealm bookRealm);
+        public abstract void getChapterList(BookSourceRule rule, String path);
+
     }
 }

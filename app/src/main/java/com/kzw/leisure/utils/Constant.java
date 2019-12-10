@@ -23,6 +23,7 @@ public class Constant {
             "\"ruleChapterList\":\"class.float-list fill-block@tag.li\"," +
             "\"ruleChapterName\":\"tag.a@text\"," +
             "\"ruleChapterUrl\":\"tag.a@href\"," +
+            "\"ruleContentUrl\":\"id.ChapterContents@textNodes\"," +
             "\"ruleSearchAuthor\":\"tag.td.3@tag.a@text\"," +
             "\"ruleSearchCoverUrl\":\"\"," +
             "\"ruleSearchIntroduce\":\"\"," +

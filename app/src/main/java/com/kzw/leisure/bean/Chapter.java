@@ -16,6 +16,7 @@ public class Chapter implements Serializable {
     private String contentUrlNext;
     private int index;
 
+
     public int getIndex() {
         return index;
     }

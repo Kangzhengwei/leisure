@@ -3,12 +3,28 @@ package com.kzw.leisure.widgets.pageView;
 import android.annotation.SuppressLint;
 
 import com.kzw.leisure.bean.Chapter;
+import com.kzw.leisure.network.RetrofitHelper;
+import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
+import com.kzw.leisure.rxJava.RxHelper;
+import com.kzw.leisure.rxJava.RxSchedulers;
+import com.kzw.leisure.rxJava.RxSubscriber;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.NetworkUtils;
+import com.kzw.leisure.utils.RealmHelper;
+
+import org.reactivestreams.Publisher;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.functions.Function;
+import io.realm.Realm;
+import io.realm.RealmResults;
 
 /**
  * 网络页面加载器
@@ -25,11 +41,14 @@ public class PageLoaderNet extends PageLoader {
     @Override
     public void refreshChapterList() {
         if (!callback.getChapterList().isEmpty()) {
+            RealmHelper.getInstance().getRealm().executeTransaction(realm -> {
+                book.setChapterListSize(callback.getChapterList().size());
+            });
             isChapterListPrepare = true;
             // 打开章节
             skipToChapter(book.getDurChapter(), book.getDurChapterPage());
         } else {
-         /*   book.setChapterListSize(String.valueOf(catalogs.size()));
+           /* book.setChapterListSize(String.valueOf(catalogs.size()));
             isChapterListPrepare = true;
             // 目录加载完成
             callback.onCategoryFinish(catalogs);
@@ -48,12 +67,32 @@ public class PageLoaderNet extends PageLoader {
         }
     }*/
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint({"DefaultLocale", "CheckResult"})
     private synchronized void loadContent(final int chapterIndex) {
         if (downloadingChapterList.size() >= 20) return;
         if (chapterIndex >= callback.getChapterList().size() || DownloadingList(listHandle.CHECK, callback.getChapterList().get(chapterIndex).getChapterName()))
             return;
         if (null != book && callback.getChapterList().size() > 0) {
+            rxManager.addSubscribe(Flowable.create((FlowableOnSubscribe<Integer>) emitter -> {
+                if (shouldRequestChapter(chapterIndex)) {
+                    DownloadingList(listHandle.ADD, callback.getChapterList().get(chapterIndex).getChapterUrl());
+                    emitter.onNext(chapterIndex);
+                }
+                emitter.onComplete();
+            }, BackpressureStrategy.ERROR)
+                    .flatMap((Function<Integer, Publisher<BookContentBean>>) integer -> callback.getContent(callback.getChapterList().get(integer)))
+                    .subscribeWith(new RxSubscriber<BookContentBean>() {
+                        @Override
+                        protected void _onNext(BookContentBean bookContentBean) {
+                            DownloadingList(listHandle.REMOVE, bookContentBean.getDurChapterUrl());
+                            finishContent(bookContentBean.getDurChapterIndex());
+                        }
+
+                        @Override
+                        protected void _onError(String message) {
+                            DownloadingList(listHandle.REMOVE, callback.getChapterList().get(chapterIndex).getChapterUrl());
+                        }
+                    }));
 
         }
     }
@@ -104,13 +143,31 @@ public class PageLoaderNet extends PageLoader {
     }
 
     @Override
-    protected List<String> getChapterContent(Chapter chapter) throws Exception {
-        return new ArrayList<>();
+    protected String getChapterContent(Chapter chapter) throws Exception {
+        BookContentBean bean = RealmHelper.getInstance().getRealm().where(BookContentBean.class).equalTo("durChapterUrl", chapter.getChapterUrl()).findFirst();
+        if (bean == null) return null;
+        return bean.getDurChapterContent();
     }
 
     @Override
     protected boolean noChapterData(Chapter chapter) {
-        return false;
+        RealmResults<BookContentBean> realmResults = RealmHelper.getInstance().getRealm().where(BookContentBean.class).findAll();
+        if (realmResults == null || realmResults.size() == 0) {
+            return true;
+        } else {
+            boolean isHas = false;
+            for (BookContentBean bean : realmResults) {
+                if (bean.getDurChapterUrl().equals(chapter.getChapterUrl())) {
+                    isHas = true;
+                    break;
+                }
+            }
+            if (isHas) {
+                return false;
+            } else {
+                return true;
+            }
+        }
     }
 
 

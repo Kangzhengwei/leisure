@@ -28,12 +28,12 @@ public class BookDetailModel implements BookDetailContract.Model {
     @Override
     public Flowable<BookBean> getHtml(BookSourceRule sourceRule, SearchBookBean searchBookBean) {
         return RetrofitHelper.getInstance().getResponse(sourceRule.getBaseUrl(), searchBookBean.getSearchNoteUrl())
-                .flatMap((Function<String, Publisher<BookBean>>) s -> analyze(s, sourceRule))
+                .flatMap((Function<String, Publisher<BookBean>>) s -> analyze(s, sourceRule, searchBookBean))
                 .compose(RxHelper.handleResult())
                 .compose(RxSchedulers.io_main());
     }
 
-    private Flowable<BookBean> analyze(String body, BookSourceRule sourceRule) {
+    private Flowable<BookBean> analyze(String body, BookSourceRule sourceRule, SearchBookBean searchBookBean) {
         return Flowable.create(emitter -> {
             BookBean book = new BookBean();
             AnalyzeRule analyzer = new AnalyzeRule(null);
@@ -53,7 +53,7 @@ public class BookDetailModel implements BookDetailContract.Model {
                     analyzer.setContent(object);
                     Chapter chapter = new Chapter();
                     chapter.setChapterName(analyzer.getString(sourceRule.getRuleChapterName()));
-                    chapter.setChapterUrl(analyzer.getString(sourceRule.getRuleChapterUrl()));
+                    chapter.setChapterUrl(searchBookBean.getSearchNoteUrl() + analyzer.getString(sourceRule.getRuleChapterUrl()));
                     chapterList.add(chapter);
                 }
                 book.setList(chapterList);

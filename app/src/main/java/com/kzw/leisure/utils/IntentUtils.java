@@ -36,8 +36,8 @@ public class IntentUtils {
         context.startActivity(new Intent(context, BookDetailActivity.class).putExtra("SearchBook", searchBookBean).putExtra("BookRule", rule));
     }
 
-    public static void intentToBookReadActivity(Context context,  BookRealm bookRealm) {
-        context.startActivity(new Intent(context, ReadBookActivity.class).putExtra("BookRealm", bookRealm));
+    public static void intentToBookReadActivity(Context context) {
+        context.startActivity(new Intent(context, ReadBookActivity.class));
     }
 
 

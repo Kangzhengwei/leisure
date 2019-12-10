@@ -16,8 +16,8 @@ import java.util.List;
  */
 public class ReadBookPresenter extends ReadBookContract.Presenter {
     @Override
-    public void getChapterList(BookSourceRule rule, BookRealm bookRealm) {
-        mRxManage.addSubscribe(mModel.getChapterList(rule, bookRealm).subscribeWith(new RxSubscriber<List<Chapter>>() {
+    public void getChapterList(BookSourceRule rule,String path) {
+        mRxManage.addSubscribe(mModel.getChapterList(rule, path).subscribeWith(new RxSubscriber<List<Chapter>>() {
             @Override
             protected void _onNext(List<Chapter> chapters) {
                 mView.returnResult(chapters);
@@ -29,4 +29,7 @@ public class ReadBookPresenter extends ReadBookContract.Presenter {
             }
         }));
     }
+
+
+
 }

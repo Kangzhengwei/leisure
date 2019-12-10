@@ -5,6 +5,7 @@ import android.text.StaticLayout;
 
 import com.kzw.leisure.bean.Chapter;
 import com.kzw.leisure.utils.AppUtils;
+import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.NetworkUtils;
 import com.zia.easybook.widget.TxtChapter;
 import com.zia.easybook.widget.TxtChar;
@@ -23,7 +24,7 @@ class ChapterProvider {
         this.pageLoader = pageLoader;
     }
 
-    void dealLoadPageList(Chapter chapter, boolean isPrepare, Chapterface listener) {
+    TxtChapter dealLoadPageList(Chapter chapter, boolean isPrepare) {
         TxtChapter txtChapter = new TxtChapter(chapter.getIndex());
         // 判断章节是否存在
         if (!isPrepare || pageLoader.noChapterData(chapter)) {
@@ -31,56 +32,23 @@ class ChapterProvider {
                 txtChapter.setStatus(TxtChapter.Status.ERROR);
                 txtChapter.setMsg("网络连接不可用");
             }
-            if (listener != null) {
-                listener.chapter(txtChapter);
-            }
-            return;
+            return txtChapter;
         }
-        List<String> content;
+        String content;
         try {
             content = pageLoader.getChapterContent(chapter);
         } catch (Exception e) {
             txtChapter.setStatus(TxtChapter.Status.ERROR);
             txtChapter.setMsg("读取内容出错\n" + e.getLocalizedMessage());
-            if (listener != null) {
-                listener.chapter(txtChapter);
-            }
-            return;
+
+            return txtChapter;
         }
         if (content == null) {
             txtChapter.setStatus(TxtChapter.Status.ERROR);
             txtChapter.setMsg("缓存文件不存在");
-            if (listener != null) {
-                listener.chapter(txtChapter);
-            }
-            return;
+            return txtChapter;
         }
-       /* content.subscribe(new Subscriber<List<String>>() {
-            @Override
-            public void onFinish(@NonNull List<String> strings) {
-                Chapter chap = new Chapter(chapter.getChapterName(), chapter.getIndex(), strings);
-                TxtParser parser = new TxtParser();
-                String str = parser.parseContent(chap);
-                if (listener != null) {
-                    listener.chapter(loadPageList(chapter, str));
-                }
-            }
-
-            @Override
-            public void onError(@NonNull Exception e) {
-
-            }
-
-            @Override
-            public void onMessage(@NonNull String message) {
-
-            }
-
-            @Override
-            public void onProgress(int progress) {
-
-            }
-        });*/
+        return loadPageList(chapter, content);
 
     }
 
@@ -91,6 +59,7 @@ class ChapterProvider {
      * @param content：章节的文本
      */
     private TxtChapter loadPageList(Chapter chapter, @NonNull String content) {
+        LogUtils.e(content);
         //生成的页面
         TxtChapter txtChapter = new TxtChapter(chapter.getIndex());
         /*if (pageLoader.book.isAudio()) {
@@ -106,7 +75,7 @@ class ChapterProvider {
             txtChapter.addPage(page);
             return txtChapter;
         }*/
-        //content = contentHelper.replaceContent(pageLoader.book.getBookInfoBean().getName(), pageLoader.book.getTag(), content, pageLoader.book.getReplaceEnable());
+        // content = contentHelper.replaceContent(pageLoader.book.getBookInfoBean().getName(), pageLoader.book.getTag(), content, pageLoader.book.getReplaceEnable());
         String[] allLine = content.split("\n");
         List<String> lines = new ArrayList<>();
         List<TxtLine> txtLists = new ArrayList<>();//记录每个字的位置 //pzl

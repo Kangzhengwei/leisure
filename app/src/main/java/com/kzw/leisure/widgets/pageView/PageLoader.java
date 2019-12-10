@@ -12,7 +12,10 @@ import android.widget.Toast;
 
 import com.kzw.leisure.R;
 import com.kzw.leisure.bean.Chapter;
+import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
+import com.kzw.leisure.rxJava.RxManager;
+import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.ScreenUtils;
 import com.kzw.leisure.utils.StringUtils;
 import com.kzw.leisure.widgets.anim.PageAnimation;
@@ -25,6 +28,8 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+
+import io.reactivex.Flowable;
 
 /**
  * 页面加载器
@@ -123,6 +128,7 @@ public abstract class PageLoader {
     private int linePos = 0;
     private boolean isLastPage = false;
 
+    RxManager rxManager;
     //翻页时间
     private long skipPageTime = 0;
 
@@ -138,7 +144,7 @@ public abstract class PageLoader {
         mCurChapterPos = bookRealm.getDurChapter();
         mCurPagePos = bookRealm.getDurChapterPage();
         oneSpPx = ScreenUtils.spToPx(1);
-
+        rxManager = new RxManager();
         // 初始化数据
         initData();
         // 初始化画笔
@@ -617,7 +623,7 @@ public abstract class PageLoader {
     /**
      * 获取章节的文本
      */
-    protected abstract List<String> getChapterContent(Chapter chapter) throws Exception;
+    protected abstract String getChapterContent(Chapter chapter) throws Exception;
 
     /**
      * 章节数据是否存在
@@ -732,8 +738,10 @@ public abstract class PageLoader {
                 break;
         }
         mPageView.setContentDescription(getContent());
-        book.setDurChapter(mCurChapterPos);
-        book.setDurChapterPage(mCurPagePos);
+        RealmHelper.getInstance().getRealm().executeTransaction(realm -> {
+            book.setDurChapter(mCurChapterPos);
+            book.setDurChapterPage(mCurPagePos);
+        });
         callback.onPageChange(mCurChapterPos, getCurPagePos(), resetReadAloud);
         resetReadAloud = true;
     }
@@ -1509,8 +1517,8 @@ public abstract class PageLoader {
 
             ChapterProvider chapterProvider = new ChapterProvider(this);
 
-            chapterProvider.dealLoadPageList(callback.getChapterList().get(mCurChapterPos), mPageView.isPrepare(), txtChapter -> upTextChapter(txtChapter));
-
+            TxtChapter txtChapter = chapterProvider.dealLoadPageList(callback.getChapterList().get(mCurChapterPos), mPageView.isPrepare());
+            upTextChapter(txtChapter);
         }
         parsePrevChapter();
         parseNextChapter();
@@ -1532,7 +1540,8 @@ public abstract class PageLoader {
         }
         ChapterProvider chapterProvider = new ChapterProvider(this);
 
-        chapterProvider.dealLoadPageList(callback.getChapterList().get(prevChapterPos), mPageView.isPrepare(), txtChapter -> upTextChapter(txtChapter));
+        TxtChapter txtChapter = chapterProvider.dealLoadPageList(callback.getChapterList().get(prevChapterPos), mPageView.isPrepare());
+        upTextChapter(txtChapter);
 
     }
 
@@ -1551,7 +1560,8 @@ public abstract class PageLoader {
             return;
         }
         ChapterProvider chapterProvider = new ChapterProvider(this);
-        chapterProvider.dealLoadPageList(callback.getChapterList().get(nextChapterPos), mPageView.isPrepare(), txtChapter -> upTextChapter(txtChapter));
+        TxtChapter txtChapter = chapterProvider.dealLoadPageList(callback.getChapterList().get(nextChapterPos), mPageView.isPrepare());
+        upTextChapter(txtChapter);
 
     }
 
@@ -1646,6 +1656,8 @@ public abstract class PageLoader {
      * 关闭书本
      */
     public void closeBook() {
+        rxManager.unSubscribe();
+        rxManager = null;
 
         isChapterListPrepare = false;
         isClose = true;
@@ -1742,6 +1754,8 @@ public abstract class PageLoader {
         void onPageChange(int chapterIndex, int pageIndex, boolean resetReadAloud);
 
         void vipPop();
+
+        Flowable<BookContentBean> getContent(Chapter chapter);
 
     }
 

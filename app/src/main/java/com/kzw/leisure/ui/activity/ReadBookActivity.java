@@ -17,7 +17,9 @@ import com.kzw.leisure.bean.Chapter;
 import com.kzw.leisure.contract.ReadBookContract;
 import com.kzw.leisure.model.ReadBookModel;
 import com.kzw.leisure.presenter.ReadBookPresenter;
+import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
+import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.utils.StatusBarUtil;
 import com.kzw.leisure.widgets.pageView.BottomMenuWidget;
@@ -35,6 +37,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
+import io.reactivex.Flowable;
 
 public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookModel> implements ReadBookContract.View {
 
@@ -180,6 +183,12 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
             public void vipPop() {
 
             }
+
+            @Override
+            public Flowable<BookContentBean> getContent(Chapter chapter) {
+                return mModel.getContent(rule, chapter);
+            }
+
         });
         pageView.setTouchListener(new PageView.TouchListener() {
             @Override
@@ -240,7 +249,8 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
 
             @Override
             public void openChapterList() {
-
+                drawerlayout.openDrawer(slideLayout);
+                menuMiss();
             }
 
             @Override
@@ -269,28 +279,30 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
                 menuMiss();
             }
         });
-        mPageLoader.refreshChapterList();
     }
 
     @Override
     protected void initPresenter() {
-        bookRealm = (BookRealm) getIntent().getSerializableExtra("BookRealm");
         mPresenter.setVM(this, mModel);
+        RealmHelper.getInstance().init();
+        bookRealm = RealmHelper.getInstance().getBook();
+        rule = SPUtils.getInstance().getObject("defaultRule", BookSourceRule.class);
+        readBookControl.initTextDrawableIndex();
+        readBookControl.setPageMode(3);
     }
 
     @Override
     public void initData() {
-        rule = SPUtils.getInstance().getObject("defaultRule", BookSourceRule.class);
-        mPresenter.getChapterList(rule, bookRealm);
-        readBookControl.initTextDrawableIndex();
-        readBookControl.setPageMode(3);
+        mPresenter.getChapterList(rule, bookRealm.getChapterListUrl());
     }
 
     @Override
     public void returnResult(List<Chapter> list) {
         chapterList = list;
         adapter.setNewData(chapterList);
+        mPageLoader.refreshChapterList();
     }
+
 
     @Override
     public void returnFail(String message) {
@@ -316,6 +328,13 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+    }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RealmHelper.getInstance().destoryRealm();
     }
 
     private void menuMiss() {

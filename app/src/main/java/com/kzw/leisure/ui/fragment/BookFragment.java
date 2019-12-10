@@ -12,6 +12,7 @@ import com.kzw.leisure.event.AddBookEvent;
 import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.SPUtils;
 
 import java.util.ArrayList;
@@ -59,7 +60,8 @@ public class BookFragment extends BaseFragment {
         bookList.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter, view, position) -> {
             BookRealm book = list.get(position);
-            IntentUtils.intentToBookReadActivity(mContext, book);
+            RealmHelper.getInstance().setBook(book);
+            IntentUtils.intentToBookReadActivity(mContext);
         });
     }
 
