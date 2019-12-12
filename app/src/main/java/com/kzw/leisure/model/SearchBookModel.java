@@ -1,6 +1,7 @@
 package com.kzw.leisure.model;
 
 import com.kzw.leisure.bean.BookSourceRule;
+import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.contract.SearchBookContract;
 import com.kzw.leisure.network.RetrofitHelper;
@@ -24,10 +25,10 @@ import io.reactivex.functions.Function;
  */
 public class SearchBookModel implements SearchBookContract.Model {
     @Override
-    public Flowable<List<SearchBookBean>> getHtml(BookSourceRule bean) {
+    public Flowable<List<SearchBookBean>> searchBook(Query query, BookSourceRule bean) {
         return RetrofitHelper
                 .getInstance()
-                .postResponse(bean.getBaseUrl(), bean.getRuleSearchUrl(), bean.getQueryMap())
+                .getResponse(query)
                 .flatMap((Function<String, Publisher<List<SearchBookBean>>>) s -> analyze(s, bean))
                 .compose(RxHelper.handleResult())
                 .compose(RxSchedulers.io_main());
@@ -50,7 +51,11 @@ public class SearchBookModel implements SearchBookContract.Model {
                     searchBookBean.setSearchLastChapter(analyzer.getString(bean.getRuleSearchLastChapter()));
                     searchBookBean.setSearchName(analyzer.getString(bean.getRuleSearchName()));
                     searchBookBean.setSearchNoteUrl(analyzer.getString(bean.getRuleSearchNoteUrl()));
+                    searchBookBean.setCurrentSearchRule(bean);
+                    searchBookBean.getSearchNoteUrlList().add(analyzer.getString(bean.getRuleSearchNoteUrl()));
+                    searchBookBean.getSearchRuleList().add(bean);
                     list.add(searchBookBean);
+
                 }
             } catch (Exception e) {
                 e.printStackTrace();

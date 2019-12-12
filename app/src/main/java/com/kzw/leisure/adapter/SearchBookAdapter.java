@@ -21,6 +21,7 @@ public class SearchBookAdapter extends BaseQuickAdapter<SearchBookBean, BaseView
         helper.setText(R.id.item_book_name, item.getSearchName());
         helper.setText(R.id.item_book_lastUpdateChapter, item.getSearchLastChapter());
         helper.setText(R.id.item_book_author, item.getSearchAuthor());
+        helper.setText(R.id.item_book_site, item.getSearchNoteUrlList().size() + "个源");
         GlideUtil.setBookImagesource(mContext, item.getSearchCoverUrl(), helper.getView(R.id.roundImageView));
     }
 }

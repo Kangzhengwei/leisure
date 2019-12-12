@@ -1,7 +1,9 @@
 package com.kzw.leisure.realm;
 
 import java.io.Serializable;
+import java.util.List;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
 
 /**
@@ -11,32 +13,67 @@ import io.realm.RealmObject;
  */
 public class BookRealm extends RealmObject implements Serializable {
 
-    private String bookAuthor="";
-    private String bookContent="";
-    private String bookInfoInit="";
-    private String bookKind="";
-    private String bookLastChapter="";
-    private String bookName="";
-    private String bookUrlPattern="";
-    private String coverUrl="";
-    private String durChapterUrl="";
-    private String chapterListUrl="";
-    private String durChapterName="";
-    private Integer durChapter=0;   //当前章节 （包括番外）
-    private Integer durChapterPage=0;  // 当前章节位置   用页码
+    private String bookAuthor = "";
+    private String bookContent = "";
+    private String bookInfoInit = "";
+    private String bookKind = "";
+    private String bookLastChapter = "";
+    private String bookName = "";
+    private String bookUrlPattern = "";
+    private String coverUrl = "";
+    private String durChapterUrl = "";
+    private String chapterListUrl = "";
+    private String durChapterName = "";
+    private Integer durChapter = 0;   //当前章节 （包括番外）
+    private Integer durChapterPage = 0;  // 当前章节位置   用页码
     private Long finalDate = System.currentTimeMillis();  //最后阅读时间
     private Boolean hasUpdate = false;  //是否有更新
     private Integer newChapters = 0;  //更新章节数
-    private String tag="";
+    private String tag = "";
     private Integer serialNumber = 0; //手动排序
     private Long finalRefreshData = System.currentTimeMillis();  //章节最后更新时间
     private Integer group = 0;
-    private String lastChapterName="";
-    private Integer chapterListSize=0;
+    private String lastChapterName = "";
+    private Integer chapterListSize = 0;
     private Boolean allowUpdate = true;
     private Boolean useReplaceRule = true;
-    private String variable="";
+    private String variable = "";
+    private RealmList<ChapterList> searchNoteUrlList = new RealmList<>();
+    private RealmList<SourceRuleRealm> sourceRuleRealmList = new RealmList<>();
+    private SourceRuleRealm currentRule;
+    private ChapterList currentChapterListRule;
 
+    public ChapterList getCurrentChapterListRule() {
+        return currentChapterListRule;
+    }
+
+    public void setCurrentChapterListRule(ChapterList currentChapterListRule) {
+        this.currentChapterListRule = currentChapterListRule;
+    }
+
+    public SourceRuleRealm getCurrentRule() {
+        return currentRule;
+    }
+
+    public void setCurrentRule(SourceRuleRealm currentRule) {
+        this.currentRule = currentRule;
+    }
+
+    public RealmList<SourceRuleRealm> getSourceRuleRealmList() {
+        return sourceRuleRealmList;
+    }
+
+    public void setSourceRuleRealmList(List<SourceRuleRealm> sourceRuleRealmList) {
+        this.sourceRuleRealmList.addAll(sourceRuleRealmList);
+    }
+
+    public RealmList<ChapterList> getSearchNoteUrlList() {
+        return searchNoteUrlList;
+    }
+
+    public void setSearchNoteUrlList(List<ChapterList> searchNoteUrlList) {
+        this.searchNoteUrlList.addAll(searchNoteUrlList);
+    }
 
     public Integer getDurChapter() {
         return durChapter;

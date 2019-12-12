@@ -3,11 +3,9 @@ package com.kzw.leisure.utils;
 import android.annotation.SuppressLint;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.kzw.leisure.bean.SearchItem;
 import com.kzw.leisure.network.NetHelper;
 
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,13 +13,18 @@ import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.script.ScriptEngine;
-import javax.script.ScriptEngineManager;
 import javax.script.SimpleBindings;
 
 import androidx.annotation.Keep;
 
 import static android.text.TextUtils.isEmpty;
+import static com.kzw.leisure.utils.Constant.EXP_PATTERN;
+import static com.kzw.leisure.utils.Constant.JS_PATTERN;
+import static com.kzw.leisure.utils.Constant.MAP_STRING;
+import static com.kzw.leisure.utils.Constant.SCRIPT_ENGINE;
+import static com.kzw.leisure.utils.Constant.getPattern;
+import static com.kzw.leisure.utils.Constant.headerPattern;
+import static com.kzw.leisure.utils.Constant.putPattern;
 
 
 /**
@@ -31,15 +34,7 @@ import static android.text.TextUtils.isEmpty;
 @Keep
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class AnalyzeRule {
-    private static final Pattern putPattern = Pattern.compile("@put:(\\{[^}]+?\\})", Pattern.CASE_INSENSITIVE);
-    private static final Pattern getPattern = Pattern.compile("@get:\\{([^}]+?)\\}", Pattern.CASE_INSENSITIVE);
-    public static final Pattern headerPattern = Pattern.compile("@Header:\\{.+?\\}", Pattern.CASE_INSENSITIVE);
-    public static final Pattern JS_PATTERN = Pattern.compile("(<js>[\\w\\W]*?</js>|@js:[\\w\\W]*$)", Pattern.CASE_INSENSITIVE);
-    public static Type MAP_STRING = new TypeToken<Map<String, String>>() {
-    }.getType();
 
-    public static final Pattern EXP_PATTERN = Pattern.compile("\\{\\{([\\w\\W]*?)\\}\\}");
-    public static final ScriptEngine SCRIPT_ENGINE = new ScriptEngineManager().getEngineByName("rhino");
 
     private SearchItem mItem;
     private Object object;

@@ -3,6 +3,7 @@ package com.kzw.leisure.model;
 import com.kzw.leisure.bean.BookBean;
 import com.kzw.leisure.bean.BookSourceRule;
 import com.kzw.leisure.bean.Chapter;
+import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.contract.BookDetailContract;
 import com.kzw.leisure.network.RetrofitHelper;
@@ -26,8 +27,10 @@ import io.reactivex.functions.Function;
  */
 public class BookDetailModel implements BookDetailContract.Model {
     @Override
-    public Flowable<BookBean> getHtml(BookSourceRule sourceRule, SearchBookBean searchBookBean) {
-        return RetrofitHelper.getInstance().getResponse(sourceRule.getBaseUrl(), searchBookBean.getSearchNoteUrl())
+    public Flowable<BookBean> getBook(Query query, BookSourceRule sourceRule, SearchBookBean searchBookBean) {
+        return RetrofitHelper
+                .getInstance()
+                .getResponse(query)
                 .flatMap((Function<String, Publisher<BookBean>>) s -> analyze(s, sourceRule, searchBookBean))
                 .compose(RxHelper.handleResult())
                 .compose(RxSchedulers.io_main());
@@ -53,7 +56,7 @@ public class BookDetailModel implements BookDetailContract.Model {
                     analyzer.setContent(object);
                     Chapter chapter = new Chapter();
                     chapter.setChapterName(analyzer.getString(sourceRule.getRuleChapterName()));
-                    chapter.setChapterUrl(searchBookBean.getSearchNoteUrl() + analyzer.getString(sourceRule.getRuleChapterUrl()));
+                    chapter.setChapterUrl(analyzer.getString(sourceRule.getRuleChapterUrl()));
                     chapterList.add(chapter);
                 }
                 book.setList(chapterList);

@@ -12,6 +12,7 @@ import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.SearchBookAdapter;
 import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.bean.BookSourceRule;
+import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.contract.SearchBookContract;
 import com.kzw.leisure.model.SearchBookModel;
@@ -24,7 +25,9 @@ import com.kzw.leisure.widgets.ChangeSourceDialog;
 import com.kzw.leisure.widgets.dialog.ProgressDialog;
 
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Set;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -46,7 +49,7 @@ public class SearchBookActivity extends BaseActivity<SearchBookPresenter, Search
     List<BookSourceRule> sourceList = new ArrayList<>();
     List<SearchBookBean> bookList = new ArrayList<>();
     SearchBookAdapter adapter;
-    BookSourceRule rule;
+    BookSourceRule defaultRule;
 
     @Override
     protected int getContentView() {
@@ -67,18 +70,25 @@ public class SearchBookActivity extends BaseActivity<SearchBookPresenter, Search
                 dialog.show();
                 bookList.clear();
                 try {
-                    rule.setMap(v.getText().toString());
+                    if (defaultRule == null) {
+                        for (BookSourceRule rule : sourceList) {
+                            Query query = new Query(rule.getRuleSearchUrl(), v.getText().toString(), null, null, rule.getBaseUrl());
+                            mPresenter.searchBook(query, rule);
+                        }
+                    } else {
+                        Query query = new Query(defaultRule.getRuleSearchUrl(), v.getText().toString(), null, null, defaultRule.getBaseUrl());
+                        mPresenter.searchBook(query, defaultRule);
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-                mPresenter.getHtml(rule);
                 return true;
             }
             return false;
         });
         adapter.setOnItemClickListener((adapter, view, position) -> {
             SearchBookBean bean = bookList.get(position);
-            IntentUtils.intentToBookDetailActivity(mContext, bean, rule);
+            IntentUtils.intentToBookDetailActivity(mContext, bean);
         });
     }
 
@@ -91,11 +101,7 @@ public class SearchBookActivity extends BaseActivity<SearchBookPresenter, Search
     public void initData() {
         sourceList = GsonUtil.getInstance().fromJson(Constant.bookRuleSource, new TypeToken<List<BookSourceRule>>() {
         }.getType());
-        rule = SPUtils.getInstance().getObject("defaultRule", BookSourceRule.class);
-        if (rule == null) {
-            rule = sourceList.get(0);
-            SPUtils.getInstance().putObject("defaultRule", rule);
-        }
+        defaultRule = SPUtils.getInstance().getObject("defaultRule", BookSourceRule.class);
     }
 
 
@@ -114,7 +120,18 @@ public class SearchBookActivity extends BaseActivity<SearchBookPresenter, Search
             case R.id.change_source:
                 ChangeSourceDialog.builder(mContext)
                         .setList(sourceList)
-                        .setListener(bean -> SPUtils.getInstance().putObject("defaultRule", bean))
+                        .setListener(new ChangeSourceDialog.itemClickListener() {
+                            @Override
+                            public void itemClick(BookSourceRule bean) {
+                                defaultRule = bean;
+                                SPUtils.getInstance().putObject("defaultRule", bean);
+                            }
+
+                            @Override
+                            public void allRule() {
+                                defaultRule = null;
+                            }
+                        })
                         .show();
                 break;
         }
@@ -125,6 +142,9 @@ public class SearchBookActivity extends BaseActivity<SearchBookPresenter, Search
     public void returnResult(List<SearchBookBean> list) {
         dialog.dismiss();
         bookList.addAll(list);
+        Set<SearchBookBean> set = new LinkedHashSet<>(bookList);
+        bookList.clear();
+        bookList.addAll(set);
         adapter.setNewData(bookList);
     }
 

@@ -7,13 +7,11 @@ import android.view.MenuItem;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.BookListAdapter;
 import com.kzw.leisure.base.BaseFragment;
-import com.kzw.leisure.bean.BookSourceRule;
 import com.kzw.leisure.event.AddBookEvent;
 import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.RealmHelper;
-import com.kzw.leisure.utils.SPUtils;
 
 import java.util.ArrayList;
 import java.util.List;

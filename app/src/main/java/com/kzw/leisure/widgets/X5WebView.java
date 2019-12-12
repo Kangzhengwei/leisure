@@ -63,14 +63,14 @@ public class X5WebView extends WebView {
     @Override
     protected void onScrollChanged(int l, int t, int oldl, int oldt) {
         super.onScrollChanged(l, t, oldl, oldt);
-        Log.e("webview", "l=" + l + "t=" + t + "oldl=" + oldl + "oldt=" + oldt);
+        Log.d("webview", "l=" + l + "t=" + t + "oldl=" + oldl + "oldt=" + oldt);
         float webcontent = getContentHeight() * getScale();
 
-        Log.e("webview", "webcontent" + webcontent);
+        Log.d("webview", "webcontent" + webcontent);
         // 当前webview的高度
         float webnow = getHeight() + getScrollY();
 
-        Log.e("webview", "webnow" + webnow);
+        Log.d("webview", "webnow" + webnow);
         if (listener != null) {
             Log.e("webview", "webcontent - webnow" + (webcontent - webnow));
             listener.onScrollChanged();

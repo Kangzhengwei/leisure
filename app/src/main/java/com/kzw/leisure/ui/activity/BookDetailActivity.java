@@ -13,20 +13,25 @@ import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.bean.BookBean;
 import com.kzw.leisure.bean.BookSourceRule;
 import com.kzw.leisure.bean.Chapter;
+import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.contract.BookDetailContract;
 import com.kzw.leisure.event.AddBookEvent;
 import com.kzw.leisure.model.BookDetailModel;
 import com.kzw.leisure.presenter.BookDetailPresenter;
 import com.kzw.leisure.realm.BookRealm;
+import com.kzw.leisure.realm.ChapterList;
+import com.kzw.leisure.realm.SourceRuleRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.GlideUtil;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.StatusBarUtil;
+import com.kzw.leisure.utils.StringUtils;
 import com.makeramen.roundedimageview.RoundedImageView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.appcompat.widget.Toolbar;
@@ -69,7 +74,6 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
     @BindView(R.id.add)
     FloatingActionButton add;
     SearchBookBean searchBookBean;
-    BookSourceRule sourceRule;
     ChapterAdapter adapter;
     Realm realm;
     BookBean mBook;
@@ -110,6 +114,28 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
                 book.setDurChapter(position);
                 book.setDurChapterPage(0);
                 book.setChapterListSize(adapter.getData().size());
+                List<ChapterList> chapterLists=new ArrayList<>();
+                for(String str:searchBookBean.getSearchNoteUrlList()){
+                    ChapterList chapterListrule=new ChapterList();
+                    chapterListrule.setChapterListUrlRule(str);
+                    chapterLists.add(chapterListrule);
+                }
+                book.setSearchNoteUrlList(chapterLists);
+                List<SourceRuleRealm> sourceRuleRealmList = new ArrayList<>();
+                for (BookSourceRule rule : searchBookBean.getSearchRuleList()) {
+                    SourceRuleRealm ruleRealm = new SourceRuleRealm();
+                    ruleRealm.setRuleChapterList(rule.getRuleChapterList());
+                    ruleRealm.setRuleChapterName(rule.getRuleChapterName());
+                    ruleRealm.setRuleChapterUrl(rule.getRuleChapterUrl());
+                    ruleRealm.setRuleChapterUrlNext(rule.getRuleChapterUrlNext());
+                    ruleRealm.setRuleChapterUrlType(rule.getRuleChapterUrlType());
+                    ruleRealm.setRuleContentUrl(rule.getRuleContentUrl());
+                    ruleRealm.setRuleContentUrlNext(rule.getRuleContentUrlNext());
+                    ruleRealm.setBaseUrl(rule.getBaseUrl());
+                    ruleRealm.setSiteName(rule.getSiteName());
+                    sourceRuleRealmList.add(ruleRealm);
+                }
+                book.setSourceRuleRealmList(sourceRuleRealmList);
                 RealmHelper.getInstance().setBook(book);
                 IntentUtils.intentToBookReadActivity(mContext);
             }
@@ -119,13 +145,17 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
     @Override
     protected void initPresenter() {
         searchBookBean = (SearchBookBean) getIntent().getSerializableExtra("SearchBook");
-        sourceRule = (BookSourceRule) getIntent().getSerializableExtra("BookRule");
         mPresenter.setVM(this, mModel);
     }
 
     @Override
     public void initData() {
-        mPresenter.getHtml(sourceRule, searchBookBean);
+        try {
+            Query query = new Query(searchBookBean.getSearchNoteUrlList().get(0), null, searchBookBean.getSearchRuleList().get(0).getBaseUrl());
+            mPresenter.getBook(query, searchBookBean.getSearchRuleList().get(0), searchBookBean);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -153,8 +183,34 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
                 data.setBookLastChapter(mBook.getBookLastChapter());
                 data.setBookName(mBook.getBookName());
                 data.setBookUrlPattern(mBook.getBookUrlPattern());
-                data.setCoverUrl(sourceRule.getBaseUrl() + mBook.getCoverUrl());
+                if (StringUtils.isImageUrlPath(mBook.getCoverUrl())) {
+                    data.setCoverUrl(searchBookBean.getSearchRuleList().get(0).getBaseUrl() + mBook.getCoverUrl());
+                } else {
+                    data.setCoverUrl(mBook.getCoverUrl());
+                }
                 data.setChapterListUrl(searchBookBean.getSearchNoteUrl());
+                List<ChapterList> chapterLists=new ArrayList<>();
+                for(String str:searchBookBean.getSearchNoteUrlList()){
+                    ChapterList chapterListrule=new ChapterList();
+                    chapterListrule.setChapterListUrlRule(str);
+                    chapterLists.add(chapterListrule);
+                }
+                data.setSearchNoteUrlList(chapterLists);
+                List<SourceRuleRealm> sourceRuleRealmList = new ArrayList<>();
+                for (BookSourceRule rule : searchBookBean.getSearchRuleList()) {
+                    SourceRuleRealm ruleRealm = new SourceRuleRealm();
+                    ruleRealm.setRuleChapterList(rule.getRuleChapterList());
+                    ruleRealm.setRuleChapterName(rule.getRuleChapterName());
+                    ruleRealm.setRuleChapterUrl(rule.getRuleChapterUrl());
+                    ruleRealm.setRuleChapterUrlNext(rule.getRuleChapterUrlNext());
+                    ruleRealm.setRuleChapterUrlType(rule.getRuleChapterUrlType());
+                    ruleRealm.setRuleContentUrl(rule.getRuleContentUrl());
+                    ruleRealm.setRuleContentUrlNext(rule.getRuleContentUrlNext());
+                    ruleRealm.setBaseUrl(rule.getBaseUrl());
+                    ruleRealm.setSiteName(rule.getSiteName());
+                    sourceRuleRealmList.add(ruleRealm);
+                }
+                data.setSourceRuleRealmList(sourceRuleRealmList);
                 showToast("添加成功");
                 RxBus.getInstance().post(new AddBookEvent());
             }
@@ -165,9 +221,14 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
     @Override
     public void returnResult(BookBean bookBean) {
         mBook = bookBean;
-        tvIntro.setText(bookBean.getBookInfoInit());
-        GlideUtil.setBookImagesource(mContext, sourceRule.getBaseUrl() + bookBean.getCoverUrl(), bookBg);
-        GlideUtil.setBlurSource(mContext, sourceRule.getBaseUrl() + bookBean.getCoverUrl(), bgShape);
+        catalogintro.setText(bookBean.getBookInfoInit());
+        if (StringUtils.isImageUrlPath(bookBean.getCoverUrl())) {
+            GlideUtil.setBookImagesource(mContext, searchBookBean.getSearchRuleList().get(0).getBaseUrl() + bookBean.getCoverUrl(), bookBg);
+            GlideUtil.setBlurSource(mContext, searchBookBean.getSearchRuleList().get(0).getBaseUrl() + bookBean.getCoverUrl(), bgShape);
+        } else {
+            GlideUtil.setBookImagesource(mContext, bookBean.getCoverUrl(), bookBg);
+            GlideUtil.setBlurSource(mContext, bookBean.getCoverUrl(), bgShape);
+        }
         adapter.setNewData(bookBean.getList());
     }
 

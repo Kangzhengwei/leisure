@@ -1,6 +1,7 @@
 package com.kzw.leisure.presenter;
 
 import com.kzw.leisure.bean.BookSourceRule;
+import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.contract.SearchBookContract;
 import com.kzw.leisure.rxJava.RxSubscriber;
@@ -14,8 +15,8 @@ import java.util.List;
  */
 public class SearchBookPresenter extends SearchBookContract.Presenter {
     @Override
-    public void getHtml(BookSourceRule bean) {
-        mRxManage.addSubscribe(mModel.getHtml(bean).subscribeWith(new RxSubscriber<List<SearchBookBean>>() {
+    public void searchBook(Query query, BookSourceRule bean) {
+        mRxManage.addSubscribe(mModel.searchBook(query,bean).subscribeWith(new RxSubscriber<List<SearchBookBean>>() {
 
             @Override
             protected void _onNext(List<SearchBookBean> searchBookBeans) {

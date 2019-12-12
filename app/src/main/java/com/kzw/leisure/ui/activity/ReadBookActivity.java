@@ -12,21 +12,25 @@ import android.widget.LinearLayout;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.ChapterAdapter;
 import com.kzw.leisure.base.BaseActivity;
-import com.kzw.leisure.bean.BookSourceRule;
 import com.kzw.leisure.bean.Chapter;
+import com.kzw.leisure.bean.ChapterRule;
+import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.contract.ReadBookContract;
 import com.kzw.leisure.model.ReadBookModel;
 import com.kzw.leisure.presenter.ReadBookPresenter;
 import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
+import com.kzw.leisure.realm.ChapterList;
+import com.kzw.leisure.realm.SourceRuleRealm;
 import com.kzw.leisure.utils.RealmHelper;
-import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.utils.StatusBarUtil;
+import com.kzw.leisure.widgets.ReadBookChangeSourceDialog;
 import com.kzw.leisure.widgets.pageView.BottomMenuWidget;
 import com.kzw.leisure.widgets.pageView.PageLoader;
 import com.kzw.leisure.widgets.pageView.PageView;
 import com.kzw.leisure.widgets.pageView.ReadBookControl;
 import com.kzw.leisure.widgets.pageView.TopMenuWidget;
+import com.zia.easybook.widget.TxtChapter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +40,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
 import io.reactivex.Flowable;
 
@@ -56,13 +61,20 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     LinearLayout slideLayout;
     @BindView(R.id.drawerlayout)
     DrawerLayout drawerlayout;
-    BookRealm bookRealm;
-    BookSourceRule rule;
+    @BindView(R.id.swipeRefresh)
+    SwipeRefreshLayout swipeRefresh;
+
+
+    BookRealm bookRealm;//保存的书籍信息
+    SourceRuleRealm currentRule;//保存的书籍章节解析规则
+    ChapterList currentChapterListUrl;//保存的书籍的章节列表和获取章节列表的path url
+    ChapterRule chapterRule;//将保存的章节解析规则转换成对象
     ReadBookControl readBookControl = ReadBookControl.getInstance();
     List<Chapter> chapterList = new ArrayList<>();
     ChapterAdapter adapter;
     Animation menuTopIn, menuTopOut, menuBottomIn, menuBottomOut;
     PageLoader mPageLoader;
+
 
     @Override
     protected int getContentView() {
@@ -74,6 +86,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
         StatusBarUtil.fullScreen(this);
         StatusBarUtil.StatusBarLightMode(this, true);
         setActionBar(bookRealm.getBookName(), true, topmenu.toolbar);
+
         drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         menuBottomIn = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_in);
@@ -149,7 +162,12 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
         recyclerview.setItemAnimator(new DefaultItemAnimator());
         adapter = new ChapterAdapter();
         recyclerview.setAdapter(adapter);
-
+        adapter.setOnItemClickListener((adapter, view, position) -> {
+            drawerlayout.closeDrawer(slideLayout);
+            mPageLoader.skipToChapter(position, 0);
+        });
+        swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
+        swipeRefresh.setEnabled(false);
         pageView.setBackground(readBookControl.getTextBackground(mContext));
         mPageLoader = pageView.getPageLoader(this, bookRealm, new PageLoader.Callback() {
             @Override
@@ -186,7 +204,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
 
             @Override
             public Flowable<BookContentBean> getContent(Chapter chapter) {
-                return mModel.getContent(rule, chapter);
+                return mModel.getContent(chapterRule, chapter);
             }
 
         });
@@ -249,7 +267,9 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
 
             @Override
             public void openChapterList() {
+                getChapterList(true);
                 drawerlayout.openDrawer(slideLayout);
+                swipeRefresh.setRefreshing(true);
                 menuMiss();
             }
 
@@ -275,7 +295,6 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
 
             @Override
             public void dismiss() {
-                drawerlayout.openDrawer(slideLayout);
                 menuMiss();
             }
         });
@@ -286,14 +305,31 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
         mPresenter.setVM(this, mModel);
         RealmHelper.getInstance().init();
         bookRealm = RealmHelper.getInstance().getBook();
-        rule = SPUtils.getInstance().getObject("defaultRule", BookSourceRule.class);
+        currentRule = bookRealm.getCurrentRule();
+        currentChapterListUrl = bookRealm.getCurrentChapterListRule();
+        if (currentRule == null) {
+            currentRule = bookRealm.getSourceRuleRealmList().get(0);
+        }
+        if (currentChapterListUrl == null) {
+            currentChapterListUrl = bookRealm.getSearchNoteUrlList().get(0);
+        }
         readBookControl.initTextDrawableIndex();
         readBookControl.setPageMode(3);
     }
 
     @Override
     public void initData() {
-        mPresenter.getChapterList(rule, bookRealm.getChapterListUrl());
+        getChapterList(false);
+    }
+
+    private void getChapterList(boolean isFromNet) {
+        try {
+            chapterRule = new ChapterRule(currentRule);//realm不能在子线程调用get或set方法，这里转换成其他对象
+            Query query = new Query(currentChapterListUrl.getChapterListUrlRule(), null, chapterRule.getBaseUrl());
+            mPresenter.getChapterList(query, chapterRule, currentChapterListUrl, isFromNet);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -301,6 +337,14 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
         chapterList = list;
         adapter.setNewData(chapterList);
         mPageLoader.refreshChapterList();
+        if (bookRealm.getDurChapter() < list.size()) {
+            recyclerview.scrollToPosition(bookRealm.getDurChapter());
+        } else {
+            recyclerview.scrollToPosition(list.size() - 1);
+        }
+        if (swipeRefresh.isRefreshing()) {
+            swipeRefresh.setRefreshing(false);
+        }
     }
 
 
@@ -321,6 +365,23 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
             case android.R.id.home:
                 onBackPressed();
                 break;
+            case R.id.action_change_source:
+                menuMiss();
+                ReadBookChangeSourceDialog
+                        .builder(mContext, currentRule)
+                        .setList(bookRealm.getSourceRuleRealmList())
+                        .setListener((bean, position) -> {
+                            currentRule = bean;
+                            currentChapterListUrl = bookRealm.getSearchNoteUrlList().get(position);
+                            RealmHelper.getInstance().getRealm().executeTransaction(realm -> {
+                                bookRealm.setCurrentRule(currentRule);
+                                bookRealm.setCurrentChapterListRule(currentChapterListUrl);
+                            });
+                            mPageLoader.setStatus(TxtChapter.Status.CHANGE_SOURCE);
+                            getChapterList(false);
+                        })
+                        .show();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -335,6 +396,10 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     protected void onDestroy() {
         super.onDestroy();
         RealmHelper.getInstance().destoryRealm();
+        if (mPageLoader != null) {
+            mPageLoader.closeBook();
+            mPageLoader = null;
+        }
     }
 
     private void menuMiss() {

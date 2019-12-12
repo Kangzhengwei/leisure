@@ -6,15 +6,18 @@ import com.facebook.stetho.okhttp3.StethoInterceptor;
 import com.kzw.leisure.base.BaseApplication;
 import com.kzw.leisure.utils.FileUtils;
 import com.kzw.leisure.utils.NetworkUtils;
+import com.kzw.leisure.utils.SSLSocketClient;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
 import okhttp3.Cache;
 import okhttp3.CacheControl;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
+import okhttp3.Protocol;
 import okhttp3.Request;
 import okhttp3.Response;
 import okhttp3.logging.HttpLoggingInterceptor;
@@ -43,6 +46,9 @@ public class OkHttpHelper {
                 .connectTimeout(DEFAULT_CONNECT_TIMEOUT_MILLIS, TimeUnit.MILLISECONDS)
                 .cache(getCache(mContext)) //设置缓存
                 .retryOnConnectionFailure(true)// 失败重发
+                .sslSocketFactory(SSLSocketClient.getSSLSocketFactory(), SSLSocketClient.createTrustAllManager())
+                .hostnameVerifier(SSLSocketClient.getHostnameVerifier())
+                .protocols(Collections.singletonList(Protocol.HTTP_1_1))
                 .addNetworkInterceptor(mRewriteCacheControlInterceptor)   //设置缓存
                 .addInterceptor(mRewriteCacheControlInterceptor)
                 .addNetworkInterceptor(new StethoInterceptor()) //FaceBook 网络调试器，可在Chrome调试网络请求，查看SharePreferences,数据库等

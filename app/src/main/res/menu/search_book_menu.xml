@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
         android:id="@+id/change_source"
-        android:icon="@mipmap/ic_action_reload"
+        android:icon="@drawable/ic_exchange"
         android:title="@string/setting"
         app:showAsAction="ifRoom" />
 </menu>

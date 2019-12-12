@@ -6,6 +6,7 @@ import android.util.Base64;
 
 import com.kzw.leisure.base.BaseApplication;
 
+import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,6 +23,8 @@ import static android.text.TextUtils.isEmpty;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class StringUtils {
+
+
     private static final String TAG = "StringUtils";
     private static final int HOUR_OF_DAY = 24;
     private static final int DAY_OF_YESTERDAY = 2;
@@ -317,6 +320,10 @@ public class StringUtils {
         return url.substring(0, index);
     }
 
+    public static boolean isImageUrlPath(String url) {
+        return !TextUtils.isEmpty(url) && !url.startsWith("http");
+    }
+
     // 移除字符串首尾空字符的高效方法(利用ASCII值判断,包括全角空格)
     public static String trim(String s) {
         if (isEmpty(s)) return "";
@@ -369,5 +376,30 @@ public class StringUtils {
         } else {
             return str.substring(a + 1);
         }
+    }
+
+    /**
+     * 获取绝对地址
+     */
+    public static String getAbsoluteURL(String baseURL, String relativePath) {
+        if (TextUtils.isEmpty(relativePath)) return "";
+        if (TextUtils.isEmpty(baseURL)) return relativePath;
+        String header = null;
+        if (StringUtils.startWithIgnoreCase(relativePath, "@header:")) {
+            header = relativePath.substring(0, relativePath.indexOf("}") + 1);
+            relativePath = relativePath.substring(header.length());
+        }
+        try {
+            URL absoluteUrl = new URL(baseURL);
+            URL parseUrl = new URL(absoluteUrl, relativePath);
+            relativePath = parseUrl.toString();
+            if (header != null) {
+                relativePath = header + relativePath;
+            }
+            return relativePath;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return relativePath;
     }
 }

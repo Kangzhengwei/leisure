@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.animation.LinearInterpolator;
 import android.widget.Scroller;
 
-
 import com.kzw.leisure.R;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.widgets.pageView.ReadBookControl;

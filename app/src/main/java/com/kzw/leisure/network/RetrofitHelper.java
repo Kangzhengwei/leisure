@@ -1,11 +1,11 @@
 package com.kzw.leisure.network;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
+import com.kzw.leisure.bean.Query;
 
 import java.util.Map;
 
 import io.reactivex.Flowable;
-import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 
 /**
@@ -29,10 +29,10 @@ public class RetrofitHelper {
     }
 
 
-    public Retrofit createRetrofit(Retrofit.Builder builder, OkHttpClient client, String url) {
-        return builder
+    public Retrofit createRetrofit(String url) {
+        return new Retrofit.Builder()
                 .baseUrl(url)
-                .client(client)
+                .client(OkHttpHelper.getInstance().getOkHttpClient())
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(EncodeConverter.create())
                 .build();
@@ -40,15 +40,32 @@ public class RetrofitHelper {
 
 
     public Flowable<String> getResponse(String baseUrl, String path) {
-        return createRetrofit(new Retrofit.Builder(), OkHttpHelper.getInstance().getOkHttpClient(), baseUrl)
+        return createRetrofit(baseUrl)
                 .create(ApiService.class)
                 .get(path);
     }
 
     public Flowable<String> postResponse(String baseUrl, String path, Map<String, String> map) {
-        return createRetrofit(new Retrofit.Builder(), OkHttpHelper.getInstance().getOkHttpClient(), baseUrl)
+        return createRetrofit(baseUrl)
                 .create(ApiService.class)
                 .post(path, map);
+    }
+
+    public Flowable<String> getResponse(Query query) {
+        switch (query.getUrlMode()) {
+            case POST:
+                return createRetrofit(query.getHost())
+                        .create(ApiService.class)
+                        .post(query.getPath(), query.getQueryMap(), query.getHeaderMap());
+            case GET:
+                return createRetrofit(query.getHost())
+                        .create(ApiService.class)
+                        .get(query.getPath(), query.getQueryMap(), query.getHeaderMap());
+            default:
+                return createRetrofit(query.getHost())
+                        .create(ApiService.class)
+                        .get(query.getPath(), query.getHeaderMap());
+        }
     }
 
 

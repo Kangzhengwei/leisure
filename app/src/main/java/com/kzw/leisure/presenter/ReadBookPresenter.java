@@ -1,10 +1,10 @@
 package com.kzw.leisure.presenter;
 
-import com.kzw.leisure.bean.BookSourceRule;
 import com.kzw.leisure.bean.Chapter;
-import com.kzw.leisure.bean.SearchBookBean;
+import com.kzw.leisure.bean.ChapterRule;
+import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.contract.ReadBookContract;
-import com.kzw.leisure.realm.BookRealm;
+import com.kzw.leisure.realm.ChapterList;
 import com.kzw.leisure.rxJava.RxSubscriber;
 
 import java.util.List;
@@ -16,8 +16,8 @@ import java.util.List;
  */
 public class ReadBookPresenter extends ReadBookContract.Presenter {
     @Override
-    public void getChapterList(BookSourceRule rule,String path) {
-        mRxManage.addSubscribe(mModel.getChapterList(rule, path).subscribeWith(new RxSubscriber<List<Chapter>>() {
+    public void getChapterList(Query query, ChapterRule rule, ChapterList chapterList,boolean isFromNet) {
+        mRxManage.addSubscribe(mModel.getChapterList(query,rule,chapterList,isFromNet).subscribeWith(new RxSubscriber<List<Chapter>>() {
             @Override
             protected void _onNext(List<Chapter> chapters) {
                 mView.returnResult(chapters);

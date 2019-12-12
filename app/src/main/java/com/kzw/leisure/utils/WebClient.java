@@ -11,7 +11,8 @@ public class WebClient extends WebViewClient {
 
     private requestListener listener;
 
-    public WebClient() { }
+    public WebClient() {
+    }
 
     @Override
     public void onPageFinished(WebView view, String url) {
@@ -28,4 +29,5 @@ public class WebClient extends WebViewClient {
     public void setRequestListener(requestListener listener) {
         this.listener = listener;
     }
+
 }

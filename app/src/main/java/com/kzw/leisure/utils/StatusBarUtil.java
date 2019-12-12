@@ -41,12 +41,7 @@ public class StatusBarUtil {
                     WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
         }
         TextView textView = new TextView(activity);
-        textView.setOnLongClickListener(new View.OnLongClickListener() {
-            @Override
-            public boolean onLongClick(View v) {
-                return false;
-            }
-        });
+        textView.setOnLongClickListener(v -> false);
     }
 
     /**

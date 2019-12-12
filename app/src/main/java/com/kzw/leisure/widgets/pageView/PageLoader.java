@@ -2,7 +2,13 @@ package com.kzw.leisure.widgets.pageView;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
-import android.graphics.*;
+import android.graphics.Bitmap;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.Point;
+import android.graphics.Rect;
+import android.graphics.Typeface;
 import android.os.Build;
 import android.text.Layout;
 import android.text.StaticLayout;
@@ -15,6 +21,7 @@ import com.kzw.leisure.bean.Chapter;
 import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.rxJava.RxManager;
+import com.kzw.leisure.rxJava.RxSchedulers;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.ScreenUtils;
 import com.kzw.leisure.utils.StringUtils;
@@ -29,7 +36,17 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
+import io.reactivex.FlowableEmitter;
+import io.reactivex.FlowableOnSubscribe;
+import io.reactivex.Single;
+import io.reactivex.SingleObserver;
+import io.reactivex.SingleOnSubscribe;
+import io.reactivex.SingleSource;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Function;
+import rx.internal.operators.SingleOnSubscribeDelaySubscriptionOther;
 
 /**
  * 页面加载器
@@ -1514,11 +1531,34 @@ public abstract class PageLoader {
      */
     void parseCurChapter() {
         if (curChapter().txtChapter.getStatus() != TxtChapter.Status.FINISH) {
+            Single.create((SingleOnSubscribe<ChapterProvider>) e -> {
+                ChapterProvider chapterProvider = new ChapterProvider(this);
+                e.onSuccess(chapterProvider);
+            }).compose(RxSchedulers::toSimpleSingle)
+                    .flatMap((Function<ChapterProvider, SingleSource<TxtChapter>>) chapterProvider -> {
+                        TxtChapter txtChapter = chapterProvider.dealLoadPageList(callback.getChapterList().get(mCurChapterPos), mPageView.isPrepare());
+                        return Single.just(txtChapter);
+                    })
+                    .subscribe(new SingleObserver<TxtChapter>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
+                            rxManager.addSubscribe(d);
+                        }
 
-            ChapterProvider chapterProvider = new ChapterProvider(this);
+                        @Override
+                        public void onSuccess(TxtChapter txtChapter) {
+                            upTextChapter(txtChapter);
+                        }
 
-            TxtChapter txtChapter = chapterProvider.dealLoadPageList(callback.getChapterList().get(mCurChapterPos), mPageView.isPrepare());
-            upTextChapter(txtChapter);
+                        @Override
+                        public void onError(Throwable e) {
+                            if (curChapter().txtChapter == null || curChapter().txtChapter.getStatus() != TxtChapter.Status.FINISH) {
+                                curChapter().txtChapter = new TxtChapter(mCurChapterPos);
+                                curChapter().txtChapter.setStatus(TxtChapter.Status.ERROR);
+                                curChapter().txtChapter.setMsg(e.getMessage());
+                            }
+                        }
+                    });
         }
         parsePrevChapter();
         parseNextChapter();
@@ -1538,10 +1578,36 @@ public abstract class PageLoader {
         if (prevChapter().txtChapter.getStatus() == TxtChapter.Status.FINISH) {
             return;
         }
-        ChapterProvider chapterProvider = new ChapterProvider(this);
+        Single.create((SingleOnSubscribe<ChapterProvider>) e -> {
+            ChapterProvider chapterProvider = new ChapterProvider(this);
+            e.onSuccess(chapterProvider);
+        })
+                .compose(RxSchedulers::toSimpleSingle)
+                .flatMap((Function<ChapterProvider, SingleSource<TxtChapter>>) chapterProvider -> {
+                    TxtChapter txtChapter = chapterProvider.dealLoadPageList(callback.getChapterList().get(prevChapterPos), mPageView.isPrepare());
+                    return Single.just(txtChapter);
+                })
+                .subscribe(new SingleObserver<TxtChapter>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        rxManager.addSubscribe(d);
+                    }
 
-        TxtChapter txtChapter = chapterProvider.dealLoadPageList(callback.getChapterList().get(prevChapterPos), mPageView.isPrepare());
-        upTextChapter(txtChapter);
+                    @Override
+                    public void onSuccess(TxtChapter txtChapter) {
+                        upTextChapter(txtChapter);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (prevChapter().txtChapter == null || prevChapter().txtChapter.getStatus() != TxtChapter.Status.FINISH) {
+                            prevChapter().txtChapter = new TxtChapter(prevChapterPos);
+                            prevChapter().txtChapter.setStatus(TxtChapter.Status.ERROR);
+                            prevChapter().txtChapter.setMsg(e.getMessage());
+                        }
+                    }
+                });
+
 
     }
 
@@ -1559,9 +1625,35 @@ public abstract class PageLoader {
         if (nextChapter().txtChapter.getStatus() == TxtChapter.Status.FINISH) {
             return;
         }
-        ChapterProvider chapterProvider = new ChapterProvider(this);
-        TxtChapter txtChapter = chapterProvider.dealLoadPageList(callback.getChapterList().get(nextChapterPos), mPageView.isPrepare());
-        upTextChapter(txtChapter);
+        Single.create((SingleOnSubscribe<ChapterProvider>) e -> {
+            ChapterProvider chapterProvider = new ChapterProvider(this);
+            e.onSuccess(chapterProvider);
+        }).compose(RxSchedulers::toSimpleSingle)
+                .flatMap((Function<ChapterProvider, SingleSource<TxtChapter>>) chapterProvider -> {
+                    TxtChapter txtChapter = chapterProvider.dealLoadPageList(callback.getChapterList().get(nextChapterPos), mPageView.isPrepare());
+                    return Single.just(txtChapter);
+                })
+                .subscribe(new SingleObserver<TxtChapter>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+                        rxManager.addSubscribe(d);
+                    }
+
+                    @Override
+                    public void onSuccess(TxtChapter txtChapter) {
+                        upTextChapter(txtChapter);
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+                        if (nextChapter().txtChapter == null || nextChapter().txtChapter.getStatus() != TxtChapter.Status.FINISH) {
+                            nextChapter().txtChapter = new TxtChapter(nextChapterPos);
+                            nextChapter().txtChapter.setStatus(TxtChapter.Status.ERROR);
+                            nextChapter().txtChapter.setMsg(e.getMessage());
+                        }
+                    }
+                });
+
 
     }
 

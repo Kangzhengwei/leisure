@@ -3,11 +3,8 @@ package com.kzw.leisure.widgets.pageView;
 import android.annotation.SuppressLint;
 
 import com.kzw.leisure.bean.Chapter;
-import com.kzw.leisure.network.RetrofitHelper;
 import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
-import com.kzw.leisure.rxJava.RxHelper;
-import com.kzw.leisure.rxJava.RxSchedulers;
 import com.kzw.leisure.rxJava.RxSubscriber;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.NetworkUtils;
@@ -20,10 +17,8 @@ import java.util.List;
 
 import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
-import io.reactivex.FlowableEmitter;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.functions.Function;
-import io.realm.Realm;
 import io.realm.RealmResults;
 
 /**
@@ -47,25 +42,17 @@ public class PageLoaderNet extends PageLoader {
             isChapterListPrepare = true;
             // 打开章节
             skipToChapter(book.getDurChapter(), book.getDurChapterPage());
-        } else {
-           /* book.setChapterListSize(String.valueOf(catalogs.size()));
-            isChapterListPrepare = true;
-            // 目录加载完成
-            callback.onCategoryFinish(catalogs);
-            // 加载并显示当前章节
-            skipToChapter(book.getDurChapter(), book.getDurChapterPage());*/
         }
     }
 
-
-    /*public void changeSourceFinish(Book bookShelfBean) {
+    public void changeSourceFinish(BookRealm bookShelfBean) {
         if (bookShelfBean == null) {
-            openChapter(catalog.getDurChapterPage());
+            openChapter(book.getDurChapter());
         } else {
             this.book = bookShelfBean;
             refreshChapterList();
         }
-    }*/
+    }
 
     @SuppressLint({"DefaultLocale", "CheckResult"})
     private synchronized void loadContent(final int chapterIndex) {
@@ -175,12 +162,6 @@ public class PageLoaderNet extends PageLoader {
         return NetworkUtils.isAvailable(AppUtils.getAppContext()) && noChapterData(callback.getChapterList().get(chapterIndex));
     }
 
-    public boolean canParseInt(String str) {
-        if (str == null) { //验证是否为空
-            return false;
-        }
-        return str.matches("\\d+"); //使用正则表达式判断该字符串是否为数字，第一个\是转义符，\d+表示匹配1个或 //多个连续数字，"+"和"*"类似，"*"表示0个或多个
-    }
 
     // 装载上一章节的内容
     @Override

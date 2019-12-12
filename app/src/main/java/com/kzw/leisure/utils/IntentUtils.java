@@ -3,10 +3,8 @@ package com.kzw.leisure.utils;
 import android.content.Context;
 import android.content.Intent;
 
-import com.kzw.leisure.bean.BookSourceRule;
 import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.bean.SearchItem;
-import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.ui.activity.BookDetailActivity;
 import com.kzw.leisure.ui.activity.ReadBookActivity;
 import com.kzw.leisure.ui.activity.SearchBookActivity;
@@ -32,8 +30,8 @@ public class IntentUtils {
         context.startActivity(new Intent(context, SearchBookActivity.class));
     }
 
-    public static void intentToBookDetailActivity(Context context, SearchBookBean searchBookBean, BookSourceRule rule) {
-        context.startActivity(new Intent(context, BookDetailActivity.class).putExtra("SearchBook", searchBookBean).putExtra("BookRule", rule));
+    public static void intentToBookDetailActivity(Context context, SearchBookBean searchBookBean ) {
+        context.startActivity(new Intent(context, BookDetailActivity.class).putExtra("SearchBook", searchBookBean));
     }
 
     public static void intentToBookReadActivity(Context context) {

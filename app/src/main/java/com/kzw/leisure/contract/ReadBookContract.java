@@ -3,10 +3,10 @@ package com.kzw.leisure.contract;
 import com.kzw.leisure.base.BaseModel;
 import com.kzw.leisure.base.BasePresenter;
 import com.kzw.leisure.base.BaseView;
-import com.kzw.leisure.bean.BookSourceRule;
 import com.kzw.leisure.bean.Chapter;
-import com.kzw.leisure.bean.SearchBookBean;
-import com.kzw.leisure.realm.BookRealm;
+import com.kzw.leisure.bean.ChapterRule;
+import com.kzw.leisure.bean.Query;
+import com.kzw.leisure.realm.ChapterList;
 
 import java.util.List;
 
@@ -19,7 +19,7 @@ import io.reactivex.Flowable;
  */
 public interface ReadBookContract {
     interface Model extends BaseModel {
-        Flowable<List<Chapter>> getChapterList(BookSourceRule rule, String path);
+        Flowable<List<Chapter>> getChapterList(Query query, ChapterRule rule, ChapterList chapterList,boolean isFromNet);
 
     }
 
@@ -29,7 +29,7 @@ public interface ReadBookContract {
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
-        public abstract void getChapterList(BookSourceRule rule, String path);
+        public abstract void getChapterList(Query query, ChapterRule rule,ChapterList chapterList,boolean isFromNet);
 
     }
 }

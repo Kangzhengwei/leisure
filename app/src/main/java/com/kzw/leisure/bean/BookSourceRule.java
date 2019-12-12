@@ -1,14 +1,6 @@
 package com.kzw.leisure.bean;
 
-import android.text.TextUtils;
-
-import com.kzw.leisure.utils.StringUtils;
-import com.kzw.leisure.utils.UrlEncoderUtils;
-
 import java.io.Serializable;
-import java.net.URLEncoder;
-import java.util.LinkedHashMap;
-import java.util.Map;
 
 /**
  * author: kang4
@@ -17,7 +9,6 @@ import java.util.Map;
  */
 public class BookSourceRule implements Serializable {
 
-    private Map<String, String> queryMap = new LinkedHashMap<>();
 
     private String siteName;
     private String baseUrl;
@@ -40,26 +31,23 @@ public class BookSourceRule implements Serializable {
     private String ruleBookName;
     private String ruleBookUrlPattern;
     private String ruleCoverUrl;
-    private String ruleChapterList;
 
+    private String ruleChapterList;
     private String ruleChapterName;
     private String ruleChapterUrl;
     private String ruleChapterUrlNext;
     private String ruleContentUrl;
     private String ruleContentUrlNext;
+    private int ruleChapterUrlType;
 
-    private String charCode = null;
 
-    public void setMap(String key) throws Exception {
-        if (!StringUtils.isTrimEmpty(key)) {
-            ruleSearchUrl = ruleSearchUrl.replace("ruleKeyword", key);
-        }
-        ruleSearchUrl = splitCharCode(ruleSearchUrl);
-        String[] ruleUrlS = ruleSearchUrl.split("@");
-        ruleSearchUrl = ruleUrlS[0];
-        analyzeQuery(ruleUrlS[1]);
+    public int getRuleChapterUrlType() {
+        return ruleChapterUrlType;
     }
 
+    public void setRuleChapterUrlType(int ruleChapterUrlType) {
+        this.ruleChapterUrlType = ruleChapterUrlType;
+    }
 
     public String getRuleBookAuthor() {
         return ruleBookAuthor;
@@ -181,13 +169,6 @@ public class BookSourceRule implements Serializable {
         this.siteName = siteName;
     }
 
-    public Map<String, String> getQueryMap() {
-        return queryMap;
-    }
-
-    public void setQueryMap(Map<String, String> queryMap) {
-        this.queryMap = queryMap;
-    }
 
     public String getBaseUrl() {
         return baseUrl;
@@ -269,41 +250,4 @@ public class BookSourceRule implements Serializable {
         this.ruleSearchUrl = ruleSearchUrl;
     }
 
-    private void analyzeQuery(String allQuery) throws Exception {
-        String[] queryS = allQuery.split("&");
-        for (String query : queryS) {
-            String[] queryM = query.split("=");
-            String value = queryM.length > 1 ? queryM[1] : "";
-            if (TextUtils.isEmpty(charCode)) {
-                if (UrlEncoderUtils.hasUrlEncoded(value)) {
-                    queryMap.put(queryM[0], value);
-                } else {
-                    queryMap.put(queryM[0], URLEncoder.encode(value, "UTF-8"));
-                }
-            } else if (charCode.equals("escape")) {
-                queryMap.put(queryM[0], StringUtils.escape(value));
-            } else {
-                queryMap.put(queryM[0], URLEncoder.encode(value, charCode));
-            }
-        }
-    }
-
-    /**
-     * 分离编码规则
-     */
-    private String splitCharCode(String rule) {
-        String[] ruleUrlS = rule.split("\\|");
-        if (ruleUrlS.length > 1) {
-            if (!TextUtils.isEmpty(ruleUrlS[1])) {
-                String[] qtS = ruleUrlS[1].split("&");
-                for (String qt : qtS) {
-                    String[] gz = qt.split("=");
-                    if (gz[0].equals("char")) {
-                        charCode = gz[1];
-                    }
-                }
-            }
-        }
-        return ruleUrlS[0];
-    }
 }

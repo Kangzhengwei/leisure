@@ -5,7 +5,6 @@ import android.text.StaticLayout;
 
 import com.kzw.leisure.bean.Chapter;
 import com.kzw.leisure.utils.AppUtils;
-import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.NetworkUtils;
 import com.zia.easybook.widget.TxtChapter;
 import com.zia.easybook.widget.TxtChar;
@@ -59,7 +58,6 @@ class ChapterProvider {
      * @param content：章节的文本
      */
     private TxtChapter loadPageList(Chapter chapter, @NonNull String content) {
-        LogUtils.e(content);
         //生成的页面
         TxtChapter txtChapter = new TxtChapter(chapter.getIndex());
         /*if (pageLoader.book.isAudio()) {

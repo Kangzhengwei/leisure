@@ -1,5 +1,14 @@
 package com.kzw.leisure.utils;
 
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
+import java.util.Map;
+import java.util.regex.Pattern;
+
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+
 /**
  * Created by Android on 2019/2/26.
  */
@@ -7,6 +16,18 @@ package com.kzw.leisure.utils;
 public class Constant {
     //public static final String DEFAULT_URL = "http://www.yongjiuzy.cc";
     public static final String DEFAULT_URL = "http://www.2w2w.tv/";
+    public static final Pattern putPattern = Pattern.compile("@put:(\\{[^}]+?\\})", Pattern.CASE_INSENSITIVE);
+    public static final Pattern getPattern = Pattern.compile("@get:\\{([^}]+?)\\}", Pattern.CASE_INSENSITIVE);
+    public static final Pattern headerPattern = Pattern.compile("@Header:\\{.+?\\}", Pattern.CASE_INSENSITIVE);
+    public static final Pattern JS_PATTERN = Pattern.compile("(<js>[\\w\\W]*?</js>|@js:[\\w\\W]*$)", Pattern.CASE_INSENSITIVE);
+    public static Type MAP_STRING = new TypeToken<Map<String, String>>() {
+    }.getType();
+
+    public static final Pattern EXP_PATTERN = Pattern.compile("\\{\\{([\\w\\W]*?)\\}\\}");
+    public static final ScriptEngine SCRIPT_ENGINE = new ScriptEngineManager().getEngineByName("rhino");
+
+    public static final Pattern pagePattern = Pattern.compile("\\{(.*?)\\}");
+
 
     public static final String bookRuleSource = "[" +
             "{" +
@@ -23,6 +44,7 @@ public class Constant {
             "\"ruleChapterList\":\"class.float-list fill-block@tag.li\"," +
             "\"ruleChapterName\":\"tag.a@text\"," +
             "\"ruleChapterUrl\":\"tag.a@href\"," +
+            "\"ruleChapterUrlType\":\"0\"," +
             "\"ruleContentUrl\":\"id.ChapterContents@textNodes\"," +
             "\"ruleSearchAuthor\":\"tag.td.3@tag.a@text\"," +
             "\"ruleSearchCoverUrl\":\"\"," +
@@ -33,6 +55,58 @@ public class Constant {
             "\"ruleSearchName\":\"tag.td.2@tag.a.0@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.td.2.@tag.a.0@href\"," +
             "\"ruleSearchUrl\":\"modules/article/search.php@searchkey=ruleKeyword|char=gbk\"" +
+            "}," +
+            "{" +
+            "\"baseUrl\":\"https://www.biquge.biz/\"," +
+            "\"siteName\":\"笔趣阁biz\"," +
+            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
+            "\"ruleBookContent\":\"\"," +
+            "\"ruleBookInfoInit\":\"id.intro@text\"," +
+            "\"ruleBookKind\":\"\"," +
+            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
+            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
+            "\"ruleBookUrlPattern\":\"\"," +
+            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
+            "\"ruleChapterList\":\"id.list@tag.dd\"," +
+            "\"ruleChapterName\":\"tag.a@text\"," +
+            "\"ruleChapterUrl\":\"tag.a@href\"," +
+            "\"ruleChapterUrlType\":\"1\"," +
+            "\"ruleContentUrl\":\"id.content@textNodes\"," +
+            "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
+            "\"ruleSearchCoverUrl\":\"class.result-game-item-pic@tag.img@src\"," +
+            "\"ruleSearchIntroduce\":\"\"," +
+            "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
+            "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a@text\"," +
+            "\"ruleSearchList\":\"class.result-item result-game-item\"," +
+            "\"ruleSearchName\":\"class.result-item-title result-game-item-title.@tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"class.result-item-title result-game-item-title.@tag.a@href\"," +
+            "\"ruleSearchUrl\":\"search.php?keyword=ruleKeyword|UTF-8\"" +
+            "}," +
+            "{" +
+            "\"baseUrl\":\"https://www.xinxs.la/\"," +
+            "\"siteName\":\"笔趣阁\"," +
+            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
+            "\"ruleBookContent\":\"\"," +
+            "\"ruleBookInfoInit\":\"id.intro@text\"," +
+            "\"ruleBookKind\":\"\"," +
+            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
+            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
+            "\"ruleBookUrlPattern\":\"\"," +
+            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
+            "\"ruleChapterList\":\"id.list@tag.dd!0:1:2:3:4:5:6:7:8:9:10:11:12:13:14:15:16:17:18:19:20:21:22:23:24:25:26:27:28:29:30:31:32:33:34:35:36:37:38:39\"," +
+            "\"ruleChapterName\":\"tag.a@text\"," +
+            "\"ruleChapterUrl\":\"tag.a@href\"," +
+            "\"ruleChapterUrlType\":\"1\"," +
+            "\"ruleContentUrl\":\"id.content@textNodes\"," +
+            "\"ruleSearchAuthor\":\"class.s4@text\"," +
+            "\"ruleSearchCoverUrl\":\"\"," +
+            "\"ruleSearchIntroduce\":\"\"," +
+            "\"ruleSearchKind\":\"class.s1@text\"," +
+            "\"ruleSearchLastChapter\":\"class.s3@text\"," +
+            "\"ruleSearchList\":\"class.search-list@tag.li!0\"," +
+            "\"ruleSearchName\":\"class.s2@text\"," +
+            "\"ruleSearchNoteUrl\":\"class.s2@tag.a@href\"," +
+            "\"ruleSearchUrl\":\"https://sou.xanbhx.com/search?siteid=xsla&q=ruleKeyword|UTF-8\"" +
             "}" +
             "]\n";
     public static final String ruleSource = "[" +
@@ -172,10 +246,6 @@ public class Constant {
             "        \"siteName\": \"咪咕\"\n" +
             "    },\n" +
             "    {\n" +
-            "        \"url\": \"http://www.xbdmov.com\",\n" +
-            "        \"siteName\": \"天天看电影\"\n" +
-            "    },\n" +
-            "    {\n" +
             "        \"url\": \"http://www.kdy666.com\",\n" +
             "        \"siteName\": \"看电影网\"\n" +
             "    },\n" +
@@ -188,16 +258,8 @@ public class Constant {
             "        \"siteName\": \"好看影视\"\n" +
             "    },\n" +
             "    {\n" +
-            "        \"url\": \"http://www.metvb.com\",\n" +
-            "        \"siteName\": \"meTV\"\n" +
-            "    },\n" +
-            "    {\n" +
             "        \"url\": \"https://dz.zhaifulifabu.com:9527/ \",\n" +
             "        \"siteName\": \"备用地址\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.diediao.net \",\n" +
-            "        \"siteName\": \"碟调网\"\n" +
             "    },\n" +
             "    {\n" +
             "        \"url\": \"https://www.66s.cc/ \",\n" +
@@ -214,10 +276,6 @@ public class Constant {
             "    {\n" +
             "        \"url\": \"http://1.61ww16.com \",\n" +
             "        \"siteName\": \"趣淘视频\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.baguaitv.com \",\n" +
-            "        \"siteName\": \"八怪TV\"\n" +
             "    },\n" +
             "    {\n" +
             "        \"url\": \"http://www.kkkkmao.com \",\n" +

@@ -69,4 +69,5 @@ dependencies {
     implementation 'jp.wasabeef:glide-transformations:4.1.0'
     implementation 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle:2.2.2'
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
+    implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
 }
