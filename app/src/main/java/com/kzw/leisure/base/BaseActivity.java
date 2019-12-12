@@ -9,13 +9,10 @@ import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
-import android.widget.LinearLayout;
 
-import com.google.android.material.appbar.AppBarLayout;
 import com.kzw.leisure.R;
 import com.kzw.leisure.utils.ActivityManagerUtils;
 import com.kzw.leisure.utils.PermessionUtil;
-import com.kzw.leisure.utils.StatusBarUtil;
 import com.kzw.leisure.utils.TUtil;
 import com.kzw.leisure.widgets.ToastUtil;
 
@@ -29,7 +26,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 

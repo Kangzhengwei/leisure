@@ -12,7 +12,6 @@ import com.kzw.leisure.realm.ChapterList;
 import com.kzw.leisure.rxJava.RxHelper;
 import com.kzw.leisure.rxJava.RxSchedulers;
 import com.kzw.leisure.utils.AnalyzeRule;
-import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.StringUtils;
 
