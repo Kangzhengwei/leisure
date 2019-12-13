@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
@@ -22,9 +23,15 @@ import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.realm.ChapterList;
 import com.kzw.leisure.realm.SourceRuleRealm;
+import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.StatusBarUtil;
+import com.kzw.leisure.utils.SystemUtil;
+import com.kzw.leisure.widgets.AdjustMenu;
 import com.kzw.leisure.widgets.ReadBookChangeSourceDialog;
+import com.kzw.leisure.widgets.SettingMenu;
+import com.kzw.leisure.widgets.UISettingMenu;
+import com.kzw.leisure.widgets.anim.PageAnimation;
 import com.kzw.leisure.widgets.pageView.BottomMenuWidget;
 import com.kzw.leisure.widgets.pageView.PageLoader;
 import com.kzw.leisure.widgets.pageView.PageView;
@@ -42,6 +49,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.Flowable;
 
 public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookModel> implements ReadBookContract.View {
@@ -63,7 +71,12 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     DrawerLayout drawerlayout;
     @BindView(R.id.swipeRefresh)
     SwipeRefreshLayout swipeRefresh;
-
+    @BindView(R.id.adjust_menu)
+    AdjustMenu adjustMenu;
+    @BindView(R.id.setting_menu)
+    SettingMenu settingMenu;
+    @BindView(R.id.ui_setting_menu)
+    UISettingMenu uiSettingMenu;
 
     BookRealm bookRealm;//保存的书籍信息
     SourceRuleRealm currentRule;//保存的书籍章节解析规则
@@ -74,6 +87,8 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     ChapterAdapter adapter;
     Animation menuTopIn, menuTopOut, menuBottomIn, menuBottomOut;
     PageLoader mPageLoader;
+    int screenTimeOut;
+    Runnable keepScreenRunnable;
 
 
     @Override
@@ -86,7 +101,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
         StatusBarUtil.fullScreen(this);
         StatusBarUtil.StatusBarLightMode(this, true);
         setActionBar(bookRealm.getBookName(), true, topmenu.toolbar);
-
+        keepScreenRunnable = this::unKeepScreenOn;
         drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
         menuBottomIn = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_in);
@@ -133,7 +148,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
 
             @Override
             public void onAnimationEnd(Animation animation) {
-
+                allMenuMiss();
             }
 
             @Override
@@ -149,12 +164,66 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
 
             @Override
             public void onAnimationEnd(Animation animation) {
-
+                allMenuMiss();
             }
 
             @Override
             public void onAnimationRepeat(Animation animation) {
 
+            }
+        });
+        adjustMenu.initData(this);
+        settingMenu.setListener(new SettingMenu.Callback() {
+            @Override
+            public void upBar() {
+
+            }
+
+            @Override
+            public void keepScreenOnChange(int keepScreenOn) {
+                screenTimeOut = getResources().getIntArray(R.array.screen_time_out_value)[keepScreenOn];
+                screenOffTimerStart();
+            }
+
+            @Override
+            public void recreate() {
+                ReadBookActivity.this.recreate();
+            }
+
+            @Override
+            public void refreshPage() {
+                mPageLoader.refreshUi();
+            }
+        });
+        uiSettingMenu.setListener(this, new UISettingMenu.Callback() {
+            @Override
+            public void upPageMode() {
+                if (mPageLoader != null) {
+                    mPageLoader.setPageMode(PageAnimation.Mode.getPageMode(readBookControl.getPageMode()));
+                }
+            }
+
+            @Override
+            public void upTextSize() {
+                if (mPageLoader != null) {
+                    mPageLoader.setTextSize();
+                }
+            }
+
+            @Override
+            public void bgChange() {
+                readBookControl.initTextDrawableIndex();
+                pageView.setBackground(readBookControl.getTextBackground(ReadBookActivity.this));
+                if (mPageLoader != null) {
+                    mPageLoader.refreshUi();
+                }
+            }
+
+            @Override
+            public void refresh() {
+                if (mPageLoader != null) {
+                    mPageLoader.refreshUi();
+                }
             }
         });
 
@@ -177,7 +246,21 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
 
             @Override
             public void onChapterChange(int pos) {
-
+                if (bookRealm.getChapterListSize() == 1) {
+                    bottommenu.setTvPre(false);
+                    bottommenu.setTvNext(false);
+                } else {
+                    if (pos == 0) {
+                        bottommenu.setTvPre(false);
+                        bottommenu.setTvNext(true);
+                    } else if (pos == bookRealm.getChapterListSize() - 1) {
+                        bottommenu.setTvPre(true);
+                        bottommenu.setTvNext(false);
+                    } else {
+                        bottommenu.setTvPre(true);
+                        bottommenu.setTvNext(true);
+                    }
+                }
             }
 
             @Override
@@ -189,11 +272,20 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
 
             @Override
             public void onPageCountChange(int count) {
-
+                bottommenu.getReadProgress().setMax(Math.max(0, count - 1));
+                bottommenu.getReadProgress().setProgress(0);
+                // 如果处于错误状态，那么就冻结使用
+                if (mPageLoader.getPageStatus() == TxtChapter.Status.LOADING
+                        || mPageLoader.getPageStatus() == TxtChapter.Status.ERROR) {
+                    bottommenu.getReadProgress().setEnabled(false);
+                } else {
+                    bottommenu.getReadProgress().setEnabled(true);
+                }
             }
 
             @Override
             public void onPageChange(int chapterIndex, int pageIndex, boolean resetReadAloud) {
+                bottommenu.getReadProgress().post(() -> bottommenu.getReadProgress().setProgress(pageIndex));
 
             }
 
@@ -229,10 +321,11 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
                 menuShow();
             }
         });
+
         bottommenu.setListener(new BottomMenuWidget.Callback() {
             @Override
             public void skipToPage(int id) {
-
+                mPageLoader.skipToPage(id);
             }
 
             @Override
@@ -252,12 +345,12 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
 
             @Override
             public void skipPreChapter() {
-
+                mPageLoader.skipPreChapter();
             }
 
             @Override
             public void skipNextChapter() {
-
+                mPageLoader.skipNextChapter();
             }
 
             @Override
@@ -275,17 +368,20 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
 
             @Override
             public void openAdjust() {
-
+                menuMiss();
+                AppUtils.runOnUIDelayed(ReadBookActivity.this::adjustMenuShow, menuBottomOut.getDuration() + 100);
             }
 
             @Override
             public void openReadInterface() {
-
+                menuMiss();
+                AppUtils.runOnUIDelayed(ReadBookActivity.this::uiSettingMenuShow,menuBottomOut.getDuration() + 100);
             }
 
             @Override
             public void openMoreSetting() {
-
+                menuMiss();
+                AppUtils.runOnUIDelayed(ReadBookActivity.this::settingMenuShow, menuBottomOut.getDuration() + 100);
             }
 
             @Override
@@ -391,11 +487,10 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
         super.onBackPressed();
     }
 
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        RealmHelper.getInstance().destoryRealm();
+        RealmHelper.getInstance().closeRealm();
         if (mPageLoader != null) {
             mPageLoader.closeBook();
             mPageLoader = null;
@@ -403,11 +498,32 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     }
 
     private void menuMiss() {
+        if (menuLayout.getVisibility() == View.VISIBLE) {
+            if (topmenu.getVisibility() == View.VISIBLE) {
+                topmenu.startAnimation(menuTopOut);
+            }
+            if (bottommenu.getVisibility() == View.VISIBLE) {
+                bottommenu.startAnimation(menuBottomOut);
+            }
+            if (adjustMenu.getVisibility() == View.VISIBLE) {
+                adjustMenu.startAnimation(menuBottomOut);
+            }
+            if (settingMenu.getVisibility() == View.VISIBLE) {
+                settingMenu.startAnimation(menuBottomOut);
+            }
+            if (uiSettingMenu.getVisibility() == View.VISIBLE) {
+                uiSettingMenu.startAnimation(menuBottomOut);
+            }
+        }
+    }
+
+    private void allMenuMiss() {
         menuLayout.setVisibility(View.INVISIBLE);
         topmenu.setVisibility(View.INVISIBLE);
-        topmenu.startAnimation(menuTopOut);
         bottommenu.setVisibility(View.INVISIBLE);
-        bottommenu.startAnimation(menuBottomOut);
+        adjustMenu.setVisibility(View.INVISIBLE);
+        settingMenu.setVisibility(View.INVISIBLE);
+        uiSettingMenu.setVisibility(View.INVISIBLE);
     }
 
     private void menuShow() {
@@ -417,4 +533,60 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
         bottommenu.setVisibility(View.VISIBLE);
         bottommenu.startAnimation(menuBottomIn);
     }
+
+    private void adjustMenuShow() {
+        menuLayout.setVisibility(View.VISIBLE);
+        adjustMenu.setVisibility(View.VISIBLE);
+        adjustMenu.startAnimation(menuBottomIn);
+    }
+
+    private void settingMenuShow() {
+        menuLayout.setVisibility(View.VISIBLE);
+        settingMenu.setVisibility(View.VISIBLE);
+        settingMenu.startAnimation(menuBottomIn);
+    }
+
+    private void uiSettingMenuShow() {
+        menuLayout.setVisibility(View.VISIBLE);
+        uiSettingMenu.setVisibility(View.VISIBLE);
+        uiSettingMenu.startAnimation(menuBottomIn);
+    }
+
+
+    /**
+     * 重置黑屏时间
+     */
+    private void screenOffTimerStart() {
+        if (screenTimeOut < 0) {
+            keepScreenOn(true);
+            return;
+        }
+        int screenOffTime = screenTimeOut * 1000 - SystemUtil.getScreenOffTime(this);
+        if (screenOffTime > 0) {
+            AppUtils.removeRunnable(keepScreenRunnable);
+            keepScreenOn(true);
+            AppUtils.runOnUIDelayed(keepScreenRunnable, screenOffTime);
+        } else {
+            keepScreenOn(false);
+        }
+    }
+
+    /**
+     * @param keepScreenOn 是否保持亮屏
+     */
+    public void keepScreenOn(boolean keepScreenOn) {
+        if (keepScreenOn) {
+            getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        } else {
+            getWindow().clearFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        }
+    }
+
+    /**
+     * 取消亮屏保持
+     */
+    private void unKeepScreenOn() {
+        keepScreenOn(false);
+    }
+
 }

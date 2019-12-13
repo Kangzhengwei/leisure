@@ -29,7 +29,9 @@
 
         <activity
             android:name=".ui.activity.ReadBookActivity"
-            android:screenOrientation="portrait" />
+            android:configChanges="locale|keyboardHidden"
+            android:launchMode="singleTask"
+            android:screenOrientation="behind" />
         <activity
             android:name=".ui.activity.BookDetailActivity"
             android:screenOrientation="portrait" />

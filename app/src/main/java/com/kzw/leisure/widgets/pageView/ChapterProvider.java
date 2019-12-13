@@ -5,6 +5,7 @@ import android.text.StaticLayout;
 
 import com.kzw.leisure.bean.Chapter;
 import com.kzw.leisure.utils.AppUtils;
+import com.kzw.leisure.utils.ChapterContentHelp;
 import com.kzw.leisure.utils.NetworkUtils;
 import com.zia.easybook.widget.TxtChapter;
 import com.zia.easybook.widget.TxtChar;
@@ -18,6 +19,7 @@ import androidx.annotation.NonNull;
 
 class ChapterProvider {
     private PageLoader pageLoader;
+    private ChapterContentHelp contentHelper = new ChapterContentHelp();
 
     ChapterProvider(PageLoader pageLoader) {
         this.pageLoader = pageLoader;
@@ -73,7 +75,8 @@ class ChapterProvider {
             txtChapter.addPage(page);
             return txtChapter;
         }*/
-        // content = contentHelper.replaceContent(pageLoader.book.getBookInfoBean().getName(), pageLoader.book.getTag(), content, pageLoader.book.getReplaceEnable());
+        //content = contentHelper.replaceContent(pageLoader.book.getBookInfoBean().getName(), pageLoader.book.getTag(), content, pageLoader.book.getReplaceEnable());
+        content = contentHelper.replaceContent(content);
         String[] allLine = content.split("\n");
         List<String> lines = new ArrayList<>();
         List<TxtLine> txtLists = new ArrayList<>();//记录每个字的位置 //pzl
@@ -82,8 +85,8 @@ class ChapterProvider {
         boolean showTitle = pageLoader.readBookControl.getShowTitle(); // 是否展示标题
         String paragraph = null;
         if (showTitle) {
-            //paragraph = contentHelper.replaceContent(pageLoader.book.getBookInfoBean().getName(), pageLoader.book.getTag(), chapter.getChapterName(), pageLoader.book.getReplaceEnable());
-            paragraph = chapter.getChapterName();
+            // paragraph = contentHelper.replaceContent(pageLoader.book.getBookInfoBean().getName(), pageLoader.book.getTag(), chapter.getChapterName(), pageLoader.book.getReplaceEnable());
+            paragraph = contentHelper.replaceContent(chapter.getChapterName());
             paragraph = paragraph.trim() + "\n";
         }
         int i = 1;

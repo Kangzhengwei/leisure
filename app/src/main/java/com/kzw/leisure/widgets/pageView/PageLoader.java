@@ -22,6 +22,7 @@ import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.rxJava.RxManager;
 import com.kzw.leisure.rxJava.RxSchedulers;
+import com.kzw.leisure.utils.ChapterContentHelp;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.ScreenUtils;
 import com.kzw.leisure.utils.StringUtils;
@@ -843,7 +844,7 @@ public abstract class PageLoader {
         if (canvas == null) return;
         if (!callback.getChapterList().isEmpty()) {
             String title = callback.getChapterList().size() > txtChapter.getPosition() ? callback.getChapterList().get(txtChapter.getPosition()).getChapterName() : "";
-            //title = ChapterContentHelp.getInstance().replaceContent(book.getBookInfoBean().getName(), book.getTag(), title, book.getReplaceEnable());
+            title = ChapterContentHelp.getInstance().replaceContent(title);
             String page = (txtChapter.getStatus() != TxtChapter.Status.FINISH || txtPage == null) ? ""
                     : String.format("%d/%d", txtPage.getPosition() + 1, txtChapter.getPageSize());
             String progress = (txtChapter.getStatus() != TxtChapter.Status.FINISH) ? "" : getReadProgress(mCurChapterPos, book.getChapterListSize(), mCurPagePos, curChapter().txtChapter.getPageSize());

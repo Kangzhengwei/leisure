@@ -85,7 +85,8 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        realm = Realm.getDefaultInstance();
+        RealmHelper.getInstance().init();
+        realm = RealmHelper.getInstance().getRealm();
         StatusBarUtil.translucentBar(this);
         setToolbar(toolbar);
         getSupportActionBar().setTitle(searchBookBean.getSearchName());
@@ -114,9 +115,9 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
                 book.setDurChapter(position);
                 book.setDurChapterPage(0);
                 book.setChapterListSize(adapter.getData().size());
-                List<ChapterList> chapterLists=new ArrayList<>();
-                for(String str:searchBookBean.getSearchNoteUrlList()){
-                    ChapterList chapterListrule=new ChapterList();
+                List<ChapterList> chapterLists = new ArrayList<>();
+                for (String str : searchBookBean.getSearchNoteUrlList()) {
+                    ChapterList chapterListrule = new ChapterList();
                     chapterListrule.setChapterListUrlRule(str);
                     chapterLists.add(chapterListrule);
                 }
@@ -189,9 +190,9 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
                     data.setCoverUrl(mBook.getCoverUrl());
                 }
                 data.setChapterListUrl(searchBookBean.getSearchNoteUrl());
-                List<ChapterList> chapterLists=new ArrayList<>();
-                for(String str:searchBookBean.getSearchNoteUrlList()){
-                    ChapterList chapterListrule=new ChapterList();
+                List<ChapterList> chapterLists = new ArrayList<>();
+                for (String str : searchBookBean.getSearchNoteUrlList()) {
+                    ChapterList chapterListrule = new ChapterList();
                     chapterListrule.setChapterListUrlRule(str);
                     chapterLists.add(chapterListrule);
                 }
@@ -240,6 +241,6 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        realm.close();
+        RealmHelper.getInstance().closeRealm();
     }
 }

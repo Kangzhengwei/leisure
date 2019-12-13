@@ -1,14 +1,20 @@
 package com.kzw.leisure.ui.fragment;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
 
+import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.BookListAdapter;
 import com.kzw.leisure.base.BaseFragment;
 import com.kzw.leisure.event.AddBookEvent;
+import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
+import com.kzw.leisure.realm.SourceRuleRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.RealmHelper;
@@ -26,6 +32,7 @@ import butterknife.BindView;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 
 public class BookFragment extends BaseFragment {
@@ -60,6 +67,11 @@ public class BookFragment extends BaseFragment {
             BookRealm book = list.get(position);
             RealmHelper.getInstance().setBook(book);
             IntentUtils.intentToBookReadActivity(mContext);
+        });
+        adapter.setOnItemLongClickListener((adapter, view, position) -> {
+            BookRealm book = list.get(position);
+            showDialog(book, position);
+            return false;
         });
     }
 
@@ -107,5 +119,27 @@ public class BookFragment extends BaseFragment {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showDialog(BookRealm book, int position) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("是否删除这本书！");
+        builder.setPositiveButton("确定", (dialogInterface, i) -> realm.executeTransaction(realm -> {
+            List<SourceRuleRealm> sourceList = book.getSourceRuleRealmList();
+            for (SourceRuleRealm ruleRealm : sourceList) {
+                RealmResults<BookContentBean> realmResults = realm.where(BookContentBean.class).equalTo("tag", ruleRealm.getBaseUrl()).findAll();
+                if (realmResults != null && realmResults.size() > 0) {
+                    for (BookContentBean bean : realmResults) {
+                        bean.deleteFromRealm();
+                    }
+                }
+            }
+            book.deleteFromRealm();
+            adapter.notifyItemRemoved(position);
+            adapter.notifyItemRangeRemoved(position, list.size() - position);
+        }));
+        builder.setNegativeButton("取消", (dialogInterface, i) -> {
+        });
+        builder.create().show();
     }
 }

@@ -43,7 +43,7 @@ public class RealmHelper {
         return realm;
     }
 
-    public void destoryRealm() {
+    public void closeRealm() {
         if (realm != null) {
             realm.close();
         }

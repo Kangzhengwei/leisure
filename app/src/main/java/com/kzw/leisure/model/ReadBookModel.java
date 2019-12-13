@@ -111,6 +111,7 @@ public class ReadBookModel implements ReadBookContract.Model {
                 bookContentBean.setDurChapterContent(StringUtils.formatHtml(analyzeRule.getString(sourceRule.getRuleContentUrl())));
                 bookContentBean.setDurChapterIndex(chapter.getIndex());
                 bookContentBean.setDurChapterUrl(chapter.getChapterUrl());
+                bookContentBean.setTag(sourceRule.getBaseUrl());
             } catch (Exception e) {
                 e.printStackTrace();
                 emitter.onError(e);
@@ -127,6 +128,7 @@ public class ReadBookModel implements ReadBookContract.Model {
                 bookContentBean.setDurChapterUrl(bean.getDurChapterUrl());
                 bookContentBean.setDurChapterIndex(bean.getDurChapterIndex());
                 bookContentBean.setDurChapterContent(bean.getDurChapterContent());
+                bookContentBean.setTag(bean.getTag());
             });
             emitter.onNext(bean);
             emitter.onComplete();

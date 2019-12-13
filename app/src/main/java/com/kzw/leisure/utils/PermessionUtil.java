@@ -21,7 +21,7 @@ public class PermessionUtil {
         }
     }
 
-    private static boolean checkStoragePermission(Activity activity) {
+    public static boolean checkStoragePermission(Activity activity) {
         if (afterM()) {
             String[] permessions = {Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE};
             for (String permession : permessions) {

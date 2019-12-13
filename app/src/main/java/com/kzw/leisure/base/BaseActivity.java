@@ -203,6 +203,10 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     }
 
 
-
+    @Override
+    public void recreate() {
+        getIntent().putExtra("isRecreate", true);
+        super.recreate();
+    }
 
 }

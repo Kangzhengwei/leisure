@@ -70,4 +70,5 @@ dependencies {
     implementation 'com.trello.rxlifecycle2:rxlifecycle-android-lifecycle:2.2.2'
     implementation 'com.readystatesoftware.systembartint:systembartint:1.0.3'
     implementation 'com.tbruyelle.rxpermissions2:rxpermissions:0.9.4@aar'
+    implementation 'com.luhuiguo:chinese-utils:1.0'//
 }

@@ -4,6 +4,7 @@ package com.kzw.leisure.utils;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Environment;
+import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,6 +14,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.channels.FileChannel;
+
+import androidx.annotation.NonNull;
 
 /**
  * Created by zzq on 2016/12/17.
@@ -147,5 +150,18 @@ public class FileUtils {
         }
         return is;
     }
+
+    @NonNull
+    public static String getSdCardPath() {
+        String sdCardDirectory = Environment.getExternalStorageDirectory().getAbsolutePath();
+
+        try {
+            sdCardDirectory = new File(sdCardDirectory).getCanonicalPath();
+        } catch (IOException ioe) {
+
+        }
+        return sdCardDirectory;
+    }
+
 
 }

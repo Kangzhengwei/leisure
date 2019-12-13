@@ -41,6 +41,27 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="bottom"
                     android:visibility="invisible" />
+
+                <com.kzw.leisure.widgets.AdjustMenu
+                    android:id="@+id/adjust_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:visibility="invisible" />
+
+                <com.kzw.leisure.widgets.SettingMenu
+                    android:id="@+id/setting_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:visibility="invisible" />
+
+                <com.kzw.leisure.widgets.UISettingMenu
+                    android:id="@+id/ui_setting_menu"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:visibility="invisible" />
             </FrameLayout>
 
         </RelativeLayout>

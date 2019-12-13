@@ -138,7 +138,9 @@ public class PageLoaderNet extends PageLoader {
 
     @Override
     protected boolean noChapterData(Chapter chapter) {
-        RealmResults<BookContentBean> realmResults = RealmHelper.getInstance().getRealm().where(BookContentBean.class).findAll();
+        BookContentBean bean = RealmHelper.getInstance().getRealm().where(BookContentBean.class).equalTo("durChapterUrl", chapter.getChapterUrl()).findFirst();
+        return bean == null;
+       /* RealmResults<BookContentBean> realmResults = RealmHelper.getInstance().getRealm().where(BookContentBean.class).findAll();
         if (realmResults == null || realmResults.size() == 0) {
             return true;
         } else {
@@ -154,7 +156,7 @@ public class PageLoaderNet extends PageLoader {
             } else {
                 return true;
             }
-        }
+        }*/
     }
 
 

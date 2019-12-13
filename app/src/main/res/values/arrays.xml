@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="screen_direction_list_title">
+        <item>@string/screen_unspecified</item>
+        <item>@string/screen_portrait</item>
+        <item>@string/screen_landscape</item>
+        <item>@string/screen_sensor</item>
+    </string-array>
+
+    <string-array name="screen_time_out">
+        <item>默认</item>
+        <item>1分钟</item>
+        <item>2分钟</item>
+        <item>3分钟</item>
+        <item>常亮</item>
+    </string-array>
+
+    <integer-array name="screen_time_out_value">
+        <item>0</item>
+        <item>60</item>
+        <item>120</item>
+        <item>180</item>
+        <item>-1</item>
+    </integer-array>
+
+    <string-array name="convert_s">
+        <item>@string/jf_convert_o</item>
+        <item>@string/jf_convert_j</item>
+        <item>@string/jf_convert_f</item>
+    </string-array>
+
+    <string-array name="indent">
+        <item>@string/indent_0</item>
+        <item>@string/indent_1</item>
+        <item>@string/indent_2</item>
+        <item>@string/indent_3</item>
+        <item>@string/indent_4</item>
+    </string-array>
+</resources>

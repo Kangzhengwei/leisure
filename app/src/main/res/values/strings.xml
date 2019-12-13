@@ -36,4 +36,41 @@
     <string name="search">搜索</string>
     <string name="book_source">书源</string>
     <string name="all">全部</string>
+    <string name="brightness">亮度</string>
+    <string name="screen_unspecified">跟随系统</string>
+    <string name="flow_sys">跟随系统</string>
+    <string name="auto_next_page_speed">自动翻页间隔</string>
+    <string name="screen_direction">屏幕方向</string>
+    <string name="keep_light">屏幕超时</string>
+    <string name="jf_convert">简繁转换</string>
+    <string name="screen_sensor">跟随传感器</string>
+    <string name="screen_landscape">横向</string>
+    <string name="screen_portrait">竖向</string>
+    <string name="jf_convert_o">关闭</string>
+    <string name="jf_convert_f">简转繁</string>
+    <string name="jf_convert_j">繁转简</string>
+    <string name="text_bold">加粗</string>
+    <string name="custom_font">字体</string>
+    <string name="indent">缩进</string>
+    <string name="page_mode">翻页模式</string>
+
+    <string name="row_0">单倍</string>
+    <string name="row_1">双倍</string>
+    <string name="row_2">三倍</string>
+    <string name="row_def">默认</string>
+    <string name="custom_mr">自定义间距</string>
+
+    <string name="text">文字</string>
+
+    <string name="indent_0">无缩进</string>
+    <string name="indent_1">一字符缩进</string>
+    <string name="indent_2">二字符缩进</string>
+    <string name="indent_3">三字符缩进</string>
+    <string name="indent_4">四字符缩进</string>
+
+    <string name="fonts_folder">请将字体文件放到SD根目录Fonts文件夹下重新选择</string>
+    <string name="select_font">选择字体</string>
+    <string name="cancel">取消</string>
+    <string name="default_font">默认字体</string>
+    <string name="go_dwnload">去下载</string>
 </resources>
