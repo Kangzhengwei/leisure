@@ -1,31 +1,24 @@
 package com.kzw.leisure.widgets.font;
 
-import android.content.Context;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-
 import com.kzw.leisure.R;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 public class FontAdapter extends RecyclerView.Adapter<FontAdapter.MyViewHolder> {
     private List<File> fileList = new ArrayList<>();
     private FontSelector.OnThisListener thisListener;
-    private Context context;
     private String selectPath;
 
-    FontAdapter(Context context, String selectPath, FontSelector.OnThisListener thisListener) {
-        this.context = context;
+    FontAdapter(String selectPath, FontSelector.OnThisListener thisListener) {
         this.selectPath = selectPath;
         this.thisListener = thisListener;
     }

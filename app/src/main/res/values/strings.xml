@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">leisure</string>
+    <string name="app_name">阅影</string>
     <string name="video">影视</string>
     <string name="video_collect">视频</string>
     <string name="bookself">书架</string>
@@ -68,9 +68,14 @@
     <string name="indent_3">三字符缩进</string>
     <string name="indent_4">四字符缩进</string>
 
-    <string name="fonts_folder">请将字体文件放到SD根目录Fonts文件夹下重新选择</string>
+    <string name="fonts_folder">您还没有字体资源，请去下载</string>
     <string name="select_font">选择字体</string>
     <string name="cancel">取消</string>
     <string name="default_font">默认字体</string>
-    <string name="go_dwnload">去下载</string>
+    <string name="go_dwnload">下载</string>
+    <string name="site_list">网  站</string>
+    <string name="donate">捐赠</string>
+    <string name="alipay_code">支付宝二维码</string>
+    <string name="wechat_code">微信二维码</string>
+    <string name="alipay_pay">支付宝转账</string>
 </resources>

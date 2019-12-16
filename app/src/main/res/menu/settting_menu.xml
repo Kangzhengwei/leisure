@@ -9,11 +9,18 @@
         android:title="@string/setting"
         app:showAsAction="ifRoom"
         tools:ignore="AppCompatResource" />
+
+    <item
+        android:id="@+id/action_donate"
+        android:icon="@drawable/ic_donate"
+        android:title="@string/donate"
+        app:showAsAction="ifRoom"
+        app:tint="@color/white" />
     <item
         android:id="@+id/custom_add_website"
-        android:icon="@mipmap/ic_action_add_light"
+        android:icon="@mipmap/ic_action_add"
         android:title="@string/custom_add_to_web"
-        app:showAsAction="ifRoom"
+        app:showAsAction="never"
         tools:ignore="AppCompatResource" />
     <item
         android:id="@+id/action_add_to_site"
@@ -33,4 +40,5 @@
         android:title="@string/clear_cache"
         app:showAsAction="never"
         tools:ignore="AppCompatResource" />
+
 </menu>

@@ -222,6 +222,9 @@ public class MovieFragment extends BaseWebViewFragment {
                     e.printStackTrace();
                 }
                 break;
+            case R.id.action_donate:
+                IntentUtils.intentToDonateActivity(mContext);
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

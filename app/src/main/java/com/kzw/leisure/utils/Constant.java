@@ -16,6 +16,7 @@ import javax.script.ScriptEngineManager;
 public class Constant {
     //public static final String DEFAULT_URL = "http://www.yongjiuzy.cc";
     public static final String DEFAULT_URL = "http://www.2w2w.tv/";
+    public static final String FRONT_DOWNLOAD_URL = "https://www.jianguoyun.com/p/DXyqo6IQ0Zb6Bxj2ibEC";
     public static final Pattern putPattern = Pattern.compile("@put:(\\{[^}]+?\\})", Pattern.CASE_INSENSITIVE);
     public static final Pattern getPattern = Pattern.compile("@get:\\{([^}]+?)\\}", Pattern.CASE_INSENSITIVE);
     public static final Pattern headerPattern = Pattern.compile("@Header:\\{.+?\\}", Pattern.CASE_INSENSITIVE);

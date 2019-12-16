@@ -22,6 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.activity.DonateActivity"></activity>
+        <activity android:name=".ui.activity.DownloadFrontActivity" />
 
         <uses-library
             android:name="org.apache.http.legacy"

@@ -6,6 +6,8 @@ import android.content.Intent;
 import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.bean.SearchItem;
 import com.kzw.leisure.ui.activity.BookDetailActivity;
+import com.kzw.leisure.ui.activity.DonateActivity;
+import com.kzw.leisure.ui.activity.DownloadFrontActivity;
 import com.kzw.leisure.ui.activity.ReadBookActivity;
 import com.kzw.leisure.ui.activity.SearchBookActivity;
 import com.kzw.leisure.ui.activity.SearchVideoActivity;
@@ -30,12 +32,20 @@ public class IntentUtils {
         context.startActivity(new Intent(context, SearchBookActivity.class));
     }
 
-    public static void intentToBookDetailActivity(Context context, SearchBookBean searchBookBean ) {
+    public static void intentToBookDetailActivity(Context context, SearchBookBean searchBookBean) {
         context.startActivity(new Intent(context, BookDetailActivity.class).putExtra("SearchBook", searchBookBean));
     }
 
     public static void intentToBookReadActivity(Context context) {
         context.startActivity(new Intent(context, ReadBookActivity.class));
+    }
+
+    public static void intentToDownloadFront(Context context) {
+        context.startActivity(new Intent(context, DownloadFrontActivity.class));
+    }
+
+    public static void intentToDonateActivity(Context context) {
+        context.startActivity(new Intent(context, DonateActivity.class));
     }
 
 

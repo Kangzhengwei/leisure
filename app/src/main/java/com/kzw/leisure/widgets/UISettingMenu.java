@@ -139,7 +139,7 @@ public class UISettingMenu extends FrameLayout {
                 callback.upTextSize();
                 break;
             case R.id.fl_text_font:
-                if(PermessionUtil.checkStoragePermission(activity)){
+                if (PermessionUtil.checkStoragePermission(activity)) {
                     new FontSelector(activity, readBookControl.getFontPath())
                             .setListener(new FontSelector.OnThisListener() {
                                 @Override
@@ -154,6 +154,8 @@ public class UISettingMenu extends FrameLayout {
                             })
                             .create()
                             .show();
+                } else {
+                    ToastUtil.showSingleToast("需要文件访问权限");
                 }
                 break;
             case R.id.fl_indent:
@@ -292,6 +294,7 @@ public class UISettingMenu extends FrameLayout {
         readBookControl.setReadBookFont(null);
         callback.refresh();
     }
+
     //设置字体
     public void setReadFonts(String path) {
         readBookControl.setReadBookFont(path);
