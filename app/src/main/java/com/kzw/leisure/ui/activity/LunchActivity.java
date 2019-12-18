@@ -29,7 +29,9 @@ public class LunchActivity extends BaseActivity {
         welAnimator.setStartDelay(500);
         welAnimator.addUpdateListener(animation -> {
             float alpha = (Float) animation.getAnimatedValue();
-            ivBg.setAlpha(alpha);
+            if (ivBg != null) {
+                ivBg.setAlpha(alpha);
+            }
         });
         welAnimator.addListener(new Animator.AnimatorListener() {
             @Override

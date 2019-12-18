@@ -10,24 +10,63 @@ android {
         minSdkVersion 19
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {
             abiFilters "armeabi", "armeabi-v7a"
         }
     }
-    buildTypes {
+    signingConfigs {
         release {
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            keyAlias 'key0'
+            keyPassword 'kang1991'
+            storeFile file('../app/keystore/keystore.jks')
+            storePassword 'kang1991'
+        }
+        debug {
+            keyAlias 'key0'
+            keyPassword 'kang1991'
+            storeFile file('../app/keystore/keystore.jks')
+            storePassword 'kang1991'
         }
     }
 
+    buildTypes {
+        release {
+            shrinkResources true//去掉不用资源
+            minifyEnabled true
+            zipAlignEnabled true//内存对齐
+            debuggable false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            debuggable true
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+    }
+
+    android.applicationVariants.all { variant ->
+        variant.outputs.all {
+            def SEP = "-"
+            def flavor = "app"
+            def buildType = "release"
+            def version = variant.versionName
+            outputFileName = "${flavor}${SEP}${buildType}${version}.apk"
+        }
+    }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+    lintOptions {
+        abortOnError false
+    }
+
 }
 
 dependencies {

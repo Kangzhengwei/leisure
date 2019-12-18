@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.Log;
 
 import com.kzw.leisure.utils.AppUtils;
+import com.kzw.leisure.utils.CrashCatchUtil;
 import com.kzw.leisure.utils.NetworkUtils;
 import com.kzw.leisure.utils.SPUtils;
 import com.tencent.smtt.sdk.QbSdk;
@@ -36,6 +37,7 @@ public class BaseApplication extends Application {
     }
 
     private void init() {
+        CrashCatchUtil.getInstance().init(this);
         MultiDex.install(this);
         AppUtils.init(this);
         NetworkUtils.startNetService(this);

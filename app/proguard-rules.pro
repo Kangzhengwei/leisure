@@ -61,7 +61,6 @@
 -keep class com.facebook.stetho.** { *; }
 -keep class com.facebook.stetho.okhttp3.** { *; }
 -keep class com.getkeepsafe.relinker.** { *; }
--keep class com.bumptech.glide.annotation.** { *; }
 -keep class com.luhuiguo.chinese.** { *; }
 -keep class com.makeramen.roundedimageview.** { *; }
 -keep class com.readystatesoftware.systembarint.** { *; }
@@ -71,12 +70,8 @@
 -keep class com.trello.** { *; }
 -keep class org.apache.** { *; }
 -keep class io.reactivex.** { *; }
--keep class io.realm.** { *; }
--keep class javax.inject.** { *; }
--keep class jp.wasabeef.glide.transformations.** { *; }
 -keep class net.minidev.** { *; }
 -keep class org.hamcrest.** { *; }
--keep class kotlin.** { *; }
 -keep class org.objectweb.asm.** { *; }
 
 
@@ -220,23 +215,17 @@
 
 -keep class org.simpleframework.xml.**{*;}
 -dontwarn org.simpleframework.xml.**
-##Glide
--dontwarn com.bumptech.glide.**
--keep class com.bumptech.glide.**{*;}
--keep public class * implements com.bumptech.glide.module.GlideModule
--keep public class * extends com.bumptech.glide.AppGlideModule
--keep public enum com.bumptech.glide.load.resource.bitmap.ImageHeaderParser$** {
-  **[] $VALUES;
-  public *;
-}
 
-#butterknife
--keep class butterknife.** { *; }
--dontwarn butterknife.internal.**
--keep class **$$ViewInjector{ *; }
--keepclasseswithmembernames class * {
-    @butterknife.* <fields>;
+#kotlin
+-keep class kotlin.** { *; }
+-keep class kotlin.Metadata { *; }
+-dontwarn kotlin.**
+-keepclassmembers class **$WhenMappings {
+    <fields>;
 }
--keepclasseswithmembernames class * {
-    @butterknife.* <methods>;
+-keepclassmembers class kotlin.Metadata {
+    public <methods>;
+}
+-assumenosideeffects class kotlin.jvm.internal.Intrinsics {
+    static void checkParameterIsNotNull(java.lang.Object, java.lang.String);
 }
