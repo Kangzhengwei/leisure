@@ -7,7 +7,7 @@ import com.kzw.leisure.contract.SearchBookContract;
 import com.kzw.leisure.network.RetrofitHelper;
 import com.kzw.leisure.rxJava.RxHelper;
 import com.kzw.leisure.rxJava.RxSchedulers;
-import com.kzw.leisure.utils.AnalyzeRule;
+import com.kzw.leisure.utils.analyze.AnalyzeRule;
 
 import org.reactivestreams.Publisher;
 

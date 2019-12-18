@@ -62,11 +62,13 @@
     </style>
 
     <style name="alertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert" />
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
 
     <style name="CollapsingToolbarTitleStyle.About" parent="@android:style/TextAppearance">
         <item name="android:textColor">@android:color/transparent</item>
     </style>
+
     <style name="Toolbar.TitleText" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
         <item name="android:textSize">18sp</item>
     </style>
@@ -84,5 +86,17 @@
         <item name="android:layout_height">10dp</item>
         <item name="android:background">@mipmap/bg_shadow_top</item>
     </style>
+
+
+    <!-- Welcome主题 -->
+    <style name="LunchTheme" parent="AppTheme">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowTranslucentStatus">true</item>
+        <item name="colorPrimaryDark">@android:color/transparent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:windowBackground">@color/md_grey_100</item>
+    </style>
+
 
 </resources>

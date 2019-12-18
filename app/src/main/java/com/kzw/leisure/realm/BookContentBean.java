@@ -21,7 +21,15 @@ public class BookContentBean extends RealmObject {
 
     private Long timeMillis;
 
+    private String nextContentUrl;
 
+    public String getNextContentUrl() {
+        return nextContentUrl;
+    }
+
+    public void setNextContentUrl(String nextContentUrl) {
+        this.nextContentUrl = nextContentUrl;
+    }
 
     public String getNoteUrl() {
         return noteUrl;

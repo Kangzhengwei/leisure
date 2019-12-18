@@ -9,7 +9,7 @@ import com.kzw.leisure.contract.BookDetailContract;
 import com.kzw.leisure.network.RetrofitHelper;
 import com.kzw.leisure.rxJava.RxHelper;
 import com.kzw.leisure.rxJava.RxSchedulers;
-import com.kzw.leisure.utils.AnalyzeRule;
+import com.kzw.leisure.utils.analyze.AnalyzeRule;
 
 import org.reactivestreams.Publisher;
 
@@ -31,12 +31,12 @@ public class BookDetailModel implements BookDetailContract.Model {
         return RetrofitHelper
                 .getInstance()
                 .getResponse(query)
-                .flatMap((Function<String, Publisher<BookBean>>) s -> analyze(s, sourceRule, searchBookBean))
+                .flatMap((Function<String, Publisher<BookBean>>) s -> analyze(s, sourceRule))
                 .compose(RxHelper.handleResult())
                 .compose(RxSchedulers.io_main());
     }
 
-    private Flowable<BookBean> analyze(String body, BookSourceRule sourceRule, SearchBookBean searchBookBean) {
+    private Flowable<BookBean> analyze(String body, BookSourceRule sourceRule ) {
         return Flowable.create(emitter -> {
             BookBean book = new BookBean();
             AnalyzeRule analyzer = new AnalyzeRule(null);
@@ -48,7 +48,6 @@ public class BookDetailModel implements BookDetailContract.Model {
                 book.setBookKind(analyzer.getString(sourceRule.getRuleBookKind()));
                 book.setBookLastChapter(analyzer.getString(sourceRule.getRuleBookLastChapter()));
                 book.setBookName(analyzer.getString(sourceRule.getRuleBookName()));
-                book.setBookUrlPattern(analyzer.getString(sourceRule.getRuleBookUrlPattern()));
                 book.setCoverUrl(analyzer.getString(sourceRule.getRuleCoverUrl()));
                 List<Object> collections = analyzer.getElements(sourceRule.getRuleChapterList());
                 List<Chapter> chapterList = new ArrayList<>();

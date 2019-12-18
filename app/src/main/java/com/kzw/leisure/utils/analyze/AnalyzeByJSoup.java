@@ -1,4 +1,4 @@
-package com.kzw.leisure.utils;
+package com.kzw.leisure.utils.analyze;
 
 import android.text.TextUtils;
 

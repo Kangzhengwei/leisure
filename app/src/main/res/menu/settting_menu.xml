@@ -10,12 +10,7 @@
         app:showAsAction="ifRoom"
         tools:ignore="AppCompatResource" />
 
-    <item
-        android:id="@+id/action_donate"
-        android:icon="@drawable/ic_donate"
-        android:title="@string/donate"
-        app:showAsAction="ifRoom"
-        app:tint="@color/white" />
+
     <item
         android:id="@+id/custom_add_website"
         android:icon="@mipmap/ic_action_add"
@@ -40,5 +35,12 @@
         android:title="@string/clear_cache"
         app:showAsAction="never"
         tools:ignore="AppCompatResource" />
+
+    <item
+        android:id="@+id/action_donate"
+        android:icon="@drawable/ic_donate"
+        android:title="@string/donate"
+        app:showAsAction="never"
+        app:tint="@color/white" />
 
 </menu>

@@ -8,6 +8,7 @@ import com.kzw.leisure.bean.SearchItem;
 import com.kzw.leisure.ui.activity.BookDetailActivity;
 import com.kzw.leisure.ui.activity.DonateActivity;
 import com.kzw.leisure.ui.activity.DownloadFrontActivity;
+import com.kzw.leisure.ui.activity.MainActivity;
 import com.kzw.leisure.ui.activity.ReadBookActivity;
 import com.kzw.leisure.ui.activity.SearchBookActivity;
 import com.kzw.leisure.ui.activity.SearchVideoActivity;
@@ -46,6 +47,11 @@ public class IntentUtils {
 
     public static void intentToDonateActivity(Context context) {
         context.startActivity(new Intent(context, DonateActivity.class));
+    }
+
+
+    public static void intentToMainActivity(Context context) {
+        context.startActivity(new Intent(context, MainActivity.class));
     }
 
 

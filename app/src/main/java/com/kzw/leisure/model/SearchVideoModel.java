@@ -6,7 +6,7 @@ import com.kzw.leisure.contract.SearchVideoContract;
 import com.kzw.leisure.network.RetrofitHelper;
 import com.kzw.leisure.rxJava.RxHelper;
 import com.kzw.leisure.rxJava.RxSchedulers;
-import com.kzw.leisure.utils.AnalyzeRule;
+import com.kzw.leisure.utils.analyze.AnalyzeRule;
 import com.kzw.leisure.utils.StringUtils;
 
 import org.reactivestreams.Publisher;
@@ -58,6 +58,7 @@ public class SearchVideoModel implements SearchVideoContract.Model {
                     item.setRuleTypeList(bean.getRuleTypeList());
                     item.setRuleVideoImage(bean.getRuleVideoImage());
                     item.setRuleVideoName(bean.getRuleVideoName());
+                    item.setSourceType(bean.getSourceType());
                     listString.add(item);
                 }
             } catch (Exception e) {

@@ -7,8 +7,17 @@ import io.realm.RealmObject;
  */
 
 public class WebSiteBean extends RealmObject {
-    public String siteName;
-    public String url;
+    private String siteName;
+    private String url;
+    private boolean isHasAd;
+
+    public boolean getIsHasAd() {
+        return isHasAd;
+    }
+
+    public void setIsHasAd(boolean isHasAd) {
+        this.isHasAd = isHasAd;
+    }
 
     public String getSiteName() {
         return siteName;

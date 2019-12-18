@@ -1,10 +1,11 @@
-package com.kzw.leisure.utils;
+package com.kzw.leisure.utils.analyze;
 
 import android.annotation.SuppressLint;
 
 import com.google.gson.Gson;
 import com.kzw.leisure.bean.SearchItem;
 import com.kzw.leisure.network.NetHelper;
+import com.kzw.leisure.utils.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -41,9 +42,9 @@ public class AnalyzeRule {
     private Boolean isJSON = false;
     private String baseUrl = null;
 
-   // private AnalyzeByXPath analyzeByXPath = null;
+    private AnalyzeByXPath analyzeByXPath = null;
     private AnalyzeByJSoup analyzeByJSoup = null;
-   // private AnalyzeByJSonPath analyzeByJSonPath = null;
+    private AnalyzeByJSonPath analyzeByJSonPath = null;
 
     private boolean objectChangedXP = false;
     private boolean objectChangedJS = false;
@@ -85,7 +86,7 @@ public class AnalyzeRule {
     /**
      * 获取XPath解析类
      */
-    /**
+
     private AnalyzeByXPath getAnalyzeByXPath(Object o) {
         if (o != object) {
             return new AnalyzeByXPath().parse(o);
@@ -101,7 +102,6 @@ public class AnalyzeRule {
         }
         return analyzeByXPath;
     }
-     **/
 
     /**
      * 获取JSOUP解析类
@@ -125,7 +125,7 @@ public class AnalyzeRule {
     /**
      * 获取JSON解析类
      */
-    /**
+
     private AnalyzeByJSonPath getAnalyzeByJSonPath(Object o) {
         if (o != object) {
             return new AnalyzeByJSonPath().parse(o);
@@ -141,7 +141,7 @@ public class AnalyzeRule {
         }
         return analyzeByJSonPath;
     }
-     **/
+
 
     /**
      * 获取文本列表
@@ -167,10 +167,10 @@ public class AnalyzeRule {
                         result = evalJS(rule.rule, result);
                         break;
                     case JSon:
-                      //  result = getAnalyzeByJSonPath(result).getStringList(rule.rule);
+                        result = getAnalyzeByJSonPath(result).getStringList(rule.rule);
                         break;
                     case XPath:
-                     //   result = getAnalyzeByXPath(result).getStringList(rule.rule);
+                       result = getAnalyzeByXPath(result).getStringList(rule.rule);
                         break;
                     default:
                         result = getAnalyzeByJSoup(result).getStringList(rule.rule);
@@ -230,10 +230,10 @@ public class AnalyzeRule {
                         result = evalJS(rule.rule, result);
                         break;
                     case JSon:
-                       // result = getAnalyzeByJSonPath(result).getString(rule.rule);
+                        result = getAnalyzeByJSonPath(result).getString(rule.rule);
                         break;
                     case XPath:
-                      //  result = getAnalyzeByXPath(result).getString(rule.rule);
+                        result = getAnalyzeByXPath(result).getString(rule.rule);
                         break;
                     case Default:
                         if (isUrl && !isEmpty(baseUrl)) {
@@ -266,10 +266,10 @@ public class AnalyzeRule {
                     result = evalJS(rule.rule, result);
                     break;
                 case JSon:
-                   // result = getAnalyzeByJSonPath(result).getObject(rule.rule);
+                    result = getAnalyzeByJSonPath(result).getObject(rule.rule);
                     break;
                 case XPath:
-                   // result = getAnalyzeByXPath(result).getElements(rule.rule);
+                    result = getAnalyzeByXPath(result).getElements(rule.rule);
                     break;
                 default:
                     result = getAnalyzeByJSoup(result).getElements(rule.rule);
@@ -295,10 +295,10 @@ public class AnalyzeRule {
                     result = evalJS(rule.rule, result);
                     break;
                 case JSon:
-                   // result = getAnalyzeByJSonPath(result).getList(rule.rule);
+                    result = getAnalyzeByJSonPath(result).getList(rule.rule);
                     break;
                 case XPath:
-                   // result = getAnalyzeByXPath(result).getElements(rule.rule);
+                    result = getAnalyzeByXPath(result).getElements(rule.rule);
                     break;
                 default:
                     result = getAnalyzeByJSoup(result).getElements(rule.rule);
@@ -310,7 +310,6 @@ public class AnalyzeRule {
         if (result == null) {
             return new ArrayList<>();
         }
-        //noinspection ConstantConditions
         return (List<Object>) result;
     }
 
@@ -535,7 +534,7 @@ public class AnalyzeRule {
     /**
      * js实现跨域访问,不能删
      */
-   /* public String ajax(String urlStr) {
+    /*public String ajax(String urlStr) {
         try {
             AnalyzeUrl analyzeUrl = new AnalyzeUrl(urlStr);
             Response<String> response = BaseModelImpl.getInstance().getResponseO(analyzeUrl)

@@ -25,6 +25,15 @@ public class QuerySearchVideoBean  {
     private String ruleTypeList;
     private String ruleVideoName;
     private String ruleVideoImage;
+    private int sourceType;//分为列表式和父子式
+
+    public int getSourceType() {
+        return sourceType;
+    }
+
+    public void setSourceType(int sourceType) {
+        this.sourceType = sourceType;
+    }
 
     public String getRuleVideoName() {
         return ruleVideoName;

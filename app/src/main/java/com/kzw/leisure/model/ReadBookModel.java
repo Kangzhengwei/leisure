@@ -11,7 +11,8 @@ import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.ChapterList;
 import com.kzw.leisure.rxJava.RxHelper;
 import com.kzw.leisure.rxJava.RxSchedulers;
-import com.kzw.leisure.utils.AnalyzeRule;
+import com.kzw.leisure.utils.NetworkUtils;
+import com.kzw.leisure.utils.analyze.AnalyzeRule;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.StringUtils;
 
@@ -31,6 +32,16 @@ import io.reactivex.schedulers.Schedulers;
  * Description:
  */
 public class ReadBookModel implements ReadBookContract.Model {
+
+    /**
+     * 获取章节列表
+     *
+     * @param query
+     * @param rule
+     * @param chapterList
+     * @param isFromNet
+     * @return
+     */
     @Override
     public Flowable<List<Chapter>> getChapterList(Query query, ChapterRule rule, ChapterList chapterList, boolean isFromNet) {
         if (TextUtils.isEmpty(chapterList.getChapterListCache()) || isFromNet) {
@@ -45,7 +56,7 @@ public class ReadBookModel implements ReadBookContract.Model {
                         return Flowable.just(s);
                     })
                     .observeOn(Schedulers.io())
-                    .flatMap((Function<String, Publisher<List<Chapter>>>) s -> analyze(s, rule, query.getPath()))
+                    .flatMap((Function<String, Publisher<List<Chapter>>>) s -> analyzeChapterList(s, rule, query.getPath()))
                     .compose(RxHelper.handleResult())
                     .compose(RxSchedulers.io_main());
         } else {
@@ -53,27 +64,27 @@ public class ReadBookModel implements ReadBookContract.Model {
         }
     }
 
+    /**
+     * 获取缓存章节列表后进行解析
+     *
+     * @param chapterList
+     * @param sourceRule
+     * @param path
+     * @return
+     */
     public Flowable<List<Chapter>> getCacheList(ChapterList chapterList, ChapterRule sourceRule, String path) {
-        return analyze(chapterList.getChapterListCache(), sourceRule, path);
+        return analyzeChapterList(chapterList.getChapterListCache(), sourceRule, path);
     }
 
-    public Flowable<BookContentBean> getContent(ChapterRule sourceRule, Chapter chapter) {
-        try {
-            Query query = new Query(chapter.getChapterUrl(), null, sourceRule.getBaseUrl());
-            return RetrofitHelper
-                    .getInstance()
-                    .getResponse(query)
-                    .flatMap((Function<String, Publisher<BookContentBean>>) s -> analyzeContent(s, sourceRule, chapter))
-                    .compose(RxHelper.handleResult())
-                    .compose(RxSchedulers.io_main())
-                    .flatMap((Function<BookContentBean, Publisher<BookContentBean>>) this::saveContent);
-        } catch (Exception e) {
-            return Flowable.error(e);
-        }
-    }
-
-
-    private Flowable<List<Chapter>> analyze(String body, ChapterRule sourceRule, String path) {
+    /**
+     * 解析章节列表
+     *
+     * @param body
+     * @param sourceRule
+     * @param path
+     * @return
+     */
+    private Flowable<List<Chapter>> analyzeChapterList(String body, ChapterRule sourceRule, String path) {
         return Flowable.create(emitter -> {
             List<Chapter> chapterList = new ArrayList<>();
             AnalyzeRule analyzer = new AnalyzeRule(null);
@@ -102,6 +113,38 @@ public class ReadBookModel implements ReadBookContract.Model {
         }, BackpressureStrategy.ERROR);
     }
 
+
+    /**
+     * 获取章节内容
+     *
+     * @param sourceRule
+     * @param chapter
+     * @return
+     */
+    public Flowable<BookContentBean> getContent(ChapterRule sourceRule, Chapter chapter) {
+        try {
+            Query query = new Query(chapter.getChapterUrl(), null, sourceRule.getBaseUrl());
+            return RetrofitHelper
+                    .getInstance()
+                    .getResponse(query)
+                    .flatMap((Function<String, Publisher<BookContentBean>>) s -> analyzeContent(s, sourceRule, chapter))
+                    .compose(RxHelper.handleResult())
+                    .compose(RxSchedulers.io_main())
+                    .flatMap((Function<BookContentBean, Publisher<BookContentBean>>) this::saveContent);
+        } catch (Exception e) {
+            return Flowable.error(e);
+        }
+    }
+
+
+    /**
+     * 解析章节内容
+     *
+     * @param body
+     * @param sourceRule
+     * @param chapter
+     * @return
+     */
     private Flowable<BookContentBean> analyzeContent(String body, ChapterRule sourceRule, Chapter chapter) {
         return Flowable.create(emitter -> {
             BookContentBean bookContentBean = new BookContentBean();
@@ -112,15 +155,42 @@ public class ReadBookModel implements ReadBookContract.Model {
                 bookContentBean.setDurChapterIndex(chapter.getIndex());
                 bookContentBean.setDurChapterUrl(chapter.getChapterUrl());
                 bookContentBean.setTag(sourceRule.getBaseUrl());
+                if (!TextUtils.isEmpty(sourceRule.getRuleContentUrlNext())) {//解析章节内容下一页的url
+                    bookContentBean.setNextContentUrl(analyzeRule.getString(sourceRule.getRuleContentUrlNext(), true));
+                }
             } catch (Exception e) {
                 e.printStackTrace();
                 emitter.onError(e);
+            }
+            if (!TextUtils.isEmpty(bookContentBean.getNextContentUrl())) {//获取下一页内容
+                List<String> usedUrlList = new ArrayList<>();
+                usedUrlList.add(chapter.getChapterUrl());
+                while (!TextUtils.isEmpty(bookContentBean.getNextContentUrl()) && !usedUrlList.contains(bookContentBean.getNextContentUrl())) {
+                    usedUrlList.add(bookContentBean.getNextContentUrl());
+                    try {
+                        Query query = new Query(bookContentBean.getNextContentUrl(), null, StringUtils.getAbsoluteURL(sourceRule.getBaseUrl(), chapter.getChapterUrl()));
+                        String response = RetrofitHelper.getInstance().getResponse(query).blockingFirst();
+                        analyzeRule.setContent(response, StringUtils.getAbsoluteURL(sourceRule.getBaseUrl(),chapter.getChapterUrl()));
+                        bookContentBean.setDurChapterContent(bookContentBean.getDurChapterContent()+ "\n" +StringUtils.formatHtml(analyzeRule.getString(sourceRule.getRuleContentUrl())));
+                        if(!TextUtils.isEmpty(sourceRule.getRuleContentUrlNext())){
+                            bookContentBean.setNextContentUrl(analyzeRule.getString(sourceRule.getRuleContentUrlNext(),true));
+                        }
+                    } catch (Exception e) {
+                        emitter.onError(e);
+                    }
+                }
             }
             emitter.onNext(bookContentBean);
             emitter.onComplete();
         }, BackpressureStrategy.ERROR);
     }
 
+    /**
+     * 缓存章节内容
+     *
+     * @param bean
+     * @return
+     */
     private Flowable<BookContentBean> saveContent(BookContentBean bean) {
         return Flowable.create(emitter -> {
             RealmHelper.getInstance().getRealm().executeTransaction(realm -> {
@@ -134,5 +204,6 @@ public class ReadBookModel implements ReadBookContract.Model {
             emitter.onComplete();
         }, BackpressureStrategy.ERROR);
     }
+
 
 }

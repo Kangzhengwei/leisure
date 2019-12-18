@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#fb7299</color>
-    <color name="colorPrimaryDark">#fb7299</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#F79091</color>
+    <color name="colorPrimaryDark">#F79091</color>
+    <color name="colorAccent">#FF8080</color>
     <color name="gray">#999999</color>
     <color name="white">#FFFFFF</color>
     <color name="bg_divider_line">#FFD4D4D4</color>
@@ -15,7 +15,7 @@
     <color name="btn_bg_press">#80C0C0C0</color>
     <color name="menu_color_default">#383838</color>
     <color name="md_grey_500">#9E9E9E</color>
-
+    <color name="md_grey_100">#F5F5F5</color>
     <!--LIGHT-->
     <!--12%-->
     <color name="ate_switch_track_disabled_light">#1F000000</color>

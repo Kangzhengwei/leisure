@@ -6,6 +6,8 @@ import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.BaseViewHolder;
 import com.kzw.leisure.R;
 import com.kzw.leisure.realm.WebSiteBean;
+import com.kzw.leisure.utils.AppUtils;
+import com.kzw.leisure.utils.SpanUtils;
 
 
 /**
@@ -23,7 +25,15 @@ public class WebSiteAdapter extends BaseQuickAdapter<WebSiteBean, BaseViewHolder
 
     @Override
     protected void convert(BaseViewHolder helper, WebSiteBean item) {
-        helper.setText(R.id.site_name, item.getSiteName());
+        if (item.getIsHasAd()) {
+            helper.setText(R.id.site_name, new SpanUtils()
+                    .append(item.getSiteName())
+                    .append("(有广告)")
+                    .setForegroundColor(AppUtils.getColor(R.color.colorPrimary))
+                    .create());
+        } else {
+            helper.setText(R.id.site_name, item.getSiteName());
+        }
         helper.getView(R.id.overflow).setOnClickListener(view -> {
             if (menuClickListener != null) {
                 menuClickListener.menuClick(view, item, helper.getLayoutPosition());
