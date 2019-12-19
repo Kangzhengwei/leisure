@@ -19,7 +19,6 @@ import io.reactivex.BackpressureStrategy;
 import io.reactivex.Flowable;
 import io.reactivex.FlowableOnSubscribe;
 import io.reactivex.functions.Function;
-import io.realm.RealmResults;
 
 /**
  * 网络页面加载器

@@ -8,9 +8,9 @@ import com.kzw.leisure.contract.VideoSeriesContract;
 import com.kzw.leisure.network.RetrofitHelper;
 import com.kzw.leisure.rxJava.RxHelper;
 import com.kzw.leisure.rxJava.RxSchedulers;
-import com.kzw.leisure.utils.analyze.AnalyzeRule;
 import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.StringUtils;
+import com.kzw.leisure.utils.analyze.AnalyzeRule;
 
 import org.reactivestreams.Publisher;
 

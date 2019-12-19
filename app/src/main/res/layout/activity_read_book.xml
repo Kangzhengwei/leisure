@@ -81,12 +81,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/title"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:gravity="center"
@@ -98,9 +99,20 @@
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/recyclerview"
                         android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:layout_weight="1.0" />
-                </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/title" />
+
+                    <com.kzw.leisure.widgets.VerticalSeekBar
+                        android:id="@+id/vertical_seekbar"
+                        android:layout_width="30dp"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/title"
+                        android:layout_alignParentEnd="true"
+                        android:progress="100"
+                        android:progressDrawable="@drawable/vertical_seek_style"
+                        android:thumb="@drawable/vertical_seek_bar_thumb_style"
+                        android:visibility="invisible" />
+                </RelativeLayout>
 
             </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

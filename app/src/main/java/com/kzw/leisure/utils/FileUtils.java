@@ -4,7 +4,6 @@ package com.kzw.leisure.utils;
 import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Environment;
-import android.util.Log;
 
 import java.io.File;
 import java.io.FileInputStream;

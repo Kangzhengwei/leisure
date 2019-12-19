@@ -35,7 +35,6 @@
 
 # 避免混淆泛型
 -keepattributes Signature
-
 # 抛出异常时保留代码行号
 -keepattributes SourceFile,LineNumberTable
 
@@ -49,14 +48,23 @@
 -keep public class * extends android.app.backup.BackupAgentHelper
 -keep public class * extends android.preference.Preference
 -keep public class * extends android.view.View
+-keep public class * extends android.app.AppCompatActivity
 -keep public class com.android.vending.licensing.ILicensingService
--keep public class com.kzw.leisure.bean.** {*;}
--keep public class com.kzw.leisure.realm.** {*;}
--keep class okhttp3.** { *; }
--keep class okio.** { *; }
+-keep class com.kzw.leisure.bean.** {*;}
+-keep class com.kzw.leisure.realm.** {*;}
+-keep class com.kzw.leisure.base.** {*;}
+-keep class com.kzw.leisure.model.** {*;}
+-keep class com.kzw.leisure.widgets.** {*;}
+-keep class com.kzw.leisure.utils.** {*;}
+-keep class com.kzw.leisure.network.** {*;}
+-keep class retrofit2.**{*;}
+-keep class okhttp3.**{*;}
+-keep class okio.**{*;}
+-keep class butterknife.** { *; }
 -keep class cn.wanghaomiao.xpath.model.** { *; }
 -keep class org.seimicrawler.xpath.** { *; }
 -keep class android.util.** { *; }
+-keep class com.jayway.jsonpath.** { *; }
 -keep class com.transitionseverywhere.** { *; }
 -keep class com.facebook.stetho.** { *; }
 -keep class com.facebook.stetho.okhttp3.** { *; }
@@ -64,8 +72,9 @@
 -keep class com.luhuiguo.chinese.** { *; }
 -keep class com.makeramen.roundedimageview.** { *; }
 -keep class com.readystatesoftware.systembarint.** { *; }
+-keep class com.bumptech.glide.** { *; }
 -keep class com.tbruyelle.** { *; }
--keep class com,tencent.** { *; }
+-keep class com.tencent.** { *; }
 -keep class com.example.jcenterlibrary.** { *; }
 -keep class com.trello.** { *; }
 -keep class org.apache.** { *; }
@@ -73,7 +82,17 @@
 -keep class net.minidev.** { *; }
 -keep class org.hamcrest.** { *; }
 -keep class org.objectweb.asm.** { *; }
-
+-keep class com.chad.library.** { *; }
+-keep class com.google.gson.** { *; }
+-keep class com.google.** { *; }
+-keep class org.reactivestreams.** { *; }
+-keep class org.antlr.v4.runtime.** { *; }
+-keep class io.realm.** { *; }
+-keep class javax.inject.** { *; }
+-keep class jp.wasabeef.glide.** { *; }
+-keep class net.minidev.** { *; }
+-keep class org.kxml2.** { *; }
+-keep class xmlpull.v1.** { *; }
 
 # 保留androidx下的所有类及其内部类
 -keep class androidx.** {*;}
@@ -166,6 +185,10 @@
     public <init> (org.json.JSONObject);
 }
 
+-keep public class com.kzw.leisure.R$*{
+    public static final int *;
+}
+
 #gsyvideoplayer
 -keep class com.shuyu.gsyvideoplayer.video.** { *; }
 -dontwarn com.shuyu.gsyvideoplayer.video.**
@@ -197,7 +220,7 @@
 -dontwarn sun.misc.**
 -keep class sun.reflect.**{*;}
 -dontwarn sun.reflect.**
-
+-keep class sun.misc.Unsafe { *; }
 
 ## Rhino
 -keep class javax.script.** { *; }

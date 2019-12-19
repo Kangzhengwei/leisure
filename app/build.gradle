@@ -43,14 +43,14 @@ android {
         }
 
         debug {
-            debuggable true
-            minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.release
+              debuggable true
+              minifyEnabled false
+              proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+              signingConfig signingConfigs.release
         }
     }
 
-    android.applicationVariants.all { variant ->
+   android.applicationVariants.all { variant ->
         variant.outputs.all {
             def SEP = "-"
             def flavor = "app"
@@ -66,7 +66,6 @@ android {
     lintOptions {
         abortOnError false
     }
-
 }
 
 dependencies {
@@ -79,6 +78,7 @@ dependencies {
     androidTestImplementation 'androidx.test:runner:1.3.0-alpha02'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0-alpha02'
     implementation 'com.google.android.material:material:1.0.0'
+
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
     implementation 'org.kie.modules:com-google-code-gson:6.5.0.Final'

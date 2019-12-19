@@ -11,10 +11,9 @@ import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.ChapterList;
 import com.kzw.leisure.rxJava.RxHelper;
 import com.kzw.leisure.rxJava.RxSchedulers;
-import com.kzw.leisure.utils.NetworkUtils;
-import com.kzw.leisure.utils.analyze.AnalyzeRule;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.StringUtils;
+import com.kzw.leisure.utils.analyze.AnalyzeRule;
 
 import org.reactivestreams.Publisher;
 

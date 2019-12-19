@@ -32,31 +32,112 @@ public class Constant {
 
     public static final String bookRuleSource = "[" +
             "{" +
-            "\"baseUrl\":\"https://www.bhzw.cc/\"," +
-            "\"siteName\":\"冰火中文网\"," +
-            "\"ruleBookAuthor\":\"class.zuozhe@text\"," +
+            "\"baseUrl\":\"https://www.biquge.biz/\"," +
+            "\"siteName\":\"笔趣阁biz\"," +
+            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
             "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"class.intro@text\"," +
+            "\"ruleBookInfoInit\":\"id.intro@text\"," +
             "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"class.name@tag.a@text\"," +
-            "\"ruleBookName\":\"class.page-title page-title1@text\"," +
+            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
+            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
             "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"class.pic@tag.img@src\"," +
-            "\"ruleChapterList\":\"class.float-list fill-block@tag.li\"," +
+            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
+            "\"ruleChapterList\":\"id.list@tag.dd\"," +
             "\"ruleChapterName\":\"tag.a@text\"," +
             "\"ruleChapterUrl\":\"tag.a@href\"," +
-            "\"ruleChapterUrlType\":\"0\"," +
-            "\"ruleContentUrl\":\"id.ChapterContents@textNodes\"," +
+            "\"ruleChapterUrlType\":\"1\"," +
+            "\"ruleContentUrl\":\"id.content@textNodes\"," +
             "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"tag.td.3@tag.a@text\"," +
+            "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
+            "\"ruleSearchCoverUrl\":\"class.result-game-item-pic@tag.img@src\"," +
+            "\"ruleSearchIntroduce\":\"\"," +
+            "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
+            "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a@text\"," +
+            "\"ruleSearchList\":\"class.result-item result-game-item\"," +
+            "\"ruleSearchName\":\"class.result-item-title result-game-item-title.@tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"class.result-item-title result-game-item-title.@tag.a@href\"," +
+            "\"ruleSearchUrl\":\"search.php?keyword=ruleKeyword|UTF-8\"" +
+            "}," +
+            "{" +
+            "\"baseUrl\":\"https://www.xinxs.la/\"," +
+            "\"siteName\":\"笔趣阁\"," +
+            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
+            "\"ruleBookContent\":\"\"," +
+            "\"ruleBookInfoInit\":\"id.intro@text\"," +
+            "\"ruleBookKind\":\"\"," +
+            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
+            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
+            "\"ruleBookUrlPattern\":\"\"," +
+            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
+            "\"ruleChapterList\":\"id.list@tag.dd!0:1:2:3:4:5:6:7:8:9:10:11:12\"," +
+            "\"ruleChapterName\":\"tag.a@text\"," +
+            "\"ruleChapterUrl\":\"tag.a@href\"," +
+            "\"ruleChapterUrlType\":\"1\"," +
+            "\"ruleContentUrl\":\"id.content@textNodes\"," +
+            "\"ruleContentUrlNext\":\"\"," +
+            "\"ruleSearchAuthor\":\"class.s4@text\"," +
             "\"ruleSearchCoverUrl\":\"\"," +
             "\"ruleSearchIntroduce\":\"\"," +
-            "\"ruleSearchKind\":\"tag.td.1@text\"," +
-            "\"ruleSearchLastChapter\":\"tag.td.2@tag.a.1@text\"," +
-            "\"ruleSearchList\":\"class.bd@tag.tbody@tag.tr\"," +
-            "\"ruleSearchName\":\"tag.td.2@tag.a.0@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.td.2.@tag.a.0@href\"," +
-            "\"ruleSearchUrl\":\"modules/article/search.php@searchkey=ruleKeyword|char=gbk\"" +
+            "\"ruleSearchKind\":\"class.s1@text\"," +
+            "\"ruleSearchLastChapter\":\"class.s3@text\"," +
+            "\"ruleSearchList\":\"class.search-list@tag.li!0\"," +
+            "\"ruleSearchName\":\"class.s2@text\"," +
+            "\"ruleSearchNoteUrl\":\"class.s2@tag.a@href\"," +
+            "\"ruleSearchUrl\":\"https://sou.xanbhx.com/search?siteid=xsla&q=ruleKeyword|UTF-8\"" +
+            "}," +
+            "{" +
+            "\"baseUrl\":\"https://www.xbiquge6.com\"," +
+            "\"siteName\":\"新笔趣阁\"," +
+            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
+            "\"ruleBookContent\":\"\"," +
+            "\"ruleBookInfoInit\":\"id.intro@text\"," +
+            "\"ruleBookKind\":\"\"," +
+            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
+            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
+            "\"ruleBookUrlPattern\":\"\"," +
+            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
+            "\"ruleChapterList\":\"id.list@tag.dd\"," +
+            "\"ruleChapterName\":\"tag.a.0@text\"," +
+            "\"ruleChapterUrl\":\"tag.a.0@href\"," +
+            "\"ruleChapterUrlType\":\"1\"," +
+            "\"ruleContentUrl\":\"id.content@textNodes\"," +
+            "\"ruleContentUrlNext\":\"\"," +
+            "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
+            "\"ruleSearchCoverUrl\":\"tag.img.0@src\"," +
+            "\"ruleSearchIntroduce\":\"id.intro@tag.p@textNodes\"," +
+            "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
+            "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a.0@text\"," +
+            "\"ruleSearchList\":\"class.result-item\"," +
+            "\"ruleSearchName\":\"class.result-item-title.0@tag.a.0@text\"," +
+            "\"ruleSearchNoteUrl\":\"class.result-item-title.0@tag.a.0@href\"," +
+            "\"ruleSearchUrl\":\"https://www.xbiquge6.com/search.php?keyword=ruleKeyword\"" +
+            "}," +
+            "{" +
+            "\"baseUrl\":\"https://www.xbaquge.com\"," +
+            "\"siteName\":\"新笔趣阁2\"," +
+            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
+            "\"ruleBookContent\":\"\"," +
+            "\"ruleBookInfoInit\":\"id.intro@tag.p@textNodes\"," +
+            "\"ruleBookKind\":\"\"," +
+            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
+            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
+            "\"ruleBookUrlPattern\":\"\"," +
+            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
+            "\"ruleChapterList\":\"id.list@tag.dd\"," +
+            "\"ruleChapterName\":\"tag.a@text\"," +
+            "\"ruleChapterUrl\":\"tag.a.0@href\"," +
+            "\"ruleChapterUrlType\":\"1\"," +
+            "\"ruleContentUrl\":\"id.content@textNodes\"," +
+            "\"ruleContentUrlNext\":\"\"," +
+            "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
+            "\"ruleSearchCoverUrl\":\"tag.img.0@src\"," +
+            "\"ruleSearchIntroduce\":\"id.intro@tag.p@textNodes\"," +
+            "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
+            "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a.0@text\"," +
+            "\"ruleSearchList\":\"class.result-item\"," +
+            "\"ruleSearchName\":\"class.result-item-title.0@tag.a.0@text\"," +
+            "\"ruleSearchNoteUrl\":\"class.result-item-title.0@tag.a.0@href\"," +
+            "\"ruleSearchUrl\":\"https://www.xbaquge.com/search.php?q=ruleKeyword\"" +
             "}," +
             "{" +
             "\"baseUrl\":\"https://www.xs222.tw\"," +
@@ -167,139 +248,31 @@ public class Constant {
             "\"ruleSearchUrl\":\"/plus/search.php?keyword=ruleKeyword&PageNo=searchPage\"" +
             "}," +
             "{" +
-            "\"baseUrl\":\"https://www.biquge.biz/\"," +
-            "\"siteName\":\"笔趣阁biz\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
+            "\"baseUrl\":\"https://www.bhzw.cc/\"," +
+            "\"siteName\":\"冰火中文网\"," +
+            "\"ruleBookAuthor\":\"class.zuozhe@text\"," +
             "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@text\"," +
+            "\"ruleBookInfoInit\":\"class.intro@text\"," +
             "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
+            "\"ruleBookLastChapter\":\"class.name@tag.a@text\"," +
+            "\"ruleBookName\":\"class.page-title page-title1@text\"," +
             "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd\"," +
+            "\"ruleCoverUrl\":\"class.pic@tag.img@src\"," +
+            "\"ruleChapterList\":\"class.float-list fill-block@tag.li\"," +
             "\"ruleChapterName\":\"tag.a@text\"," +
             "\"ruleChapterUrl\":\"tag.a@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
+            "\"ruleChapterUrlType\":\"0\"," +
+            "\"ruleContentUrl\":\"id.ChapterContents@textNodes\"," +
             "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
-            "\"ruleSearchCoverUrl\":\"class.result-game-item-pic@tag.img@src\"," +
-            "\"ruleSearchIntroduce\":\"\"," +
-            "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
-            "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a@text\"," +
-            "\"ruleSearchList\":\"class.result-item result-game-item\"," +
-            "\"ruleSearchName\":\"class.result-item-title result-game-item-title.@tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.result-item-title result-game-item-title.@tag.a@href\"," +
-            "\"ruleSearchUrl\":\"search.php?keyword=ruleKeyword|UTF-8\"" +
-            "}," +
-            "{" +
-            "\"baseUrl\":\"https://www.xbiquge6.com\"," +
-            "\"siteName\":\"新笔趣阁\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@text\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd\"," +
-            "\"ruleChapterName\":\"tag.a.0@text\"," +
-            "\"ruleChapterUrl\":\"tag.a.0@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
-            "\"ruleSearchCoverUrl\":\"tag.img.0@src\"," +
-            "\"ruleSearchIntroduce\":\"id.intro@tag.p@textNodes\"," +
-            "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
-            "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a.0@text\"," +
-            "\"ruleSearchList\":\"class.result-item\"," +
-            "\"ruleSearchName\":\"class.result-item-title.0@tag.a.0@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.result-item-title.0@tag.a.0@href\"," +
-            "\"ruleSearchUrl\":\"https://www.xbiquge6.com/search.php?keyword=ruleKeyword\"" +
-            "}," +
-            "{" +
-            "\"baseUrl\":\"https://www.biquge.biz\"," +
-            "\"siteName\":\"新笔趣阁biz\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@tag.p@textNodes\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd\"," +
-            "\"ruleChapterName\":\"tag.a.0@text\"," +
-            "\"ruleChapterUrl\":\"tag.a.0@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
-            "\"ruleSearchCoverUrl\":\"tag.img.0@src\"," +
-            "\"ruleSearchIntroduce\":\"id.intro@tag.p@textNodes\"," +
-            "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
-            "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a.0@text\"," +
-            "\"ruleSearchList\":\"class.result-item\"," +
-            "\"ruleSearchName\":\"class.result-item-title.0@tag.a.0@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.result-item-title.0@tag.a.0@href\"," +
-            "\"ruleSearchUrl\":\"https://www.biquge.biz/search.php?keyword=ruleKeyword\"" +
-            "}," +
-            "{" +
-            "\"baseUrl\":\"https://www.xbaquge.com\"," +
-            "\"siteName\":\"新笔趣阁2\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@tag.p@textNodes\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd\"," +
-            "\"ruleChapterName\":\"tag.a@text\"," +
-            "\"ruleChapterUrl\":\"tag.a.0@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
-            "\"ruleSearchCoverUrl\":\"tag.img.0@src\"," +
-            "\"ruleSearchIntroduce\":\"id.intro@tag.p@textNodes\"," +
-            "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
-            "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a.0@text\"," +
-            "\"ruleSearchList\":\"class.result-item\"," +
-            "\"ruleSearchName\":\"class.result-item-title.0@tag.a.0@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.result-item-title.0@tag.a.0@href\"," +
-            "\"ruleSearchUrl\":\"https://www.xbaquge.com/search.php?q=ruleKeyword\"" +
-            "}," +
-            "{" +
-            "\"baseUrl\":\"https://www.xinxs.la/\"," +
-            "\"siteName\":\"笔趣阁\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@text\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd!0:1:2:3:4:5:6:7:8:9:10:11:12\"," +
-            "\"ruleChapterName\":\"tag.a@text\"," +
-            "\"ruleChapterUrl\":\"tag.a@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"class.s4@text\"," +
+            "\"ruleSearchAuthor\":\"tag.td.3@tag.a@text\"," +
             "\"ruleSearchCoverUrl\":\"\"," +
             "\"ruleSearchIntroduce\":\"\"," +
-            "\"ruleSearchKind\":\"class.s1@text\"," +
-            "\"ruleSearchLastChapter\":\"class.s3@text\"," +
-            "\"ruleSearchList\":\"class.search-list@tag.li!0\"," +
-            "\"ruleSearchName\":\"class.s2@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.s2@tag.a@href\"," +
-            "\"ruleSearchUrl\":\"https://sou.xanbhx.com/search?siteid=xsla&q=ruleKeyword|UTF-8\"" +
+            "\"ruleSearchKind\":\"tag.td.1@text\"," +
+            "\"ruleSearchLastChapter\":\"tag.td.2@tag.a.1@text\"," +
+            "\"ruleSearchList\":\"class.bd@tag.tbody@tag.tr\"," +
+            "\"ruleSearchName\":\"tag.td.2@tag.a.0@text\"," +
+            "\"ruleSearchNoteUrl\":\"tag.td.2.@tag.a.0@href\"," +
+            "\"ruleSearchUrl\":\"modules/article/search.php@searchkey=ruleKeyword|char=gbk\"" +
             "}" +
             "]\n";
     public static final String ruleSource = "[" +
@@ -512,6 +485,7 @@ public class Constant {
 */
 
 
+    /*
     public static final String webSite = "[\n" +
             "    {\n" +
             "        \"url\": \"https://www.baidu.com/ \",\n" +
@@ -650,5 +624,79 @@ public class Constant {
             "    }\n" +
             "]";
 
+*/
+//http://www.goudaitv.com/
+    public static final String webSite = "[\n" +
+            "    {\n" +
+            "        \"url\": \"https://www.baidu.com/ \",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"百度\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://www.2w2w.tv/ \",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"ok资源网\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://www.uziqaq.com/ \",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"小森林导航\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://www.xsldh.vip/ \",\n" +
+            "        \"isHasAd\": \"true\",\n" +
+            "        \"siteName\": \"小森林导航2\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://www.cuteforest.com/nav.html\",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"小森林导航3\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://www.dyrizhi.com\",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"电影日志\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://www.xn--6o0a480a.cn \",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"维赞影院\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"https://www.4kdy.net/ \",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"4k电影\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://www.pilipali.cc \",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"噼里啪啦\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://www.28dm.com \",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"新世界动漫\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://www.ikanfan.com\",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"爱看藩\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://www.migudm.cn\",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"咪咕\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://www.kdy666.com\",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"看电影网\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"https://www.y80s.net/ \",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"80s\"\n" +
+            "    }\n" +
+            "]";
 
 }

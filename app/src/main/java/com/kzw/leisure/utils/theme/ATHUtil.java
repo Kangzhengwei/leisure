@@ -2,7 +2,9 @@ package com.kzw.leisure.utils.theme;
 
 import android.content.Context;
 import android.content.res.TypedArray;
+
 import com.kzw.leisure.utils.ColorUtil;
+
 import androidx.annotation.AttrRes;
 
 /**

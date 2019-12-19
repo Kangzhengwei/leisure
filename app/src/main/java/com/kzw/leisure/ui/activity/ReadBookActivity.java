@@ -9,6 +9,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.SeekBar;
 
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.ChapterAdapter;
@@ -31,6 +32,7 @@ import com.kzw.leisure.widgets.AdjustMenu;
 import com.kzw.leisure.widgets.ReadBookChangeSourceDialog;
 import com.kzw.leisure.widgets.SettingMenu;
 import com.kzw.leisure.widgets.UISettingMenu;
+import com.kzw.leisure.widgets.VerticalSeekBar;
 import com.kzw.leisure.widgets.anim.PageAnimation;
 import com.kzw.leisure.widgets.pageView.BottomMenuWidget;
 import com.kzw.leisure.widgets.pageView.PageLoader;
@@ -39,6 +41,7 @@ import com.kzw.leisure.widgets.pageView.ReadBookControl;
 import com.kzw.leisure.widgets.pageView.TopMenuWidget;
 import com.zia.easybook.widget.TxtChapter;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,7 +52,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import io.reactivex.Flowable;
 
 public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookModel> implements ReadBookContract.View {
@@ -77,6 +79,9 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     SettingMenu settingMenu;
     @BindView(R.id.ui_setting_menu)
     UISettingMenu uiSettingMenu;
+    @BindView(R.id.vertical_seekbar)
+    VerticalSeekBar verticalSeekbar;
+
 
     BookRealm bookRealm;//保存的书籍信息
     SourceRuleRealm currentRule;//保存的书籍章节解析规则
@@ -89,7 +94,6 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     PageLoader mPageLoader;
     int screenTimeOut;
     Runnable keepScreenRunnable;
-
 
     @Override
     protected int getContentView() {
@@ -375,7 +379,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
             @Override
             public void openReadInterface() {
                 menuMiss();
-                AppUtils.runOnUIDelayed(ReadBookActivity.this::uiSettingMenuShow,menuBottomOut.getDuration() + 100);
+                AppUtils.runOnUIDelayed(ReadBookActivity.this::uiSettingMenuShow, menuBottomOut.getDuration() + 100);
             }
 
             @Override
@@ -394,6 +398,60 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
                 menuMiss();
             }
         });
+        verticalSeekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                if (i > 0) {
+                    double result = new BigDecimal((double) i / (double) 100).setScale(5, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    recyclerview.scrollToPosition(chapterList.size() - Double.valueOf(result * chapterList.size()).intValue());
+                }
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        recyclerview.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                switch (newState) {
+                    case RecyclerView.SCROLL_STATE_DRAGGING:
+                        AppUtils.removeRunnable(ReadBookActivity.this::scrollbarDismiss);
+                        if (!isFinishing() && verticalSeekbar.getVisibility() == View.INVISIBLE) {
+                            verticalSeekbar.setVisibility(View.VISIBLE);
+                        }
+                        break;
+                    case RecyclerView.SCROLL_STATE_IDLE:
+                        if (!isFinishing() &&!verticalSeekbar.isSelect()) {
+                            AppUtils.runOnUIDelayed(ReadBookActivity.this::scrollbarDismiss, 2000);
+                        }
+                        break;
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+                int range = recyclerView.computeVerticalScrollRange();
+                int offset = recyclerView.computeVerticalScrollOffset();
+                if (!isFinishing() &&!verticalSeekbar.isSelect()) {
+                    double result = new BigDecimal((double) offset / (double) range).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
+                    verticalSeekbar.setProgress(100 - Double.valueOf(result * 100).intValue());
+                }
+            }
+        });
+    }
+
+    private void scrollbarDismiss() {
+        verticalSeekbar.setVisibility(View.INVISIBLE);
     }
 
     @Override
@@ -490,6 +548,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        AppUtils.removeRunnable(this::scrollbarDismiss);
         RealmHelper.getInstance().closeRealm();
         if (mPageLoader != null) {
             mPageLoader.closeBook();

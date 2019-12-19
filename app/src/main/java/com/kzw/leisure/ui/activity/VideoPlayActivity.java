@@ -15,6 +15,7 @@ import com.kzw.leisure.model.VideoSeriesModel;
 import com.kzw.leisure.presenter.VideoSeriesPresenter;
 import com.kzw.leisure.realm.VideoRealm;
 import com.kzw.leisure.rxJava.RxBus;
+import com.kzw.leisure.widgets.ToastUtil;
 import com.kzw.leisure.widgets.VideoPlayer;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.utils.GSYVideoType;
@@ -184,6 +185,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     public void returnResult(VideoBean bean) {
         videoBean = bean;
         adapter.setNewData(bean.getList());
+        ToastUtil.showCenterLongToast("只能播放m3u8和MP4格式（迅雷下载）");
     }
 
     @Override

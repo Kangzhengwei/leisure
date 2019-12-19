@@ -1,13 +1,10 @@
 package com.kzw.leisure.ui.fragment;
 
 import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.BookListAdapter;
 import com.kzw.leisure.base.BaseFragment;

@@ -169,7 +169,7 @@ public class CrashCatchUtil implements UncaughtExceptionHandler {
             //String fileName = "crash-" + time + "-" + timestamp + ".txt";
             String fileName = "crash-" + time + ".txt";
             if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-                String path = Environment.getExternalStorageDirectory() + "/Sophone/crash/";
+                String path = Environment.getExternalStorageDirectory() + "/crash/";
                 File dir = new File(path);
                 if (!dir.exists()) {
                     dir.mkdirs();

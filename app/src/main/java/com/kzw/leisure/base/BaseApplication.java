@@ -2,10 +2,10 @@ package com.kzw.leisure.base;
 
 import android.app.Application;
 import android.content.Context;
-import android.util.Log;
 
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.CrashCatchUtil;
+import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.NetworkUtils;
 import com.kzw.leisure.utils.SPUtils;
 import com.tencent.smtt.sdk.QbSdk;
@@ -52,7 +52,7 @@ public class BaseApplication extends Application {
             public void onViewInitFinished(boolean arg0) {
                 // TODO Auto-generated method stub
                 //x5內核初始化完成的回调，为true表示x5内核加载成功，否则表示x5内核加载失败，会自动切换到系统内核。
-                Log.d("app", " onViewInitFinished is " + arg0);
+                LogUtils.e(" onViewInitFinished is " + arg0);
             }
 
             @Override
