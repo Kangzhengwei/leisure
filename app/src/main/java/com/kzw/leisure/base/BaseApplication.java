@@ -8,7 +8,10 @@ import com.kzw.leisure.utils.CrashCatchUtil;
 import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.NetworkUtils;
 import com.kzw.leisure.utils.SPUtils;
+import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
+
+import java.util.HashMap;
 
 import androidx.multidex.MultiDex;
 import io.realm.Realm;
@@ -60,6 +63,9 @@ public class BaseApplication extends Application {
                 // TODO Auto-generated method stub
             }
         });
+        HashMap<String, Object> map = new HashMap<>();
+        map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
+        QbSdk.initTbsSettings(map);
     }
 
     /**
