@@ -1,7 +1,5 @@
 package com.kzw.leisure.bean;
 
-import java.util.Map;
-
 
 /**
  * author: kang4
@@ -10,7 +8,6 @@ import java.util.Map;
  */
 public class QuerySearchVideoBean  {
 
-    private Map<String, String> params;
     private String siteName;
     private String ruleSearchList;
     private String ruleSearchName;
@@ -97,24 +94,6 @@ public class QuerySearchVideoBean  {
 
     public void setRuleSeriesNoteUrl(String ruleSeriesNoteUrl) {
         this.ruleSeriesNoteUrl = ruleSeriesNoteUrl;
-    }
-
-    public QuerySearchVideoBean(Map<String, String> params, String siteName, String ruleSearchList, String ruleSearchName, String ruleSearchNoteUrl, String videoSourceUrl, String ruleSearchUrl) {
-        //this.params = params;
-        this.siteName = siteName;
-        this.ruleSearchList = ruleSearchList;
-        this.ruleSearchName = ruleSearchName;
-        this.ruleSearchNoteUrl = ruleSearchNoteUrl;
-        this.videoSourceUrl = videoSourceUrl;
-        this.ruleSearchUrl = ruleSearchUrl;
-    }
-
-   public Map<String, String> getParams() {
-        return params;
-    }
-
-    public void setParams(Map<String, String> params) {
-        this.params = params;
     }
 
     public String getSiteName() {

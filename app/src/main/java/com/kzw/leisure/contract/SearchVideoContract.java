@@ -3,6 +3,7 @@ package com.kzw.leisure.contract;
 import com.kzw.leisure.base.BaseModel;
 import com.kzw.leisure.base.BasePresenter;
 import com.kzw.leisure.base.BaseView;
+import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.QuerySearchVideoBean;
 import com.kzw.leisure.bean.SearchItem;
 
@@ -18,7 +19,7 @@ import io.reactivex.Flowable;
 public interface SearchVideoContract {
 
     interface Model extends BaseModel {
-        Flowable<List<SearchItem>> getHtml(QuerySearchVideoBean bean);
+        Flowable<List<SearchItem>> getHtml(Query query,QuerySearchVideoBean bean);
     }
 
     interface View extends BaseView {
@@ -26,7 +27,7 @@ public interface SearchVideoContract {
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
-        public abstract void getHtml(QuerySearchVideoBean bean);
+        public abstract void getHtml(Query query,QuerySearchVideoBean bean);
     }
 
 }

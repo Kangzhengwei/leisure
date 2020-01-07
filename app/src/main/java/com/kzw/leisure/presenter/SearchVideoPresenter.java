@@ -1,5 +1,6 @@
 package com.kzw.leisure.presenter;
 
+import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.QuerySearchVideoBean;
 import com.kzw.leisure.bean.SearchItem;
 import com.kzw.leisure.contract.SearchVideoContract;
@@ -15,8 +16,8 @@ import java.util.List;
  */
 public class SearchVideoPresenter extends SearchVideoContract.Presenter {
     @Override
-    public void getHtml(QuerySearchVideoBean bean) {
-        mRxManage.addSubscribe(mModel.getHtml(bean).subscribeWith(new RxSubscriber<List<SearchItem>>() {
+    public void getHtml(Query query, QuerySearchVideoBean bean) {
+        mRxManage.addSubscribe(mModel.getHtml(query, bean).subscribeWith(new RxSubscriber<List<SearchItem>>() {
 
 
             @Override

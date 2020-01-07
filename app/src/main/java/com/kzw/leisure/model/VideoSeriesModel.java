@@ -78,7 +78,9 @@ public class VideoSeriesModel implements VideoSeriesContract.Model {
                         List<Object> list = analyzer.getElements(item.getRuleItem());
                         for (Object ob : list) {
                             analyzer.setContent(ob);
-                            urlList.add(analyzer.getString(item.getRuleSeriesName()));
+                            if (!TextUtils.isEmpty(analyzer.getString(item.getRuleSeriesName()))) {
+                                urlList.add(analyzer.getString(item.getRuleSeriesName()));
+                            }
                         }
                     }
                     for (Object object : videoTypelist) {

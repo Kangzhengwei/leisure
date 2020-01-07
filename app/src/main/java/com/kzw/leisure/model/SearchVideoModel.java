@@ -1,5 +1,6 @@
 package com.kzw.leisure.model;
 
+import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.QuerySearchVideoBean;
 import com.kzw.leisure.bean.SearchItem;
 import com.kzw.leisure.contract.SearchVideoContract;
@@ -25,10 +26,10 @@ import io.reactivex.functions.Function;
  */
 public class SearchVideoModel implements SearchVideoContract.Model {
     @Override
-    public Flowable<List<SearchItem>> getHtml(QuerySearchVideoBean bean) {
+    public Flowable<List<SearchItem>> getHtml(Query query, QuerySearchVideoBean bean) {
         return RetrofitHelper
                 .getInstance()
-                .postResponse(bean.getVideoSourceUrl(), bean.getRuleSearchUrl(), bean.getParams())
+                .getResponse(query)
                 .flatMap((Function<String, Publisher<List<SearchItem>>>) s -> alalyze(s, bean))
                 .compose(RxHelper.handleResult())
                 .compose(RxSchedulers.io_main());

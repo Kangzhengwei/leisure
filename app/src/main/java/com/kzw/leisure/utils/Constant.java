@@ -275,14 +275,34 @@ public class Constant {
             "\"ruleSearchUrl\":\"modules/article/search.php@searchkey=ruleKeyword|char=gbk\"" +
             "}" +
             "]\n";
+
+   /* public static final String ruleSource = "[" +
+            "{" +
+            "\"sourceType\":\"1\"," +
+            "\"ruleSearchList\":\"class.row\"," +
+            "\"ruleSearchName\":\"tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
+            "\"ruleSearchUrl\":\"search.asp@searchword=ruleKeyword|char=gbk\"," +
+            "\"ruleSeriesList\":\"tag.table.1@tag.a!0:1\"," +
+            "\"ruleItem\":\"tag.a\"," +
+            "\"ruleSeriesName\":\"tag.a@text\"," +
+            "\"ruleSeriesNoteUrl\":\"  \"," +
+            "\"rulePlayType\":\"h1@text\"," +
+            "\"ruleTypeList\":\"h1\"," +
+            "\"ruleVideoName\":\"tag.table.2@td.0@text\"," +
+            "\"ruleVideoImage\":\"class.img@tag.img@src\"," +
+            "\"siteName\":\"酷云资源网\"," +
+            "\"videoSourceUrl\":\"http://www.kuyunzy1.com/\"" +
+            "}" +
+            "]\n";*/
+
     public static final String ruleSource = "[" +
             "{" +
-            "\"params\":{\"submit\":\"search\",\"wd\":\"searchKey\"}," +
             "\"sourceType\":\"0\"," +
             "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"/index.php?m\\u003dvod-search\"," +
+            "\"ruleSearchUrl\":\"index.php?m\\u003dvod-search@submit=search&wd=ruleKeyword\"," +
             "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
             "\"ruleItem\":\"li\"," +
             "\"ruleSeriesName\":\"li@text\"," +
@@ -291,34 +311,32 @@ public class Constant {
             "\"ruleTypeList\":\"class.suf\"," +
             "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
             "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
-            "\"siteName\":\"酷云资源网\"," +
-            "\"videoSourceUrl\":\"https://www.okzy.co\"" +
+            "\"siteName\":\"ok资源网\"," +
+            "\"videoSourceUrl\":\"https://www.okzy.co/\"" +
             "}," +
             "{" +
-            "\"params\":{\"submit\":\"search\",\"wd\":\"searchKey\"}," +
             "\"sourceType\":\"0\"," +
-            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
+            "\"ruleSearchList\":\"class.row\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"/index.php?m=vod-search\"," +
-            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
-            "\"ruleItem\":\"li\"," +
-            "\"ruleSeriesName\":\"li@text\"," +
+            "\"ruleSearchUrl\":\"search.asp@searchword=ruleKeyword|char=gbk\"," +
+            "\"ruleSeriesList\":\"tag.table.1@tag.table!0:1\"," +
+            "\"ruleItem\":\"tag.a\"," +
+            "\"ruleSeriesName\":\"tag.a@text\"," +
             "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h3@text\"," +
-            "\"ruleTypeList\":\"h3\"," +
-            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
-            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
-            "\"siteName\":\"209资源网\"," +
-            "\"videoSourceUrl\":\"http://www.156zy.me\"" +
+            "\"rulePlayType\":\"h1@text\"," +
+            "\"ruleTypeList\":\"h1\"," +
+            "\"ruleVideoName\":\"tag.table.2@td.0@text\"," +
+            "\"ruleVideoImage\":\"class.img@tag.img@src\"," +
+            "\"siteName\":\"酷云资源网\"," +
+            "\"videoSourceUrl\":\"http://www.kuyunzy1.com/\"" +
             "}," +
             "{" +
-            "\"params\":{\"submit\":\"search\",\"wd\":\"searchKey\"}," +
             "\"sourceType\":\"0\"," +
             "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"/index.php?m=vod-search\"," +
+            "\"ruleSearchUrl\":\"index.php?m=vod-search@submit=search&wd=ruleKeyword\"," +
             "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
             "\"ruleItem\":\"li\"," +
             "\"ruleSeriesName\":\"li@text\"," +
@@ -328,15 +346,14 @@ public class Constant {
             "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
             "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
             "\"siteName\":\"135资源网\"," +
-            "\"videoSourceUrl\":\"http://135zy0.com\"" +
+            "\"videoSourceUrl\":\"http://135zy0.com/\"" +
             "}," +
             "{" +
-            "\"params\":{\"wd\":\"searchKey\"}," +
             "\"sourceType\":\"1\"," +
             "\"ruleSearchList\":\"class.DianDian@tag.td.0\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"/index.php?m=vod-search\"," +
+            "\"ruleSearchUrl\":\"index.php?m=vod-search@wd=ruleKeyword\"," +
             "\"ruleSeriesList\":\"class.movievod@tag.ul\"," +
             "\"ruleItem\":\"tag.li@tag.a\"," +
             "\"ruleSeriesName\":\"tag.a@text\"," +
@@ -346,15 +363,14 @@ public class Constant {
             "\"ruleVideoName\":\"class.videoDetail@tag.li.0@text\"," +
             "\"ruleVideoImage\":\"class.videoPic@tag.img@src\"," +
             "\"siteName\":\"永久资源网\"," +
-            "\"videoSourceUrl\":\"http://www.yongjiuzy2.com\"" +
+            "\"videoSourceUrl\":\"http://www.yongjiuzy2.com/\"" +
             "}," +
             "{" +
-            "\"params\":{\"submit\":\"search\",\"wd\":\"searchKey\"}," +
             "\"sourceType\":\"0\"," +
             "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"/index.php?m=vod-search\"," +
+            "\"ruleSearchUrl\":\"index.php?m=vod-search@submit=search&wd=ruleKeyword\"," +
             "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
             "\"ruleItem\":\"li\"," +
             "\"ruleSeriesName\":\"li@text\"," +
@@ -364,15 +380,65 @@ public class Constant {
             "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
             "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
             "\"siteName\":\"酷哈资源网\"," +
-            "\"videoSourceUrl\":\"http://www.666zy.com\"" +
+            "\"videoSourceUrl\":\"https://www.666zy.com/\"" +
             "}," +
             "{" +
-            "\"params\":{\"submit\":\"search\",\"wd\":\"searchKey\"}," +
             "\"sourceType\":\"0\"," +
             "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"/index.php?m\\u003dvod-search\"," +
+            "\"ruleSearchUrl\":\"index.php?m=vod-search@submit=search&wd=ruleKeyword\"," +
+            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
+            "\"ruleItem\":\"li\"," +
+            "\"ruleSeriesName\":\"li@text\"," +
+            "\"ruleSeriesNoteUrl\":\"  \"," +
+            "\"rulePlayType\":\"h3@text\"," +
+            "\"ruleTypeList\":\"h3\"," +
+            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
+            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
+            "\"siteName\":\"398资源网\"," +
+            "\"videoSourceUrl\":\"http://www.398.net/\"" +
+            "}," +
+            "{" +
+            "\"sourceType\":\"0\"," +
+            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
+            "\"ruleSearchName\":\"tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
+            "\"ruleSearchUrl\":\"index.php?m=vod-search@submit=search&wd=ruleKeyword\"," +
+            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
+            "\"ruleItem\":\"li\"," +
+            "\"ruleSeriesName\":\"li@text\"," +
+            "\"ruleSeriesNoteUrl\":\"  \"," +
+            "\"rulePlayType\":\"h3@text\"," +
+            "\"ruleTypeList\":\"h3\"," +
+            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
+            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
+            "\"siteName\":\"6U资源网\"," +
+            "\"videoSourceUrl\":\"http://zy.ataoju.com/\"" +
+            "}," +
+            "{" +
+            "\"sourceType\":\"1\"," +
+            "\"ruleSearchList\":\"class.videoContent@tag.li\"," +
+            "\"ruleSearchName\":\"tag.a.0@text\"," +
+            "\"ruleSearchNoteUrl\":\"tag.a.0@href\"," +
+            "\"ruleSearchUrl\":\"search.html?searchword=ruleKeyword\"," +
+            "\"ruleSeriesList\":\"id.content.1@tag.li\"," +
+            "\"ruleItem\":\"tag.li\"," +
+            "\"ruleSeriesName\":\"tag.input.0@value\"," +
+            "\"ruleSeriesNoteUrl\":\"  \"," +
+            "\"rulePlayType\":\"h4@text\"," +
+            "\"ruleTypeList\":\"id.content.1@h4\"," +
+            "\"ruleVideoName\":\"class.whitetitle@text\"," +
+            "\"ruleVideoImage\":\"class.left@tag.img@src\"," +
+            "\"siteName\":\"卧龙影视资源\"," +
+            "\"videoSourceUrl\":\"https://vodsee.com/\"" +
+            "}," +
+            "{" +
+            "\"sourceType\":\"0\"," +
+            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
+            "\"ruleSearchName\":\"tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
+            "\"ruleSearchUrl\":\"index.php?m\\u003dvod-search@submit=search&wd=ruleKeyword\"," +
             "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
             "\"ruleItem\":\"li\"," +
             "\"ruleSeriesName\":\"li@text\"," +
@@ -382,10 +448,10 @@ public class Constant {
             "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
             "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
             "\"siteName\":\"最大资源网\"," +
-            "\"videoSourceUrl\":\"http://www.zuidazy3.com\"" +
+            "\"videoSourceUrl\":\"http://www.zuidazy3.com/\"" +
             "}" +
             "]\n";
-    //永久资源网备用地址http://www.yongjiuzy.cc
+    //永久资源网备用地址http://www.yongjiuzy.cc//http://www.398.net/
 
     /*
     public static final String webSite = "[\n" +

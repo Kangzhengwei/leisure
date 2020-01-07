@@ -371,6 +371,9 @@ public class StringUtils {
 
     public static String subString(String str, int index) {
         int a = str.indexOf("$");
+        if (a < 0) {
+            return str;
+        }
         if (index == 0) {
             return str.substring(0, a);
         } else {

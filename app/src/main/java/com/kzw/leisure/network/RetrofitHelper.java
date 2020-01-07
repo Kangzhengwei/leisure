@@ -45,11 +45,6 @@ public class RetrofitHelper {
                 .get(path);
     }
 
-    public Flowable<String> postResponse(String baseUrl, String path, Map<String, String> map) {
-        return createRetrofit(baseUrl)
-                .create(ApiService.class)
-                .post(path, map);
-    }
 
     public Flowable<String> getResponse(Query query) {
         switch (query.getUrlMode()) {

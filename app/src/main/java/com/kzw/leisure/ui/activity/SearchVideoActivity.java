@@ -9,6 +9,7 @@ import com.google.gson.reflect.TypeToken;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.SearchListAdapter;
 import com.kzw.leisure.base.BaseActivity;
+import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.QuerySearchVideoBean;
 import com.kzw.leisure.bean.SearchItem;
 import com.kzw.leisure.contract.SearchVideoContract;
@@ -60,11 +61,12 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
                 dialog.show();
                 itemList.clear();
                 for (QuerySearchVideoBean bean : queryList) {
-                    Map<String, String> map = bean.getParams();
-                    if (map.containsKey("wd")) {
-                        map.put("wd", v.getText().toString());
+                    try {
+                        Query query = new Query(bean.getRuleSearchUrl(), v.getText().toString(), null, null, bean.getVideoSourceUrl());
+                        mPresenter.getHtml(query,bean);
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                    mPresenter.getHtml(bean);
                 }
                 return true;
             }
