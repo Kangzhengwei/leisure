@@ -58,7 +58,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         this.initPresenter();
         this.initView(savedInstanceState);
         this.initData();
-        PermessionUtil.checkPermession(this);
     }
 
 

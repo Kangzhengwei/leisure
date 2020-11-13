@@ -24,6 +24,7 @@ import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.DimenUtil;
 import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.PermessionUtil;
 import com.kzw.leisure.widgets.dialog.AddWebSiteDialog;
 import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;
 
@@ -77,6 +78,11 @@ public class MovieFragment extends BaseWebViewFragment {
         initList();
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        PermessionUtil.checkPermession(getActivity());
+    }
 
     private void initList() {
         WebSiteList realmList = realm.where(WebSiteList.class).findFirst();

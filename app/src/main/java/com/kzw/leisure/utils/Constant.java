@@ -15,7 +15,7 @@ import javax.script.ScriptEngineManager;
 
 public class Constant {
 
-    public static final String DEFAULT_URL = "http://www.2w2w.tv/";
+    public static final String DEFAULT_URL = "https://www.baidu.com/";
     public static final String FRONT_DOWNLOAD_URL = "https://www.jianguoyun.com/p/DXyqo6IQ0Zb6Bxj2ibEC";
     public static final Pattern putPattern = Pattern.compile("@put:(\\{[^}]+?\\})", Pattern.CASE_INSENSITIVE);
     public static final Pattern getPattern = Pattern.compile("@get:\\{([^}]+?)\\}", Pattern.CASE_INSENSITIVE);
@@ -113,60 +113,6 @@ public class Constant {
             "\"ruleSearchUrl\":\"https://www.xbiquge6.com/search.php?keyword=ruleKeyword\"" +
             "}," +
             "{" +
-            "\"baseUrl\":\"https://www.xbaquge.com\"," +
-            "\"siteName\":\"新笔趣阁2\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@tag.p@textNodes\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd\"," +
-            "\"ruleChapterName\":\"tag.a@text\"," +
-            "\"ruleChapterUrl\":\"tag.a.0@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
-            "\"ruleSearchCoverUrl\":\"tag.img.0@src\"," +
-            "\"ruleSearchIntroduce\":\"id.intro@tag.p@textNodes\"," +
-            "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
-            "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a.0@text\"," +
-            "\"ruleSearchList\":\"class.result-item\"," +
-            "\"ruleSearchName\":\"class.result-item-title.0@tag.a.0@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.result-item-title.0@tag.a.0@href\"," +
-            "\"ruleSearchUrl\":\"https://www.xbaquge.com/search.php?q=ruleKeyword\"" +
-            "}," +
-            "{" +
-            "\"baseUrl\":\"https://www.xs222.tw\"," +
-            "\"siteName\":\"顶点小说\"," +
-            "\"ruleBookAuthor\":\"class.box_con.0@id.info@tag.p.0@text\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"class.synopsisArea_detail@tag.p.3@text\"," +
-            "\"ruleBookName\":\"class.box_con.0@id.info@tag.h1.0@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img.0@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd\"," +
-            "\"ruleChapterName\":\"tag.a@text\"," +
-            "\"ruleChapterUrl\":\"tag.a@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
-            "\"ruleSearchCoverUrl\":\"tag.img.0@src\"," +
-            "\"ruleSearchIntroduce\":\"\"," +
-            "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
-            "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a.0@text\"," +
-            "\"ruleSearchList\":\"class.result-item\"," +
-            "\"ruleSearchName\":\"class.result-item-title.0@tag.a.0@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.result-item-title.0@tag.a.0@href\"," +
-            "\"ruleSearchUrl\":\"https://www.xs222.tw/search.php?q=ruleKeyword\"" +
-            "}," +
-            "{" +
             "\"baseUrl\":\"https://www.dingdiann.com\"," +
             "\"siteName\":\"顶点小说2\"," +
             "\"ruleBookAuthor\":\"class.info@tag.p.0@text#作者：\"," +
@@ -219,60 +165,6 @@ public class Constant {
             "\"ruleSearchName\":\"tag.span.1@tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.span.1@tag.a@href\"," +
             "\"ruleSearchUrl\":\"/case.php?m=search@key=ruleKeyword\"" +
-            "}," +
-            "{" +
-            "\"baseUrl\":\"https://www.daocaorenshuwu.com\"," +
-            "\"siteName\":\"稻草人书屋\"," +
-            "\"ruleBookAuthor\":\"class.col-md-4 col-sm-6 dark.0@text\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"class.book-detail@text\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"class.col-md-8 col-sm-6 dark@text\"," +
-            "\"ruleBookName\":\"class.book-name@tag.a@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"class.book-img-middel@src\"," +
-            "\"ruleChapterList\":\"class.col-md-6 item\"," +
-            "\"ruleChapterName\":\"tag.a@text\"," +
-            "\"ruleChapterUrl\":\"tag.a@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.cont-text@tag.p@text\"," +
-            "\"ruleContentUrlNext\":\"@css:ul>li.active+li>a@href\\n<js>\\nn=result;\\nx=n.search(\\\"_\\\");\\nif (x==-1){result=null};\\nif (x>-1){result=n}\\n</js>\"," +
-            "\"ruleSearchAuthor\":\"tag.td.1@text\"," +
-            "\"ruleSearchCoverUrl\":\"\"," +
-            "\"ruleSearchIntroduce\":\"\"," +
-            "\"ruleSearchKind\":\"\"," +
-            "\"ruleSearchLastChapter\":\"\"," +
-            "\"ruleSearchList\":\"class.table-condensed@tag.tr!0\"," +
-            "\"ruleSearchName\":\"tag.td.0@tag.a@title\"," +
-            "\"ruleSearchNoteUrl\":\"tag.td.0@tag.a@href\"," +
-            "\"ruleSearchUrl\":\"/plus/search.php?keyword=ruleKeyword&PageNo=searchPage\"" +
-            "}," +
-            "{" +
-            "\"baseUrl\":\"https://www.bhzw.cc/\"," +
-            "\"siteName\":\"冰火中文网\"," +
-            "\"ruleBookAuthor\":\"class.zuozhe@text\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"class.intro@text\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"class.name@tag.a@text\"," +
-            "\"ruleBookName\":\"class.page-title page-title1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"class.pic@tag.img@src\"," +
-            "\"ruleChapterList\":\"class.float-list fill-block@tag.li\"," +
-            "\"ruleChapterName\":\"tag.a@text\"," +
-            "\"ruleChapterUrl\":\"tag.a@href\"," +
-            "\"ruleChapterUrlType\":\"0\"," +
-            "\"ruleContentUrl\":\"id.ChapterContents@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"tag.td.3@tag.a@text\"," +
-            "\"ruleSearchCoverUrl\":\"\"," +
-            "\"ruleSearchIntroduce\":\"\"," +
-            "\"ruleSearchKind\":\"tag.td.1@text\"," +
-            "\"ruleSearchLastChapter\":\"tag.td.2@tag.a.1@text\"," +
-            "\"ruleSearchList\":\"class.bd@tag.tbody@tag.tr\"," +
-            "\"ruleSearchName\":\"tag.td.2@tag.a.0@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.td.2.@tag.a.0@href\"," +
-            "\"ruleSearchUrl\":\"modules/article/search.php@searchkey=ruleKeyword|char=gbk\"" +
             "}" +
             "]\n";
 
@@ -332,23 +224,6 @@ public class Constant {
             "\"videoSourceUrl\":\"http://www.kuyunzy1.com/\"" +
             "}," +
             "{" +
-            "\"sourceType\":\"0\"," +
-            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"index.php?m=vod-search@submit=search&wd=ruleKeyword\"," +
-            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
-            "\"ruleItem\":\"li\"," +
-            "\"ruleSeriesName\":\"li@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h3@text\"," +
-            "\"ruleTypeList\":\"h3\"," +
-            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
-            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
-            "\"siteName\":\"135资源网\"," +
-            "\"videoSourceUrl\":\"http://135zy0.com/\"" +
-            "}," +
-            "{" +
             "\"sourceType\":\"1\"," +
             "\"ruleSearchList\":\"class.DianDian@tag.td.0\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
@@ -364,74 +239,6 @@ public class Constant {
             "\"ruleVideoImage\":\"class.videoPic@tag.img@src\"," +
             "\"siteName\":\"永久资源网\"," +
             "\"videoSourceUrl\":\"http://www.yongjiuzy2.com/\"" +
-            "}," +
-            "{" +
-            "\"sourceType\":\"0\"," +
-            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"index.php?m=vod-search@submit=search&wd=ruleKeyword\"," +
-            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
-            "\"ruleItem\":\"li\"," +
-            "\"ruleSeriesName\":\"li@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h3@text\"," +
-            "\"ruleTypeList\":\"h3\"," +
-            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
-            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
-            "\"siteName\":\"酷哈资源网\"," +
-            "\"videoSourceUrl\":\"https://www.666zy.com/\"" +
-            "}," +
-            "{" +
-            "\"sourceType\":\"0\"," +
-            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"index.php?m=vod-search@submit=search&wd=ruleKeyword\"," +
-            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
-            "\"ruleItem\":\"li\"," +
-            "\"ruleSeriesName\":\"li@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h3@text\"," +
-            "\"ruleTypeList\":\"h3\"," +
-            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
-            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
-            "\"siteName\":\"398资源网\"," +
-            "\"videoSourceUrl\":\"http://www.398.net/\"" +
-            "}," +
-            "{" +
-            "\"sourceType\":\"0\"," +
-            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"index.php?m=vod-search@submit=search&wd=ruleKeyword\"," +
-            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
-            "\"ruleItem\":\"li\"," +
-            "\"ruleSeriesName\":\"li@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h3@text\"," +
-            "\"ruleTypeList\":\"h3\"," +
-            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
-            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
-            "\"siteName\":\"6U资源网\"," +
-            "\"videoSourceUrl\":\"http://zy.ataoju.com/\"" +
-            "}," +
-            "{" +
-            "\"sourceType\":\"1\"," +
-            "\"ruleSearchList\":\"class.videoContent@tag.li\"," +
-            "\"ruleSearchName\":\"tag.a.0@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a.0@href\"," +
-            "\"ruleSearchUrl\":\"search.html?searchword=ruleKeyword\"," +
-            "\"ruleSeriesList\":\"id.content.1@tag.li\"," +
-            "\"ruleItem\":\"tag.li\"," +
-            "\"ruleSeriesName\":\"tag.input.0@value\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h4@text\"," +
-            "\"ruleTypeList\":\"id.content.1@h4\"," +
-            "\"ruleVideoName\":\"class.whitetitle@text\"," +
-            "\"ruleVideoImage\":\"class.left@tag.img@src\"," +
-            "\"siteName\":\"卧龙影视资源\"," +
-            "\"videoSourceUrl\":\"https://vodsee.com/\"" +
             "}," +
             "{" +
             "\"sourceType\":\"0\"," +
@@ -699,9 +506,14 @@ public class Constant {
             "        \"siteName\": \"百度\"\n" +
             "    },\n" +
             "    {\n" +
-            "        \"url\": \"http://www.2w2w.tv/ \",\n" +
+            "        \"url\": \"http://www.kk2w2.com/\",\n" +
             "        \"isHasAd\": \"false\",\n" +
             "        \"siteName\": \"ok资源网\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"http://zy.ataoju.com/ \",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"6U资源网\"\n" +
             "    },\n" +
             "    {\n" +
             "        \"url\": \"http://www.uziqaq.com/ \",\n" +
@@ -714,21 +526,6 @@ public class Constant {
             "        \"siteName\": \"小森林导航2\"\n" +
             "    },\n" +
             "    {\n" +
-            "        \"url\": \"http://www.cuteforest.com/nav.html\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"小森林导航3\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.dyrizhi.com\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"电影日志\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.xn--6o0a480a.cn \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"维赞影院\"\n" +
-            "    },\n" +
-            "    {\n" +
             "        \"url\": \"https://www.4kdy.net/ \",\n" +
             "        \"isHasAd\": \"false\",\n" +
             "        \"siteName\": \"4k电影\"\n" +
@@ -737,11 +534,6 @@ public class Constant {
             "        \"url\": \"http://www.pilipali.cc \",\n" +
             "        \"isHasAd\": \"false\",\n" +
             "        \"siteName\": \"噼里啪啦\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.28dm.com \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"新世界动漫\"\n" +
             "    },\n" +
             "    {\n" +
             "        \"url\": \"http://www.ikanfan.com\",\n" +
