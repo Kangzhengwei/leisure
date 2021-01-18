@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kzw.leisure.R;
+import com.kzw.leisure.widgets.popwindow.CheckSeriesPopWindow;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
 import com.shuyu.gsyvideoplayer.video.base.GSYBaseVideoPlayer;
 
@@ -22,13 +23,11 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
     VideoPlayerRateWindow popwin;
     public ImageView backof;
     public ImageView forword;
-    public ImageView download;
-    public DownloadClickListener mListener;
-    private PlayerErrorListener errorListener;
-    private PlayerSuccessListener mSuccessListener;
+    public TextView checkSeries;
     private long exitTime = 0;
     private int times = 0;
 
+    private checkSeriesClickListener mListener;
 
     public VideoPlayer(Context context) {
         super(context);
@@ -52,13 +51,15 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
         tvRate = findViewById(R.id.play_rate);
         backof = findViewById(R.id.back_of);
         forword = findViewById(R.id.forward);
-        download = findViewById(R.id.download);
+        checkSeries = findViewById(R.id.check_series);
         mLockScreen = findViewById(R.id.lock_screen);
         mLockScreen.setVisibility(View.GONE);
-
-        download.setOnClickListener(v -> {
-            if (mListener != null) {
-                mListener.DownloadClick();
+        checkSeries.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (mListener != null) {
+                    mListener.onClick();
+                }
             }
         });
         backof.setOnClickListener(v -> {
@@ -146,6 +147,7 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
         setSeekOnStart(position);
     }
 
+
     @Override
     protected void hideAllWidget() {
         super.hideAllWidget();
@@ -187,9 +189,6 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
     protected void changeUiToPlayingShow() {
         super.changeUiToPlayingShow();
         tvAlert.setVisibility(View.GONE);
-        if (mSuccessListener != null) {
-            mSuccessListener.PlayerSuccess();
-        }
     }
 
     @Override
@@ -222,9 +221,6 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
         super.changeUiToError();
         tvAlert.setText("加载失败");
         mStartButton.setVisibility(View.INVISIBLE);
-        if (errorListener != null) {
-            errorListener.PlayerErrror();
-        }
     }
 
     @Override
@@ -235,25 +231,12 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
         mBottomProgressBar.setProgress(seekTimePosition * 100 / totalTimeDuration);
     }
 
-    public interface DownloadClickListener {
-        void DownloadClick();
+    public interface checkSeriesClickListener {
+        void onClick();
     }
 
-
-    public interface PlayerErrorListener {
-        void PlayerErrror();
-    }
-
-    public void setPlayErrorListener(PlayerErrorListener mlistener) {
-        errorListener = mlistener;
-    }
-
-    public interface PlayerSuccessListener {
-        void PlayerSuccess();
-    }
-
-    public void setPlaySuccessListener(PlayerSuccessListener successListener) {
-        mSuccessListener = successListener;
+    public void setCheckSeriesClickListener(checkSeriesClickListener listener) {
+        mListener = listener;
     }
 
 
