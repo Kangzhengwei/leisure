@@ -39,7 +39,7 @@ public class SeriesAdapter extends BaseQuickAdapter<VideoBean.Series, BaseViewHo
                 Object object = list.get(position);
                 if (object instanceof VideoBean.Series.Url) {
                     if (clickListener != null) {
-                        clickListener.Click(((VideoBean.Series.Url) object),item.getList());
+                        clickListener.Click(((VideoBean.Series.Url) object),item.getList(),item.getUrlType(),position);
                     }
                 }
             });
@@ -47,7 +47,7 @@ public class SeriesAdapter extends BaseQuickAdapter<VideoBean.Series, BaseViewHo
     }
 
     public interface OnClickListener {
-        void Click(VideoBean.Series.Url item,List<VideoBean.Series.Url> list);
+        void Click(VideoBean.Series.Url item,List<VideoBean.Series.Url> list,String videoUrlType,int position);
     }
 
     public void setOnClickListener(OnClickListener listener) {

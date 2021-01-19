@@ -9,25 +9,23 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kzw.leisure.R;
-import com.kzw.leisure.widgets.popwindow.CheckSeriesPopWindow;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
-import com.shuyu.gsyvideoplayer.video.base.GSYBaseVideoPlayer;
 
 /**
  * Created by Android on 2018/8/6.
  */
 
 public class VideoPlayer extends StandardGSYVideoPlayer {
-    public TextView tvAlert;
-    public TextView tvRate;
-    VideoPlayerRateWindow popwin;
-    public ImageView backof;
-    public ImageView forword;
-    public TextView checkSeries;
-    private long exitTime = 0;
-    private int times = 0;
+    protected TextView tvAlert;
+    protected TextView tvRate;
+    protected VideoPlayerRateWindow popwin;
+    protected ImageView backof;
+    protected ImageView forword;
+    protected TextView checkSeries;
+    protected long exitTime = 0;
+    protected int times = 0;
 
-    private checkSeriesClickListener mListener;
+    protected checkSeriesClickListener mListener;
 
     public VideoPlayer(Context context) {
         super(context);
@@ -45,7 +43,6 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
     @Override
     protected void init(final Context context) {
         super.init(context);
-
         tvAlert = findViewById(R.id.video_alert);
         mBackButton = findViewById(R.id.back);
         tvRate = findViewById(R.id.play_rate);
@@ -168,8 +165,8 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
     }
 
     @Override
-    public GSYBaseVideoPlayer startWindowFullscreen(Context context, boolean actionBar, boolean statusBar) {
-        StandardGSYVideoPlayer videoPlayer = (StandardGSYVideoPlayer) super.startWindowFullscreen(context, actionBar, statusBar);
+    public StandardGSYVideoPlayer startWindowFullscreen(Context context, boolean actionBar, boolean statusBar) {
+        StandardGSYVideoPlayer standardGSYVideoPlayer = (StandardGSYVideoPlayer) super.startWindowFullscreen(context, actionBar, statusBar);
         if (!isIfCurrentIsFullscreen()) {
             AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
             int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
@@ -177,12 +174,26 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
                 Toast.makeText(context, "调大音量才能听到声音哦", Toast.LENGTH_SHORT).show();
             }
         }
-        return videoPlayer;
+        if (standardGSYVideoPlayer != null) {
+            VideoPlayer videoPlayer = (VideoPlayer) standardGSYVideoPlayer;
+            initUI(videoPlayer);
+        }
+        return standardGSYVideoPlayer;
+    }
+
+    private void initUI(VideoPlayer videoPlayer) {
+        if (mListener != null) {
+            videoPlayer.setCheckSeriesClickListener(mListener);
+        }
     }
 
 
     public ImageView getBackButton() {
         return mBackButton;
+    }
+
+    public TextView getCheckSeries() {
+        return checkSeries;
     }
 
     @Override

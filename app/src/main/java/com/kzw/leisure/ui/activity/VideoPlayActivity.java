@@ -15,6 +15,9 @@ import com.kzw.leisure.event.VideoCollectEvent;
 import com.kzw.leisure.model.VideoSeriesModel;
 import com.kzw.leisure.presenter.VideoSeriesPresenter;
 import com.kzw.leisure.realm.VideoRealm;
+import com.kzw.leisure.realm.VideoWatchRealm;
+import com.kzw.leisure.realm.VideoWatchTypeRealm;
+import com.kzw.leisure.realm.VideoWatchTypeSeriesRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.widgets.ToastUtil;
 import com.kzw.leisure.widgets.VideoPlayer;
@@ -24,6 +27,8 @@ import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
 import com.shuyu.gsyvideoplayer.listener.VideoAllCallBack;
 import com.shuyu.gsyvideoplayer.utils.GSYVideoType;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
+
+import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,6 +53,8 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     private VideoBean videoBean;
     private OrientationUtils orientationUtils;
     private CheckSeriesPopWindow seriesPopWindow;
+    private VideoWatchRealm videoWatchRealm;
+    private String videoUrlType;
 
     @Override
     protected int getContentView() {
@@ -61,15 +68,19 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        GSYVideoType.enableMediaCodec();
+        //GSYVideoType.enableMediaCodec();//打开硬解码会导致横竖屏切换黑屏
         GSYVideoType.enableMediaCodecTexture();
         //是否可以滑动调整
         seriesPopWindow = new CheckSeriesPopWindow(this);
+        seriesPopWindow.setItemClickListener((item, position) -> {
+            videoPlayer.getFullWindowPlayer().setUp(item.getVideoUrl(), true, item.getVideoSeries());
+            videoPlayer.getFullWindowPlayer().startPlayLogic();
+            updateData(item, videoUrlType, position);
+        });
         orientationUtils = new OrientationUtils(VideoPlayActivity.this, videoPlayer);
         orientationUtils.setEnable(false);
         orientationUtils.setIsLand((videoPlayer.getCurrentPlayer().isIfCurrentIsFullscreen()) ? 1 : 0);
-        videoPlayer.setIsTouchWiget(true);
-        videoPlayer.getFullscreenButton().setOnClickListener(v -> videoPlayer.startWindowFullscreen(mContext, false, true));
+
         GSYVideoOptionBuilder gsyVideoOption = new GSYVideoOptionBuilder();
         gsyVideoOption.setVideoAllCallBack(new VideoAllCallBack() {
 
@@ -136,13 +147,13 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
 
             @Override
             public void onEnterFullscreen(String url, Object... objects) {
-                videoPlayer.checkSeries.setVisibility(View.VISIBLE);
+                videoPlayer.getCheckSeries().setVisibility(View.VISIBLE);
                 orientationUtils.resolveByClick();
             }
 
             @Override
             public void onQuitFullscreen(String url, Object... objects) {
-                videoPlayer.checkSeries.setVisibility(View.GONE);
+                videoPlayer.getCheckSeries().setVisibility(View.GONE);
                 orientationUtils.resolveByClick();
             }
 
@@ -194,34 +205,58 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
 
         }).build(videoPlayer);
 
+        videoPlayer.getFullscreenButton().setOnClickListener(v -> videoPlayer.startWindowFullscreen(mContext, false, true));
+        videoPlayer.setIsTouchWiget(true);
         videoPlayer.setKeepScreenOn(true);
         videoPlayer.getBackButton().setOnClickListener(v -> onBackPressed());
         videoPlayer.setReleaseWhenLossAudio(false);
-        videoPlayer.setAutoFullWithSize(true);
+        videoPlayer.setAutoFullWithSize(false);
         videoPlayer.setNeedLockFull(true);
         videoPlayer.setNeedShowWifiTip(false);
         videoPlayer.setDismissControlTime(5000);
         videoPlayer.setEnlargeImageRes(R.mipmap.icon_fullscreen);
         videoPlayer.setShrinkImageRes(R.mipmap.icon_fullscreen);
         videoPlayer.setSeekRatio(2f);
-        videoPlayer.checkSeries.setVisibility(View.GONE);
-        //全屏动画
-        videoPlayer.setShowFullAnimation(false);
-        videoPlayer.setCheckSeriesClickListener(new VideoPlayer.checkSeriesClickListener() {
-            @Override
-            public void onClick() {
-                seriesPopWindow.showAsDropDown(videoPlayer.checkSeries, 0, 50);
-            }
-        });
+        videoPlayer.getCheckSeries().setVisibility(View.GONE);
+        videoPlayer.setShowFullAnimation(false);//全屏动画
+        videoPlayer.setCheckSeriesClickListener(() -> seriesPopWindow.showAsDropDown(videoPlayer.getCheckSeries(), 0, 50));
         ////////////////////////////////////
         recyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         adapter = new SeriesAdapter();
         recyclerView.setAdapter(adapter);
-        adapter.setOnClickListener((item, list) -> {
+        adapter.setOnClickListener((item, list, urlType, position) -> {
             videoPlayer.setUp(item.getVideoUrl(), true, item.getVideoSeries());
             videoPlayer.startPlayLogic();
             seriesPopWindow.setData(list);
+            videoUrlType = urlType;
+            updateData(item, urlType, position);
         });
+    }
+
+    private void updateData(VideoBean.Series.Url item, String urlType, int position) {
+        if (isSubsrribe) {
+            if (videoWatchRealm.getMlist().size() > 0) {
+                boolean isHas = false;
+                for (VideoWatchTypeRealm realm : videoWatchRealm.getMlist()) {
+                    if (realm.getUrlType().equals(urlType)) {
+                        isHas = true;
+                        VideoWatchTypeSeriesRealm seriesRealm = new VideoWatchTypeSeriesRealm(item.getVideoSeries(), position);
+                        realm.getmList().add(seriesRealm);
+                    }
+                }
+                if (!isHas) {
+                    VideoWatchTypeRealm videoWatchTypeRealm = new VideoWatchTypeRealm(urlType);
+                    VideoWatchTypeSeriesRealm seriesRealm = new VideoWatchTypeSeriesRealm(item.getVideoSeries(), position);
+                    videoWatchTypeRealm.getmList().add(seriesRealm);
+                    videoWatchRealm.getMlist().add(videoWatchTypeRealm);
+                }
+            } else {
+                VideoWatchTypeRealm videoWatchTypeRealm = new VideoWatchTypeRealm(urlType);
+                VideoWatchTypeSeriesRealm seriesRealm = new VideoWatchTypeSeriesRealm(item.getVideoSeries(), position);
+                videoWatchTypeRealm.getmList().add(seriesRealm);
+                videoWatchRealm.getMlist().add(videoWatchTypeRealm);
+            }
+        }
     }
 
     @Override
@@ -236,7 +271,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         if (item != null) {
             mPresenter.getHtml(item);
         }
-
+        videoWatchRealm = new VideoWatchRealm();//用于记录观看记录
         RealmResults<VideoRealm> list = realm.where(VideoRealm.class).findAll();
         if (list != null && list.size() > 0) {
             for (VideoRealm video : list) {
@@ -266,6 +301,18 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         super.onDestroy();
         GSYVideoManager.releaseAllVideos();
         GSYVideoManager.instance().clearAllDefaultCache(this);
+        saveData();
+        videoWatchRealm = null;
+    }
+
+    private void saveData() {
+        if (isSubsrribe) {
+            List<VideoWatchRealm> list = realm.where(VideoWatchRealm.class).findAll();
+            if (list != null && list.size() > 0) {
+
+            }
+        }
+
     }
 
     @Override
@@ -326,6 +373,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
                 videoRealm.setVideoSourceUrl(item.getVideoSourceUrl());
                 videoSub.setImageResource(R.mipmap.icon_has_subscribe);
                 RxBus.getInstance().post(new VideoCollectEvent());
+                isSubsrribe = true;
             }
         });
     }
@@ -334,6 +382,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     public void returnResult(VideoBean bean) {
         videoBean = bean;
         adapter.setNewData(bean.getList());
+        videoWatchRealm.setVideoName(bean.getVideoName());
         ToastUtil.showCenterLongToast("只能播放m3u8和MP4格式（迅雷下载）");
     }
 
