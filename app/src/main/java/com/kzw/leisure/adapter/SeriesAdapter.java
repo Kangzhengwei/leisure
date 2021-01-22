@@ -34,12 +34,13 @@ public class SeriesAdapter extends BaseQuickAdapter<VideoBean.Series, BaseViewHo
             SeriesChildAdapter adapter = new SeriesChildAdapter();
             ((RecyclerView) view).setAdapter(adapter);
             adapter.setNewData(item.getList());
+            ((RecyclerView) view).scrollToPosition(item.getPosition());
             adapter.setOnItemClickListener((adapter1, view1, position) -> {
                 List list = adapter1.getData();
                 Object object = list.get(position);
                 if (object instanceof VideoBean.Series.Url) {
                     if (clickListener != null) {
-                        clickListener.Click(((VideoBean.Series.Url) object),item.getList(),item.getUrlType(),position);
+                        clickListener.Click(((VideoBean.Series.Url) object), item.getList(), item.getUrlType(), position);
                     }
                 }
             });
@@ -47,7 +48,7 @@ public class SeriesAdapter extends BaseQuickAdapter<VideoBean.Series, BaseViewHo
     }
 
     public interface OnClickListener {
-        void Click(VideoBean.Series.Url item,List<VideoBean.Series.Url> list,String videoUrlType,int position);
+        void Click(VideoBean.Series.Url item, List<VideoBean.Series.Url> list, String videoUrlType, int position);
     }
 
     public void setOnClickListener(OnClickListener listener) {

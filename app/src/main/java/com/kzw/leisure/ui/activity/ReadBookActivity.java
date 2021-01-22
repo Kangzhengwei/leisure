@@ -25,6 +25,7 @@ import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.realm.ChapterList;
 import com.kzw.leisure.realm.SourceRuleRealm;
 import com.kzw.leisure.utils.AppUtils;
+import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.StatusBarUtil;
 import com.kzw.leisure.utils.SystemUtil;
@@ -479,6 +480,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     private void getChapterList(boolean isFromNet) {
         try {
             chapterRule = new ChapterRule(currentRule);//realm不能在子线程调用get或set方法，这里转换成其他对象
+            LogUtils.d(chapterRule.toString());
             Query query = new Query(currentChapterListUrl.getChapterListUrlRule(), null, chapterRule.getBaseUrl());
             mPresenter.getChapterList(query, chapterRule, currentChapterListUrl, isFromNet);
         } catch (Exception e) {

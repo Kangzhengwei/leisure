@@ -96,4 +96,19 @@ public class ChapterRule implements Serializable {
     public void setBaseUrl(String baseUrl) {
         this.baseUrl = baseUrl;
     }
+
+    @Override
+    public String toString() {
+        return "ChapterRule{" +
+                "ruleChapterList='" + ruleChapterList + '\'' +
+                ", ruleChapterName='" + ruleChapterName + '\'' +
+                ", ruleChapterUrl='" + ruleChapterUrl + '\'' +
+                ", ruleChapterUrlNext='" + ruleChapterUrlNext + '\'' +
+                ", ruleContentUrl='" + ruleContentUrl + '\'' +
+                ", ruleContentUrlNext='" + ruleContentUrlNext + '\'' +
+                ", ruleChapterUrlType=" + ruleChapterUrlType +
+                ", baseUrl='" + baseUrl + '\'' +
+                ", siteName='" + siteName + '\'' +
+                '}';
+    }
 }

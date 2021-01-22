@@ -11,6 +11,8 @@ public class VideoWatchTypeSeriesRealm extends RealmObject {
     public String seriesName;
     public int seriesNum;
 
+    public VideoWatchTypeSeriesRealm(){
+    }
     public VideoWatchTypeSeriesRealm(String seriesName,int seriesNum){
         this.seriesName=seriesName;
         this.seriesNum=seriesNum;

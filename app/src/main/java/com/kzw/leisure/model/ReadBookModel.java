@@ -161,22 +161,17 @@ public class ReadBookModel implements ReadBookContract.Model {
                 e.printStackTrace();
                 emitter.onError(e);
             }
-            if (!TextUtils.isEmpty(bookContentBean.getNextContentUrl())) {//获取下一页内容
-                List<String> usedUrlList = new ArrayList<>();
-                usedUrlList.add(chapter.getChapterUrl());
-                while (!TextUtils.isEmpty(bookContentBean.getNextContentUrl()) && !usedUrlList.contains(bookContentBean.getNextContentUrl())) {
-                    usedUrlList.add(bookContentBean.getNextContentUrl());
-                    try {
-                        Query query = new Query(bookContentBean.getNextContentUrl(), null, StringUtils.getAbsoluteURL(sourceRule.getBaseUrl(), chapter.getChapterUrl()));
-                        String response = RetrofitHelper.getInstance().getResponse(query).blockingFirst();
-                        analyzeRule.setContent(response, StringUtils.getAbsoluteURL(sourceRule.getBaseUrl(),chapter.getChapterUrl()));
-                        bookContentBean.setDurChapterContent(bookContentBean.getDurChapterContent()+ "\n" +StringUtils.formatHtml(analyzeRule.getString(sourceRule.getRuleContentUrl())));
-                        if(!TextUtils.isEmpty(sourceRule.getRuleContentUrlNext())){
-                            bookContentBean.setNextContentUrl(analyzeRule.getString(sourceRule.getRuleContentUrlNext(),true));
-                        }
-                    } catch (Exception e) {
-                        emitter.onError(e);
+            while (StringUtils.isTheSameChapter(chapter.getChapterUrl(), bookContentBean.getNextContentUrl())) {
+                try {
+                    Query query = new Query(bookContentBean.getNextContentUrl(), null, sourceRule.getBaseUrl());
+                    String response = RetrofitHelper.getInstance().getResponse(query).blockingFirst();
+                    analyzeRule.setContent(response, sourceRule.getRuleChapterUrl());
+                    bookContentBean.setDurChapterContent(bookContentBean.getDurChapterContent() + "\n" + StringUtils.formatHtml(analyzeRule.getString(sourceRule.getRuleContentUrl())));
+                    if (!TextUtils.isEmpty(sourceRule.getRuleContentUrlNext())) {
+                        bookContentBean.setNextContentUrl(analyzeRule.getString(sourceRule.getRuleContentUrlNext(), true));
                     }
+                } catch (Exception e) {
+                    emitter.onError(e);
                 }
             }
             emitter.onNext(bookContentBean);

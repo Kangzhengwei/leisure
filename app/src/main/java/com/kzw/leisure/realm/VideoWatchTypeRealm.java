@@ -13,6 +13,9 @@ public class VideoWatchTypeRealm extends RealmObject {
     public String urlType;
     public RealmList<VideoWatchTypeSeriesRealm> mList=new RealmList<>();
 
+    public VideoWatchTypeRealm(){
+
+    }
     public VideoWatchTypeRealm(String urlType){
         this.urlType=urlType;
     }

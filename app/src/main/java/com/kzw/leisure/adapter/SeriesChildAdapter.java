@@ -17,6 +17,7 @@ public class SeriesChildAdapter extends BaseQuickAdapter<VideoBean.Series.Url, B
 
     @Override
     protected void convert(BaseViewHolder helper, VideoBean.Series.Url item) {
-        helper.setText(R.id.series,item.getVideoSeries());
+        helper.setText(R.id.series, item.getVideoSeries());
+        helper.setVisible(R.id.image_tag, item.isWatched());
     }
 }

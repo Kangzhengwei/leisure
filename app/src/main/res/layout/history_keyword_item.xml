@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TextView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/key_word_view"
+    android:layout_width="wrap_content"
+    android:padding="@dimen/dp_4"
+    android:background="@drawable/keyword_view_shape"
+    android:maxWidth="200dp"
+    android:singleLine="true"
+    android:ellipsize="end"
+    android:layout_height="wrap_content"/>

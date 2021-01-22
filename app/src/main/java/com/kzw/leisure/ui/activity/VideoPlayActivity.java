@@ -1,6 +1,7 @@
 package com.kzw.leisure.ui.activity;
 
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -19,6 +20,7 @@ import com.kzw.leisure.realm.VideoWatchRealm;
 import com.kzw.leisure.realm.VideoWatchTypeRealm;
 import com.kzw.leisure.realm.VideoWatchTypeSeriesRealm;
 import com.kzw.leisure.rxJava.RxBus;
+import com.kzw.leisure.utils.StatusBarUtil;
 import com.kzw.leisure.widgets.ToastUtil;
 import com.kzw.leisure.widgets.VideoPlayer;
 import com.kzw.leisure.widgets.popwindow.CheckSeriesPopWindow;
@@ -28,6 +30,7 @@ import com.shuyu.gsyvideoplayer.listener.VideoAllCallBack;
 import com.shuyu.gsyvideoplayer.utils.GSYVideoType;
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
+import java.util.HashSet;
 import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -35,6 +38,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.realm.Realm;
+import io.realm.RealmList;
 import io.realm.RealmResults;
 
 public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoSeriesModel> implements VideoSeriesContract.View {
@@ -70,6 +74,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     public void initView(Bundle savedInstanceState) {
         //GSYVideoType.enableMediaCodec();//打开硬解码会导致横竖屏切换黑屏
         GSYVideoType.enableMediaCodecTexture();
+        StatusBarUtil.translucentBar((Activity)mContext);
         //是否可以滑动调整
         seriesPopWindow = new CheckSeriesPopWindow(this);
         seriesPopWindow.setItemClickListener((item, position) -> {
@@ -233,32 +238,6 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         });
     }
 
-    private void updateData(VideoBean.Series.Url item, String urlType, int position) {
-        if (isSubsrribe) {
-            if (videoWatchRealm.getMlist().size() > 0) {
-                boolean isHas = false;
-                for (VideoWatchTypeRealm realm : videoWatchRealm.getMlist()) {
-                    if (realm.getUrlType().equals(urlType)) {
-                        isHas = true;
-                        VideoWatchTypeSeriesRealm seriesRealm = new VideoWatchTypeSeriesRealm(item.getVideoSeries(), position);
-                        realm.getmList().add(seriesRealm);
-                    }
-                }
-                if (!isHas) {
-                    VideoWatchTypeRealm videoWatchTypeRealm = new VideoWatchTypeRealm(urlType);
-                    VideoWatchTypeSeriesRealm seriesRealm = new VideoWatchTypeSeriesRealm(item.getVideoSeries(), position);
-                    videoWatchTypeRealm.getmList().add(seriesRealm);
-                    videoWatchRealm.getMlist().add(videoWatchTypeRealm);
-                }
-            } else {
-                VideoWatchTypeRealm videoWatchTypeRealm = new VideoWatchTypeRealm(urlType);
-                VideoWatchTypeSeriesRealm seriesRealm = new VideoWatchTypeSeriesRealm(item.getVideoSeries(), position);
-                videoWatchTypeRealm.getmList().add(seriesRealm);
-                videoWatchRealm.getMlist().add(videoWatchTypeRealm);
-            }
-        }
-    }
-
     @Override
     protected void initPresenter() {
         mPresenter.setVM(this, mModel);
@@ -300,19 +279,10 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     protected void onDestroy() {
         super.onDestroy();
         GSYVideoManager.releaseAllVideos();
-        GSYVideoManager.instance().clearAllDefaultCache(this);
+       // GSYVideoManager.instance().clearAllDefaultCache(this);
         saveData();
         videoWatchRealm = null;
-    }
-
-    private void saveData() {
-        if (isSubsrribe) {
-            List<VideoWatchRealm> list = realm.where(VideoWatchRealm.class).findAll();
-            if (list != null && list.size() > 0) {
-
-            }
-        }
-
+        realm.close();
     }
 
     @Override
@@ -381,6 +351,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     @Override
     public void returnResult(VideoBean bean) {
         videoBean = bean;
+        updateBean(bean);
         adapter.setNewData(bean.getList());
         videoWatchRealm.setVideoName(bean.getVideoName());
         ToastUtil.showCenterLongToast("只能播放m3u8和MP4格式（迅雷下载）");
@@ -390,4 +361,100 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     public void returnFail(String message) {
         showToast(message);
     }
+
+
+    private void saveData() {
+        if (isSubsrribe && videoWatchRealm.getMlist().size() > 0) {
+            List<VideoWatchRealm> list = realm.where(VideoWatchRealm.class).findAll();
+            boolean isHas = false;
+            if (list != null && list.size() > 0) {
+                for (VideoWatchRealm watchRealm : list) {
+                    if (watchRealm.getVideoName().equals(videoBean.getVideoName())) {
+                        isHas = true;
+                        RealmList<VideoWatchTypeRealm> mList = watchRealm.getMlist();
+                        RealmList<VideoWatchTypeRealm> sList = videoWatchRealm.getMlist();
+                        boolean isHasType = false;
+                        for (VideoWatchTypeRealm type : sList) {
+                            for (VideoWatchTypeRealm watchType : mList) {
+                                if (type.getUrlType().equals(watchType.getUrlType())) {
+                                    isHasType = true;
+                                    realm.executeTransaction(realm -> {
+                                        watchType.getmList().addAll(type.getmList());
+                                        HashSet<VideoWatchTypeSeriesRealm> set = new HashSet<>(watchType.getmList());
+                                        watchType.getmList().clear();
+                                        watchType.getmList().addAll(set);
+                                    });
+                                    break;
+                                }
+                            }
+                        }
+                        if (!isHasType) {
+                            realm.executeTransaction(realm -> {
+                                mList.addAll(sList);
+                            });
+                        }
+                    }
+                }
+            }
+            if (!isHas) {
+                realm.executeTransaction(realm -> {
+                    VideoWatchRealm watchRealm = realm.createObject(VideoWatchRealm.class);
+                    watchRealm.setVideoName(videoWatchRealm.getVideoName());
+                    watchRealm.getMlist().addAll(videoWatchRealm.getMlist());
+                });
+            }
+        }
+    }
+
+
+    private void updateBean(VideoBean bean) {
+        List<VideoWatchRealm> list = realm.where(VideoWatchRealm.class).findAll();
+        if (list != null && list.size() > 0) {
+            for (VideoWatchRealm videoWatchRealm : list) {
+                if (videoWatchRealm.getVideoName().equals(bean.getVideoName())) {
+                    RealmList<VideoWatchTypeRealm> mList = videoWatchRealm.getMlist();
+                    List<VideoBean.Series> seriesList = bean.getList();
+                    for (VideoWatchTypeRealm videoWatchTypeRealm : mList) {
+                        for (VideoBean.Series series : seriesList) {
+                            if (videoWatchTypeRealm.getUrlType().equals(series.getUrlType())) {
+                                RealmList<VideoWatchTypeSeriesRealm> smList = videoWatchTypeRealm.getmList();
+                                List<VideoBean.Series.Url> urlList = series.getList();
+                                for (VideoWatchTypeSeriesRealm videoWatchTypeSeriesRealm : smList) {
+                                    for (VideoBean.Series.Url url : urlList) {
+                                        if (videoWatchTypeSeriesRealm.getSeriesName().equals(url.getVideoSeries())) {
+                                            series.setPostion(videoWatchTypeSeriesRealm.getSeriesNum());
+                                            url.setWatched(true);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+
+    private void updateData(VideoBean.Series.Url item, String urlType, int position) {
+        if (isSubsrribe) {
+            boolean isHas = false;
+            for (VideoWatchTypeRealm realm : videoWatchRealm.getMlist()) {
+                if (realm.getUrlType().equals(urlType)) {
+                    isHas = true;
+                    VideoWatchTypeSeriesRealm seriesRealm = new VideoWatchTypeSeriesRealm(item.getVideoSeries(), position);
+                    realm.getmList().add(seriesRealm);
+                    break;
+                }
+            }
+            if (!isHas) {
+                VideoWatchTypeRealm videoWatchTypeRealm = new VideoWatchTypeRealm(urlType);
+                VideoWatchTypeSeriesRealm seriesRealm = new VideoWatchTypeSeriesRealm(item.getVideoSeries(), position);
+                videoWatchTypeRealm.getmList().add(seriesRealm);
+                videoWatchRealm.getMlist().add(videoWatchTypeRealm);
+            }
+        }
+    }
+
+
 }
