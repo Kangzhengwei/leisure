@@ -25,10 +25,6 @@ public class SourceAdapter extends BaseQuickAdapter<BookSourceRule, BaseViewHold
         RadioButton radioButton = helper.getView(R.id.tick);
         radioButton.setClickable(false);
         BookSourceRule rule = SPUtils.getInstance().getObject("defaultRule", BookSourceRule.class);
-        if (rule != null && rule.getBaseUrl().equals(item.getBaseUrl())) {
-            radioButton.setChecked(true);
-        } else {
-            radioButton.setChecked(false);
-        }
+        radioButton.setChecked(rule != null && rule.getBaseUrl().equals(item.getBaseUrl()));
     }
 }

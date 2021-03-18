@@ -109,9 +109,9 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
         keepScreenRunnable = this::unKeepScreenOn;
         drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
-        menuBottomIn = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_in);
-        menuTopIn = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_in);
-        menuTopOut = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_out);
+        menuBottomIn  = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_in);
+        menuTopIn     = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_in);
+        menuTopOut    = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_out);
         menuBottomOut = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_out);
         menuTopIn.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -280,12 +280,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
                 bottommenu.getReadProgress().setMax(Math.max(0, count - 1));
                 bottommenu.getReadProgress().setProgress(0);
                 // 如果处于错误状态，那么就冻结使用
-                if (mPageLoader.getPageStatus() == TxtChapter.Status.LOADING
-                        || mPageLoader.getPageStatus() == TxtChapter.Status.ERROR) {
-                    bottommenu.getReadProgress().setEnabled(false);
-                } else {
-                    bottommenu.getReadProgress().setEnabled(true);
-                }
+                bottommenu.getReadProgress().setEnabled(mPageLoader.getPageStatus() != TxtChapter.Status.LOADING && mPageLoader.getPageStatus() != TxtChapter.Status.ERROR);
             }
 
             @Override

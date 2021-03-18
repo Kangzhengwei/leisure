@@ -51,12 +51,9 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
         checkSeries = findViewById(R.id.check_series);
         mLockScreen = findViewById(R.id.lock_screen);
         mLockScreen.setVisibility(View.GONE);
-        checkSeries.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mListener != null) {
-                    mListener.onClick();
-                }
+        checkSeries.setOnClickListener(view -> {
+            if (mListener != null) {
+                mListener.onClick();
             }
         });
         backof.setOnClickListener(v -> {

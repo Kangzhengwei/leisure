@@ -546,11 +546,6 @@ public class Constant {
             "        \"siteName\": \"咪咕\"\n" +
             "    },\n" +
             "    {\n" +
-            "        \"url\": \"http://www.kdy666.com\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"看电影网\"\n" +
-            "    },\n" +
-            "    {\n" +
             "        \"url\": \"https://www.y80s.net/ \",\n" +
             "        \"isHasAd\": \"false\",\n" +
             "        \"siteName\": \"80s\"\n" +

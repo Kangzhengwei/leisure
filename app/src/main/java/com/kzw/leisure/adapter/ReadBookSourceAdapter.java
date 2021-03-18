@@ -26,10 +26,6 @@ public class ReadBookSourceAdapter extends BaseQuickAdapter<SourceRuleRealm, Bas
         helper.setText(R.id.site_url, item.getBaseUrl());
         RadioButton radioButton = helper.getView(R.id.tick);
         radioButton.setClickable(false);
-        if (currentRule != null && currentRule.getBaseUrl().equals(item.getBaseUrl())) {
-            radioButton.setChecked(true);
-        } else {
-            radioButton.setChecked(false);
-        }
+        radioButton.setChecked(currentRule != null && currentRule.getBaseUrl().equals(item.getBaseUrl()));
     }
 }
