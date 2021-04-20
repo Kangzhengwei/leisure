@@ -53,7 +53,7 @@
     <string name="custom_font">字体</string>
     <string name="indent">缩进</string>
     <string name="page_mode">翻页模式</string>
-
+    <string name="search_history_title">历史搜索</string>
     <string name="row_0">单倍</string>
     <string name="row_1">双倍</string>
     <string name="row_2">三倍</string>

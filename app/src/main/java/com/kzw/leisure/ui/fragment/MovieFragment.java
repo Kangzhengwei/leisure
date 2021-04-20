@@ -27,6 +27,7 @@ import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.PermessionUtil;
 import com.kzw.leisure.widgets.dialog.AddWebSiteDialog;
 import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;
+import com.shuyu.gsyvideoplayer.GSYVideoManager;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -220,6 +221,7 @@ public class MovieFragment extends BaseWebViewFragment {
                 });
                 break;
             case R.id.action_clear_cache:
+                GSYVideoManager.instance().clearAllDefaultCache(mContext);
                 CacheUtils.clearAllCache(getApplicationContext());
                 try {
                     String dataSize = CacheUtils.getTotalCacheSize(getApplicationContext());

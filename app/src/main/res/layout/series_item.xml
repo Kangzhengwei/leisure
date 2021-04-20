@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content">
 
@@ -9,8 +8,9 @@
         android:id="@+id/series"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:background="@drawable/item_series_shape"
         android:layout_marginStart="12dp"
+        android:layout_marginTop="@dimen/dp_4"
+        android:background="@drawable/item_series_shape"
         android:gravity="center"
         android:padding="8dp"
         android:textColor="@color/blank"
@@ -19,4 +19,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/image_tag"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/dp_10"
+        android:layout_marginTop="2dp"
+        android:visibility="gone"
+        android:src="@mipmap/icon_category_watched" />
 </RelativeLayout>

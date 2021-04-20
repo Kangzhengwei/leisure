@@ -224,8 +224,8 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
         mBook = bookBean;
         catalogintro.setText(bookBean.getBookInfoInit());
         if (StringUtils.isImageUrlPath(bookBean.getCoverUrl())) {
-            GlideUtil.setBookImagesource(mContext, searchBookBean.getSearchRuleList().get(0).getBaseUrl() + bookBean.getCoverUrl(), bookBg);
-            GlideUtil.setBlurSource(mContext, searchBookBean.getSearchRuleList().get(0).getBaseUrl() + bookBean.getCoverUrl(), bgShape);
+            GlideUtil.setBookImagesource(mContext, StringUtils.getAbsoluteURL(searchBookBean.getSearchRuleList().get(0).getBaseUrl(), bookBean.getCoverUrl()), bookBg);
+            GlideUtil.setBlurSource(mContext, StringUtils.getAbsoluteURL(searchBookBean.getSearchRuleList().get(0).getBaseUrl(), bookBean.getCoverUrl()), bgShape);
         } else {
             GlideUtil.setBookImagesource(mContext, bookBean.getCoverUrl(), bookBg);
             GlideUtil.setBlurSource(mContext, bookBean.getCoverUrl(), bgShape);

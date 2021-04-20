@@ -56,7 +56,7 @@ public class StatusBarUtil {
             transparencyBar(activity);
             ViewGroup contentFrameLayout = activity.findViewById(Window.ID_ANDROID_CONTENT);
             View parentView = contentFrameLayout.getChildAt(0);
-            if (parentView != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+            if (parentView != null) {
                 parentView.setFitsSystemWindows(true);
             }
             tintManager = new SystemBarTintManager(activity);
@@ -86,13 +86,9 @@ public class StatusBarUtil {
         } else {
             activity.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);//清除全屏
         }
-        if (parentView != null && Build.VERSION.SDK_INT >= Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
+        if (parentView != null) {
             if (tintManager != null) {
-                if (flag_fullscreen) {
-                    tintManager.setStatusBarTintEnabled(false);
-                } else {
-                    tintManager.setStatusBarTintEnabled(true);
-                }
+                tintManager.setStatusBarTintEnabled(flag_fullscreen);
             }
         }
     }

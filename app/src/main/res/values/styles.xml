@@ -91,11 +91,10 @@
     <!-- Welcome主题 -->
     <style name="LunchTheme" parent="AppTheme">
         <item name="android:windowNoTitle">true</item>
+        <item name="android:windowActionBar">false</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="colorPrimaryDark">@android:color/transparent</item>
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
-        <item name="android:windowBackground">@color/md_grey_100</item>
+        <item name="android:windowBackground">@color/white</item>
     </style>
 
 

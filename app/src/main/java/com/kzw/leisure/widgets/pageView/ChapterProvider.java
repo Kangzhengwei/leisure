@@ -89,7 +89,7 @@ class ChapterProvider {
             paragraph = contentHelper.replaceContent(chapter.getChapterName());
             paragraph = paragraph.trim() + "\n";
         }
-        int i = 1;
+        int i = 0;
         while (showTitle || i < allLine.length) {
             // 重置段落
             if (!showTitle) {

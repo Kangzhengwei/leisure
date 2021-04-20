@@ -224,12 +224,7 @@ public abstract class BaseWebViewFragment extends BaseFragment implements WebCli
         return result == AudioManager.AUDIOFOCUS_REQUEST_GRANTED;
     }
 
-    private AudioManager.OnAudioFocusChangeListener audioFocusChangeListener = new AudioManager.OnAudioFocusChangeListener() {
-        @Override
-        public void onAudioFocusChange(int focusChange) {
-
-        }
-    };
+    private AudioManager.OnAudioFocusChangeListener audioFocusChangeListener = focusChange -> { };
 
     @Override
     public void onResume() {

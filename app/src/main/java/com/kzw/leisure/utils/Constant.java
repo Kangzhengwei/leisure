@@ -56,37 +56,37 @@ public class Constant {
             "\"ruleSearchList\":\"class.result-item result-game-item\"," +
             "\"ruleSearchName\":\"class.result-item-title result-game-item-title.@tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"class.result-item-title result-game-item-title.@tag.a@href\"," +
-            "\"ruleSearchUrl\":\"search.php?keyword=ruleKeyword|UTF-8\"" +
+            "\"ruleSearchUrl\":\"search.php?q=ruleKeyword|UTF-8\"" +
             "}," +
             "{" +
             "\"baseUrl\":\"https://www.xinxs.la/\"," +
             "\"siteName\":\"笔趣阁\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
+            "\"ruleBookAuthor\":\"class.fix@tag.p.0@text\"," +
             "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@text\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
+            "\"ruleBookInfoInit\":\"class.m-desc xs-show@text\"," +
+            "\"ruleBookKind\":\"class.fix@tag.p.1@text\"," +
+            "\"ruleBookLastChapter\":\"class.fix@tag.p.4@text\"," +
+            "\"ruleBookName\":\"class.top@tag.h1@text\"," +
             "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd!0:1:2:3:4:5:6:7:8:9:10:11:12\"," +
+            "\"ruleCoverUrl\":\"class.imgbox@tag.img@src\"," +
+            "\"ruleChapterList\":\"class.section-list fix!0@tag.li\"," +
             "\"ruleChapterName\":\"tag.a@text\"," +
             "\"ruleChapterUrl\":\"tag.a@href\"," +
             "\"ruleChapterUrlType\":\"1\"," +
             "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
+            "\"ruleContentUrlNext\":\"class.section-opt m-bottom-opt@tag.a.2@href\"," +
             "\"ruleSearchAuthor\":\"class.s4@text\"," +
             "\"ruleSearchCoverUrl\":\"\"," +
             "\"ruleSearchIntroduce\":\"\"," +
             "\"ruleSearchKind\":\"class.s1@text\"," +
             "\"ruleSearchLastChapter\":\"class.s3@text\"," +
-            "\"ruleSearchList\":\"class.search-list@tag.li!0\"," +
+            "\"ruleSearchList\":\"class.txt-list txt-list-row5@tag.li!0\"," +
             "\"ruleSearchName\":\"class.s2@text\"," +
             "\"ruleSearchNoteUrl\":\"class.s2@tag.a@href\"," +
-            "\"ruleSearchUrl\":\"https://sou.xanbhx.com/search?siteid=xsla&q=ruleKeyword|UTF-8\"" +
+            "\"ruleSearchUrl\":\"ar.php?keyWord=ruleKeyword|UTF-8\"" +
             "}," +
             "{" +
-            "\"baseUrl\":\"https://www.xbiquge6.com\"," +
+            "\"baseUrl\":\"https://www.xsbiquge.com/\"," +
             "\"siteName\":\"新笔趣阁\"," +
             "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
             "\"ruleBookContent\":\"\"," +
@@ -110,17 +110,17 @@ public class Constant {
             "\"ruleSearchList\":\"class.result-item\"," +
             "\"ruleSearchName\":\"class.result-item-title.0@tag.a.0@text\"," +
             "\"ruleSearchNoteUrl\":\"class.result-item-title.0@tag.a.0@href\"," +
-            "\"ruleSearchUrl\":\"https://www.xbiquge6.com/search.php?keyword=ruleKeyword\"" +
+            "\"ruleSearchUrl\":\"search.php?keyword=ruleKeyword\"" +
             "}," +
             "{" +
-            "\"baseUrl\":\"https://www.dingdiann.com\"," +
-            "\"siteName\":\"顶点小说2\"," +
-            "\"ruleBookAuthor\":\"class.info@tag.p.0@text#作者：\"," +
+            "\"baseUrl\":\"https://www.dingdiann.com/\"," +
+            "\"siteName\":\"顶点小说\"," +
+            "\"ruleBookAuthor\":\"id.info@tag.p.0@text#作者：\"," +
             "\"ruleBookContent\":\"\"," +
             "\"ruleBookInfoInit\":\"id.intro@textNodes\"," +
             "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"\"," +
-            "\"ruleBookName\":\"class.info@tag.h1@text\"," +
+            "\"ruleBookLastChapter\":\"id.info@tag.p.3@tag.a@text\"," +
+            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
             "\"ruleBookUrlPattern\":\"\"," +
             "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
             "\"ruleChapterList\":\"id.list@tag.dd!0:1:2:3:4:5:6:7:8:9:10:11\"," +
@@ -137,17 +137,17 @@ public class Constant {
             "\"ruleSearchList\":\"class.novelslist2@tag.li!0\"," +
             "\"ruleSearchName\":\"class.s2.0@tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"class.s2.0@tag.a@href\"," +
-            "\"ruleSearchUrl\":\"https://www.dingdiann.com/searchbook.php?keyword=ruleKeyword\"" +
+            "\"ruleSearchUrl\":\"searchbook.php?keyword=ruleKeyword\"" +
             "}," +
             "{" +
             "\"baseUrl\":\"https://www.mht.tw\"," +
             "\"siteName\":\"棉花糖\"," +
-            "\"ruleBookAuthor\":\"\"," +
+            "\"ruleBookAuthor\":\"id.info@tag.p.0@text#作者：\"," +
             "\"ruleBookContent\":\"\"," +
             "\"ruleBookInfoInit\":\"id.intro@text\"," +
             "\"ruleBookKind\":\"\"," +
             "\"ruleBookLastChapter\":\"\"," +
-            "\"ruleBookName\":\"\"," +
+            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
             "\"ruleBookUrlPattern\":\"\"," +
             "\"ruleCoverUrl\":\"id.fmimg@tag.img.0@src\"," +
             "\"ruleChapterList\":\"id.list@tag.dd!0:1:2:3:4:5:6:7:8\"," +
@@ -155,7 +155,7 @@ public class Constant {
             "\"ruleChapterUrl\":\"tag.a@href\"," +
             "\"ruleChapterUrlType\":\"1\"," +
             "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
+            "\"ruleContentUrlNext\":\"class.bottem2@tag.a.3@href\"," +
             "\"ruleSearchAuthor\":\"tag.span.3@text\"," +
             "\"ruleSearchCoverUrl\":\"\"," +
             "\"ruleSearchIntroduce\":\"\"," +
@@ -544,11 +544,6 @@ public class Constant {
             "        \"url\": \"http://www.migudm.cn\",\n" +
             "        \"isHasAd\": \"false\",\n" +
             "        \"siteName\": \"咪咕\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.kdy666.com\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"看电影网\"\n" +
             "    },\n" +
             "    {\n" +
             "        \"url\": \"https://www.y80s.net/ \",\n" +

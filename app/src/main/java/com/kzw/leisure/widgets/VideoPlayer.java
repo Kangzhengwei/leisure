@@ -3,23 +3,13 @@ package com.kzw.leisure.widgets;
 import android.content.Context;
 import android.media.AudioManager;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.kzw.leisure.R;
-import com.kzw.leisure.bean.VideoBean;
-import com.kzw.leisure.utils.AppUtils;
-import com.kzw.leisure.utils.LogUtils;
-import com.kzw.leisure.widgets.popwindow.CheckSeriesPopWindow;
 import com.shuyu.gsyvideoplayer.video.StandardGSYVideoPlayer;
-import com.shuyu.gsyvideoplayer.video.base.GSYBaseVideoPlayer;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Created by Android on 2018/8/6.
@@ -31,11 +21,11 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
     protected VideoPlayerRateWindow popwin;
     protected ImageView backof;
     protected ImageView forword;
-    protected Button checkSeries;
+    protected TextView checkSeries;
     protected long exitTime = 0;
     protected int times = 0;
-    protected CheckSeriesPopWindow seriesPopWindow;
-    protected List<VideoBean.Series.Url> list = new ArrayList<>();
+
+    protected checkSeriesClickListener mListener;
 
     public VideoPlayer(Context context) {
         super(context);
@@ -53,7 +43,6 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
     @Override
     protected void init(final Context context) {
         super.init(context);
-        seriesPopWindow = new CheckSeriesPopWindow(context);
         tvAlert = findViewById(R.id.video_alert);
         mBackButton = findViewById(R.id.back);
         tvRate = findViewById(R.id.play_rate);
@@ -62,12 +51,11 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
         checkSeries = findViewById(R.id.check_series);
         mLockScreen = findViewById(R.id.lock_screen);
         mLockScreen.setVisibility(View.GONE);
-        /*checkSeries.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                seriesPopWindow.showAsDropDown(checkSeries, 0, 50);
+        checkSeries.setOnClickListener(view -> {
+            if (mListener != null) {
+                mListener.onClick();
             }
-        });*/
+        });
         backof.setOnClickListener(v -> {
             if ((System.currentTimeMillis() - exitTime) > 600) {
                 exitTime = System.currentTimeMillis();
@@ -174,8 +162,8 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
     }
 
     @Override
-    public GSYBaseVideoPlayer startWindowFullscreen(Context context, boolean actionBar, boolean statusBar) {
-        StandardGSYVideoPlayer videoPlayer = (StandardGSYVideoPlayer) super.startWindowFullscreen(context, actionBar, statusBar);
+    public StandardGSYVideoPlayer startWindowFullscreen(Context context, boolean actionBar, boolean statusBar) {
+        StandardGSYVideoPlayer standardGSYVideoPlayer = (StandardGSYVideoPlayer) super.startWindowFullscreen(context, actionBar, statusBar);
         if (!isIfCurrentIsFullscreen()) {
             AudioManager audioManager = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
             int currentVolume = audioManager.getStreamVolume(AudioManager.STREAM_MUSIC);
@@ -183,7 +171,17 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
                 Toast.makeText(context, "调大音量才能听到声音哦", Toast.LENGTH_SHORT).show();
             }
         }
-        return videoPlayer;
+        if (standardGSYVideoPlayer != null) {
+            VideoPlayer videoPlayer = (VideoPlayer) standardGSYVideoPlayer;
+            initUI(videoPlayer);
+        }
+        return standardGSYVideoPlayer;
+    }
+
+    private void initUI(VideoPlayer videoPlayer) {
+        if (mListener != null) {
+            videoPlayer.setCheckSeriesClickListener(mListener);
+        }
     }
 
 
@@ -191,10 +189,9 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
         return mBackButton;
     }
 
-    public TextView getCheckBtn() {
+    public TextView getCheckSeries() {
         return checkSeries;
     }
-
 
     @Override
     protected void changeUiToPlayingShow() {
@@ -241,5 +238,14 @@ public class VideoPlayer extends StandardGSYVideoPlayer {
         mProgressBar.setProgress(seekTimePosition * 100 / totalTimeDuration);
         mBottomProgressBar.setProgress(seekTimePosition * 100 / totalTimeDuration);
     }
+
+    public interface checkSeriesClickListener {
+        void onClick();
+    }
+
+    public void setCheckSeriesClickListener(checkSeriesClickListener listener) {
+        mListener = listener;
+    }
+
 
 }

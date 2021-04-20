@@ -405,4 +405,19 @@ public class StringUtils {
         }
         return relativePath;
     }
+
+    public static boolean isTheSameChapter(String base, String nextContentUrl) {
+        if (!TextUtils.isEmpty(base) && !TextUtils.isEmpty(nextContentUrl)) {
+            int a = nextContentUrl.lastIndexOf("_");
+            int b = nextContentUrl.lastIndexOf("/");
+            int d = base.indexOf(".");
+            if (b > 0 && d > 0 && b < a && b < d) {
+                String subNext = nextContentUrl.substring(b, a);
+                String subBase = base.substring(b, d);
+                return !TextUtils.isEmpty(subBase) && !TextUtils.isEmpty(subNext) && subBase.equals(subBase);
+            }
+
+        }
+        return false;
+    }
 }

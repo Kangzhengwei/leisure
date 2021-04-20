@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import com.kzw.leisure.R;
 import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.StatusBarUtil;
 
 import butterknife.BindView;
 
@@ -24,6 +25,7 @@ public class LunchActivity extends BaseActivity {
 
     @Override
     public void initView(Bundle savedInstanceState) {
+        StatusBarUtil.fullScreen(this);
         ValueAnimator welAnimator = ValueAnimator.ofFloat(1f, 0f).setDuration(500);
         welAnimator.setStartDelay(100);
         welAnimator.addListener(new Animator.AnimatorListener() {

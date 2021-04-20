@@ -124,7 +124,7 @@
     <LinearLayout
         android:id="@+id/layout_top"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="80dp"
         android:background="@drawable/video_title_bg"
         android:gravity="center_vertical">
 

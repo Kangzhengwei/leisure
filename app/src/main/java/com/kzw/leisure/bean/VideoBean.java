@@ -40,7 +40,16 @@ public class VideoBean implements Serializable {
 
     public static class Series {
         private String urlType;
+        private int position;
         private List<Url> list;
+
+        public int getPosition() {
+            return position;
+        }
+
+        public void setPostion(int postion) {
+            this.position = postion;
+        }
 
         public String getUrlType() {
             return urlType;
@@ -61,6 +70,7 @@ public class VideoBean implements Serializable {
         public static class Url {
             private String videoSeries;
             private String videoUrl;
+            private boolean isWatched;
 
             public String getVideoSeries() {
                 return videoSeries;
@@ -76,6 +86,14 @@ public class VideoBean implements Serializable {
 
             public void setVideoUrl(String videoUrl) {
                 this.videoUrl = videoUrl;
+            }
+
+            public boolean isWatched() {
+                return isWatched;
+            }
+
+            public void setWatched(boolean watched) {
+                isWatched = watched;
             }
         }
     }

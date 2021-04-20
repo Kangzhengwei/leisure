@@ -12,7 +12,7 @@
     <com.kzw.leisure.widgets.VideoPlayer
         android:id="@+id/video_player"
         android:layout_width="match_parent"
-        android:layout_height="200dp" />
+        android:layout_height="230dp" />
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"

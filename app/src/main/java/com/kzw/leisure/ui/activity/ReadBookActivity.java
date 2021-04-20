@@ -25,6 +25,7 @@ import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.realm.ChapterList;
 import com.kzw.leisure.realm.SourceRuleRealm;
 import com.kzw.leisure.utils.AppUtils;
+import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.StatusBarUtil;
 import com.kzw.leisure.utils.SystemUtil;
@@ -108,9 +109,9 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
         keepScreenRunnable = this::unKeepScreenOn;
         drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
-        menuBottomIn = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_in);
-        menuTopIn = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_in);
-        menuTopOut = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_out);
+        menuBottomIn  = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_in);
+        menuTopIn     = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_in);
+        menuTopOut    = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_out);
         menuBottomOut = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_out);
         menuTopIn.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -279,12 +280,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
                 bottommenu.getReadProgress().setMax(Math.max(0, count - 1));
                 bottommenu.getReadProgress().setProgress(0);
                 // 如果处于错误状态，那么就冻结使用
-                if (mPageLoader.getPageStatus() == TxtChapter.Status.LOADING
-                        || mPageLoader.getPageStatus() == TxtChapter.Status.ERROR) {
-                    bottommenu.getReadProgress().setEnabled(false);
-                } else {
-                    bottommenu.getReadProgress().setEnabled(true);
-                }
+                bottommenu.getReadProgress().setEnabled(mPageLoader.getPageStatus() != TxtChapter.Status.LOADING && mPageLoader.getPageStatus() != TxtChapter.Status.ERROR);
             }
 
             @Override
@@ -479,6 +475,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     private void getChapterList(boolean isFromNet) {
         try {
             chapterRule = new ChapterRule(currentRule);//realm不能在子线程调用get或set方法，这里转换成其他对象
+            LogUtils.d(chapterRule.toString());
             Query query = new Query(currentChapterListUrl.getChapterListUrlRule(), null, chapterRule.getBaseUrl());
             mPresenter.getChapterList(query, chapterRule, currentChapterListUrl, isFromNet);
         } catch (Exception e) {

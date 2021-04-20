@@ -5,6 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context=".ui.activity.SearchBookActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -12,8 +13,8 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:background="@color/colorPrimary"
-        android:theme="@style/ToolBar.Theme"
         android:elevation="4dp"
+        android:theme="@style/ToolBar.Theme"
         app:contentInsetStart="0dp">
 
         <RelativeLayout
@@ -31,11 +32,11 @@
                 android:ems="10"
                 android:gravity="center_vertical"
                 android:hint="万卷好书等你搜"
-                android:textColorHint="@color/gray"
                 android:imeOptions="actionSearch"
                 android:inputType="textPersonName"
                 android:paddingStart="4dp"
                 android:textColor="@color/blank"
+                android:textColorHint="@color/gray"
                 android:textSize="14sp" />
 
         </RelativeLayout>
@@ -44,5 +45,61 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/searchRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/historyWrapperLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="16dp"
+                android:text="@string/search_history_title"
+                android:textColor="#888"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/iamge_clear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:background="@mipmap/icon_clean"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <LinearLayout
+            android:id="@+id/historyLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dip"
+            android:orientation="vertical">
+
+            <com.kzw.leisure.widgets.WordWrapView
+                android:id="@+id/historyWordWrapView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dip"
+                android:layout_marginEnd="12dp" />
+        </LinearLayout>
+
+    </LinearLayout>
 </LinearLayout>

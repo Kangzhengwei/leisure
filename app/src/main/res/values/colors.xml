@@ -7,6 +7,7 @@
     <color name="white">#FFFFFF</color>
     <color name="bg_divider_line">#FFD4D4D4</color>
     <color name="blank">#000000</color>
+    <color name="half_blank">#80000000</color>
     <color name="transparent">#00000000</color>
     <color name="background_menu">#fcfcfc</color>
     <color name="tv_text_default">#de000000</color>
@@ -16,6 +17,7 @@
     <color name="menu_color_default">#383838</color>
     <color name="md_grey_500">#9E9E9E</color>
     <color name="md_grey_100">#F5F5F5</color>
+    <color name="light_gray">#f8f9fb</color>
     <!--LIGHT-->
     <!--12%-->
     <color name="ate_switch_track_disabled_light">#1F000000</color>
