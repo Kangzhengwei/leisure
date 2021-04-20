@@ -47,7 +47,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     private boolean isSubsrribe = false;
     private VideoBean videoBean;
     private OrientationUtils orientationUtils;
-    private CheckSeriesPopWindow seriesPopWindow;
+
 
     @Override
     protected int getContentView() {
@@ -64,7 +64,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         GSYVideoType.enableMediaCodec();
         GSYVideoType.enableMediaCodecTexture();
         //是否可以滑动调整
-        seriesPopWindow = new CheckSeriesPopWindow(this);
+
         orientationUtils = new OrientationUtils(VideoPlayActivity.this, videoPlayer);
         orientationUtils.setEnable(false);
         orientationUtils.setIsLand((videoPlayer.getCurrentPlayer().isIfCurrentIsFullscreen()) ? 1 : 0);
@@ -72,7 +72,6 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         videoPlayer.getFullscreenButton().setOnClickListener(v -> videoPlayer.startWindowFullscreen(mContext, false, true));
         GSYVideoOptionBuilder gsyVideoOption = new GSYVideoOptionBuilder();
         gsyVideoOption.setVideoAllCallBack(new VideoAllCallBack() {
-
 
             @Override
             public void onStartPrepared(String url, Object... objects) {
@@ -136,13 +135,13 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
 
             @Override
             public void onEnterFullscreen(String url, Object... objects) {
-                videoPlayer.checkSeries.setVisibility(View.VISIBLE);
+                videoPlayer.getCheckBtn().setVisibility(View.VISIBLE);
                 orientationUtils.resolveByClick();
             }
 
             @Override
             public void onQuitFullscreen(String url, Object... objects) {
-                videoPlayer.checkSeries.setVisibility(View.GONE);
+                videoPlayer.getCheckBtn().setVisibility(View.GONE);
                 orientationUtils.resolveByClick();
             }
 
@@ -190,8 +189,6 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
             public void onClickBlankFullscreen(String url, Object... objects) {
 
             }
-
-
         }).build(videoPlayer);
 
         videoPlayer.setKeepScreenOn(true);
@@ -204,13 +201,13 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         videoPlayer.setEnlargeImageRes(R.mipmap.icon_fullscreen);
         videoPlayer.setShrinkImageRes(R.mipmap.icon_fullscreen);
         videoPlayer.setSeekRatio(2f);
-        videoPlayer.checkSeries.setVisibility(View.GONE);
+        videoPlayer.getCheckBtn().setVisibility(View.GONE);
         //全屏动画
         videoPlayer.setShowFullAnimation(false);
-        videoPlayer.setCheckSeriesClickListener(new VideoPlayer.checkSeriesClickListener() {
+        videoPlayer.getCheckBtn().setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick() {
-                seriesPopWindow.showAsDropDown(videoPlayer.checkSeries, 0, 50);
+            public void onClick(View v) {
+                showToast("lllllllllll");
             }
         });
         ////////////////////////////////////
@@ -220,7 +217,6 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         adapter.setOnClickListener((item, list) -> {
             videoPlayer.setUp(item.getVideoUrl(), true, item.getVideoSeries());
             videoPlayer.startPlayLogic();
-            seriesPopWindow.setData(list);
         });
     }
 
@@ -270,6 +266,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
 
     @Override
     public void onBackPressed() {
+        showToast("ddddddddddddd");
         //释放所有
         if (videoPlayer.isIfCurrentIsFullscreen()) {
             orientationUtils.backToProtVideo();
