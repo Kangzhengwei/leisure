@@ -119,7 +119,7 @@ public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel>
     /**
      * 初始化Presenter
      */
-    private void initPresenter() {
+    public void initPresenter() {
 
     }
 

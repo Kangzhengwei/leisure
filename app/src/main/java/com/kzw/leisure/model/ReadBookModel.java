@@ -49,9 +49,7 @@ public class ReadBookModel implements ReadBookContract.Model {
                     .getResponse(query)
                     .compose(RxSchedulers.io_main())
                     .flatMap((Function<String, Publisher<String>>) s -> {
-                        RealmHelper.getInstance().getRealm().executeTransaction(realm -> {
-                            chapterList.setChapterListCache(s);
-                        });
+                        RealmHelper.getInstance().getRealm().executeTransaction(realm -> chapterList.setChapterListCache(s));
                         return Flowable.just(s);
                     })
                     .observeOn(Schedulers.io())
