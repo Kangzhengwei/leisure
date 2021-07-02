@@ -21,8 +21,8 @@
                 android:id="@+id/video_pic"
                 android:layout_width="100dp"
                 android:layout_height="125dp"
-                android:layout_marginBottom="@dimen/dp_4"
                 android:layout_alignParentStart="true"
+                android:layout_marginBottom="@dimen/dp_4"
                 android:scaleType="centerCrop"
                 android:src="@mipmap/icon_default" />
 
@@ -30,17 +30,27 @@
                 android:id="@+id/video_name"
                 android:layout_width="100dp"
                 android:layout_height="wrap_content"
-                android:background="@color/white"
-                android:layout_centerHorizontal="true"
                 android:layout_alignBottom="@+id/video_pic"
+                android:layout_centerHorizontal="true"
                 android:layout_marginTop="4dp"
+                android:background="@color/white"
                 android:ellipsize="end"
                 android:gravity="center"
                 android:maxWidth="80dp"
                 android:singleLine="true"
-                android:text="逆天邪神"
+                android:text=""
                 android:textColor="@color/blank"
                 android:textSize="14sp" />
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:padding="5dp"
+                android:visibility="gone"
+                android:background="@color/white"
+                android:layout_centerInParent="true" />
 
         </RelativeLayout>
     </androidx.cardview.widget.CardView>

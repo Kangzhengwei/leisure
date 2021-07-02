@@ -91,7 +91,7 @@ public class BookFragment extends BaseFragment<ReadBookPresenter, ReadBookModel>
 
     @Override
     protected void initData() {
-        realm = Realm.getDefaultInstance();
+        realm = RealmHelper.getInstance().getRealm();
         list = realm.where(BookRealm.class).findAll();
         adapter.setNewData(list);
         RxBus.getInstance().toObservable(this, AddBookEvent.class).subscribe(new Observer<AddBookEvent>() {
@@ -137,7 +137,10 @@ public class BookFragment extends BaseFragment<ReadBookPresenter, ReadBookModel>
     }
 
     private void referData() {
-        swipeRefresh.setRefreshing(true);
+        if (list.size() > 0) {
+            swipeRefresh.setRefreshing(true);
+        }
+        int position = 0;
         for (BookRealm bookRealm : list) {
             SourceRuleRealm currentRule = bookRealm.getCurrentRule();
             ChapterList currentChapterListUrl = bookRealm.getCurrentChapterListRule();
@@ -147,7 +150,38 @@ public class BookFragment extends BaseFragment<ReadBookPresenter, ReadBookModel>
             if (currentChapterListUrl == null) {
                 currentChapterListUrl = bookRealm.getSearchNoteUrlList().get(0);
             }
-            getChapterList(true, currentRule, currentChapterListUrl);
+            realm.executeTransaction(realm -> bookRealm.setRefresh(true));
+            getChapterList(true, currentRule, currentChapterListUrl, position);
+            position++;
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+
+    private void getChapterList(boolean isFromNet, SourceRuleRealm currentRule, ChapterList currentChapterListUrl, int position) {
+        try {
+            ChapterRule chapterRule = new ChapterRule(currentRule);//realm不能在子线程调用get或set方法，这里转换成其他对象
+            Query query = new Query(currentChapterListUrl.getChapterListUrlRule(), null, chapterRule.getBaseUrl());
+            mPresenter.getChapterList(query, chapterRule, currentChapterListUrl, isFromNet, position);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void returnResult(List<Chapter> list, int position) {
+        if (swipeRefresh.isRefreshing()) {
+            swipeRefresh.setRefreshing(false);
+        }
+        BookRealm bookRealm = this.list.get(position);
+        realm.executeTransaction(realm -> bookRealm.setRefresh(false));
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void returnFail(String message) {
+        if (swipeRefresh.isRefreshing()) {
+            swipeRefresh.setRefreshing(false);
         }
     }
 
@@ -173,26 +207,4 @@ public class BookFragment extends BaseFragment<ReadBookPresenter, ReadBookModel>
         builder.create().show();
     }
 
-    private void getChapterList(boolean isFromNet, SourceRuleRealm currentRule, ChapterList currentChapterListUrl) {
-        try {
-            ChapterRule chapterRule = new ChapterRule(currentRule);//realm不能在子线程调用get或set方法，这里转换成其他对象
-            Query query = new Query(currentChapterListUrl.getChapterListUrlRule(), null, chapterRule.getBaseUrl());
-            mPresenter.getChapterList(query, chapterRule, currentChapterListUrl, isFromNet);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Override
-    public void returnResult(List<Chapter> list) {
-        if (swipeRefresh.isRefreshing()) {
-            swipeRefresh.setRefreshing(false);
-        }
-
-    }
-
-    @Override
-    public void returnFail(String message) {
-
-    }
 }

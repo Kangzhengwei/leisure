@@ -6,6 +6,7 @@ import com.kzw.leisure.base.BaseView;
 import com.kzw.leisure.bean.Chapter;
 import com.kzw.leisure.bean.ChapterRule;
 import com.kzw.leisure.bean.Query;
+import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.realm.ChapterList;
 
 import java.util.List;
@@ -19,17 +20,17 @@ import io.reactivex.Flowable;
  */
 public interface ReadBookContract {
     interface Model extends BaseModel {
-        Flowable<List<Chapter>> getChapterList(Query query, ChapterRule rule, ChapterList chapterList,boolean isFromNet);
+        Flowable<List<Chapter>> getChapterList(Query query, ChapterRule rule, ChapterList chapterList,boolean isFromNet );
 
     }
 
     interface View extends BaseView {
-        void returnResult(List<Chapter> list);
+        void returnResult(List<Chapter> list, int position);
 
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
-        public abstract void getChapterList(Query query, ChapterRule rule,ChapterList chapterList,boolean isFromNet);
+        public abstract void getChapterList(Query query, ChapterRule rule,ChapterList chapterList,boolean isFromNet,int position);
 
     }
 }

@@ -453,7 +453,6 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     @Override
     protected void initPresenter() {
         mPresenter.setVM(this, mModel);
-        RealmHelper.getInstance().init();
         bookRealm = RealmHelper.getInstance().getBook();
         currentRule = bookRealm.getCurrentRule();
         currentChapterListUrl = bookRealm.getCurrentChapterListRule();
@@ -477,14 +476,14 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
             chapterRule = new ChapterRule(currentRule);//realm不能在子线程调用get或set方法，这里转换成其他对象
             LogUtils.d(chapterRule.toString());
             Query query = new Query(currentChapterListUrl.getChapterListUrlRule(), null, chapterRule.getBaseUrl());
-            mPresenter.getChapterList(query, chapterRule, currentChapterListUrl, isFromNet);
+            mPresenter.getChapterList(query, chapterRule, currentChapterListUrl, isFromNet,0);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void returnResult(List<Chapter> list) {
+    public void returnResult(List<Chapter> list,int position) {
         chapterList = list;
         adapter.setNewData(chapterList);
         mPageLoader.refreshChapterList();

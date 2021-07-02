@@ -42,7 +42,7 @@ public class ReadBookModel implements ReadBookContract.Model {
      * @return
      */
     @Override
-    public Flowable<List<Chapter>> getChapterList(Query query, ChapterRule rule, ChapterList chapterList, boolean isFromNet) {
+    public Flowable<List<Chapter>> getChapterList(Query query, ChapterRule rule, ChapterList chapterList, boolean isFromNet ) {
         if (TextUtils.isEmpty(chapterList.getChapterListCache()) || isFromNet) {
             return RetrofitHelper
                     .getInstance()

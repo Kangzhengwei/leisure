@@ -42,6 +42,15 @@ public class BookRealm extends RealmObject implements Serializable {
     private RealmList<SourceRuleRealm> sourceRuleRealmList = new RealmList<>();
     private SourceRuleRealm currentRule;
     private ChapterList currentChapterListRule;
+    private Boolean isRefresh = false;
+
+    public Boolean getRefresh() {
+        return isRefresh;
+    }
+
+    public void setRefresh(Boolean refresh) {
+        isRefresh = refresh;
+    }
 
     public ChapterList getCurrentChapterListRule() {
         return currentChapterListRule;
@@ -276,8 +285,6 @@ public class BookRealm extends RealmObject implements Serializable {
     public int getDurChapterPage() {
         return durChapterPage;
     }
-
-
 
 
 }

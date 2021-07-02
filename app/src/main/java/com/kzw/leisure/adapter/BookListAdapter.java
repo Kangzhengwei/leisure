@@ -20,5 +20,6 @@ public class BookListAdapter extends BaseQuickAdapter<BookRealm, BaseViewHolder>
     protected void convert(BaseViewHolder helper, BookRealm item) {
         helper.setText(R.id.video_name, item.getBookName());
         GlideUtil.setBookImagesource(mContext, item.getCoverUrl(), helper.getView(R.id.video_pic));
+        helper.setVisible(R.id.progressBar, item.getRefresh());
     }
 }
