@@ -14,16 +14,23 @@ import io.reactivex.Flowable;
  * Description:
  */
 public interface VideoSeriesContract {
+
     interface Model extends BaseModel {
         Flowable<VideoBean> getHtml(SearchItem item);
+
+        Flowable<VideoBean> getVideo(String url);
     }
 
     interface View extends BaseView {
         void returnResult(VideoBean bean );
+
+        void returnVideo(VideoBean bean);
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {
         public abstract void getHtml(SearchItem item);
+
+        public abstract void getVideo(String url);
     }
 
 }

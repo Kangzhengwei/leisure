@@ -20,6 +20,8 @@ import com.kzw.leisure.realm.VideoWatchRealm;
 import com.kzw.leisure.realm.VideoWatchTypeRealm;
 import com.kzw.leisure.realm.VideoWatchTypeSeriesRealm;
 import com.kzw.leisure.rxJava.RxBus;
+import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.utils.StatusBarUtil;
 import com.kzw.leisure.widgets.ToastUtil;
 import com.kzw.leisure.widgets.VideoPlayer;
@@ -248,7 +250,8 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     @Override
     public void initData() {
         if (item != null) {
-            mPresenter.getHtml(item);
+          //  mPresenter.getHtml(item);
+            mPresenter.getVideo(Constant.QUERY_VIDEO.replace("KEYWORD",item.getName()).replace("TOKEN", SPUtils.getInstance().getString("token")));
         }
         videoWatchRealm = new VideoWatchRealm();//用于记录观看记录
         RealmResults<VideoRealm> list = realm.where(VideoRealm.class).findAll();
@@ -355,6 +358,14 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         adapter.setNewData(bean.getList());
         videoWatchRealm.setVideoName(bean.getVideoName());
         ToastUtil.showCenterLongToast("只能播放m3u8和MP4格式（迅雷下载）");
+    }
+
+    @Override
+    public void returnVideo(VideoBean bean) {
+        videoBean = bean;
+        updateBean(bean);
+        adapter.setNewData(bean.getList());
+        videoWatchRealm.setVideoName(bean.getVideoName());
     }
 
     @Override

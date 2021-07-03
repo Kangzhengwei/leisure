@@ -8,7 +8,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-
 import com.google.gson.reflect.TypeToken;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.WebSiteAdapter;
@@ -24,6 +23,7 @@ import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.DimenUtil;
 import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.PermessionUtil;
 import com.kzw.leisure.widgets.dialog.AddWebSiteDialog;
 import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;
@@ -69,7 +69,7 @@ public class MovieFragment extends BaseWebViewFragment {
         mDrawerToggle = new ActionBarDrawerToggle(mActivity, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerToggle.syncState();
         drawer.addDrawerListener(mDrawerToggle);
-        loadUrl(Constant.DEFAULT_URL);
+        loadUrl(Constant.URL);
     }
 
     @Override
@@ -263,4 +263,6 @@ public class MovieFragment extends BaseWebViewFragment {
             adapter.setNewData(list);
         }
     }
+
+
 }

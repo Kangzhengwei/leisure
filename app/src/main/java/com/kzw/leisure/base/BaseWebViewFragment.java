@@ -73,6 +73,7 @@ public abstract class BaseWebViewFragment extends BaseFragment implements WebCli
         webview.setHorizontalScrollBarEnabled(false);
         webview.setVerticalScrollBarEnabled(false);
         webview.setWebChromeClient(new WebChromeClient() {
+
             @Override
             public boolean onJsConfirm(WebView arg0, String arg1, String arg2, JsResult arg3) {
                 return super.onJsConfirm(arg0, arg1, arg2, arg3);

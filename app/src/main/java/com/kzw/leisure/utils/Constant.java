@@ -16,6 +16,8 @@ import javax.script.ScriptEngineManager;
 public class Constant {
 
     public static final String DEFAULT_URL = "https://www.baidu.com/";
+    public static final String URL = "https://z1.m1907.cn/?jx=%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9%E7%AC%AC%E5%9B%9B%E5%AD%A3";
+    public static final String KWYURL = "https://z1.m1907.cn/api/v/";
     public static final String FRONT_DOWNLOAD_URL = "https://www.jianguoyun.com/p/DXyqo6IQ0Zb6Bxj2ibEC";
     public static final Pattern putPattern = Pattern.compile("@put:(\\{[^}]+?\\})", Pattern.CASE_INSENSITIVE);
     public static final Pattern getPattern = Pattern.compile("@get:\\{([^}]+?)\\}", Pattern.CASE_INSENSITIVE);
@@ -28,6 +30,10 @@ public class Constant {
     public static final ScriptEngine SCRIPT_ENGINE = new ScriptEngineManager().getEngineByName("rhino");
 
     public static final Pattern pagePattern = Pattern.compile("\\{(.*?)\\}");
+
+    public static String QUERY_SEARCH = "search_prompt?k=KEYWORD";
+    public static String QUERY_VIDEO = "v/?z=TOKEN&jx=KEYWORD";
+    public static String QUERY_BASE = "https://z1.m1907.cn/api/";
 
 
     public static final String bookRuleSource = "[" +
@@ -168,25 +174,6 @@ public class Constant {
             "}" +
             "]\n";
 
-   /* public static final String ruleSource = "[" +
-            "{" +
-            "\"sourceType\":\"1\"," +
-            "\"ruleSearchList\":\"class.row\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"search.asp@searchword=ruleKeyword|char=gbk\"," +
-            "\"ruleSeriesList\":\"tag.table.1@tag.a!0:1\"," +
-            "\"ruleItem\":\"tag.a\"," +
-            "\"ruleSeriesName\":\"tag.a@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h1@text\"," +
-            "\"ruleTypeList\":\"h1\"," +
-            "\"ruleVideoName\":\"tag.table.2@td.0@text\"," +
-            "\"ruleVideoImage\":\"class.img@tag.img@src\"," +
-            "\"siteName\":\"酷云资源网\"," +
-            "\"videoSourceUrl\":\"http://www.kuyunzy1.com/\"" +
-            "}" +
-            "]\n";*/
 
     public static final String ruleSource = "[" +
             "{" +
@@ -258,117 +245,12 @@ public class Constant {
             "\"videoSourceUrl\":\"http://www.zuidazy3.com/\"" +
             "}" +
             "]\n";
-    //永久资源网备用地址http://www.yongjiuzy.cc//http://www.398.net/
 
-    /*
-    public static final String webSite = "[\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.81ju.cn/ \",\n" +
-            "        \"siteName\": \"扒一扒\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.2w2w.tv/ \",\n" +
-            "        \"siteName\": \"2w\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.baidu.com/ \",\n" +
-            "        \"siteName\": \"百度\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.dyrizhi.com\",\n" +
-            "        \"siteName\": \"电影日志\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.xn--6o0a480a.cn \",\n" +
-            "        \"siteName\": \"维赞影院\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.pilipali.cc \",\n" +
-            "        \"siteName\": \"噼里啪啦\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.28dm.com \",\n" +
-            "        \"siteName\": \"新世界动漫\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.yxdm.tv\",\n" +
-            "        \"siteName\": \"逸轩动漫\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.qiqidongman.com\",\n" +
-            "        \"siteName\": \"奇奇动漫\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.ikanfan.com\",\n" +
-            "        \"siteName\": \"爱看藩\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.vodxc.com\",\n" +
-            "        \"siteName\": \"星辰影院\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.yeziyy.com\",\n" +
-            "        \"siteName\": \"椰子影院\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.bimibimi.cc\",\n" +
-            "        \"siteName\": \"笔迷笔迷\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.fengchedm.com\",\n" +
-            "        \"siteName\": \"风车动漫\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.migudm.cn\",\n" +
-            "        \"siteName\": \"咪咕\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.kdy666.com\",\n" +
-            "        \"siteName\": \"看电影网\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.jiadiandm.com\",\n" +
-            "        \"siteName\": \"好看影视\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://dz.zhaifulifabu.com:9527/ \",\n" +
-            "        \"siteName\": \"备用地址\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.66s.cc/ \",\n" +
-            "        \"siteName\": \"6v电影\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.4kdy.net/ \",\n" +
-            "        \"siteName\": \"4k电影\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.y80s.net/ \",\n" +
-            "        \"siteName\": \"80s\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://1.61ww16.com \",\n" +
-            "        \"siteName\": \"趣淘视频\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.kkkkmao.com \",\n" +
-            "        \"siteName\": \"4k屋\"\n" +
-            "    }\n" +
-            "]";
-*/
-
-
-    /*
     public static final String webSite = "[\n" +
             "    {\n" +
             "        \"url\": \"https://www.baidu.com/ \",\n" +
             "        \"isHasAd\": \"false\",\n" +
             "        \"siteName\": \"百度\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.2w2w.tv/ \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"ok资源网\"\n" +
             "    },\n" +
             "    {\n" +
             "        \"url\": \"http://www.uziqaq.com/ \",\n" +
@@ -379,176 +261,6 @@ public class Constant {
             "        \"url\": \"http://www.xsldh.vip/ \",\n" +
             "        \"isHasAd\": \"true\",\n" +
             "        \"siteName\": \"小森林导航2\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.cuteforest.com/nav.html\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"小森林导航3\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.dyrizhi.com\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"电影日志\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.xn--6o0a480a.cn \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"维赞影院\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.4kdy.net/ \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"4k电影\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.pilipali.cc \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"噼里啪啦\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.28dm.com \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"新世界动漫\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.yxdm.tv\",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"逸轩动漫\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.qiqidongman.com\",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"奇奇动漫\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.ikanfan.com\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"爱看藩\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.vodxc.com\",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"星辰影院\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.yeziyy.com\",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"椰子影院\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.bimibimi.cc\",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"笔迷笔迷\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.fengchedm.com\",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"风车动漫\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.migudm.cn\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"咪咕\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.kdy666.com\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"看电影网\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.jiadiandm.com\",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"好看影视\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.66s.cc/ \",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"6v电影\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.y80s.net/ \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"80s\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://1.61ww16.com \",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"趣淘视频\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.kkkkmao.com \",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"4k屋\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.xyavi.com/\",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"百灵鸟影视\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.hao5.net/\",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"电视直播\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.81ju.cn/ \",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"扒一扒\"\n" +
-            "    }\n" +
-            "]";
-
-*/
-//http://www.goudaitv.com/
-    public static final String webSite = "[\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.baidu.com/ \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"百度\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.kk2w2.com/\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"ok资源网\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://zy.ataoju.com/ \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"6U资源网\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.uziqaq.com/ \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"小森林导航\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.xsldh.vip/ \",\n" +
-            "        \"isHasAd\": \"true\",\n" +
-            "        \"siteName\": \"小森林导航2\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.4kdy.net/ \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"4k电影\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.pilipali.cc \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"噼里啪啦\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.ikanfan.com\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"爱看藩\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"http://www.migudm.cn\",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"咪咕\"\n" +
-            "    },\n" +
-            "    {\n" +
-            "        \"url\": \"https://www.y80s.net/ \",\n" +
-            "        \"isHasAd\": \"false\",\n" +
-            "        \"siteName\": \"80s\"\n" +
             "    }\n" +
             "]";
 

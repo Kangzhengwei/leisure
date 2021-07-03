@@ -19,6 +19,7 @@ import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.QuerySearchVideoBean;
 import com.kzw.leisure.bean.SearchItem;
+import com.kzw.leisure.bean.VideoSearchBean;
 import com.kzw.leisure.contract.SearchVideoContract;
 import com.kzw.leisure.model.SearchVideoModel;
 import com.kzw.leisure.presenter.SearchVideoPresenter;
@@ -76,7 +77,8 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
         searchRecyclerView.setAdapter(adapter);
         editKey.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                search(v.getText().toString());
+                //search(v.getText().toString());
+                newSearch(v.getText().toString());
                 return true;
             }
             return false;
@@ -134,6 +136,13 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
         }
         saveKeyWord(keyword);
     }
+    private void newSearch(String keyword){
+        dialog.show();
+        itemList.clear();
+        mPresenter.getList(Constant.QUERY_SEARCH.replace("KEYWORD",keyword));
+        saveKeyWord(keyword);
+    }
+
 
     private void saveKeyWord(String keyWord) {
         List<HistoryKeyWordRealm> keyWordRealmList = realm.where(HistoryKeyWordRealm.class).findAll();
@@ -199,7 +208,8 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
                         textView.setText(str);
                         textView.setOnClickListener(view1 -> {
                             editKey.setText(str);
-                            search(str);
+                            //search(str);
+                            newSearch(str);
                         });
                         wrapView.addView(textView);
                     }
@@ -226,6 +236,15 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
         wrapLayout.setVisibility(View.GONE);
         searchRecyclerView.setVisibility(View.VISIBLE);
         itemList.addAll(items);
+        adapter.setNewData(itemList);
+    }
+
+    @Override
+    public void returnSearch(List<SearchItem> list) {
+        dialog.dismiss();
+        wrapLayout.setVisibility(View.GONE);
+        searchRecyclerView.setVisibility(View.VISIBLE);
+        itemList.addAll(list);
         adapter.setNewData(itemList);
     }
 

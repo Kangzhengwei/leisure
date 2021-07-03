@@ -1,6 +1,10 @@
 package com.kzw.leisure.network;
 
 
+import com.kzw.leisure.bean.VideoSearchBean;
+import com.kzw.leisure.bean.VideoSearchResultBean;
+
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
@@ -37,5 +41,6 @@ public interface ApiService {
     @FormUrlEncoded
     @POST
     Flowable<String> post(@Url String url, @FieldMap(encoded = true) Map<String, String> fieldMap, @HeaderMap Map<String, String> headers);
+
 
 }
