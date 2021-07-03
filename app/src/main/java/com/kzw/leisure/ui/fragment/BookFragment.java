@@ -8,12 +8,20 @@ import android.view.MenuItem;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.BookListAdapter;
 import com.kzw.leisure.base.BaseFragment;
+import com.kzw.leisure.bean.Chapter;
+import com.kzw.leisure.bean.ChapterRule;
+import com.kzw.leisure.bean.Query;
+import com.kzw.leisure.contract.ReadBookContract;
 import com.kzw.leisure.event.AddBookEvent;
+import com.kzw.leisure.model.ReadBookModel;
+import com.kzw.leisure.presenter.ReadBookPresenter;
 import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
+import com.kzw.leisure.realm.ChapterList;
 import com.kzw.leisure.realm.SourceRuleRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.RealmHelper;
 
 import java.util.ArrayList;
@@ -25,6 +33,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import butterknife.BindView;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -32,7 +41,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 
 
-public class BookFragment extends BaseFragment {
+public class BookFragment extends BaseFragment<ReadBookPresenter, ReadBookModel> implements ReadBookContract.View {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -44,9 +53,15 @@ public class BookFragment extends BaseFragment {
     List<BookRealm> list = new ArrayList<>();
     BookListAdapter adapter;
 
+
     @Override
     public int getLayoutId() {
         return R.layout.fragment_book;
+    }
+
+    @Override
+    public void initPresenter() {
+        mPresenter.setVM(this, mModel);
     }
 
     @Override
@@ -55,7 +70,8 @@ public class BookFragment extends BaseFragment {
         setHasOptionsMenu(true);
         setToolbar(toolbar);
         setupActionBar();
-        swipeRefresh.setEnabled(false);
+        swipeRefresh.setEnabled(true);
+        swipeRefresh.setColorSchemeResources(R.color.colorPrimary);
         bookList.setLayoutManager(new GridLayoutManager(mContext, 3));
         bookList.setItemAnimator(new DefaultItemAnimator());
         adapter = new BookListAdapter();
@@ -70,11 +86,12 @@ public class BookFragment extends BaseFragment {
             showDialog(book, position);
             return false;
         });
+        swipeRefresh.setOnRefreshListener(this::referData);
     }
 
     @Override
     protected void initData() {
-        realm = Realm.getDefaultInstance();
+        realm = RealmHelper.getInstance().getRealm();
         list = realm.where(BookRealm.class).findAll();
         adapter.setNewData(list);
         RxBus.getInstance().toObservable(this, AddBookEvent.class).subscribe(new Observer<AddBookEvent>() {
@@ -99,6 +116,7 @@ public class BookFragment extends BaseFragment {
 
             }
         });
+        referData();
     }
 
     @Override
@@ -116,6 +134,55 @@ public class BookFragment extends BaseFragment {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void referData() {
+        if (list.size() > 0) {
+            swipeRefresh.setRefreshing(true);
+        }
+        int position = 0;
+        for (BookRealm bookRealm : list) {
+            SourceRuleRealm currentRule = bookRealm.getCurrentRule();
+            ChapterList currentChapterListUrl = bookRealm.getCurrentChapterListRule();
+            if (currentRule == null) {
+                currentRule = bookRealm.getSourceRuleRealmList().get(0);
+            }
+            if (currentChapterListUrl == null) {
+                currentChapterListUrl = bookRealm.getSearchNoteUrlList().get(0);
+            }
+            realm.executeTransaction(realm -> bookRealm.setRefresh(true));
+            getChapterList(true, currentRule, currentChapterListUrl, position);
+            position++;
+        }
+        adapter.notifyDataSetChanged();
+    }
+
+
+    private void getChapterList(boolean isFromNet, SourceRuleRealm currentRule, ChapterList currentChapterListUrl, int position) {
+        try {
+            ChapterRule chapterRule = new ChapterRule(currentRule);//realm不能在子线程调用get或set方法，这里转换成其他对象
+            Query query = new Query(currentChapterListUrl.getChapterListUrlRule(), null, chapterRule.getBaseUrl());
+            mPresenter.getChapterList(query, chapterRule, currentChapterListUrl, isFromNet, position);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Override
+    public void returnResult(List<Chapter> list, int position) {
+        if (swipeRefresh.isRefreshing()) {
+            swipeRefresh.setRefreshing(false);
+        }
+        BookRealm bookRealm = this.list.get(position);
+        realm.executeTransaction(realm -> bookRealm.setRefresh(false));
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void returnFail(String message) {
+        if (swipeRefresh.isRefreshing()) {
+            swipeRefresh.setRefreshing(false);
+        }
     }
 
     private void showDialog(BookRealm book, int position) {
@@ -139,4 +206,5 @@ public class BookFragment extends BaseFragment {
         });
         builder.create().show();
     }
+
 }

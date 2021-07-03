@@ -27,16 +27,16 @@ public class RealmHelper {
         return sInstance;
     }
 
+    private RealmHelper(){
+        realm = Realm.getDefaultInstance();
+    }
+
     public void setBook(BookRealm book) {
         this.book = book;
     }
 
     public BookRealm getBook() {
         return book;
-    }
-
-    public void init() {
-        realm = Realm.getDefaultInstance();
     }
 
     public Realm getRealm() {

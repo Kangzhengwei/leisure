@@ -65,33 +65,6 @@ public class Constant {
             "\"ruleSearchUrl\":\"search.php?q=ruleKeyword|UTF-8\"" +
             "}," +
             "{" +
-            "\"baseUrl\":\"https://www.xinxs.la/\"," +
-            "\"siteName\":\"笔趣阁\"," +
-            "\"ruleBookAuthor\":\"class.fix@tag.p.0@text\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"class.m-desc xs-show@text\"," +
-            "\"ruleBookKind\":\"class.fix@tag.p.1@text\"," +
-            "\"ruleBookLastChapter\":\"class.fix@tag.p.4@text\"," +
-            "\"ruleBookName\":\"class.top@tag.h1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"class.imgbox@tag.img@src\"," +
-            "\"ruleChapterList\":\"class.section-list fix!0@tag.li\"," +
-            "\"ruleChapterName\":\"tag.a@text\"," +
-            "\"ruleChapterUrl\":\"tag.a@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"class.section-opt m-bottom-opt@tag.a.2@href\"," +
-            "\"ruleSearchAuthor\":\"class.s4@text\"," +
-            "\"ruleSearchCoverUrl\":\"\"," +
-            "\"ruleSearchIntroduce\":\"\"," +
-            "\"ruleSearchKind\":\"class.s1@text\"," +
-            "\"ruleSearchLastChapter\":\"class.s3@text\"," +
-            "\"ruleSearchList\":\"class.txt-list txt-list-row5@tag.li!0\"," +
-            "\"ruleSearchName\":\"class.s2@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.s2@tag.a@href\"," +
-            "\"ruleSearchUrl\":\"ar.php?keyWord=ruleKeyword|UTF-8\"" +
-            "}," +
-            "{" +
             "\"baseUrl\":\"https://www.xsbiquge.com/\"," +
             "\"siteName\":\"新笔趣阁\"," +
             "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
@@ -191,41 +164,7 @@ public class Constant {
             "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
             "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
             "\"siteName\":\"ok资源网\"," +
-            "\"videoSourceUrl\":\"https://www.okzy.co/\"" +
-            "}," +
-            "{" +
-            "\"sourceType\":\"0\"," +
-            "\"ruleSearchList\":\"class.row\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"search.asp@searchword=ruleKeyword|char=gbk\"," +
-            "\"ruleSeriesList\":\"tag.table.1@tag.table!0:1\"," +
-            "\"ruleItem\":\"tag.a\"," +
-            "\"ruleSeriesName\":\"tag.a@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h1@text\"," +
-            "\"ruleTypeList\":\"h1\"," +
-            "\"ruleVideoName\":\"tag.table.2@td.0@text\"," +
-            "\"ruleVideoImage\":\"class.img@tag.img@src\"," +
-            "\"siteName\":\"酷云资源网\"," +
-            "\"videoSourceUrl\":\"http://www.kuyunzy1.com/\"" +
-            "}," +
-            "{" +
-            "\"sourceType\":\"1\"," +
-            "\"ruleSearchList\":\"class.DianDian@tag.td.0\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"index.php?m=vod-search@wd=ruleKeyword\"," +
-            "\"ruleSeriesList\":\"class.movievod@tag.ul\"," +
-            "\"ruleItem\":\"tag.li@tag.a\"," +
-            "\"ruleSeriesName\":\"tag.a@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"li@text\"," +
-            "\"ruleTypeList\":\"class.movievod@tag.li\"," +
-            "\"ruleVideoName\":\"class.videoDetail@tag.li.0@text\"," +
-            "\"ruleVideoImage\":\"class.videoPic@tag.img@src\"," +
-            "\"siteName\":\"永久资源网\"," +
-            "\"videoSourceUrl\":\"http://www.yongjiuzy2.com/\"" +
+            "\"videoSourceUrl\":\"http://www.haozy.cc/\"" +
             "}," +
             "{" +
             "\"sourceType\":\"0\"," +
@@ -242,7 +181,7 @@ public class Constant {
             "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
             "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
             "\"siteName\":\"最大资源网\"," +
-            "\"videoSourceUrl\":\"http://www.zuidazy3.com/\"" +
+            "\"videoSourceUrl\":\"http://www.123ku.com/\"" +
             "}" +
             "]\n";
 

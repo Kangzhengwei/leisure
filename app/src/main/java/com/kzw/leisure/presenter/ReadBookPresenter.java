@@ -16,11 +16,11 @@ import java.util.List;
  */
 public class ReadBookPresenter extends ReadBookContract.Presenter {
     @Override
-    public void getChapterList(Query query, ChapterRule rule, ChapterList chapterList,boolean isFromNet) {
+    public void getChapterList(Query query, ChapterRule rule, ChapterList chapterList,boolean isFromNet,int position) {
         mRxManage.addSubscribe(mModel.getChapterList(query,rule,chapterList,isFromNet).subscribeWith(new RxSubscriber<List<Chapter>>() {
             @Override
             protected void _onNext(List<Chapter> chapters) {
-                mView.returnResult(chapters);
+                mView.returnResult(chapters,position);
             }
 
             @Override

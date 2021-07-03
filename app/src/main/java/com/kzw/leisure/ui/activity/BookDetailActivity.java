@@ -85,7 +85,6 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        RealmHelper.getInstance().init();
         realm = RealmHelper.getInstance().getRealm();
         StatusBarUtil.translucentBar(this);
         setToolbar(toolbar);

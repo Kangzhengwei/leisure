@@ -3,6 +3,7 @@ package com.kzw.leisure.base;
 import android.app.Application;
 import android.content.Context;
 
+import com.kzw.leisure.realm.MyMigration;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.CrashCatchUtil;
 import com.kzw.leisure.utils.LogUtils;
@@ -77,7 +78,7 @@ public class BaseApplication extends Application {
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("myrealm.realm")
                 .schemaVersion(2)
-                .deleteRealmIfMigrationNeeded()
+                .migration(new MyMigration())
                 .build();
         Realm.setDefaultConfiguration(config);
     }

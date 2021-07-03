@@ -42,16 +42,14 @@ public class ReadBookModel implements ReadBookContract.Model {
      * @return
      */
     @Override
-    public Flowable<List<Chapter>> getChapterList(Query query, ChapterRule rule, ChapterList chapterList, boolean isFromNet) {
+    public Flowable<List<Chapter>> getChapterList(Query query, ChapterRule rule, ChapterList chapterList, boolean isFromNet ) {
         if (TextUtils.isEmpty(chapterList.getChapterListCache()) || isFromNet) {
             return RetrofitHelper
                     .getInstance()
                     .getResponse(query)
                     .compose(RxSchedulers.io_main())
                     .flatMap((Function<String, Publisher<String>>) s -> {
-                        RealmHelper.getInstance().getRealm().executeTransaction(realm -> {
-                            chapterList.setChapterListCache(s);
-                        });
+                        RealmHelper.getInstance().getRealm().executeTransaction(realm -> chapterList.setChapterListCache(s));
                         return Flowable.just(s);
                     })
                     .observeOn(Schedulers.io())
