@@ -77,7 +77,7 @@ public class BaseApplication extends Application {
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("myrealm.realm")
-                .schemaVersion(2)
+                .schemaVersion(3)
                 .migration(new MyMigration())
                 .build();
         Realm.setDefaultConfiguration(config);

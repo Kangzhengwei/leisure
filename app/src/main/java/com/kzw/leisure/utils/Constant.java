@@ -187,7 +187,7 @@ public class Constant {
 
     public static final String webSite = "[\n" +
             "    {\n" +
-            "        \"url\": \"https://www.baidu.com/ \",\n" +
+            "        \"url\": \"https://www.baidu.com/\",\n" +
             "        \"isHasAd\": \"false\",\n" +
             "        \"siteName\": \"百度\"\n" +
             "    },\n" +
