@@ -6,6 +6,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kzw.leisure.R;
 import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.ui.fragment.BookFragment;
@@ -22,7 +23,7 @@ public class MainActivity extends BaseActivity {
     FrameLayout container;
     @BindView(R.id.navigation_bar)
     BottomNavigationView navigationBar;
-
+    private FirebaseAnalytics mFirebaseAnalytics;
     @Override
     protected int getContentView() {
         return R.layout.activity_main;
@@ -33,6 +34,7 @@ public class MainActivity extends BaseActivity {
         navigationBar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         switchFragment(MovieFragment.class, null);
         navigationBar.getMenu().getItem(0).setChecked(true);
+        mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);   // Obtain the FirebaseAnalytics instance.
     }
 
     @Override

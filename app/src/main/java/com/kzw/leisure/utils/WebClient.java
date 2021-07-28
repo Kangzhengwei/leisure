@@ -20,19 +20,19 @@ public class WebClient extends WebViewClient {
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-        LogUtils.d("url===",s);
+        LogUtils.d("url===", s);
         return super.shouldOverrideUrlLoading(webView, s);
     }
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest webResourceRequest) {
-        LogUtils.d("url===",webResourceRequest.getUrl().toString());
+        LogUtils.d("url===", webResourceRequest.getUrl().toString());
         return super.shouldOverrideUrlLoading(webView, webResourceRequest);
     }
 
     @Override
     public void onPageFinished(WebView view, String url) {
-        LogUtils.d("url===",url);
+        LogUtils.d("url===", url);
         super.onPageFinished(view, url);
         if (listener != null) {
             listener.requestResult(view.getTitle(), url);
@@ -41,31 +41,34 @@ public class WebClient extends WebViewClient {
 
     @Override
     public void onLoadResource(WebView webView, String s) {
-        LogUtils.d("url1===",s);
+        LogUtils.d("url1===", s);
         super.onLoadResource(webView, s);
     }
 
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-        LogUtils.d("url2===",s);
-        if(s.contains(Constant.KWYURL)){
-            String str=s.substring(s.indexOf("=")+1,s.indexOf("&"));
-            LogUtils.d("url5===",str);
-
-            SPUtils.getInstance().putString("token",str);
+        LogUtils.d("url2===", s);
+        if (s.contains(Constant.KWYURL)) {
+            int a = s.indexOf("=") + 1;
+            int b = s.indexOf("&");
+            if (a > 0 && b >= 0) {
+                String str = s.substring(a, b);
+                LogUtils.d("url5===", str);
+                SPUtils.getInstance().putString("token", str);
+            }
         }
         return super.shouldInterceptRequest(webView, s);
     }
 
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
-        LogUtils.d("url3===",webResourceRequest.getUrl());
+        LogUtils.d("url3===", webResourceRequest.getUrl());
         return super.shouldInterceptRequest(webView, webResourceRequest);
     }
 
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest, Bundle bundle) {
-        LogUtils.d("url4===",webResourceRequest.getUrl());
+        LogUtils.d("url4===", webResourceRequest.getUrl());
 
         return super.shouldInterceptRequest(webView, webResourceRequest, bundle);
     }
