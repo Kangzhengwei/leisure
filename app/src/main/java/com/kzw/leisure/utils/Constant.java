@@ -25,10 +25,8 @@ public class Constant {
     public static final Pattern JS_PATTERN = Pattern.compile("(<js>[\\w\\W]*?</js>|@js:[\\w\\W]*$)", Pattern.CASE_INSENSITIVE);
     public static Type MAP_STRING = new TypeToken<Map<String, String>>() {
     }.getType();
-
     public static final Pattern EXP_PATTERN = Pattern.compile("\\{\\{([\\w\\W]*?)\\}\\}");
     public static final ScriptEngine SCRIPT_ENGINE = new ScriptEngineManager().getEngineByName("rhino");
-
     public static final Pattern pagePattern = Pattern.compile("\\{(.*?)\\}");
 
     public static String QUERY_SEARCH = "search_prompt?k=KEYWORD";
@@ -65,7 +63,7 @@ public class Constant {
             "\"ruleSearchUrl\":\"search.php?q=ruleKeyword|UTF-8\"" +
             "}," +
             "{" +
-            "\"baseUrl\":\"https://www.xsbiquge.com/\"," +
+            "\"baseUrl\":\"https://www.xxbiquge.net/\"," +
             "\"siteName\":\"新笔趣阁\"," +
             "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
             "\"ruleBookContent\":\"\"," +
@@ -82,7 +80,7 @@ public class Constant {
             "\"ruleContentUrl\":\"id.content@textNodes\"," +
             "\"ruleContentUrlNext\":\"\"," +
             "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
-            "\"ruleSearchCoverUrl\":\"tag.img.0@src\"," +
+            "\"ruleSearchCoverUrl\":\"class.result-game-item-pic@tag.img@src\"," +
             "\"ruleSearchIntroduce\":\"id.intro@tag.p@textNodes\"," +
             "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
             "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a.0@text\"," +
@@ -90,63 +88,28 @@ public class Constant {
             "\"ruleSearchName\":\"class.result-item-title.0@tag.a.0@text\"," +
             "\"ruleSearchNoteUrl\":\"class.result-item-title.0@tag.a.0@href\"," +
             "\"ruleSearchUrl\":\"search.php?keyword=ruleKeyword\"" +
-            "}," +
-            "{" +
-            "\"baseUrl\":\"https://www.dingdiann.com/\"," +
-            "\"siteName\":\"顶点小说\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text#作者：\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@textNodes\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"id.info@tag.p.3@tag.a@text\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd!0:1:2:3:4:5:6:7:8:9:10:11\"," +
-            "\"ruleChapterName\":\"tag.a.0@text\"," +
-            "\"ruleChapterUrl\":\"tag.a.0@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"class.s4.0@text\"," +
-            "\"ruleSearchCoverUrl\":\"\"," +
-            "\"ruleSearchIntroduce\":\"\"," +
-            "\"ruleSearchKind\":\"class.s1.0@text#.*\\\\[|\\\\]\"," +
-            "\"ruleSearchLastChapter\":\"class.s3.0@tag.a@text\"," +
-            "\"ruleSearchList\":\"class.novelslist2@tag.li!0\"," +
-            "\"ruleSearchName\":\"class.s2.0@tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.s2.0@tag.a@href\"," +
-            "\"ruleSearchUrl\":\"searchbook.php?keyword=ruleKeyword\"" +
-            "}," +
-            "{" +
-            "\"baseUrl\":\"https://www.mht.tw\"," +
-            "\"siteName\":\"棉花糖\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text#作者：\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@text\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img.0@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd!0:1:2:3:4:5:6:7:8\"," +
-            "\"ruleChapterName\":\"tag.a@text\"," +
-            "\"ruleChapterUrl\":\"tag.a@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"class.bottem2@tag.a.3@href\"," +
-            "\"ruleSearchAuthor\":\"tag.span.3@text\"," +
-            "\"ruleSearchCoverUrl\":\"\"," +
-            "\"ruleSearchIntroduce\":\"\"," +
-            "\"ruleSearchKind\":\"tag.span.0@text#\\\\[|\\\\]\"," +
-            "\"ruleSearchLastChapter\":\"tag.span.2@tag.a@text\"," +
-            "\"ruleSearchList\":\"id.newscontent@tag.ul.0@tag.li\"," +
-            "\"ruleSearchName\":\"tag.span.1@tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.span.1@tag.a@href\"," +
-            "\"ruleSearchUrl\":\"/case.php?m=search@key=ruleKeyword\"" +
             "}" +
             "]\n";
 
+   /* public static final String ruleSource = "[" +
+            "{" +
+            "\"sourceType\":\"1\"," +
+            "\"ruleSearchList\":\"class.row\"," +
+            "\"ruleSearchName\":\"tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
+            "\"ruleSearchUrl\":\"search.asp@searchword=ruleKeyword|char=gbk\"," +
+            "\"ruleSeriesList\":\"tag.table.1@tag.a!0:1\"," +
+            "\"ruleItem\":\"tag.a\"," +
+            "\"ruleSeriesName\":\"tag.a@text\"," +
+            "\"ruleSeriesNoteUrl\":\"  \"," +
+            "\"rulePlayType\":\"h1@text\"," +
+            "\"ruleTypeList\":\"h1\"," +
+            "\"ruleVideoName\":\"tag.table.2@td.0@text\"," +
+            "\"ruleVideoImage\":\"class.img@tag.img@src\"," +
+            "\"siteName\":\"酷云资源网\"," +
+            "\"videoSourceUrl\":\"http://www.kuyunzy1.com/\"" +
+            "}" +
+            "]\n";*/
 
     public static final String ruleSource = "[" +
             "{" +
@@ -154,17 +117,17 @@ public class Constant {
             "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"index.php?m\\u003dvod-search@submit=search&wd=ruleKeyword\"," +
+            "\"ruleSearchUrl\":\"index.php?m=vod-search@submit=search&wd=ruleKeyword\"," +
             "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
             "\"ruleItem\":\"li\"," +
             "\"ruleSeriesName\":\"li@text\"," +
             "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"class.suf@text\"," +
-            "\"ruleTypeList\":\"class.suf\"," +
+            "\"rulePlayType\":\"h3@text\"," +
+            "\"ruleTypeList\":\"h3\"," +
             "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
             "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
-            "\"siteName\":\"ok资源网\"," +
-            "\"videoSourceUrl\":\"http://www.haozy.cc/\"" +
+            "\"siteName\":\"605资源\"," +
+            "\"videoSourceUrl\":\"http://605zy.co/\"" +
             "}," +
             "{" +
             "\"sourceType\":\"0\"," +
@@ -180,14 +143,14 @@ public class Constant {
             "\"ruleTypeList\":\"class.suf\"," +
             "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
             "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
-            "\"siteName\":\"最大资源网\"," +
-            "\"videoSourceUrl\":\"http://www.123ku.com/\"" +
+            "\"siteName\":\"百度云资源\"," +
+            "\"videoSourceUrl\":\"http://hct.dbyunzy.com/\"" +
             "}" +
             "]\n";
 
     public static final String webSite = "[\n" +
             "    {\n" +
-            "        \"url\": \"https://www.baidu.com/\",\n" +
+            "        \"url\": \"https://www.baidu.com/ \",\n" +
             "        \"isHasAd\": \"false\",\n" +
             "        \"siteName\": \"百度\"\n" +
             "    },\n" +
