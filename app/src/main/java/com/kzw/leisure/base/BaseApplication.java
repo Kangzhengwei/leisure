@@ -15,6 +15,7 @@ import com.tencent.smtt.sdk.QbSdk;
 import java.util.HashMap;
 
 import androidx.multidex.MultiDex;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -41,10 +42,10 @@ public class BaseApplication extends Application {
     }
 
     private void init() {
-        CrashCatchUtil.getInstance().init(this);
-        MultiDex.install(this);
         AppUtils.init(this);
+        MultiDex.install(this);
         NetworkUtils.startNetService(this);
+        CrashCatchUtil.getInstance().init(this);
         SPUtils.init(this, getPackageName() + "_preference", Context.MODE_MULTI_PROCESS);
     }
 

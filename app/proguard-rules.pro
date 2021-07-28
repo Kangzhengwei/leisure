@@ -93,7 +93,13 @@
 -keep class net.minidev.** { *; }
 -keep class org.kxml2.** { *; }
 -keep class xmlpull.v1.** { *; }
-
+-keep public class * implements com.bumptech.glide.module.GlideModule
+-keep public class * extends com.bumptech.glide.module.AppGlideModule
+-keep public enum com.bumptech.glide.load.ImageHeaderParser$**{
+  **[] $VALUES;
+  public *;
+}
+-keep class com.bumptech.glide.GeneratedAppGlideModuleImpl {*;}
 # 保留androidx下的所有类及其内部类
 -keep class androidx.** {*;}
 

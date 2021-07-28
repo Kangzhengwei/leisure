@@ -69,7 +69,6 @@ public class VideoSeriesModel implements VideoSeriesContract.Model {
                         series.setList(urList);
                         seriesList.add(series);
                     }
-                    video.setList(seriesList);
                 } else {
                     List<String> urlList = new ArrayList<>();
                     List<String> titleList = new ArrayList<>();
@@ -109,8 +108,8 @@ public class VideoSeriesModel implements VideoSeriesContract.Model {
                         series.setList(urList);
                         seriesList.add(series);
                     }
-                    video.setList(seriesList);
                 }
+                video.setList(seriesList);
             } catch (Exception e) {
                 LogUtils.e(e.toString());
                 e.printStackTrace();
