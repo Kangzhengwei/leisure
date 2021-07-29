@@ -545,7 +545,6 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     protected void onDestroy() {
         super.onDestroy();
         AppUtils.removeRunnable(this::scrollbarDismiss);
-        RealmHelper.getInstance().closeRealm();
         if (mPageLoader != null) {
             mPageLoader.closeBook();
             mPageLoader = null;

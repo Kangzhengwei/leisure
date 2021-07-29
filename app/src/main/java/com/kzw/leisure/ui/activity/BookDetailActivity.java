@@ -237,9 +237,4 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
         showToast(message);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        RealmHelper.getInstance().closeRealm();
-    }
 }

@@ -12,6 +12,7 @@ import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.ui.fragment.BookFragment;
 import com.kzw.leisure.ui.fragment.CollectFragment;
 import com.kzw.leisure.ui.fragment.MovieFragment;
+import com.kzw.leisure.utils.RealmHelper;
 
 import androidx.annotation.NonNull;
 import butterknife.BindView;
@@ -96,5 +97,9 @@ public class MainActivity extends BaseActivity {
         }
     }
 
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        RealmHelper.getInstance().closeRealm();
+    }
 }
