@@ -21,6 +21,7 @@ import com.kzw.leisure.realm.VideoWatchTypeRealm;
 import com.kzw.leisure.realm.VideoWatchTypeSeriesRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.utils.StatusBarUtil;
 import com.kzw.leisure.widgets.ToastUtil;
@@ -244,7 +245,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     protected void initPresenter() {
         mPresenter.setVM(this, mModel);
         item = (SearchItem) getIntent().getSerializableExtra("Item");
-        realm = Realm.getDefaultInstance();
+        realm = RealmHelper.getInstance().getRealm();
     }
 
     @Override
@@ -285,7 +286,6 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
        // GSYVideoManager.instance().clearAllDefaultCache(this);
         saveData();
         videoWatchRealm = null;
-        realm.close();
     }
 
     @Override

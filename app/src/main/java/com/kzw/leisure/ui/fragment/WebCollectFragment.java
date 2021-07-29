@@ -11,6 +11,7 @@ import com.kzw.leisure.realm.CollectDataList;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.ui.activity.MainActivity;
 import com.kzw.leisure.utils.DimenUtil;
+import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;
 
 import java.util.ArrayList;
@@ -50,7 +51,7 @@ public class WebCollectFragment extends BaseFragment {
     @Override
     public void initWidget() {
         super.initWidget();
-        realm = Realm.getDefaultInstance();
+        realm = RealmHelper.getInstance().getRealm();
         initView();
         initList();
     }
@@ -128,9 +129,4 @@ public class WebCollectFragment extends BaseFragment {
         adapter.setNewData(list);
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        realm.close();
-    }
 }
