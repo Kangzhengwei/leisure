@@ -1,5 +1,6 @@
 package com.kzw.leisure.ui.activity;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,6 +25,7 @@ import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.realm.ChapterList;
 import com.kzw.leisure.realm.SourceRuleRealm;
+import com.kzw.leisure.utils.AdMobUtils;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.RealmHelper;
@@ -52,6 +54,7 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import butterknife.BindView;
 import io.reactivex.Flowable;
 
@@ -95,6 +98,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
     PageLoader mPageLoader;
     int screenTimeOut;
     Runnable keepScreenRunnable;
+    private int currentChapterIndex;
 
     @Override
     protected int getContentView() {
@@ -109,9 +113,9 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
         keepScreenRunnable = this::unKeepScreenOn;
         drawerlayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
 
-        menuBottomIn  = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_in);
-        menuTopIn     = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_in);
-        menuTopOut    = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_out);
+        menuBottomIn = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_in);
+        menuTopIn = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_in);
+        menuTopOut = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_top_out);
         menuBottomOut = AnimationUtils.loadAnimation(this, R.anim.anim_readbook_bottom_out);
         menuTopIn.setAnimationListener(new Animation.AnimationListener() {
             @Override
@@ -286,7 +290,10 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
             @Override
             public void onPageChange(int chapterIndex, int pageIndex, boolean resetReadAloud) {
                 bottommenu.getReadProgress().post(() -> bottommenu.getReadProgress().setProgress(pageIndex));
-
+                if (currentChapterIndex != chapterIndex) {
+                    currentChapterIndex = chapterIndex;
+                    AdMobUtils.getInstance().loadFullScreenAd((Activity) mContext, () -> StatusBarUtil.fullScreen((Activity) mContext));
+                }
             }
 
             @Override
@@ -426,7 +433,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
                         }
                         break;
                     case RecyclerView.SCROLL_STATE_IDLE:
-                        if (!isFinishing() &&!verticalSeekbar.isSelect()) {
+                        if (!isFinishing() && !verticalSeekbar.isSelect()) {
                             AppUtils.runOnUIDelayed(ReadBookActivity.this::scrollbarDismiss, 2000);
                         }
                         break;
@@ -438,7 +445,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
                 super.onScrolled(recyclerView, dx, dy);
                 int range = recyclerView.computeVerticalScrollRange();
                 int offset = recyclerView.computeVerticalScrollOffset();
-                if (!isFinishing() &&!verticalSeekbar.isSelect()) {
+                if (!isFinishing() && !verticalSeekbar.isSelect()) {
                     double result = new BigDecimal((double) offset / (double) range).setScale(2, BigDecimal.ROUND_HALF_UP).doubleValue();
                     verticalSeekbar.setProgress(100 - Double.valueOf(result * 100).intValue());
                 }
@@ -468,6 +475,7 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
 
     @Override
     public void initData() {
+        currentChapterIndex = bookRealm.getDurChapter();
         getChapterList(false);
     }
 
@@ -476,14 +484,14 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
             chapterRule = new ChapterRule(currentRule);//realm不能在子线程调用get或set方法，这里转换成其他对象
             LogUtils.d(chapterRule.toString());
             Query query = new Query(currentChapterListUrl.getChapterListUrlRule(), null, chapterRule.getBaseUrl());
-            mPresenter.getChapterList(query, chapterRule, currentChapterListUrl, isFromNet,0);
+            mPresenter.getChapterList(query, chapterRule, currentChapterListUrl, isFromNet, 0);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Override
-    public void returnResult(List<Chapter> list,int position) {
+    public void returnResult(List<Chapter> list, int position) {
         chapterList = list;
         adapter.setNewData(chapterList);
         mPageLoader.refreshChapterList();
@@ -495,6 +503,11 @@ public class ReadBookActivity extends BaseActivity<ReadBookPresenter, ReadBookMo
         if (swipeRefresh.isRefreshing()) {
             swipeRefresh.setRefreshing(false);
         }
+    }
+
+    @Override
+    public void returnFail(String message, int position) {
+
     }
 
 

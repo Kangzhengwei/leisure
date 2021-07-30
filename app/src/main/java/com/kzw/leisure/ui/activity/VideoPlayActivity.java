@@ -2,6 +2,7 @@ package com.kzw.leisure.ui.activity;
 
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -20,6 +21,7 @@ import com.kzw.leisure.realm.VideoWatchRealm;
 import com.kzw.leisure.realm.VideoWatchTypeRealm;
 import com.kzw.leisure.realm.VideoWatchTypeSeriesRealm;
 import com.kzw.leisure.rxJava.RxBus;
+import com.kzw.leisure.utils.AdMobUtils;
 import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.SPUtils;
@@ -38,6 +40,7 @@ import java.util.List;
 
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.realm.Realm;
@@ -77,7 +80,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     public void initView(Bundle savedInstanceState) {
         //GSYVideoType.enableMediaCodec();//打开硬解码会导致横竖屏切换黑屏
         GSYVideoType.enableMediaCodecTexture();
-        StatusBarUtil.translucentBar((Activity)mContext);
+        StatusBarUtil.translucentBar((Activity) mContext);
         //是否可以滑动调整
         seriesPopWindow = new CheckSeriesPopWindow(this);
         seriesPopWindow.setItemClickListener((item, position) -> {
@@ -213,7 +216,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
 
         }).build(videoPlayer);
 
-        videoPlayer.getFullscreenButton().setOnClickListener(v -> videoPlayer.startWindowFullscreen(mContext, false, true));
+        videoPlayer.getFullscreenButton().setOnClickListener(v -> fullScreen());
         videoPlayer.setIsTouchWiget(true);
         videoPlayer.setKeepScreenOn(true);
         videoPlayer.getBackButton().setOnClickListener(v -> onBackPressed());
@@ -251,8 +254,8 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     @Override
     public void initData() {
         if (item != null) {
-          //  mPresenter.getHtml(item);
-            mPresenter.getVideo(Constant.QUERY_VIDEO.replace("KEYWORD",item.getName()).replace("TOKEN", SPUtils.getInstance().getString("token")));
+            //  mPresenter.getHtml(item);
+            mPresenter.getVideo(Constant.QUERY_VIDEO.replace("KEYWORD", item.getName()).replace("TOKEN", SPUtils.getInstance().getString("token")));
         }
         videoWatchRealm = new VideoWatchRealm();//用于记录观看记录
         RealmResults<VideoRealm> list = realm.where(VideoRealm.class).findAll();
@@ -265,6 +268,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
                 }
             }
         }
+        AdMobUtils.getInstance().loadAwardAd(this);
     }
 
     @Override
@@ -283,7 +287,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     protected void onDestroy() {
         super.onDestroy();
         GSYVideoManager.releaseAllVideos();
-       // GSYVideoManager.instance().clearAllDefaultCache(this);
+        // GSYVideoManager.instance().clearAllDefaultCache(this);
         saveData();
         videoWatchRealm = null;
     }
@@ -467,5 +471,21 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         }
     }
 
+    private void fullScreen() {
+        if (!videoPlayer.isIfCurrentIsFullscreen()) {
+            showDialog();
+        } else {
+            videoPlayer.startWindowFullscreen(mContext, false, true);
+        }
+    }
 
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("全屏观看");
+        builder.setMessage("观看一段视频，全屏观看，体验更佳");
+        builder.setPositiveButton("确定", (dialogInterface, i) -> AdMobUtils.getInstance().showAd(this, () -> videoPlayer.startWindowFullscreen(mContext, false, true)));
+        builder.setNegativeButton("取消", (dialogInterface, i) -> {
+        });
+        builder.create().show();
+    }
 }

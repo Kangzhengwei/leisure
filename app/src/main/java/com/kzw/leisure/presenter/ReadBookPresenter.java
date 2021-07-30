@@ -26,6 +26,7 @@ public class ReadBookPresenter extends ReadBookContract.Presenter {
             @Override
             protected void _onError(String message) {
                 mView.returnFail(message);
+                mView.returnFail(message,position);
             }
         }));
     }

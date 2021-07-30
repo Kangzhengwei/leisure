@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.kzw.leisure.realm.MyMigration;
+import com.kzw.leisure.utils.AdMobUtils;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.CrashCatchUtil;
 import com.kzw.leisure.utils.LogUtils;
@@ -47,6 +48,7 @@ public class BaseApplication extends Application {
         NetworkUtils.startNetService(this);
         CrashCatchUtil.getInstance().init(this);
         SPUtils.init(this, getPackageName() + "_preference", Context.MODE_MULTI_PROCESS);
+        AdMobUtils.getInstance().initAd(this);
     }
 
 
