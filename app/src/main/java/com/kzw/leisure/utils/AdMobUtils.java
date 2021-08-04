@@ -38,6 +38,7 @@ public class AdMobUtils {
 
     public void initAd(Context context) {
         MobileAds.initialize(context, initializationStatus -> {
+            LogUtils.d(initializationStatus.getAdapterStatusMap().toString());
         });
     }
 
@@ -71,7 +72,7 @@ public class AdMobUtils {
 
             @Override
             public void onAdFailedToLoad(@NonNull LoadAdError loadAdError) {
-
+                LogUtils.d(loadAdError.getResponseInfo().toString());
             }
         });
     }
@@ -86,13 +87,16 @@ public class AdMobUtils {
 
             @Override
             public void onAdFailedToLoad(LoadAdError loadAdError) {
-
+                LogUtils.d(loadAdError.getResponseInfo().toString());
             }
         });
     }
 
     public void showAd(Activity activity, adFinishListener mListener) {
         if (rewardedInterstitialAd == null) {
+            if (mListener != null) {
+                mListener.onFinish();
+            }
             return;
         }
         rewardedInterstitialAd.show(activity, rewardItem -> {

@@ -35,12 +35,12 @@ public class Constant {
     public static String QUERY_BASE = "https://z1.m1907.cn/api/";
 
     //测试广告ID
-    public static final String FULL_SCREEN_AD_ID = "ca-app-pub-3940256099942544/1033173712";
-    public static final String AWARD_AD_ID = "ca-app-pub-3940256099942544/5354046379";
+    //public static final String FULL_SCREEN_AD_ID = "ca-app-pub-3940256099942544/1033173712";
+    //public static final String AWARD_AD_ID = "ca-app-pub-3940256099942544/5354046379";
 
     //正式广告ID
-    //public static final String FULL_SCREEN_AD_ID = "ca-app-pub-2169493091779977/7029514724";
-    //public static final String AWARD_AD_ID="ca-app-pub-2169493091779977/8131484035";
+    public static final String FULL_SCREEN_AD_ID = "ca-app-pub-2169493091779977/7029514724";
+    public static final String AWARD_AD_ID = "ca-app-pub-2169493091779977/8131484035";
 
     public static final String bookRuleSource = "[" +
             "{" +
@@ -69,6 +69,87 @@ public class Constant {
             "\"ruleSearchName\":\"class.result-item-title result-game-item-title.@tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"class.result-item-title result-game-item-title.@tag.a@href\"," +
             "\"ruleSearchUrl\":\"search.php?q=ruleKeyword|UTF-8\"" +
+            "}," +
+            "{" +
+            "\"baseUrl\":\"https://www.230book.com/\"," +
+            "\"siteName\":\"顶点小说\"," +
+            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
+            "\"ruleBookContent\":\"\"," +
+            "\"ruleBookInfoInit\":\"id.intro@tag.p@text\"," +
+            "\"ruleBookKind\":\"\"," +
+            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
+            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
+            "\"ruleBookUrlPattern\":\"\"," +
+            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
+            "\"ruleChapterList\":\"id.list@tag.li\"," +
+            "\"ruleChapterName\":\"tag.a@text\"," +
+            "\"ruleChapterUrl\":\"tag.a@href\"," +
+            "\"ruleChapterUrlType\":\"0\"," +
+            "\"ruleContentUrl\":\"id.content@textNodes\"," +
+            "\"ruleContentUrlNext\":\"\"," +
+            "\"ruleSearchAuthor\":\"class.odd.1@text\"," +
+            "\"ruleSearchCoverUrl\":\"\"," +
+            "\"ruleSearchIntroduce\":\"\"," +
+            "\"ruleSearchKind\":\"\"," +
+            "\"ruleSearchLastChapter\":\"class.even@text\"," +
+            "\"ruleSearchList\":\"id.nr\"," +
+            "\"ruleSearchName\":\"class.odd@tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"class.odd@tag.a@href\"," +
+            "\"ruleSearchUrl\":\"/modules/article/search.php@searchkey=ruleKeyword&searchtype=articlename&action=login&submit=%26%23160%3B%CB%D1%26%23160%3B%26%23160%3B%CB%F7%26%23160%3B|char=GBK\"" +
+            "}," +
+            "{" +
+            "\"baseUrl\":\"https://www.69shu.org/\"," +
+            "\"siteName\":\"69书吧\"," +
+            "\"ruleBookAuthor\":\"id.info@tag.small@tag.a@text\"," +
+            "\"ruleBookContent\":\"\"," +
+            "\"ruleBookInfoInit\":\"class.bookinfo_intro@text\"," +
+            "\"ruleBookKind\":\"\"," +
+            "\"ruleBookLastChapter\":\"class.update@tag.a@text\"," +
+            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
+            "\"ruleBookUrlPattern\":\"\"," +
+            "\"ruleCoverUrl\":\"class.pic@tag.img@src\"," +
+            "\"ruleChapterList\":\"class.chapterlist!0@tag.li!0\"," +
+            "\"ruleChapterName\":\"tag.a@text\"," +
+            "\"ruleChapterUrl\":\"tag.a@href\"," +
+            "\"ruleChapterUrlType\":\"0\"," +
+            "\"ruleContentUrl\":\"id.htmlContent@textNodes\"," +
+            "\"ruleContentUrlNext\":\"\"," +
+            "\"ruleSearchAuthor\":\"class.odd.1@text\"," +
+            "\"ruleSearchCoverUrl\":\"\"," +
+            "\"ruleSearchIntroduce\":\"\"," +
+            "\"ruleSearchKind\":\"\"," +
+            "\"ruleSearchLastChapter\":\"class.even@text\"," +
+            "\"ruleSearchList\":\"tag.tr!0\"," +
+            "\"ruleSearchName\":\"class.odd@tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"class.odd@tag.a@href\"," +
+            "\"ruleSearchUrl\":\"modules/article/search.php?searchkey=ruleKeyword&submit=%CB%D1%CB%F7|char=GBK\"" +
+            "}," +
+            "{" +
+            "\"baseUrl\":\"http://www.156n.com/\"," +
+            "\"siteName\":\"笔趣阁156\"," +
+            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
+            "\"ruleBookContent\":\"\"," +
+            "\"ruleBookInfoInit\":\"id.intro@text\"," +
+            "\"ruleBookKind\":\"\"," +
+            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
+            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
+            "\"ruleBookUrlPattern\":\"\"," +
+            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
+            "\"ruleChapterList\":\"id.list@tag.dd\"," +
+            "\"ruleChapterName\":\"tag.a.0@text\"," +
+            "\"ruleChapterUrl\":\"tag.a.0@href\"," +
+            "\"ruleChapterUrlType\":\"1\"," +
+            "\"ruleContentUrl\":\"id.content@tag.p@textNodes\"," +
+            "\"ruleContentUrlNext\":\"\"," +
+            "\"ruleSearchAuthor\":\"class.s4@text\"," +
+            "\"ruleSearchCoverUrl\":\"\"," +
+            "\"ruleSearchIntroduce\":\"\"," +
+            "\"ruleSearchKind\":\"class.s1@text\"," +
+            "\"ruleSearchLastChapter\":\"class.s3@tag.a@text\"," +
+            "\"ruleSearchList\":\"class.search-list@tag.li!0\"," +
+            "\"ruleSearchName\":\"class.s2@tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"class.s2@tag.a@href\"," +
+            "\"ruleSearchUrl\":\"search.php?keyword=ruleKeyword\"" +
             "}," +
             "{" +
             "\"baseUrl\":\"https://www.xxbiquge.net/\"," +
