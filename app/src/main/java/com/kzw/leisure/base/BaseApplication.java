@@ -4,6 +4,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.kzw.leisure.realm.MyMigration;
+import com.kzw.leisure.utils.AdMobUtils;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.CrashCatchUtil;
 import com.kzw.leisure.utils.LogUtils;
@@ -15,6 +16,7 @@ import com.tencent.smtt.sdk.QbSdk;
 import java.util.HashMap;
 
 import androidx.multidex.MultiDex;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -41,11 +43,12 @@ public class BaseApplication extends Application {
     }
 
     private void init() {
-        CrashCatchUtil.getInstance().init(this);
-        MultiDex.install(this);
         AppUtils.init(this);
+        MultiDex.install(this);
         NetworkUtils.startNetService(this);
+        CrashCatchUtil.getInstance().init(this);
         SPUtils.init(this, getPackageName() + "_preference", Context.MODE_MULTI_PROCESS);
+        AdMobUtils.getInstance().initAd(this);
     }
 
 

@@ -27,7 +27,7 @@ public class RealmHelper {
         return sInstance;
     }
 
-    private RealmHelper(){
+    private RealmHelper() {
         realm = Realm.getDefaultInstance();
     }
 
@@ -46,6 +46,8 @@ public class RealmHelper {
     public void closeRealm() {
         if (realm != null) {
             realm.close();
+            book = null;
+            sInstance = null;
         }
     }
 

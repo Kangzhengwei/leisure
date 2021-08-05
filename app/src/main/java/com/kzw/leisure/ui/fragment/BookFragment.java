@@ -179,10 +179,21 @@ public class BookFragment extends BaseFragment<ReadBookPresenter, ReadBookModel>
     }
 
     @Override
+    public void returnFail(String message, int position) {
+        if (swipeRefresh.isRefreshing()) {
+            swipeRefresh.setRefreshing(false);
+        }
+        BookRealm bookRealm = this.list.get(position);
+        realm.executeTransaction(realm -> bookRealm.setRefresh(false));
+        adapter.notifyDataSetChanged();
+    }
+
+    @Override
     public void returnFail(String message) {
         if (swipeRefresh.isRefreshing()) {
             swipeRefresh.setRefreshing(false);
         }
+        showToast(message);
     }
 
     private void showDialog(BookRealm book, int position) {

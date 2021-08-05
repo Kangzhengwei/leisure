@@ -27,6 +27,7 @@ import com.kzw.leisure.realm.HistoryKeyWordRealm;
 import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.widgets.WordWrapView;
 import com.kzw.leisure.widgets.dialog.ProgressDialog;
 
@@ -69,7 +70,7 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        realm = Realm.getDefaultInstance();
+        realm = RealmHelper.getInstance().getRealm();
         dialog = new ProgressDialog(this);
         searchRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -77,8 +78,7 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
         searchRecyclerView.setAdapter(adapter);
         editKey.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                //search(v.getText().toString());
-                newSearch(v.getText().toString());
+                search(v.getText().toString());
                 return true;
             }
             return false;
@@ -134,11 +134,6 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
                 e.printStackTrace();
             }
         }
-        saveKeyWord(keyword);
-    }
-    private void newSearch(String keyword){
-        dialog.show();
-        itemList.clear();
         mPresenter.getList(Constant.QUERY_SEARCH.replace("KEYWORD",keyword));
         saveKeyWord(keyword);
     }
@@ -208,8 +203,7 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
                         textView.setText(str);
                         textView.setOnClickListener(view1 -> {
                             editKey.setText(str);
-                            //search(str);
-                            newSearch(str);
+                            search(str);
                         });
                         wrapView.addView(textView);
                     }
@@ -253,9 +247,4 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
         showToast(message);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        realm.close();
-    }
 }

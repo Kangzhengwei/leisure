@@ -1,6 +1,7 @@
 package com.kzw.leisure.utils;
 
 import android.os.Bundle;
+import android.text.TextUtils;
 
 import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
 import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
@@ -14,60 +15,29 @@ import com.tencent.smtt.sdk.WebViewClient;
 public class WebClient extends WebViewClient {
 
     private requestListener listener;
+    private final String TAG = "WebClient";
 
     public WebClient() {
     }
 
     @Override
-    public boolean shouldOverrideUrlLoading(WebView webView, String s) {
-        LogUtils.d("url===",s);
-        return super.shouldOverrideUrlLoading(webView, s);
-    }
-
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView webView, WebResourceRequest webResourceRequest) {
-        LogUtils.d("url===",webResourceRequest.getUrl().toString());
-        return super.shouldOverrideUrlLoading(webView, webResourceRequest);
-    }
-
-    @Override
     public void onPageFinished(WebView view, String url) {
-        LogUtils.d("url===",url);
         super.onPageFinished(view, url);
         if (listener != null) {
             listener.requestResult(view.getTitle(), url);
         }
-    }
-
-    @Override
-    public void onLoadResource(WebView webView, String s) {
-        LogUtils.d("url1===",s);
-        super.onLoadResource(webView, s);
+        boolean isLaunch = SPUtils.getInstance().getBoolean("isLaunch");
+        if (isLaunch) {
+            SPUtils.getInstance().putBoolean("isLaunch", false);
+            view.loadUrl(Constant.URL);
+        }
     }
 
     @Override
     public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
-        LogUtils.d("url2===",s);
-        if(s.contains(Constant.KWYURL)){
-            String str=s.substring(s.indexOf("=")+1,s.indexOf("&"));
-            LogUtils.d("url5===",str);
-
-            SPUtils.getInstance().putString("token",str);
-        }
+        LogUtils.d(TAG, s);
+        saveToken(s);
         return super.shouldInterceptRequest(webView, s);
-    }
-
-    @Override
-    public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest) {
-        LogUtils.d("url3===",webResourceRequest.getUrl());
-        return super.shouldInterceptRequest(webView, webResourceRequest);
-    }
-
-    @Override
-    public WebResourceResponse shouldInterceptRequest(WebView webView, WebResourceRequest webResourceRequest, Bundle bundle) {
-        LogUtils.d("url4===",webResourceRequest.getUrl());
-
-        return super.shouldInterceptRequest(webView, webResourceRequest, bundle);
     }
 
     public interface requestListener {
@@ -76,6 +46,20 @@ public class WebClient extends WebViewClient {
 
     public void setRequestListener(requestListener listener) {
         this.listener = listener;
+    }
+
+    private void saveToken(String s) {
+        if (s.contains(Constant.KEY_URL)) {
+            int a = s.indexOf("=") + 1;
+            int b = s.indexOf("&");
+            if (a > 0 && b >= 0) {
+                String token = SPUtils.getInstance().getString("token");
+                if (TextUtils.isEmpty(token) || !token.equals(s.substring(a, b))) {
+                    SPUtils.getInstance().putString("token", s.substring(a, b));
+                    LogUtils.d(TAG, "token==" + s.substring(a, b));
+                }
+            }
+        }
     }
 
 }

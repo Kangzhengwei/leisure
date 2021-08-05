@@ -28,6 +28,12 @@
                 app:layout_scrollFlags="scroll|enterAlways"
                 app:popupTheme="@style/OverflowMenuStyle" />
 
+            <com.kzw.leisure.widgets.X5WebView
+                android:id="@+id/webview"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/toolbar" />
+
             <ProgressBar
                 android:id="@+id/progressBar"
                 style="?android:attr/progressBarStyleHorizontal"
@@ -35,12 +41,6 @@
                 android:layout_height="2dp"
                 android:layout_below="@+id/toolbar"
                 android:progressDrawable="@drawable/progressbar_video" />
-
-            <com.kzw.leisure.widgets.X5WebView
-                android:id="@+id/webview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_below="@+id/progressBar" />
         </RelativeLayout>
 
         <RelativeLayout

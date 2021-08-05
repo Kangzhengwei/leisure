@@ -8,6 +8,7 @@ import com.kzw.leisure.event.VideoCollectEvent;
 import com.kzw.leisure.realm.VideoRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.RealmHelper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,7 +46,7 @@ public class VideoCollectFragment extends BaseFragment {
 
     @Override
     public void initVariables() {
-        realm = Realm.getDefaultInstance();
+        realm = RealmHelper.getInstance().getRealm();
         RxBus.getInstance().toObservable(this, VideoCollectEvent.class).subscribe(new Observer<VideoCollectEvent>() {
             @Override
             public void onSubscribe(Disposable d) {
@@ -100,9 +101,4 @@ public class VideoCollectFragment extends BaseFragment {
         adapter.setNewData(list);
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        realm.close();
-    }
 }

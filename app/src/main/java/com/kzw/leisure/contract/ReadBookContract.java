@@ -27,6 +27,7 @@ public interface ReadBookContract {
     interface View extends BaseView {
         void returnResult(List<Chapter> list, int position);
 
+        void returnFail(String message,int position);
     }
 
     abstract class Presenter extends BasePresenter<View, Model> {

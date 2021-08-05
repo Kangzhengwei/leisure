@@ -25,6 +25,7 @@ import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.PermessionUtil;
+import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.widgets.dialog.AddWebSiteDialog;
 import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
@@ -69,12 +70,12 @@ public class MovieFragment extends BaseWebViewFragment {
         mDrawerToggle = new ActionBarDrawerToggle(mActivity, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerToggle.syncState();
         drawer.addDrawerListener(mDrawerToggle);
-        loadUrl(Constant.URL);
+        loadUrl(Constant.DEFAULT_URL);
     }
 
     @Override
     protected void initData() {
-        realm = Realm.getDefaultInstance();
+        realm = RealmHelper.getInstance().getRealm();
         initRecyclerView();
         initList();
     }
@@ -250,11 +251,6 @@ public class MovieFragment extends BaseWebViewFragment {
         super.onDestroyView();
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        realm.close();
-    }
 
     private void refrshData() {
         WebSiteList realmList = realm.where(WebSiteList.class).findFirst();
