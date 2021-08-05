@@ -92,33 +92,6 @@ public class Constant {
             "\"ruleSearchUrl\":\"search.php?keyword=ruleKeyword\"" +
             "}," +
             "{" +
-            "\"baseUrl\":\"https://www.dingdiann.com/\"," +
-            "\"siteName\":\"顶点小说\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text#作者：\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@textNodes\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"id.info@tag.p.3@tag.a@text\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd!0:1:2:3:4:5:6:7:8:9:10:11\"," +
-            "\"ruleChapterName\":\"tag.a.0@text\"," +
-            "\"ruleChapterUrl\":\"tag.a.0@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"class.s4.0@text\"," +
-            "\"ruleSearchCoverUrl\":\"\"," +
-            "\"ruleSearchIntroduce\":\"\"," +
-            "\"ruleSearchKind\":\"class.s1.0@text#.*\\\\[|\\\\]\"," +
-            "\"ruleSearchLastChapter\":\"class.s3.0@tag.a@text\"," +
-            "\"ruleSearchList\":\"class.novelslist2@tag.li!0\"," +
-            "\"ruleSearchName\":\"class.s2.0@tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.s2.0@tag.a@href\"," +
-            "\"ruleSearchUrl\":\"searchbook.php?keyword=ruleKeyword\"" +
-            "}," +
-            "{" +
             "\"baseUrl\":\"https://www.mht.tw\"," +
             "\"siteName\":\"棉花糖\"," +
             "\"ruleBookAuthor\":\"id.info@tag.p.0@text#作者：\"," +
