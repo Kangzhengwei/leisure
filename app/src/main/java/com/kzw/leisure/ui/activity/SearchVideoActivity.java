@@ -78,8 +78,7 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
         searchRecyclerView.setAdapter(adapter);
         editKey.setOnEditorActionListener((v, actionId, event) -> {
             if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                //search(v.getText().toString());
-                newSearch(v.getText().toString());
+                search(v.getText().toString());
                 return true;
             }
             return false;
@@ -135,11 +134,6 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
                 e.printStackTrace();
             }
         }
-        saveKeyWord(keyword);
-    }
-    private void newSearch(String keyword){
-        dialog.show();
-        itemList.clear();
         mPresenter.getList(Constant.QUERY_SEARCH.replace("KEYWORD",keyword));
         saveKeyWord(keyword);
     }
@@ -209,8 +203,7 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
                         textView.setText(str);
                         textView.setOnClickListener(view1 -> {
                             editKey.setText(str);
-                            //search(str);
-                            newSearch(str);
+                            search(str);
                         });
                         wrapView.addView(textView);
                     }

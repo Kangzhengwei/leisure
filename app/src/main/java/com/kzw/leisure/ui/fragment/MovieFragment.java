@@ -70,7 +70,7 @@ public class MovieFragment extends BaseWebViewFragment {
         mDrawerToggle = new ActionBarDrawerToggle(mActivity, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerToggle.syncState();
         drawer.addDrawerListener(mDrawerToggle);
-        loadUrl(Constant.URL);
+        loadUrl(Constant.DEFAULT_URL);
     }
 
     @Override

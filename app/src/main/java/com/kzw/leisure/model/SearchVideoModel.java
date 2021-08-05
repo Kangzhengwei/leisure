@@ -56,8 +56,9 @@ public class SearchVideoModel implements SearchVideoContract.Model {
         List<SearchItem> list=new ArrayList<>();
         for(VideoSearchBean str:strings){
             SearchItem item=new SearchItem();
-            item.setSiteName("爬虫");
+            item.setSiteName("解析");
             item.setName(str.getName());
+            item.setType(0);
             list.add(item);
         }
         return list;
@@ -87,6 +88,7 @@ public class SearchVideoModel implements SearchVideoContract.Model {
                     item.setRuleVideoImage(bean.getRuleVideoImage());
                     item.setRuleVideoName(bean.getRuleVideoName());
                     item.setSourceType(bean.getSourceType());
+                    item.setType(1);
                     listString.add(item);
                 }
             } catch (Exception e) {

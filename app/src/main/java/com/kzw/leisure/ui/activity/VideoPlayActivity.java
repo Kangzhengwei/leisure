@@ -4,6 +4,7 @@ package com.kzw.leisure.ui.activity;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -26,6 +27,7 @@ import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.utils.StatusBarUtil;
+import com.kzw.leisure.utils.StringUtils;
 import com.kzw.leisure.widgets.ToastUtil;
 import com.kzw.leisure.widgets.VideoPlayer;
 import com.kzw.leisure.widgets.popwindow.CheckSeriesPopWindow;
@@ -254,8 +256,16 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     @Override
     public void initData() {
         if (item != null) {
-            //  mPresenter.getHtml(item);
-            mPresenter.getVideo(Constant.QUERY_VIDEO.replace("KEYWORD", item.getName()).replace("TOKEN", SPUtils.getInstance().getString("token")));
+            if (item.getType() == 0) {
+                String token = SPUtils.getInstance().getString("token");
+                if (!TextUtils.isEmpty(token)) {
+                    mPresenter.getVideo(Constant.QUERY_VIDEO.replace("KEYWORD", item.getName()).replace("TOKEN", token));
+                } else {
+                    showToast("token is empty");
+                }
+            } else {
+                mPresenter.getHtml(item);
+            }
         }
         videoWatchRealm = new VideoWatchRealm();//用于记录观看记录
         RealmResults<VideoRealm> list = realm.where(VideoRealm.class).findAll();

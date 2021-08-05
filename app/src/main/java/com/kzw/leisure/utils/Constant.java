@@ -15,10 +15,10 @@ import javax.script.ScriptEngineManager;
 
 public class Constant {
 
-    public static final String DEFAULT_URL = "https://www.baidu.com/";
-    //public static final String URL = "https://z1.m1907.cn/?jx=%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9%E7%AC%AC%E5%9B%9B%E5%AD%A3";
+    //public static final String DEFAULT_URL = "https://www.baidu.com/";
+    public static final String DEFAULT_URL = "https://z1.m1907.cn/?jx=%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9%E7%AC%AC%E5%9B%9B%E5%AD%A3";
     public static final String URL = "https://z1.m1907.cn/?jx=";
-    public static final String KWYURL = "https://z1.m1907.cn/api/v/";
+    public static final String KEY_URL = "https://z1.m1907.cn/api/v/";
     public static final String FRONT_DOWNLOAD_URL = "https://www.jianguoyun.com/p/DXyqo6IQ0Zb6Bxj2ibEC";
     public static final Pattern putPattern = Pattern.compile("@put:(\\{[^}]+?\\})", Pattern.CASE_INSENSITIVE);
     public static final Pattern getPattern = Pattern.compile("@get:\\{([^}]+?)\\}", Pattern.CASE_INSENSITIVE);
@@ -242,6 +242,11 @@ public class Constant {
             "        \"url\": \"https://www.baidu.com/ \",\n" +
             "        \"isHasAd\": \"false\",\n" +
             "        \"siteName\": \"百度\"\n" +
+            "    },\n" +
+            "    {\n" +
+            "        \"url\": \"https://z1.m1907.cn/?jx=\",\n" +
+            "        \"isHasAd\": \"false\",\n" +
+            "        \"siteName\": \"解析\"\n" +
             "    },\n" +
             "    {\n" +
             "        \"url\": \"http://www.uziqaq.com/ \",\n" +
