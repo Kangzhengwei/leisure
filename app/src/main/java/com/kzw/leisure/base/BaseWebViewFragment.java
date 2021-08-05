@@ -49,10 +49,6 @@ public abstract class BaseWebViewFragment extends BaseFragment implements WebCli
     public String webUrl;
 
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.fragment_movie;
-    }
 
     @Override
     public void initWidget() {
@@ -288,5 +284,17 @@ public abstract class BaseWebViewFragment extends BaseFragment implements WebCli
     public void requestResult(String title, String url) {
         webTitle = title;
         webUrl = url;
+    }
+
+    @Override
+    public void onDestroyView() {
+        if (webview != null) {//解决Receiver not registered: android.widget.ZoomButtonsController
+            webview.getSettings().setBuiltInZoomControls(true);
+            webview.setVisibility(View.GONE);// 把destroy()延后
+            ((ViewGroup) webview.getParent()).removeView(webview);
+            webview.destroy();
+            webview = null;
+        }
+        super.onDestroyView();
     }
 }

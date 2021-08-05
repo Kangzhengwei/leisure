@@ -66,7 +66,7 @@ public class MainActivity extends BaseActivity {
         }
     };
 
-    @Override
+/*    @Override
     public boolean onKeyUp(int keyCode, KeyEvent event) {
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
@@ -86,15 +86,15 @@ public class MainActivity extends BaseActivity {
             default:
                 return super.onKeyUp(keyCode, event);
         }
-    }
+    }*/
 
     public void intentFragment(String url) {
-        MovieFragment fragment = (MovieFragment) getFragment(MovieFragment.class);
+       /* MovieFragment fragment = (MovieFragment) getFragment(MovieFragment.class);
         if (fragment != null) {
             fragment.loadUrl(url);
             switchFragment(MovieFragment.class, null);
             navigationBar.getMenu().getItem(0).setChecked(true);
-        }
+        }*/
     }
 
     @Override
