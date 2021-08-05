@@ -7,13 +7,7 @@
     android:orientation="vertical"
     tools:context=".ui.activity.DownloadFrontActivity">
 
-    <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimaryDark"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="@style/ToolBar.Theme" />
+    <include layout="@layout/public_toolbar" />
 
     <com.kzw.leisure.widgets.X5WebView
         android:id="@+id/webview"

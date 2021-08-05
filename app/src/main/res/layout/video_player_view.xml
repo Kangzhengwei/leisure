@@ -145,7 +145,7 @@
             android:textSize="18sp"
             android:visibility="visible" />
 
-        <TextView
+        <Button
             android:id="@+id/check_series"
             android:layout_width="50dp"
             android:layout_height="25dp"

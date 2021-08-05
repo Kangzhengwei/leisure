@@ -5,6 +5,7 @@ import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 
+import com.kzw.leisure.utils.LogUtils;
 import com.tencent.smtt.sdk.WebSettings;
 import com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm;
 import com.tencent.smtt.sdk.WebView;
@@ -17,8 +18,16 @@ public class X5WebView extends WebView {
          * 防止加载网页时调起系统浏览器
          */
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            LogUtils.d("url===",url);
             view.loadUrl(url);
             return true;
+        }
+
+        @Override
+        public void onPageFinished(WebView webView, String s) {
+            LogUtils.d("url===",s);
+
+            super.onPageFinished(webView, s);
         }
     };
 

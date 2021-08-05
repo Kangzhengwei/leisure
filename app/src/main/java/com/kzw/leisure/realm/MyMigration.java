@@ -19,9 +19,8 @@ public class MyMigration  implements RealmMigration {
         //     // getters and setters left out for brevity
         // }
        /* if (oldVersion == 0) {
-            schema.create("Person")
-                    .addField("name", String.class)
-                    .addField("age", int.class);
+            schema.get("BookRealm")
+                    .addField("isRefresh", Boolean.class);
             oldVersion++;
         }*/
 

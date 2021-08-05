@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "348254432908",
+    "project_id": "yueying-3fa05",
+    "storage_bucket": "yueying-3fa05.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:348254432908:android:f6091f7cad85bc4fc5d5a9",
+        "android_client_info": {
+          "package_name": "com.kzw.leisure"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "348254432908-epg2k1mab7eaucj5osrhkf0op412sfci.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.kzw.leisure",
+            "certificate_hash": "5e0b20dc8a85f5fd2a874cc24a44d5affad94cf3"
+          }
+        },
+        {
+          "client_id": "348254432908-hqbvpkqqei2reggb08prs4is4s2ra81a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC2Dlr5F5b5_ZxJVdEppeUF8OZLBUrJgmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "348254432908-hqbvpkqqei2reggb08prs4is4s2ra81a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

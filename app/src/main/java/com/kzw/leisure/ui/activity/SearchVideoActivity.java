@@ -19,6 +19,7 @@ import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.QuerySearchVideoBean;
 import com.kzw.leisure.bean.SearchItem;
+import com.kzw.leisure.bean.VideoSearchBean;
 import com.kzw.leisure.contract.SearchVideoContract;
 import com.kzw.leisure.model.SearchVideoModel;
 import com.kzw.leisure.presenter.SearchVideoPresenter;
@@ -26,6 +27,7 @@ import com.kzw.leisure.realm.HistoryKeyWordRealm;
 import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.widgets.WordWrapView;
 import com.kzw.leisure.widgets.dialog.ProgressDialog;
 
@@ -68,7 +70,7 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        realm = Realm.getDefaultInstance();
+        realm = RealmHelper.getInstance().getRealm();
         dialog = new ProgressDialog(this);
         searchRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -132,8 +134,10 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
                 e.printStackTrace();
             }
         }
+        mPresenter.getList(Constant.QUERY_SEARCH.replace("KEYWORD",keyword));
         saveKeyWord(keyword);
     }
+
 
     private void saveKeyWord(String keyWord) {
         List<HistoryKeyWordRealm> keyWordRealmList = realm.where(HistoryKeyWordRealm.class).findAll();
@@ -230,13 +234,17 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
     }
 
     @Override
+    public void returnSearch(List<SearchItem> list) {
+        dialog.dismiss();
+        wrapLayout.setVisibility(View.GONE);
+        searchRecyclerView.setVisibility(View.VISIBLE);
+        itemList.addAll(list);
+        adapter.setNewData(itemList);
+    }
+
+    @Override
     public void returnFail(String message) {
         showToast(message);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        realm.close();
-    }
 }

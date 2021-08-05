@@ -3,8 +3,8 @@
 
     <item
         android:id="@+id/navigation_movie"
-        android:icon="@mipmap/ic_action_tv"
-        android:title="@string/video" />
+        android:icon="@mipmap/ic_action_globe"
+        android:title="@string/action_explore" />
 
     <item
         android:id="@+id/navigation_book"
@@ -12,7 +12,7 @@
         android:title="@string/bookself" />
     <item
         android:id="@+id/navigation_collect"
-        android:icon="@mipmap/ic_action_folder_tabs"
-        android:title="@string/collect" />
+        android:icon="@mipmap/ic_action_tv"
+        android:title="@string/video" />
 
 </menu>

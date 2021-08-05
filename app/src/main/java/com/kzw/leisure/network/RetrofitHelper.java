@@ -2,11 +2,17 @@ package com.kzw.leisure.network;
 
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.kzw.leisure.bean.Query;
+import com.kzw.leisure.bean.SearchBookBean;
+import com.kzw.leisure.bean.VideoSearchBean;
+import com.kzw.leisure.bean.VideoSearchResultBean;
+import com.kzw.leisure.utils.Constant;
 
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * author: kang4

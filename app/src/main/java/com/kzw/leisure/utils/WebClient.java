@@ -1,5 +1,10 @@
 package com.kzw.leisure.utils;
 
+import android.os.Bundle;
+import android.text.TextUtils;
+
+import com.tencent.smtt.export.external.interfaces.WebResourceRequest;
+import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
 import com.tencent.smtt.sdk.WebView;
 import com.tencent.smtt.sdk.WebViewClient;
 
@@ -10,6 +15,7 @@ import com.tencent.smtt.sdk.WebViewClient;
 public class WebClient extends WebViewClient {
 
     private requestListener listener;
+    private final String TAG = "WebClient";
 
     public WebClient() {
     }
@@ -20,6 +26,18 @@ public class WebClient extends WebViewClient {
         if (listener != null) {
             listener.requestResult(view.getTitle(), url);
         }
+        boolean isLaunch = SPUtils.getInstance().getBoolean("isLaunch");
+        if (isLaunch) {
+            SPUtils.getInstance().putBoolean("isLaunch", false);
+            view.loadUrl(Constant.URL);
+        }
+    }
+
+    @Override
+    public WebResourceResponse shouldInterceptRequest(WebView webView, String s) {
+        LogUtils.d(TAG, s);
+        saveToken(s);
+        return super.shouldInterceptRequest(webView, s);
     }
 
     public interface requestListener {
@@ -28,6 +46,20 @@ public class WebClient extends WebViewClient {
 
     public void setRequestListener(requestListener listener) {
         this.listener = listener;
+    }
+
+    private void saveToken(String s) {
+        if (s.contains(Constant.KEY_URL)) {
+            int a = s.indexOf("=") + 1;
+            int b = s.indexOf("&");
+            if (a > 0 && b >= 0) {
+                String token = SPUtils.getInstance().getString("token");
+                if (TextUtils.isEmpty(token) || !token.equals(s.substring(a, b))) {
+                    SPUtils.getInstance().putString("token", s.substring(a, b));
+                    LogUtils.d(TAG, "token==" + s.substring(a, b));
+                }
+            }
+        }
     }
 
 }

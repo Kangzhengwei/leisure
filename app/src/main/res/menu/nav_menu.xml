@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_setting"
+        android:icon="@drawable/ic_settings"
+        android:title="@string/clear_cache"
+        app:tint="@color/tv_text_default" />
+    <item
+        android:id="@+id/action_about"
+        android:icon="@drawable/ic_about"
+        android:title="@string/disclaimer"
+        app:tint="@color/tv_text_default" />
+    <item
+        android:id="@+id/action_donate"
+        android:icon="@drawable/ic_donate"
+        android:title="@string/donate"
+        app:tint="@color/tv_text_default" />
+
+</menu>

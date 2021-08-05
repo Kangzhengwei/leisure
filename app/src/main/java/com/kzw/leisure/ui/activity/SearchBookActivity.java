@@ -28,6 +28,7 @@ import com.kzw.leisure.realm.HistoryKeyWordRealm;
 import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.widgets.ChangeSourceDialog;
 import com.kzw.leisure.widgets.WordWrapView;
@@ -80,7 +81,7 @@ public class SearchBookActivity extends BaseActivity<SearchBookPresenter, Search
     public void initView(Bundle savedInstanceState) {
         setToolbar(topBar);
         setupActionBar(false);
-        realm = Realm.getDefaultInstance();
+        realm = RealmHelper.getInstance().getRealm();
         dialog = new ProgressDialog(this);
         searchRecyclerView.setLayoutManager(new LinearLayoutManager(mContext));
         searchRecyclerView.setItemAnimator(new DefaultItemAnimator());
@@ -213,11 +214,6 @@ public class SearchBookActivity extends BaseActivity<SearchBookPresenter, Search
         defaultRule = SPUtils.getInstance().getObject("defaultRule", BookSourceRule.class);
     }
 
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        realm.close();
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

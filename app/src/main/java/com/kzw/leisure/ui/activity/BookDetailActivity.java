@@ -1,5 +1,6 @@
 package com.kzw.leisure.ui.activity;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -19,10 +20,12 @@ import com.kzw.leisure.contract.BookDetailContract;
 import com.kzw.leisure.event.AddBookEvent;
 import com.kzw.leisure.model.BookDetailModel;
 import com.kzw.leisure.presenter.BookDetailPresenter;
+import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.realm.ChapterList;
 import com.kzw.leisure.realm.SourceRuleRealm;
 import com.kzw.leisure.rxJava.RxBus;
+import com.kzw.leisure.utils.AdMobUtils;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.GlideUtil;
 import com.kzw.leisure.utils.IntentUtils;
@@ -38,9 +41,11 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.realm.Realm;
+import io.realm.RealmResults;
 
 public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDetailModel> implements BookDetailContract.View {
 
@@ -156,11 +161,35 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
         } catch (Exception e) {
             e.printStackTrace();
         }
+        AdMobUtils.getInstance().loadAwardAd(this);
     }
 
 
     @OnClick(R.id.add)
     public void onViewClicked() {
+        showDialog();
+    }
+
+    @Override
+    public void returnResult(BookBean bookBean) {
+        mBook = bookBean;
+        catalogintro.setText(bookBean.getBookInfoInit());
+        if (StringUtils.isImageUrlPath(bookBean.getCoverUrl())) {
+            GlideUtil.setBookImagesource(mContext, StringUtils.getAbsoluteURL(searchBookBean.getSearchRuleList().get(0).getBaseUrl(), bookBean.getCoverUrl()), bookBg);
+            GlideUtil.setBlurSource(mContext, StringUtils.getAbsoluteURL(searchBookBean.getSearchRuleList().get(0).getBaseUrl(), bookBean.getCoverUrl()), bgShape);
+        } else {
+            GlideUtil.setBookImagesource(mContext, bookBean.getCoverUrl(), bookBg);
+            GlideUtil.setBlurSource(mContext, bookBean.getCoverUrl(), bgShape);
+        }
+        adapter.setNewData(bookBean.getList());
+    }
+
+    @Override
+    public void returnFail(String message) {
+        showToast(message);
+    }
+
+    private void addToLibrary() {
         realm.executeTransaction(realm -> {
             if (mBook == null) {
                 return;
@@ -215,31 +244,17 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
                 RxBus.getInstance().post(new AddBookEvent());
             }
         });
-
     }
 
-    @Override
-    public void returnResult(BookBean bookBean) {
-        mBook = bookBean;
-        catalogintro.setText(bookBean.getBookInfoInit());
-        if (StringUtils.isImageUrlPath(bookBean.getCoverUrl())) {
-            GlideUtil.setBookImagesource(mContext, StringUtils.getAbsoluteURL(searchBookBean.getSearchRuleList().get(0).getBaseUrl(), bookBean.getCoverUrl()), bookBg);
-            GlideUtil.setBlurSource(mContext, StringUtils.getAbsoluteURL(searchBookBean.getSearchRuleList().get(0).getBaseUrl(), bookBean.getCoverUrl()), bgShape);
-        } else {
-            GlideUtil.setBookImagesource(mContext, bookBean.getCoverUrl(), bookBg);
-            GlideUtil.setBlurSource(mContext, bookBean.getCoverUrl(), bgShape);
-        }
-        adapter.setNewData(bookBean.getList());
+
+    private void showDialog() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
+        builder.setTitle("添加到书架");
+        builder.setMessage("观看一段视频添加到书架");
+        builder.setPositiveButton("确定", (dialogInterface, i) -> AdMobUtils.getInstance().showAd(this, this::addToLibrary));
+        builder.setNegativeButton("取消", (dialogInterface, i) -> {
+        });
+        builder.create().show();
     }
 
-    @Override
-    public void returnFail(String message) {
-        showToast(message);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        RealmHelper.getInstance().closeRealm();
-    }
 }

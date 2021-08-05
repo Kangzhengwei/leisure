@@ -73,9 +73,12 @@
     <string name="cancel">取消</string>
     <string name="default_font">默认字体</string>
     <string name="go_dwnload">下载</string>
-    <string name="site_list">酷    站</string>
+    <string name="app_tag">阅    影</string>
+    <string name="app_slogan">一个神奇的APP</string>
     <string name="donate">捐赠</string>
     <string name="alipay_code">支付宝二维码</string>
     <string name="wechat_code">微信二维码</string>
     <string name="alipay_pay">支付宝转账</string>
+    <string name="disclaimer">免责声明</string>
+    <string name="action_explore">探索</string>
 </resources>

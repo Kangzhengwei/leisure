@@ -1,5 +1,6 @@
 package com.kzw.leisure.ui.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.res.Configuration;
 import android.view.Gravity;
 import android.view.Menu;
@@ -9,9 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 
+import com.google.android.material.navigation.NavigationView;
 import com.google.gson.reflect.TypeToken;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.WebSiteAdapter;
+import com.kzw.leisure.base.BaseFragment;
 import com.kzw.leisure.base.BaseWebViewFragment;
 import com.kzw.leisure.event.WebCollectEvent;
 import com.kzw.leisure.realm.CollectDataBean;
@@ -24,7 +27,9 @@ import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.DimenUtil;
 import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.PermessionUtil;
+import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.widgets.dialog.AddWebSiteDialog;
 import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
@@ -40,11 +45,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import butterknife.BindView;
 import io.realm.Realm;
 
 
-public class MovieFragment extends BaseWebViewFragment {
+public class MovieFragment extends BaseFragment {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -54,6 +60,8 @@ public class MovieFragment extends BaseWebViewFragment {
     DrawerLayout drawer;
     @BindView(R.id.slide_menu)
     RelativeLayout slideMenu;
+    @BindView(R.id.navigation)
+    NavigationView navigationView;
 
     private ActionBarDrawerToggle mDrawerToggle;
     private Realm realm;
@@ -61,31 +69,26 @@ public class MovieFragment extends BaseWebViewFragment {
     private WebSiteAdapter adapter;
 
     @Override
+    public int getLayoutId() {
+        return R.layout.fragment_movie;
+    }
+
+    @Override
     public void initWidget() {
         super.initWidget();
         setHasOptionsMenu(true);
         setToolbar(toolbar);
         setupActionBar(false);
+        initNavigation();
+        initRecyclerView();
         mDrawerToggle = new ActionBarDrawerToggle(mActivity, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerToggle.syncState();
         drawer.addDrawerListener(mDrawerToggle);
-        loadUrl(Constant.DEFAULT_URL);
     }
 
     @Override
     protected void initData() {
-        realm = Realm.getDefaultInstance();
-        initRecyclerView();
-        initList();
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        PermessionUtil.checkPermession(getActivity());
-    }
-
-    private void initList() {
+        realm = RealmHelper.getInstance().getRealm();
         WebSiteList realmList = realm.where(WebSiteList.class).findFirst();
         if (realmList != null) {
             list = realmList.getWebSiteBeanRealmList();
@@ -101,15 +104,19 @@ public class MovieFragment extends BaseWebViewFragment {
         adapter.addData(list);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        PermessionUtil.checkPermession(getActivity());
+    }
+
     public void initRecyclerView() {
         recyclerview.setLayoutManager(new LinearLayoutManager(mContext));
         recyclerview.setItemAnimator(new DefaultItemAnimator());
         adapter = new WebSiteAdapter();
         recyclerview.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter, view, position) -> {
-            WebSiteBean bean = list.get(position);
-            loadUrl(bean.getUrl());
-            drawer.closeDrawers();
+
         });
         adapter.setMenuClickListener((v, bean, position) -> {
             SiteOperationMenu pop = new SiteOperationMenu(mContext);
@@ -163,7 +170,7 @@ public class MovieFragment extends BaseWebViewFragment {
             case R.id.action_search:
                 IntentUtils.intentToSearchVideo(mContext);
                 break;
-            case R.id.custom_add_website:
+         /*   case R.id.custom_add_website:
                 AddWebSiteDialog dialog = new AddWebSiteDialog(mContext);
                 dialog.show();
                 dialog.setClickListener((site, url) -> realm.executeTransaction(realm -> {
@@ -219,42 +226,37 @@ public class MovieFragment extends BaseWebViewFragment {
                         RxBus.getInstance().post(new WebCollectEvent());
                     }
                 });
-                break;
-            case R.id.action_clear_cache:
-                GSYVideoManager.instance().clearAllDefaultCache(mContext);
-                CacheUtils.clearAllCache(getApplicationContext());
-                try {
-                    String dataSize = CacheUtils.getTotalCacheSize(getApplicationContext());
-                    showToast("缓存/" + dataSize);
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-                break;
-            case R.id.action_donate:
-                IntentUtils.intentToDonateActivity(mContext);
-                break;
+                break;*/
         }
         return super.onOptionsItemSelected(item);
     }
 
+    @SuppressLint("NonConstantResourceId")
+    private void initNavigation() {
+        navigationView.setNavigationItemSelectedListener(menuItem -> {
+            drawer.closeDrawers();
+            switch (menuItem.getItemId()) {
+                case R.id.action_setting:
+                    GSYVideoManager.instance().clearAllDefaultCache(mContext);
+                    CacheUtils.clearAllCache(getApplicationContext());
+                    try {
+                        String dataSize = CacheUtils.getTotalCacheSize(getApplicationContext());
+                        showToast("缓存/" + dataSize);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    break;
+                case R.id.action_about:
+                    break;
+                case R.id.action_donate:
+                    IntentUtils.intentToDonateActivity(mContext);
+                    break;
 
-    @Override
-    public void onDestroyView() {
-        if (webview != null) {//解决Receiver not registered: android.widget.ZoomButtonsController
-            webview.getSettings().setBuiltInZoomControls(true);
-            webview.setVisibility(View.GONE);// 把destroy()延后
-            ((ViewGroup) webview.getParent()).removeView(webview);
-            webview.destroy();
-            webview = null;
-        }
-        super.onDestroyView();
+            }
+            return false;
+        });
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        realm.close();
-    }
 
     private void refrshData() {
         WebSiteList realmList = realm.where(WebSiteList.class).findFirst();
@@ -263,4 +265,6 @@ public class MovieFragment extends BaseWebViewFragment {
             adapter.setNewData(list);
         }
     }
+
+
 }

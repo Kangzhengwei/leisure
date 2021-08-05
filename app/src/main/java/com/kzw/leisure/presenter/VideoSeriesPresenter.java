@@ -26,4 +26,19 @@ public class VideoSeriesPresenter extends VideoSeriesContract.Presenter {
             }
         }));
     }
+
+    @Override
+    public void getVideo(String url) {
+        mRxManage.addSubscribe(mModel.getVideo(url).subscribeWith(new RxSubscriber<VideoBean>(){
+            @Override
+            protected void _onNext(VideoBean videoBean) {
+                mView.returnVideo(videoBean);
+            }
+
+            @Override
+            protected void _onError(String message) {
+                mView.returnFail(message);
+            }
+        }));
+    }
 }

@@ -30,9 +30,9 @@ import okhttp3.logging.HttpLoggingInterceptor;
 
 public class OkHttpHelper {
 
-    private static final long DEFAULT_READ_TIMEOUT_MILLIS = 20 * 1000;  //读取时间
-    private static final long DEFAULT_WRITE_TIMEOUT_MILLIS = 20 * 1000;  //写入时间
-    private static final long DEFAULT_CONNECT_TIMEOUT_MILLIS = 20 * 1000;  //超时时间
+    private static final long DEFAULT_READ_TIMEOUT_MILLIS = 7 * 1000;  //读取时间
+    private static final long DEFAULT_WRITE_TIMEOUT_MILLIS = 7 * 1000;  //写入时间
+    private static final long DEFAULT_CONNECT_TIMEOUT_MILLIS = 7 * 1000;  //超时时间
     private static final long HTTP_RESPONSE_DISK_CACHE_MAX_SIZE = 20 * 1024 * 1024;//设置20M
     private static final int CACHE_STALE_LONG = 60 * 60 * 24 * 7;   //长缓存有效期为7天
     private static volatile OkHttpHelper sInstance;
