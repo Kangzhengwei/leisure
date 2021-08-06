@@ -19,8 +19,21 @@
   {
     "list": [
       {
-        "siteName": "百度",
-        "url": "www.baidu.com"
+        "siteName": "五号站",
+        "url": "https://www.wuhaozhan.net/"
+      },
+      {
+        "siteName": "搜片",
+        "url": "http://yun.wudayy.com/"
+      }
+    ],
+    "listName": "聚合收索"
+  },
+  {
+    "list": [
+      {
+        "siteName": "全民解析",
+        "url": "https://www.anttechnologys.cn/"
       },
       {
         "siteName": "M1907",
@@ -32,12 +45,12 @@
   {
     "list": [
       {
-        "siteName": "百度",
-        "url": "www.baidu.com"
+        "siteName": "娜菲",
+        "url": "https://www.nfmovies.com/"
       },
       {
-        "siteName": "百度",
-        "url": "www.baidu.com"
+        "siteName": "芒果影院",
+        "url": "https://www.mguomovie.com/"
       }
     ],
     "listName": "第三方酷站"
