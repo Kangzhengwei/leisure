@@ -116,7 +116,8 @@ public class MovieFragment extends BaseFragment {
         adapter = new WebSiteAdapter();
         recyclerview.setAdapter(adapter);
         adapter.setOnItemClickListener((adapter, view, position) -> {
-
+            WebSiteBean bean = list.get(position);
+            IntentUtils.intentToBrowserActivity(mContext, bean.getUrl());
         });
         adapter.setMenuClickListener((v, bean, position) -> {
             SiteOperationMenu pop = new SiteOperationMenu(mContext);

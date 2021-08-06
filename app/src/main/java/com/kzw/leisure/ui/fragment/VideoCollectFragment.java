@@ -1,5 +1,9 @@
 package com.kzw.leisure.ui.fragment;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.VideoCollectAdapter;
 import com.kzw.leisure.base.BaseFragment;
@@ -13,6 +17,8 @@ import com.kzw.leisure.utils.RealmHelper;
 import java.util.ArrayList;
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -29,6 +35,8 @@ import io.realm.Realm;
  */
 public class VideoCollectFragment extends BaseFragment {
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     private Realm realm;
@@ -73,6 +81,9 @@ public class VideoCollectFragment extends BaseFragment {
     @Override
     public void initWidget() {
         super.initWidget();
+        setHasOptionsMenu(true);
+        setToolbar(toolbar);
+        setupActionBar();
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter = new VideoCollectAdapter();
@@ -93,6 +104,22 @@ public class VideoCollectFragment extends BaseFragment {
             item.setRulePlayType(videoRealm.getRulePlayType());
             IntentUtils.intentToVideoPlay(mContext, item);
         });
+    }
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.settting_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                IntentUtils.intentToSearchVideo(mContext);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

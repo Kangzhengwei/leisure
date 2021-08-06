@@ -12,6 +12,7 @@ import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.ui.fragment.BookFragment;
 import com.kzw.leisure.ui.fragment.CollectFragment;
 import com.kzw.leisure.ui.fragment.MovieFragment;
+import com.kzw.leisure.ui.fragment.VideoCollectFragment;
 import com.kzw.leisure.utils.RealmHelper;
 
 import androidx.annotation.NonNull;
@@ -58,7 +59,7 @@ public class MainActivity extends BaseActivity {
                     navigationBar.getMenu().getItem(1).setChecked(true);
                     break;
                 case R.id.navigation_collect:
-                    switchFragment(CollectFragment.class, null);
+                    switchFragment(VideoCollectFragment.class, null);
                     navigationBar.getMenu().getItem(2).setChecked(true);
                     break;
             }

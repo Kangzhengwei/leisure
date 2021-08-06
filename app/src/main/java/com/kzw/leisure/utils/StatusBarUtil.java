@@ -477,7 +477,7 @@ public class StatusBarUtil {
 
 
     /**
-     * 隐藏虚拟按键，并且全屏
+     * 隐藏虚拟按键
      */
     public static void hideBottomUIMenu(Activity context) {
         //隐藏虚拟按键，并且全屏

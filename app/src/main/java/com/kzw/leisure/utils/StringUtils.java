@@ -3,9 +3,12 @@ package com.kzw.leisure.utils;
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.util.Base64;
+import android.util.Patterns;
+import android.webkit.URLUtil;
 
 import com.kzw.leisure.base.BaseApplication;
 
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
@@ -417,6 +420,16 @@ public class StringUtils {
                 return !TextUtils.isEmpty(subBase) && !TextUtils.isEmpty(subNext) && subBase.equals(subBase);
             }
 
+        }
+        return false;
+    }
+
+    public static boolean isValid(String urlString) {
+        try {
+            URL url = new URL(urlString);
+            return URLUtil.isValidUrl(urlString) && Patterns.WEB_URL.matcher(urlString).matches();
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
         }
         return false;
     }
