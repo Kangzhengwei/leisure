@@ -20,6 +20,9 @@ public class Constant {
     public static final String URL = "https://z1.m1907.cn/?jx=";
     public static final String KEY_URL = "https://z1.m1907.cn/api/v/";
     public static final String FRONT_DOWNLOAD_URL = "https://www.jianguoyun.com/p/DXyqo6IQ0Zb6Bxj2ibEC";
+    public static final String SOURCE_URL = "https://raw.githubusercontent.com/Kangzhengwei/Privacypolicy/main/source.json";
+
+
     public static final Pattern putPattern = Pattern.compile("@put:(\\{[^}]+?\\})", Pattern.CASE_INSENSITIVE);
     public static final Pattern getPattern = Pattern.compile("@get:\\{([^}]+?)\\}", Pattern.CASE_INSENSITIVE);
     public static final Pattern headerPattern = Pattern.compile("@Header:\\{.+?\\}", Pattern.CASE_INSENSITIVE);
