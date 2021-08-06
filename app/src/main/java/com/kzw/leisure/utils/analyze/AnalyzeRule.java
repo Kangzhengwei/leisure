@@ -2,6 +2,8 @@ package com.kzw.leisure.utils.analyze;
 
 import android.annotation.SuppressLint;
 
+import androidx.annotation.Keep;
+
 import com.google.gson.Gson;
 import com.kzw.leisure.bean.SearchItem;
 import com.kzw.leisure.network.NetHelper;
@@ -15,8 +17,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.script.SimpleBindings;
-
-import androidx.annotation.Keep;
 
 import static android.text.TextUtils.isEmpty;
 import static com.kzw.leisure.utils.Constant.EXP_PATTERN;

@@ -4,12 +4,12 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.util.AttributeSet;
 
+import androidx.appcompat.widget.AppCompatTextView;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.utils.ScreenUtils;
 import com.kzw.leisure.utils.Selector;
 import com.kzw.leisure.utils.theme.ThemeStore;
-
-import androidx.appcompat.widget.AppCompatTextView;
 
 public class ATEStrokeTextView extends AppCompatTextView {
     public ATEStrokeTextView(Context context) {

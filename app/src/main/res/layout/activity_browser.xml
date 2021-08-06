@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.activity.BrowserActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/top_bar"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/colorPrimary"
+            android:theme="@style/ToolBar.Theme"
+            app:contentInsetStart="0dp"
+            app:elevation="4dp"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/top_bar_left"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp_10"
+                    android:src="@mipmap/ic_action_search" />
+
+                <androidx.appcompat.widget.AppCompatEditText
+                    android:id="@+id/edit_text"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_weight="1.0"
+                    android:background="@drawable/edit_shape"
+                    android:ems="10"
+                    android:gravity="center_vertical"
+                    android:imeOptions="actionSearch"
+                    android:inputType="textPersonName"
+                    android:paddingStart="4dp"
+                    android:textColor="@color/blank"
+                    android:textColorHint="@color/gray"
+                    android:textSize="14sp" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/top_bar_right"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:padding="@dimen/dp_10"
+                    android:src="@mipmap/ic_action_turn_right" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/btn_cancel"
+                    android:layout_width="50dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center_vertical"
+                    android:background="@color/transparent"
+                    android:text="@string/cancel"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+            </LinearLayout>
+        </androidx.appcompat.widget.Toolbar>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="2dp"
+            android:progressDrawable="@drawable/progressbar_video" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <com.kzw.leisure.widgets.X5WebView
+        android:id="@+id/webView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="bottom"
+        android:background="@color/white"
+        android:theme="@style/ToolBar.Theme"
+        app:contentInsetStart="0dp"
+        app:elevation="4dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_left"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_action_arrow_left_black"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_right"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_action_arrow_right"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_menu"
+                app:layout_constraintStart_toEndOf="@+id/btn_left"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_action_tiles_large"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_collect"
+                app:layout_constraintStart_toEndOf="@+id/btn_right"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_action_star_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_home"
+                app:layout_constraintStart_toEndOf="@+id/btn_menu"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_home"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_action_home"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_collect"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.Toolbar>
+</LinearLayout>

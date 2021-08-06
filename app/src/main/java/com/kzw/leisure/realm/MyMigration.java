@@ -1,7 +1,6 @@
 package com.kzw.leisure.realm;
 
 import io.realm.DynamicRealm;
-import io.realm.FieldAttribute;
 import io.realm.RealmMigration;
 import io.realm.RealmSchema;
 

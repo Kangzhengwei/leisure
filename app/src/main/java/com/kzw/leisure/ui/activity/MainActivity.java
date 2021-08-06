@@ -1,20 +1,20 @@
 package com.kzw.leisure.ui.activity;
 
 import android.os.Bundle;
-import android.view.KeyEvent;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
+
+import androidx.annotation.NonNull;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.analytics.FirebaseAnalytics;
 import com.kzw.leisure.R;
 import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.ui.fragment.BookFragment;
-import com.kzw.leisure.ui.fragment.CollectFragment;
-import com.kzw.leisure.ui.fragment.MovieFragment;
+import com.kzw.leisure.ui.fragment.ExploreFragment;
+import com.kzw.leisure.ui.fragment.VideoFragment;
 import com.kzw.leisure.utils.RealmHelper;
 
-import androidx.annotation.NonNull;
 import butterknife.BindView;
 
 public class MainActivity extends BaseActivity {
@@ -33,7 +33,7 @@ public class MainActivity extends BaseActivity {
     @Override
     public void initView(Bundle savedInstanceState) {
         navigationBar.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        switchFragment(MovieFragment.class, null);
+        switchFragment(ExploreFragment.class, null);
         navigationBar.getMenu().getItem(0).setChecked(true);
         mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);   // Obtain the FirebaseAnalytics instance.
     }
@@ -50,7 +50,7 @@ public class MainActivity extends BaseActivity {
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_movie:
-                    switchFragment(MovieFragment.class, null);
+                    switchFragment(ExploreFragment.class, null);
                     navigationBar.getMenu().getItem(0).setChecked(true);
                     break;
                 case R.id.navigation_book:
@@ -58,44 +58,13 @@ public class MainActivity extends BaseActivity {
                     navigationBar.getMenu().getItem(1).setChecked(true);
                     break;
                 case R.id.navigation_collect:
-                    switchFragment(CollectFragment.class, null);
+                    switchFragment(VideoFragment.class, null);
                     navigationBar.getMenu().getItem(2).setChecked(true);
                     break;
             }
             return false;
         }
     };
-
-/*    @Override
-    public boolean onKeyUp(int keyCode, KeyEvent event) {
-        switch (keyCode) {
-            case KeyEvent.KEYCODE_BACK:
-                MovieFragment fragment = (MovieFragment) getFragment(MovieFragment.class);
-                if (fragment != null && fragment.isVisible()) {
-                    if (fragment.customView != null) {
-                        fragment.hideCustomView(fragment.webview);
-                    } else if (fragment.webview.canGoBack()) {
-                        fragment.webview.goBack();
-                    } else {
-                        finish();
-                    }
-                } else {
-                    finish();
-                }
-                return true;
-            default:
-                return super.onKeyUp(keyCode, event);
-        }
-    }*/
-
-    public void intentFragment(String url) {
-       /* MovieFragment fragment = (MovieFragment) getFragment(MovieFragment.class);
-        if (fragment != null) {
-            fragment.loadUrl(url);
-            switchFragment(MovieFragment.class, null);
-            navigationBar.getMenu().getItem(0).setChecked(true);
-        }*/
-    }
 
     @Override
     protected void onDestroy() {

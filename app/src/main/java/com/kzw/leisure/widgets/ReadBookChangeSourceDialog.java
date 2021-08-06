@@ -7,14 +7,14 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.ReadBookSourceAdapter;
 import com.kzw.leisure.realm.SourceRuleRealm;
 
 import java.util.List;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * author: kang4

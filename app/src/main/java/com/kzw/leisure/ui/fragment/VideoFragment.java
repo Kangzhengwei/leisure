@@ -1,5 +1,16 @@
 package com.kzw.leisure.ui.fragment;
 
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.VideoCollectAdapter;
 import com.kzw.leisure.base.BaseFragment;
@@ -13,10 +24,6 @@ import com.kzw.leisure.utils.RealmHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -27,8 +34,10 @@ import io.realm.Realm;
  * Date: 2019/12/3
  * Description:
  */
-public class VideoCollectFragment extends BaseFragment {
+public class VideoFragment extends BaseFragment {
 
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
     @BindView(R.id.recyclerView)
     RecyclerView recyclerView;
     private Realm realm;
@@ -36,12 +45,12 @@ public class VideoCollectFragment extends BaseFragment {
     private List<VideoRealm> list = new ArrayList<>();
 
     public static Fragment newInstance() {
-        return new VideoCollectFragment();
+        return new VideoFragment();
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_collect_video;
+        return R.layout.fragment_video;
     }
 
     @Override
@@ -73,6 +82,9 @@ public class VideoCollectFragment extends BaseFragment {
     @Override
     public void initWidget() {
         super.initWidget();
+        setHasOptionsMenu(true);
+        setToolbar(toolbar);
+        setupActionBar();
         recyclerView.setLayoutManager(new GridLayoutManager(mContext, 3));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         adapter = new VideoCollectAdapter();
@@ -93,6 +105,22 @@ public class VideoCollectFragment extends BaseFragment {
             item.setRulePlayType(videoRealm.getRulePlayType());
             IntentUtils.intentToVideoPlay(mContext, item);
         });
+    }
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater) {
+        menu.clear();
+        inflater.inflate(R.menu.settting_menu, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                IntentUtils.intentToSearchVideo(mContext);
+                break;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -8,6 +8,9 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.SeriesAdapter;
 import com.kzw.leisure.base.BaseActivity;
@@ -27,7 +30,6 @@ import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.utils.StatusBarUtil;
-import com.kzw.leisure.utils.StringUtils;
 import com.kzw.leisure.widgets.ToastUtil;
 import com.kzw.leisure.widgets.VideoPlayer;
 import com.kzw.leisure.widgets.popwindow.CheckSeriesPopWindow;
@@ -39,9 +41,6 @@ import com.shuyu.gsyvideoplayer.utils.OrientationUtils;
 
 import java.util.HashSet;
 import java.util.List;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import butterknife.BindView;
 import butterknife.OnClick;

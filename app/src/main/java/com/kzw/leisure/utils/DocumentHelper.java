@@ -3,6 +3,8 @@ package com.kzw.leisure.utils;
 import android.graphics.Bitmap;
 import android.net.Uri;
 
+import androidx.documentfile.provider.DocumentFile;
+
 import com.kzw.leisure.base.BaseApplication;
 
 import java.io.ByteArrayOutputStream;
@@ -12,8 +14,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-
-import androidx.documentfile.provider.DocumentFile;
 
 
 /**

@@ -6,7 +6,6 @@ import com.kzw.leisure.base.BaseView;
 import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.QuerySearchVideoBean;
 import com.kzw.leisure.bean.SearchItem;
-import com.kzw.leisure.bean.VideoSearchBean;
 
 import java.util.List;
 

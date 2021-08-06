@@ -1,6 +1,9 @@
 package com.kzw.leisure.rxJava;
 
 
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LifecycleOwner;
+
 import com.kzw.leisure.utils.LogUtils;
 import com.trello.lifecycle2.android.lifecycle.AndroidLifecycle;
 import com.trello.rxlifecycle2.LifecycleProvider;
@@ -8,8 +11,6 @@ import com.trello.rxlifecycle2.LifecycleProvider;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LifecycleOwner;
 import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;

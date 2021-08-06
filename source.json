@@ -1,0 +1,71 @@
+[
+  {
+    "list": [
+      {
+        "siteName": "小森林导航",
+        "url": "http://www.uziqaq.com/"
+      },
+      {
+        "siteName": "电影导航",
+        "url": "https://movie.coolzhanweb.com/"
+      },
+      {
+        "siteName": "小森林导航2",
+        "url": "http://www.xsldh.vip/"
+      }
+    ],
+    "listName": "导航"
+  },
+  {
+    "list": [
+      {
+        "siteName": "五号站",
+        "url": "https://www.wuhaozhan.net/"
+      },
+      {
+        "siteName": "搜片",
+        "url": "http://yun.wudayy.com/"
+      }
+    ],
+    "listName": "聚合收索"
+  },
+  {
+    "list": [
+      {
+        "siteName": "全民解析",
+        "url": "https://www.anttechnologys.cn/"
+      },
+      {
+        "siteName": "M1907",
+        "url": "https://z1.m1907.cn/?jx="
+      }
+    ],
+    "listName": "解析"
+  },
+  {
+    "list": [
+      {
+        "siteName": "娜菲",
+        "url": "https://www.nfmovies.com/"
+      },
+      {
+        "siteName": "芒果影院",
+        "url": "https://www.mguomovie.com/"
+      }
+    ],
+    "listName": "第三方酷站"
+  },
+  {
+    "list": [
+      {
+        "siteName": "百度",
+        "url": "https://www.baidu.com/"
+      },
+      {
+        "siteName": "谷歌",
+        "url": "https://www.google.com.hk/"
+      }
+    ],
+    "listName": "搜索"
+  }
+]

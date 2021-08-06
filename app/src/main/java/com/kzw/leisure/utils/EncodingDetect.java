@@ -1,5 +1,7 @@
 package com.kzw.leisure.utils;
 
+import androidx.annotation.NonNull;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -9,8 +11,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
-
-import androidx.annotation.NonNull;
 
 import static android.text.TextUtils.isEmpty;
 

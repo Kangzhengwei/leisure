@@ -7,14 +7,14 @@ import android.view.View;
 import android.widget.PopupWindow;
 import android.widget.RelativeLayout;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.CheckSeriesAdapter;
 import com.kzw.leisure.bean.VideoBean;
 
 import java.util.List;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * author: kang4

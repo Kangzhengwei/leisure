@@ -3,6 +3,8 @@ package com.kzw.leisure.base;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.multidex.MultiDex;
+
 import com.kzw.leisure.realm.MyMigration;
 import com.kzw.leisure.utils.AdMobUtils;
 import com.kzw.leisure.utils.AppUtils;
@@ -14,8 +16,6 @@ import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
 
 import java.util.HashMap;
-
-import androidx.multidex.MultiDex;
 
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
@@ -80,7 +80,7 @@ public class BaseApplication extends Application {
         Realm.init(this);
         RealmConfiguration config = new RealmConfiguration.Builder()
                 .name("myrealm.realm")
-                .schemaVersion(3)
+                .schemaVersion(4)
                 .migration(new MyMigration())
                 .build();
         Realm.setDefaultConfiguration(config);

@@ -1,10 +1,6 @@
 package com.kzw.leisure.network;
 
 
-import com.kzw.leisure.bean.VideoSearchBean;
-import com.kzw.leisure.bean.VideoSearchResultBean;
-
-import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;

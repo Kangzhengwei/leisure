@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Environment;
 
+import androidx.annotation.NonNull;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -13,8 +15,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.channels.FileChannel;
-
-import androidx.annotation.NonNull;
 
 /**
  * Created by zzq on 2016/12/17.

@@ -1,12 +1,12 @@
 package com.kzw.leisure.adapter;
 
 
-import java.util.List;
-
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
+
+import java.util.List;
 
 /**
  * Created by Android on 2018/12/5.

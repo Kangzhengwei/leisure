@@ -20,6 +20,9 @@ public class Constant {
     public static final String URL = "https://z1.m1907.cn/?jx=";
     public static final String KEY_URL = "https://z1.m1907.cn/api/v/";
     public static final String FRONT_DOWNLOAD_URL = "https://www.jianguoyun.com/p/DXyqo6IQ0Zb6Bxj2ibEC";
+    public static final String SOURCE_URL = "https://raw.githubusercontent.com/Kangzhengwei/Privacypolicy/main/source.json";
+
+
     public static final Pattern putPattern = Pattern.compile("@put:(\\{[^}]+?\\})", Pattern.CASE_INSENSITIVE);
     public static final Pattern getPattern = Pattern.compile("@get:\\{([^}]+?)\\}", Pattern.CASE_INSENSITIVE);
     public static final Pattern headerPattern = Pattern.compile("@Header:\\{.+?\\}", Pattern.CASE_INSENSITIVE);
@@ -33,6 +36,10 @@ public class Constant {
     public static String QUERY_SEARCH = "search_prompt?k=KEYWORD";
     public static String QUERY_VIDEO = "v/?z=TOKEN&jx=KEYWORD";
     public static String QUERY_BASE = "https://z1.m1907.cn/api/";
+
+    public static final int ACTIVITY_REQUEST_CODE = 10;
+    public static final int ACTIVITY_RESULT_CODE = 20;
+
 
     //测试广告ID
     //public static final String FULL_SCREEN_AD_ID = "ca-app-pub-3940256099942544/1033173712";

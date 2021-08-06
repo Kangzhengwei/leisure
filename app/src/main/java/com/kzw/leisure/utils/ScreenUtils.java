@@ -5,9 +5,9 @@ import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.view.View;
 
-import java.lang.reflect.Method;
-
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.lang.reflect.Method;
 
 /**
  * Created by newbiechen on 17-5-1.

@@ -3,10 +3,10 @@ package com.kzw.leisure.utils.theme;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-import com.kzw.leisure.R;
-
 import androidx.annotation.ColorInt;
 import androidx.core.content.ContextCompat;
+
+import com.kzw.leisure.R;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)

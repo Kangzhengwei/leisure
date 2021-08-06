@@ -7,15 +7,15 @@ import android.view.View;
 import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.SourceAdapter;
 import com.kzw.leisure.bean.BookSourceRule;
 import com.kzw.leisure.utils.SPUtils;
 
 import java.util.List;
-
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * author: kang4

@@ -8,17 +8,8 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
-
-import com.kzw.leisure.R;
-import com.kzw.leisure.utils.ActivityManagerUtils;
-import com.kzw.leisure.utils.PermessionUtil;
-import com.kzw.leisure.utils.TUtil;
-import com.kzw.leisure.widgets.ToastUtil;
-
-import java.lang.reflect.Method;
-import java.util.ArrayList;
-import java.util.List;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
@@ -26,6 +17,18 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.kzw.leisure.R;
+import com.kzw.leisure.utils.ActivityManagerUtils;
+import com.kzw.leisure.utils.AppUtils;
+import com.kzw.leisure.utils.TUtil;
+import com.kzw.leisure.widgets.ToastUtil;
+
+import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
@@ -97,6 +100,10 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
 
     public void showToast(String msg) {
         ToastUtil.showToast(msg);
+    }
+
+    public void showSnackBar(String msg, View view) {
+        AppUtils.runOnUI(() -> Snackbar.make(view, msg, Snackbar.LENGTH_LONG).show());
     }
 
 

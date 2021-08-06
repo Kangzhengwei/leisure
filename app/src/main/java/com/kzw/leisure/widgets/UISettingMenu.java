@@ -9,6 +9,9 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.utils.PermessionUtil;
 import com.kzw.leisure.utils.theme.ATH;
@@ -17,8 +20,6 @@ import com.kzw.leisure.widgets.font.FontSelector;
 import com.kzw.leisure.widgets.pageView.ReadBookControl;
 import com.makeramen.roundedimageview.RoundedImageView;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

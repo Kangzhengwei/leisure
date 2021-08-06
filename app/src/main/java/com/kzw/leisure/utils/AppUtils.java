@@ -7,11 +7,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Looper;
 
-import java.util.Timer;
-import java.util.TimerTask;
-
 import androidx.annotation.ArrayRes;
 import androidx.annotation.StringRes;
+
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * APP工具类

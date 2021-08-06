@@ -43,14 +43,6 @@ import android.text.style.UnderlineSpan;
 import android.text.style.UpdateAppearance;
 import android.util.Log;
 
-import com.kzw.leisure.base.BaseApplication;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.ref.WeakReference;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.DrawableRes;
 import androidx.annotation.FloatRange;
@@ -59,6 +51,14 @@ import androidx.annotation.IntRange;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
+
+import com.kzw.leisure.base.BaseApplication;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.ref.WeakReference;
 
 import static android.graphics.BlurMaskFilter.Blur;
 

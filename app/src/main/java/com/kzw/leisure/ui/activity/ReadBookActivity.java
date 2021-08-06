@@ -12,6 +12,13 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.SeekBar;
 
+import androidx.annotation.NonNull;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.ChapterAdapter;
 import com.kzw.leisure.base.BaseActivity;
@@ -47,13 +54,6 @@ import com.zia.easybook.widget.TxtChapter;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import butterknife.BindView;
 import io.reactivex.Flowable;

@@ -3,6 +3,8 @@ package com.kzw.leisure.widgets.pageView;
 import android.text.Layout;
 import android.text.StaticLayout;
 
+import androidx.annotation.NonNull;
+
 import com.kzw.leisure.bean.Chapter;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.ChapterContentHelp;
@@ -14,8 +16,6 @@ import com.zia.easybook.widget.TxtPage;
 
 import java.util.ArrayList;
 import java.util.List;
-
-import androidx.annotation.NonNull;
 
 class ChapterProvider {
     private PageLoader pageLoader;
