@@ -8,13 +8,14 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.base.BaseActivity;
 
 import java.net.URLEncoder;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -22,8 +23,8 @@ public class DonateActivity extends BaseActivity {
 
 //FKX00764DNFNQTZFDFJSAA
 
-    String alipayCode = "https://raw.githubusercontent.com/Kangzhengwei/leisure/master/app/src/main/assets/alipay_code.jpg";
-    String wechatCode = "https://raw.githubusercontent.com/Kangzhengwei/leisure/master/app/src/main/assets/wechat_code.jpg";
+    String alipayCode = "https://raw.githubusercontent.com/Kangzhengwei/Privacypolicy/main/alipay_code.jpg";
+    String wechatCode = "https://raw.githubusercontent.com/Kangzhengwei/Privacypolicy/main/wechat_code.jpg";
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;

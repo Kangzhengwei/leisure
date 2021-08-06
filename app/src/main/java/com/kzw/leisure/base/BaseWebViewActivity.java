@@ -9,7 +9,6 @@ import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
@@ -32,8 +31,8 @@ import butterknife.BindView;
 public abstract class BaseWebViewActivity extends BaseActivity implements WebClient.requestListener {
 
 
-    @BindView(R.id.webview)
-    public X5WebView webview;
+    @BindView(R.id.webView)
+    public X5WebView webView;
     @BindView(R.id.progressBar)
     ProgressBar progressBar;
 
@@ -77,10 +76,10 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
     private void initWebView() {
         WebClient webClient = new WebClient();
         webClient.setRequestListener(this);
-        webview.setWebViewClient(webClient);
-        webview.setHorizontalScrollBarEnabled(false);
-        webview.setVerticalScrollBarEnabled(false);
-        webview.setWebChromeClient(new WebChromeClient() {
+        webView.setWebViewClient(webClient);
+        webView.setHorizontalScrollBarEnabled(false);
+        webView.setVerticalScrollBarEnabled(false);
+        webView.setWebChromeClient(new WebChromeClient() {
 
             @Override
             public boolean onJsConfirm(WebView arg0, String arg1, String arg2, JsResult arg3) {
@@ -111,7 +110,7 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
 
             @Override
             public void onHideCustomView() {
-                hideCustomView(webview);
+                hideCustomView(webView);
             }
 
             @Override
@@ -121,7 +120,7 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
         });
 
         //全屏播放的相关方法
-        webview.addJavascriptInterface(new WebViewJavaScriptFunction() {
+        webView.addJavascriptInterface(new WebViewJavaScriptFunction() {
             @Override
             public void onJsFunctionCalled(String tag) {
                 // TODO Auto-generated method stub
@@ -129,28 +128,28 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
 
             @JavascriptInterface
             public void onX5ButtonClicked() {
-                enableX5FullscreenFunc(webview);
+                enableX5FullscreenFunc(webView);
             }
 
             @JavascriptInterface
             public void onCustomButtonClicked() {
-                disableX5FullscreenFunc(webview);
+                disableX5FullscreenFunc(webView);
             }
 
             @JavascriptInterface
             public void onLiteWndButtonClicked() {
-                enableLiteWndFunc(webview);
+                enableLiteWndFunc(webView);
             }
 
             @JavascriptInterface
             public void onPageVideoClicked() {
-                enablePageVideoFunc(webview);
+                enablePageVideoFunc(webView);
             }
         }, "Android");
     }
 
     public void loadUrl(String url) {
-        webview.loadUrl(url);
+        webView.loadUrl(url);
     }
 
     /**
@@ -249,12 +248,12 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
     public void onDestroy() {
         super.onDestroy();
         mAudioManager.abandonAudioFocus(audioFocusChangeListener);
-        if (webview != null) {//解决Receiver not registered: android.widget.ZoomButtonsController
-            webview.getSettings().setBuiltInZoomControls(true);
-            webview.setVisibility(View.GONE);// 把destroy()延后
-            ((ViewGroup) webview.getParent()).removeView(webview);
-            webview.destroy();
-            webview = null;
+        if (webView != null) {//解决Receiver not registered: android.widget.ZoomButtonsController
+            webView.getSettings().setBuiltInZoomControls(true);
+            webView.setVisibility(View.GONE);// 把destroy()延后
+            ((ViewGroup) webView.getParent()).removeView(webView);
+            webView.destroy();
+            webView = null;
         }
     }
 

@@ -24,6 +24,9 @@
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
         <activity
+            android:name=".ui.activity.CollectAndHistoryActivity"
+            android:screenOrientation="portrait" />
+        <activity
             android:name=".ui.activity.BrowserActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:hardwareAccelerated="true"

@@ -8,9 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.kzw.leisure.utils.TUtil;
-import com.kzw.leisure.widgets.ToastUtil;
-
 import androidx.annotation.IdRes;
 import androidx.annotation.LayoutRes;
 import androidx.appcompat.app.ActionBar;
@@ -18,6 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
+
+import com.kzw.leisure.utils.TUtil;
+import com.kzw.leisure.widgets.ToastUtil;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 

@@ -12,6 +12,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.gson.reflect.TypeToken;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.SearchListAdapter;
@@ -19,7 +23,6 @@ import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.QuerySearchVideoBean;
 import com.kzw.leisure.bean.SearchItem;
-import com.kzw.leisure.bean.VideoSearchBean;
 import com.kzw.leisure.contract.SearchVideoContract;
 import com.kzw.leisure.model.SearchVideoModel;
 import com.kzw.leisure.presenter.SearchVideoPresenter;
@@ -35,9 +38,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import io.realm.Realm;
 import io.realm.RealmList;

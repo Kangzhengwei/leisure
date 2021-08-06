@@ -6,11 +6,11 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.google.android.material.textfield.TextInputEditText;
 import com.kzw.leisure.R;
 import com.kzw.leisure.widgets.ToastUtil;
-
-import androidx.annotation.NonNull;
 
 
 /**

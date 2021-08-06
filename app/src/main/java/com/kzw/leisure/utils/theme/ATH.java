@@ -8,12 +8,12 @@ import android.content.res.ColorStateList;
 import android.os.Build;
 import android.view.View;
 
-import com.kzw.leisure.utils.ColorUtil;
-import com.kzw.leisure.utils.Selector;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
+
+import com.kzw.leisure.utils.ColorUtil;
+import com.kzw.leisure.utils.Selector;
 
 import static android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
 

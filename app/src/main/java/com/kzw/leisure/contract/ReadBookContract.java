@@ -6,7 +6,6 @@ import com.kzw.leisure.base.BaseView;
 import com.kzw.leisure.bean.Chapter;
 import com.kzw.leisure.bean.ChapterRule;
 import com.kzw.leisure.bean.Query;
-import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.realm.ChapterList;
 
 import java.util.List;

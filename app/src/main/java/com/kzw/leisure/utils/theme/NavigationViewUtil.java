@@ -2,11 +2,11 @@ package com.kzw.leisure.utils.theme;
 
 import android.content.res.ColorStateList;
 
-import com.google.android.material.internal.NavigationMenuView;
-import com.google.android.material.navigation.NavigationView;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
+
+import com.google.android.material.internal.NavigationMenuView;
+import com.google.android.material.navigation.NavigationView;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)

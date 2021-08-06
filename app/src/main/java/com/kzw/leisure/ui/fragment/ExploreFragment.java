@@ -6,36 +6,7 @@ import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.RelativeLayout;
-
-import com.google.android.material.navigation.NavigationView;
-import com.google.gson.reflect.TypeToken;
-import com.kzw.leisure.R;
-import com.kzw.leisure.adapter.WebSiteAdapter;
-import com.kzw.leisure.base.BaseFragment;
-import com.kzw.leisure.base.BaseWebViewFragment;
-import com.kzw.leisure.event.WebCollectEvent;
-import com.kzw.leisure.realm.CollectDataBean;
-import com.kzw.leisure.realm.CollectDataList;
-import com.kzw.leisure.realm.WebSiteBean;
-import com.kzw.leisure.realm.WebSiteList;
-import com.kzw.leisure.rxJava.RxBus;
-import com.kzw.leisure.utils.CacheUtils;
-import com.kzw.leisure.utils.Constant;
-import com.kzw.leisure.utils.DimenUtil;
-import com.kzw.leisure.utils.GsonUtil;
-import com.kzw.leisure.utils.IntentUtils;
-import com.kzw.leisure.utils.LogUtils;
-import com.kzw.leisure.utils.PermessionUtil;
-import com.kzw.leisure.utils.RealmHelper;
-import com.kzw.leisure.widgets.dialog.AddWebSiteDialog;
-import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;
-import com.shuyu.gsyvideoplayer.GSYVideoManager;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
@@ -46,11 +17,31 @@ import androidx.recyclerview.widget.DefaultItemAnimator;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.material.navigation.NavigationView;
+import com.google.gson.reflect.TypeToken;
+import com.kzw.leisure.R;
+import com.kzw.leisure.adapter.WebSiteAdapter;
+import com.kzw.leisure.base.BaseFragment;
+import com.kzw.leisure.realm.WebSiteBean;
+import com.kzw.leisure.realm.WebSiteList;
+import com.kzw.leisure.utils.CacheUtils;
+import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.utils.DimenUtil;
+import com.kzw.leisure.utils.GsonUtil;
+import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.PermessionUtil;
+import com.kzw.leisure.utils.RealmHelper;
+import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;
+import com.shuyu.gsyvideoplayer.GSYVideoManager;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 import io.realm.Realm;
 
 
-public class MovieFragment extends BaseFragment {
+public class ExploreFragment extends BaseFragment {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -70,7 +61,7 @@ public class MovieFragment extends BaseFragment {
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_movie;
+        return R.layout.fragment_explore;
     }
 
     @Override
@@ -200,33 +191,7 @@ public class MovieFragment extends BaseFragment {
                 });
                 break;
             case R.id.action_add_to_collect:
-                realm.executeTransaction(realm -> {
-                    boolean ishas = false;
-                    List<CollectDataBean> list = realm.where(CollectDataBean.class).findAll();
-                    if (list != null && list.size() > 0) {
-                        for (CollectDataBean bean : list) {
-                            if (bean.getUrl().equals(webUrl)) {
-                                ishas = true;
-                                showToast("该链接已收藏");
-                                break;
-                            }
-                        }
-                    }
-                    if (!ishas) {
-                        CollectDataBean data = realm.createObject(CollectDataBean.class);
-                        data.setUrl(webUrl);
-                        data.setUrlTitle(webTitle);
-                        showToast("收藏成功");
-                        CollectDataList dataList = realm.where(CollectDataList.class).findFirst();
-                        if (dataList != null) {
-                            dataList.getCollectList().add(data);
-                        } else {
-                            CollectDataList newlist = realm.createObject(CollectDataList.class);
-                            newlist.getCollectList().add(data);
-                        }
-                        RxBus.getInstance().post(new WebCollectEvent());
-                    }
-                });
+
                 break;*/
         }
         return super.onOptionsItemSelected(item);

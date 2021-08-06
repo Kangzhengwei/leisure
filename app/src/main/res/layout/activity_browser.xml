@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.activity.BrowserActivity">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -17,9 +18,9 @@
             android:layout_height="50dp"
             android:background="@color/colorPrimary"
             android:theme="@style/ToolBar.Theme"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:contentInsetStart="0dp"
-            app:elevation="4dp">
+            app:elevation="4dp"
+            app:layout_scrollFlags="scroll|enterAlways">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -79,16 +80,11 @@
             android:progressDrawable="@drawable/progressbar_video" />
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
+    <com.kzw.leisure.widgets.X5WebView
+        android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
-
-        <com.kzw.leisure.widgets.X5WebView
-            android:id="@+id/webview"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </androidx.core.widget.NestedScrollView>
+        android:layout_height="0dp"
+        android:layout_weight="1.0" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/bottom_bar"
@@ -131,8 +127,18 @@
                 android:layout_height="wrap_content"
                 android:src="@mipmap/ic_action_tiles_large"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/btn_home"
+                app:layout_constraintEnd_toStartOf="@+id/btn_collect"
                 app:layout_constraintStart_toEndOf="@+id/btn_right"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/btn_collect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@mipmap/ic_action_star_5"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_home"
+                app:layout_constraintStart_toEndOf="@+id/btn_menu"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <androidx.appcompat.widget.AppCompatImageView
@@ -142,8 +148,8 @@
                 android:src="@mipmap/ic_action_home"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/btn_menu"
+                app:layout_constraintStart_toEndOf="@+id/btn_collect"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</LinearLayout>

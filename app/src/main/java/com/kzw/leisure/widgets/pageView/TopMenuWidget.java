@@ -6,11 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.FrameLayout;
 
+import androidx.appcompat.widget.Toolbar;
+
 import com.google.android.material.appbar.AppBarLayout;
 import com.kzw.leisure.R;
 import com.kzw.leisure.utils.StatusBarUtil;
-
-import androidx.appcompat.widget.Toolbar;
 
 /**
  * author: kang4

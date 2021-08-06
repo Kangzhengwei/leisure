@@ -8,12 +8,13 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.utils.theme.ATH;
 import com.kzw.leisure.widgets.pageView.ReadBookControl;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;

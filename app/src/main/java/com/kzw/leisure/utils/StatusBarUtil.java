@@ -12,13 +12,13 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.IntRange;
+
 import com.kzw.leisure.R;
 import com.readystatesoftware.systembartint.SystemBarTintManager;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-
-import androidx.annotation.IntRange;
 
 /**
  * Created by xiongxuesong-pc on 2016/5/15.

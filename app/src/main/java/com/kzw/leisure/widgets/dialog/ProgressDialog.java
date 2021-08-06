@@ -6,9 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 
-import com.kzw.leisure.R;
-
 import androidx.annotation.NonNull;
+
+import com.kzw.leisure.R;
 
 /**
  * author: kang4

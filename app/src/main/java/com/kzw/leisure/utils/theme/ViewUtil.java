@@ -6,11 +6,11 @@ import android.graphics.drawable.TransitionDrawable;
 import android.view.View;
 import android.view.ViewTreeObserver;
 
-import com.kzw.leisure.utils.DrawableUtil;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+
+import com.kzw.leisure.utils.DrawableUtil;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)

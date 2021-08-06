@@ -1,5 +1,6 @@
 package com.kzw.leisure.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 
@@ -7,6 +8,7 @@ import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.bean.SearchItem;
 import com.kzw.leisure.ui.activity.BookDetailActivity;
 import com.kzw.leisure.ui.activity.BrowserActivity;
+import com.kzw.leisure.ui.activity.CollectAndHistoryActivity;
 import com.kzw.leisure.ui.activity.DonateActivity;
 import com.kzw.leisure.ui.activity.DownloadFrontActivity;
 import com.kzw.leisure.ui.activity.MainActivity;
@@ -57,6 +59,10 @@ public class IntentUtils {
 
     public static void intentToBrowserActivity(Context context, String url) {
         context.startActivity(new Intent(context, BrowserActivity.class).putExtra("url", url));
+    }
+
+    public static void intentToCollectAndHistoryActivity(Activity context) {
+        context.startActivityForResult(new Intent(context, CollectAndHistoryActivity.class), Constant.ACTIVITY_REQUEST_CODE);
     }
 
 

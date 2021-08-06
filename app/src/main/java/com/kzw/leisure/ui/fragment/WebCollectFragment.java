@@ -1,15 +1,19 @@
 package com.kzw.leisure.ui.fragment;
 
+import android.content.Intent;
 import android.view.Gravity;
+
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.WebSiteCollectAdapter;
 import com.kzw.leisure.base.BaseFragment;
-import com.kzw.leisure.event.WebCollectEvent;
 import com.kzw.leisure.realm.CollectDataBean;
 import com.kzw.leisure.realm.CollectDataList;
-import com.kzw.leisure.rxJava.RxBus;
-import com.kzw.leisure.ui.activity.MainActivity;
+import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.DimenUtil;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;
@@ -17,13 +21,7 @@ import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
-import io.reactivex.Observer;
-import io.reactivex.disposables.Disposable;
 import io.realm.Realm;
 
 /**
@@ -58,30 +56,6 @@ public class WebCollectFragment extends BaseFragment {
 
     @Override
     public void initVariables() {
-        RxBus.getInstance().toObservable(this, WebCollectEvent.class).subscribe(new Observer<WebCollectEvent>() {
-
-
-            @Override
-            public void onSubscribe(Disposable d) {
-
-            }
-
-            @Override
-            public void onNext(WebCollectEvent event) {
-                initList();
-            }
-
-            @Override
-            public void onError(Throwable e) {
-
-            }
-
-            @Override
-            public void onComplete() {
-
-            }
-
-        });
     }
 
     private void initView() {
@@ -114,10 +88,10 @@ public class WebCollectFragment extends BaseFragment {
             });
         });
         adapter.setOnItemClickListener((adapter, view, position) -> {
-            MainActivity activity = (MainActivity) mActivity;
-            if (activity != null) {
-                activity.intentFragment(list.get(position).getUrl());
-            }
+            Intent intent = new Intent();
+            intent.putExtra("url", list.get(position).getUrl());
+            mActivity.setResult(Constant.ACTIVITY_RESULT_CODE, intent);
+            mActivity.finish();
         });
     }
 

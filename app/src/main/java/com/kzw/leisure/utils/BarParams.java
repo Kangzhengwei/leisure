@@ -5,11 +5,11 @@ import android.graphics.Color;
 import android.view.View;
 import android.view.WindowManager;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import androidx.annotation.ColorInt;
 import androidx.annotation.FloatRange;
+
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 沉浸式参数信息

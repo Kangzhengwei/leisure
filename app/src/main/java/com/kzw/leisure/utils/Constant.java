@@ -34,6 +34,10 @@ public class Constant {
     public static String QUERY_VIDEO = "v/?z=TOKEN&jx=KEYWORD";
     public static String QUERY_BASE = "https://z1.m1907.cn/api/";
 
+    public static final int ACTIVITY_REQUEST_CODE = 10;
+    public static final int ACTIVITY_RESULT_CODE = 20;
+
+
     //测试广告ID
     //public static final String FULL_SCREEN_AD_ID = "ca-app-pub-3940256099942544/1033173712";
     //public static final String AWARD_AD_ID = "ca-app-pub-3940256099942544/5354046379";

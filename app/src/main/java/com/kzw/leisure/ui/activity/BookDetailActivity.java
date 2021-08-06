@@ -5,6 +5,11 @@ import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -20,7 +25,6 @@ import com.kzw.leisure.contract.BookDetailContract;
 import com.kzw.leisure.event.AddBookEvent;
 import com.kzw.leisure.model.BookDetailModel;
 import com.kzw.leisure.presenter.BookDetailPresenter;
-import com.kzw.leisure.realm.BookContentBean;
 import com.kzw.leisure.realm.BookRealm;
 import com.kzw.leisure.realm.ChapterList;
 import com.kzw.leisure.realm.SourceRuleRealm;
@@ -37,15 +41,9 @@ import com.makeramen.roundedimageview.RoundedImageView;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 import io.realm.Realm;
-import io.realm.RealmResults;
 
 public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDetailModel> implements BookDetailContract.View {
 

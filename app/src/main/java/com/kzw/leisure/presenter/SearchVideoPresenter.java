@@ -3,7 +3,6 @@ package com.kzw.leisure.presenter;
 import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.QuerySearchVideoBean;
 import com.kzw.leisure.bean.SearchItem;
-import com.kzw.leisure.bean.VideoSearchBean;
 import com.kzw.leisure.contract.SearchVideoContract;
 import com.kzw.leisure.rxJava.RxSubscriber;
 

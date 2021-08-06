@@ -4,6 +4,13 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.VideoCollectAdapter;
 import com.kzw.leisure.base.BaseFragment;
@@ -17,12 +24,6 @@ import com.kzw.leisure.utils.RealmHelper;
 import java.util.ArrayList;
 import java.util.List;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
-import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 import butterknife.BindView;
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
@@ -33,7 +34,7 @@ import io.realm.Realm;
  * Date: 2019/12/3
  * Description:
  */
-public class VideoCollectFragment extends BaseFragment {
+public class VideoFragment extends BaseFragment {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -44,12 +45,12 @@ public class VideoCollectFragment extends BaseFragment {
     private List<VideoRealm> list = new ArrayList<>();
 
     public static Fragment newInstance() {
-        return new VideoCollectFragment();
+        return new VideoFragment();
     }
 
     @Override
     public int getLayoutId() {
-        return R.layout.fragment_collect_video;
+        return R.layout.fragment_video;
     }
 
     @Override

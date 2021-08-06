@@ -3,13 +3,13 @@ package com.kzw.leisure.utils;
 import android.content.Context;
 import android.net.Uri;
 
+import androidx.annotation.NonNull;
+import androidx.documentfile.provider.DocumentFile;
+
 import java.io.File;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.regex.Pattern;
-
-import androidx.annotation.NonNull;
-import androidx.documentfile.provider.DocumentFile;
 
 /**
  * Created by PureDark on 2016/9/24.

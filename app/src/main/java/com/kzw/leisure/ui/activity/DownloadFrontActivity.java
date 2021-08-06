@@ -5,6 +5,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
+
 import com.kzw.leisure.R;
 import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.utils.Constant;
@@ -13,8 +16,6 @@ import com.kzw.leisure.utils.FileUtils;
 import com.kzw.leisure.widgets.X5WebView;
 import com.tencent.smtt.sdk.URLUtil;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.widget.Toolbar;
 import butterknife.BindView;
 
 public class DownloadFrontActivity extends BaseActivity {
