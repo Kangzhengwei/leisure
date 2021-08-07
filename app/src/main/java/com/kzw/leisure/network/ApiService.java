@@ -1,6 +1,9 @@
 package com.kzw.leisure.network;
 
 
+import com.kzw.leisure.bean.SiteSourceBean;
+
+import java.util.List;
 import java.util.Map;
 
 import io.reactivex.Flowable;
@@ -38,5 +41,7 @@ public interface ApiService {
     @POST
     Flowable<String> post(@Url String url, @FieldMap(encoded = true) Map<String, String> fieldMap, @HeaderMap Map<String, String> headers);
 
+    @GET("Kangzhengwei/Privacypolicy/main/source.json")
+    Flowable<List<SiteSourceBean>> getWebSiteSource();
 
 }

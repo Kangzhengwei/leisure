@@ -1,12 +1,12 @@
 package com.kzw.leisure.bean;
 
+import static com.kzw.leisure.utils.Constant.MAP_STRING;
+
 import com.google.gson.Gson;
 
 import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.kzw.leisure.utils.Constant.MAP_STRING;
 
 
 /**

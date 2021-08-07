@@ -1,5 +1,7 @@
 package com.kzw.leisure.utils;
 
+import static android.text.TextUtils.isEmpty;
+
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -19,10 +21,9 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static android.text.TextUtils.isEmpty;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class StringUtils {
@@ -433,4 +434,30 @@ public class StringUtils {
         }
         return false;
     }
+
+    public static String getFirstChar(String str) {
+        if (TextUtils.isEmpty(str)) {
+            return str;
+        }
+        return str.substring(0, 1);
+    }
+
+    /**
+     * 获取十六进制的颜色代码.例如  "#5A6677"
+     * 分别取R、G、B的随机值，然后加起来即可
+     *
+     * @return String
+     */
+    public static String getRandColor() {
+        String R, G, B;
+        Random random = new Random();
+        R = Integer.toHexString(random.nextInt(256)).toUpperCase();
+        G = Integer.toHexString(random.nextInt(256)).toUpperCase();
+        B = Integer.toHexString(random.nextInt(256)).toUpperCase();
+        R = R.length() == 1 ? "0" + R : R;
+        G = G.length() == 1 ? "0" + G : G;
+        B = B.length() == 1 ? "0" + B : B;
+        return "#" + R + G + B;
+    }
+
 }

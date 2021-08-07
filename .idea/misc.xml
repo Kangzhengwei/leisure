@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/workspace/leisure/app/src/main/res/layout/activity_browser.xml" value="0.3078125" />
+        <entry key="..\:/workspace/leisure/app/src/main/res/layout/explore_list_item.xml" value="0.33" />
+        <entry key="..\:/workspace/leisure/app/src/main/res/layout/explore_tags_item.xml" value="0.37135416666666665" />
+        <entry key="..\:/workspace/leisure/app/src/main/res/menu/navigation.xml" value="0.37135416666666665" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

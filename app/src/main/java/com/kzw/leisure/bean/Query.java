@@ -1,5 +1,12 @@
 package com.kzw.leisure.bean;
 
+import static com.kzw.leisure.utils.Constant.EXP_PATTERN;
+import static com.kzw.leisure.utils.Constant.JS_PATTERN;
+import static com.kzw.leisure.utils.Constant.MAP_STRING;
+import static com.kzw.leisure.utils.Constant.SCRIPT_ENGINE;
+import static com.kzw.leisure.utils.Constant.headerPattern;
+import static com.kzw.leisure.utils.Constant.pagePattern;
+
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
 
@@ -17,13 +24,6 @@ import java.util.Set;
 import java.util.regex.Matcher;
 
 import javax.script.SimpleBindings;
-
-import static com.kzw.leisure.utils.Constant.EXP_PATTERN;
-import static com.kzw.leisure.utils.Constant.JS_PATTERN;
-import static com.kzw.leisure.utils.Constant.MAP_STRING;
-import static com.kzw.leisure.utils.Constant.SCRIPT_ENGINE;
-import static com.kzw.leisure.utils.Constant.headerPattern;
-import static com.kzw.leisure.utils.Constant.pagePattern;
 
 /**
  * author: kang4

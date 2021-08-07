@@ -1,7 +1,13 @@
 package com.kzw.leisure.network;
 
+import com.google.gson.reflect.TypeToken;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.kzw.leisure.bean.Query;
+import com.kzw.leisure.bean.SiteSourceBean;
+import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.utils.GsonUtil;
+
+import java.util.List;
 
 import io.reactivex.Flowable;
 import retrofit2.Retrofit;
@@ -41,6 +47,17 @@ public class RetrofitHelper {
         return createRetrofit(baseUrl)
                 .create(ApiService.class)
                 .get(path);
+    }
+
+    /* public Flowable<List<SiteSourceBean>> getSiteSource() {
+         return createRetrofit(Constant.SOURCE_URL)
+                 .create(ApiService.class)
+                 .getWebSiteSource();
+     }*/
+    public Flowable<List<SiteSourceBean>> getSiteSource() {
+        List<SiteSourceBean> list = GsonUtil.getInstance().fromJson(Constant.source, new TypeToken<List<SiteSourceBean>>() {
+        }.getType());
+        return Flowable.just(list);
     }
 
 

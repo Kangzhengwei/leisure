@@ -20,7 +20,7 @@ public class Constant {
     public static final String URL = "https://z1.m1907.cn/?jx=";
     public static final String KEY_URL = "https://z1.m1907.cn/api/v/";
     public static final String FRONT_DOWNLOAD_URL = "https://www.jianguoyun.com/p/DXyqo6IQ0Zb6Bxj2ibEC";
-    public static final String SOURCE_URL = "https://raw.githubusercontent.com/Kangzhengwei/Privacypolicy/main/source.json";
+    public static final String SOURCE_URL = "https://raw.githubusercontent.com/";
 
 
     public static final Pattern putPattern = Pattern.compile("@put:(\\{[^}]+?\\})", Pattern.CASE_INSENSITIVE);
@@ -265,6 +265,78 @@ public class Constant {
             "        \"isHasAd\": \"true\",\n" +
             "        \"siteName\": \"小森林导航2\"\n" +
             "    }\n" +
+            "]";
+
+    public static final String source="[\n" +
+            "  {\n" +
+            "    \"list\": [\n" +
+            "      {\n" +
+            "        \"siteName\": \"小森林导航\",\n" +
+            "        \"url\": \"http://www.uziqaq.com/\"\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"siteName\": \"电影导航\",\n" +
+            "        \"url\": \"https://movie.coolzhanweb.com/\"\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"siteName\": \"小森林导航2\",\n" +
+            "        \"url\": \"http://www.xsldh.vip/\"\n" +
+            "      }\n" +
+            "    ],\n" +
+            "    \"listName\": \"导航\"\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"list\": [\n" +
+            "      {\n" +
+            "        \"siteName\": \"五号站\",\n" +
+            "        \"url\": \"https://www.wuhaozhan.net/\"\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"siteName\": \"搜片\",\n" +
+            "        \"url\": \"http://yun.wudayy.com/\"\n" +
+            "      }\n" +
+            "    ],\n" +
+            "    \"listName\": \"聚合收索\"\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"list\": [\n" +
+            "      {\n" +
+            "        \"siteName\": \"全民解析\",\n" +
+            "        \"url\": \"https://www.anttechnologys.cn/\"\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"siteName\": \"M1907\",\n" +
+            "        \"url\": \"https://z1.m1907.cn/?jx=\"\n" +
+            "      }\n" +
+            "    ],\n" +
+            "    \"listName\": \"解析\"\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"list\": [\n" +
+            "      {\n" +
+            "        \"siteName\": \"娜菲\",\n" +
+            "        \"url\": \"https://www.nfmovies.com/\"\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"siteName\": \"芒果影院\",\n" +
+            "        \"url\": \"https://www.mguomovie.com/\"\n" +
+            "      }\n" +
+            "    ],\n" +
+            "    \"listName\": \"第三方酷站\"\n" +
+            "  },\n" +
+            "  {\n" +
+            "    \"list\": [\n" +
+            "      {\n" +
+            "        \"siteName\": \"百度\",\n" +
+            "        \"url\": \"https://www.baidu.com/\"\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"siteName\": \"谷歌\",\n" +
+            "        \"url\": \"https://www.google.com.hk/\"\n" +
+            "      }\n" +
+            "    ],\n" +
+            "    \"listName\": \"搜索\"\n" +
+            "  }\n" +
             "]";
 
 }

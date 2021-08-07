@@ -8,7 +8,6 @@ import android.widget.ImageView;
 import com.kzw.leisure.R;
 import com.kzw.leisure.base.BaseActivity;
 import com.kzw.leisure.utils.IntentUtils;
-import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.utils.StatusBarUtil;
 
 import butterknife.BindView;
@@ -52,7 +51,6 @@ public class LunchActivity extends BaseActivity {
             }
         });
         welAnimator.start();
-        saveStatus();
     }
 
     @Override
@@ -65,8 +63,5 @@ public class LunchActivity extends BaseActivity {
 
     }
 
-    private void saveStatus() {
-        SPUtils.getInstance().putBoolean("isLaunch", true);
-    }
 
 }
