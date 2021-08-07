@@ -4,6 +4,7 @@ import android.app.DownloadManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.webkit.URLUtil;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
@@ -14,7 +15,6 @@ import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.DocumentHelper;
 import com.kzw.leisure.utils.FileUtils;
 import com.kzw.leisure.widgets.X5WebView;
-import com.tencent.smtt.sdk.URLUtil;
 
 import butterknife.BindView;
 

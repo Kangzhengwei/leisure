@@ -1,10 +1,10 @@
 package com.kzw.leisure.utils;
 
 import android.text.TextUtils;
+import android.webkit.WebResourceResponse;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
 
-import com.tencent.smtt.export.external.interfaces.WebResourceResponse;
-import com.tencent.smtt.sdk.WebView;
-import com.tencent.smtt.sdk.WebViewClient;
 
 /**
  * Created by Android on 2019/2/26.

@@ -4,10 +4,9 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 
-import com.tencent.smtt.sdk.WebSettings;
-import com.tencent.smtt.sdk.WebSettings.LayoutAlgorithm;
-import com.tencent.smtt.sdk.WebView;
 
 public class X5WebView extends WebView {
     private OnScrollChangeListener listener;
@@ -31,7 +30,6 @@ public class X5WebView extends WebView {
 
     public void initMethod() {
         initWebViewSettings();
-        this.getView().setClickable(true);
         this.setVerticalScrollBarEnabled(false);
     }
 
@@ -40,7 +38,7 @@ public class X5WebView extends WebView {
         webSetting.setJavaScriptEnabled(true);
         webSetting.setJavaScriptCanOpenWindowsAutomatically(true);
         webSetting.setAllowFileAccess(true);
-        webSetting.setLayoutAlgorithm(LayoutAlgorithm.NARROW_COLUMNS);
+        webSetting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         webSetting.setSupportZoom(true);
         webSetting.setBuiltInZoomControls(false);
         webSetting.setUseWideViewPort(true);

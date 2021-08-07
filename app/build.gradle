@@ -84,7 +84,6 @@ dependencies {
     implementation 'com.jakewharton:butterknife:10.1.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:10.1.0'
     implementation 'org.kie.modules:com-google-code-gson:6.5.0.Final'
-    api 'com.tencent.tbs.tbssdk:sdk:43939'
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.16'
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.4.0'

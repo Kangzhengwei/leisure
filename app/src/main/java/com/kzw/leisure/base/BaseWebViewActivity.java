@@ -12,6 +12,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.webkit.JavascriptInterface;
+import android.webkit.JsResult;
+import android.webkit.WebChromeClient;
+import android.webkit.WebView;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
@@ -20,10 +23,7 @@ import com.kzw.leisure.R;
 import com.kzw.leisure.interfaces.WebViewJavaScriptFunction;
 import com.kzw.leisure.utils.WebClient;
 import com.kzw.leisure.widgets.X5WebView;
-import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
-import com.tencent.smtt.export.external.interfaces.JsResult;
-import com.tencent.smtt.sdk.WebChromeClient;
-import com.tencent.smtt.sdk.WebView;
+
 
 import butterknife.BindView;
 
@@ -38,7 +38,7 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
 
     public View customView;
     private FrameLayout fullscreenContainer;
-    private IX5WebChromeClient.CustomViewCallback customViewCallback;
+    private WebChromeClient.CustomViewCallback customViewCallback;
     private AudioManager mAudioManager;
     protected static final FrameLayout.LayoutParams COVER_SCREEN_PARAMS = new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
     public String webTitle;
@@ -104,7 +104,7 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
              * 全屏播放配置
              */
             @Override
-            public void onShowCustomView(View view, IX5WebChromeClient.CustomViewCallback customViewCallback) {
+            public void onShowCustomView(View view, WebChromeClient.CustomViewCallback customViewCallback) {
                 showCustomView(view, customViewCallback);
             }
 
@@ -128,22 +128,22 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
 
             @JavascriptInterface
             public void onX5ButtonClicked() {
-                enableX5FullscreenFunc(webView);
+
             }
 
             @JavascriptInterface
             public void onCustomButtonClicked() {
-                disableX5FullscreenFunc(webView);
+
             }
 
             @JavascriptInterface
             public void onLiteWndButtonClicked() {
-                enableLiteWndFunc(webView);
+
             }
 
             @JavascriptInterface
             public void onPageVideoClicked() {
-                enablePageVideoFunc(webView);
+
             }
         }, "Android");
     }
@@ -155,7 +155,7 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
     /**
      * 视频播放全屏
      **/
-    public void showCustomView(View view, IX5WebChromeClient.CustomViewCallback callback) {
+    public void showCustomView(View view, WebChromeClient.CustomViewCallback callback) {
         // if a view already exists then immediately terminate the new one
         if (customView != null) {
             callback.onCustomViewHidden();
@@ -258,49 +258,6 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
     }
 
 
-    public void enableX5FullscreenFunc(X5WebView view) {
-        if (view.getX5WebViewExtension() != null) {
-            Bundle data = new Bundle();
-            data.putBoolean("standardFullScreen", false);// true表示标准全屏，false表示X5全屏；不设置默认false，
-            data.putBoolean("supportLiteWnd", false);// false：关闭小窗；true：开启小窗；不设置默认true，
-            data.putInt("DefaultVideoScreen", 2);// 1：以页面内开始播放，2：以全屏开始播放；不设置默认：1
-            view.getX5WebViewExtension().invokeMiscMethod("setVideoParams",
-                    data);
-        }
-    }
-
-    public void disableX5FullscreenFunc(X5WebView view) {
-        if (view.getX5WebViewExtension() != null) {
-            Bundle data = new Bundle();
-            data.putBoolean("standardFullScreen", true);// true表示标准全屏，会调起onShowCustomView()，false表示X5全屏；不设置默认false，
-            data.putBoolean("supportLiteWnd", false);// false：关闭小窗；true：开启小窗；不设置默认true，
-            data.putInt("DefaultVideoScreen", 2);// 1：以页面内开始播放，2：以全屏开始播放；不设置默认：1
-            view.getX5WebViewExtension().invokeMiscMethod("setVideoParams",
-                    data);
-        }
-    }
-
-    public void enableLiteWndFunc(X5WebView view) {
-        if (view.getX5WebViewExtension() != null) {
-            Bundle data = new Bundle();
-            data.putBoolean("standardFullScreen", false);// true表示标准全屏，会调起onShowCustomView()，false表示X5全屏；不设置默认false，
-            data.putBoolean("supportLiteWnd", true);// false：关闭小窗；true：开启小窗；不设置默认true，
-            data.putInt("DefaultVideoScreen", 2);// 1：以页面内开始播放，2：以全屏开始播放；不设置默认：1
-            view.getX5WebViewExtension().invokeMiscMethod("setVideoParams",
-                    data);
-        }
-    }
-
-    public void enablePageVideoFunc(X5WebView view) {
-        if (view.getX5WebViewExtension() != null) {
-            Bundle data = new Bundle();
-            data.putBoolean("standardFullScreen", false);// true表示标准全屏，会调起onShowCustomView()，false表示X5全屏；不设置默认false，
-            data.putBoolean("supportLiteWnd", false);// false：关闭小窗；true：开启小窗；不设置默认true，
-            data.putInt("DefaultVideoScreen", 1);// 1：以页面内开始播放，2：以全屏开始播放；不设置默认：1
-            view.getX5WebViewExtension().invokeMiscMethod("setVideoParams",
-                    data);
-        }
-    }
 
     @Override
     public void requestResult(String title, String url) {
