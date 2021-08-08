@@ -172,6 +172,9 @@ public class BrowserActivity extends BaseWebViewActivity {
 
     @Override
     protected void loadFinish() {
+        if (this.isFinishing()) {
+            return;
+        }
         editText.setText(webTitle);
         addHistory();
     }

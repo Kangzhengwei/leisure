@@ -155,9 +155,6 @@ public class ExploreFragment extends BaseFragment<WebSiteSourcePresenter, WebSit
                     break;
                 case R.id.action_about:
                     break;
-                case R.id.action_donate:
-                    IntentUtils.intentToDonateActivity(mContext);
-                    break;
 
             }
             return false;
