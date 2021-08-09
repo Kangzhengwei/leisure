@@ -2,7 +2,6 @@ package com.kzw.leisure.ui.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.res.Configuration;
-import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -14,34 +13,30 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.recyclerview.widget.DefaultItemAnimator;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.navigation.NavigationView;
-import com.google.gson.reflect.TypeToken;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.WebSiteAdapter;
 import com.kzw.leisure.base.BaseFragment;
-import com.kzw.leisure.realm.WebSiteBean;
-import com.kzw.leisure.realm.WebSiteList;
+import com.kzw.leisure.bean.ExploreMultiItemBean;
+import com.kzw.leisure.contract.WebSiteSourceContract;
+import com.kzw.leisure.model.WebSiteSourceModel;
+import com.kzw.leisure.presenter.WebSiteSourcePresenter;
 import com.kzw.leisure.utils.CacheUtils;
-import com.kzw.leisure.utils.Constant;
-import com.kzw.leisure.utils.DimenUtil;
-import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.IntentUtils;
+import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.PermessionUtil;
-import com.kzw.leisure.utils.RealmHelper;
-import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import io.realm.Realm;
 
 
-public class ExploreFragment extends BaseFragment {
+public class ExploreFragment extends BaseFragment<WebSiteSourcePresenter, WebSiteSourceModel> implements WebSiteSourceContract.View {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -55,9 +50,14 @@ public class ExploreFragment extends BaseFragment {
     NavigationView navigationView;
 
     private ActionBarDrawerToggle mDrawerToggle;
-    private Realm realm;
-    private List<WebSiteBean> list = new ArrayList<>();
+    private List<ExploreMultiItemBean> list = new ArrayList<>();
     private WebSiteAdapter adapter;
+
+    @Override
+    public void initPresenter() {
+        super.initPresenter();
+        mPresenter.setVM(this, mModel);
+    }
 
     @Override
     public int getLayoutId() {
@@ -79,20 +79,7 @@ public class ExploreFragment extends BaseFragment {
 
     @Override
     protected void initData() {
-        realm = RealmHelper.getInstance().getRealm();
-        WebSiteList realmList = realm.where(WebSiteList.class).findFirst();
-        if (realmList != null) {
-            list = realmList.getWebSiteBeanRealmList();
-        } else {
-            realm.executeTransaction(realm -> {
-                List<WebSiteBean> sitelist = GsonUtil.getInstance().fromJson(Constant.webSite, new TypeToken<List<WebSiteBean>>() {
-                }.getType());
-                WebSiteList data = realm.createObject(WebSiteList.class);
-                data.setWebSiteBeanRealmList(sitelist);
-                list = data.getWebSiteBeanRealmList();
-            });
-        }
-        adapter.addData(list);
+        mPresenter.getSource();
     }
 
     @Override
@@ -102,37 +89,21 @@ public class ExploreFragment extends BaseFragment {
     }
 
     public void initRecyclerView() {
-        recyclerview.setLayoutManager(new LinearLayoutManager(mContext));
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
+        recyclerview.setLayoutManager(gridLayoutManager);
         recyclerview.setItemAnimator(new DefaultItemAnimator());
-        adapter = new WebSiteAdapter();
+        adapter = new WebSiteAdapter(list,mActivity);
         recyclerview.setAdapter(adapter);
-        adapter.setOnItemClickListener((adapter, view, position) -> {
-            WebSiteBean bean = list.get(position);
-            IntentUtils.intentToBrowserActivity(mContext, bean.getUrl());
-        });
-        adapter.setMenuClickListener((v, bean, position) -> {
-            SiteOperationMenu pop = new SiteOperationMenu(mContext);
-            if (position == list.size() - 1) {
-                pop.showAsDropDown(v, DimenUtil.dip2px(mContext, -100), DimenUtil.dip2px(mContext, -80), Gravity.BOTTOM | Gravity.START);
-            } else {
-                pop.showAsDropDown(v, DimenUtil.dip2px(mContext, -100), 0, Gravity.BOTTOM | Gravity.START);
+        gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
+            @Override
+            public int getSpanSize(int position) {
+                int type = adapter.getItemViewType(position);
+                if (type == ExploreMultiItemBean.TYPE_TAG) {
+                    return 2;
+                } else {
+                    return 1;
+                }
             }
-            pop.setMenuClickListener(new SiteOperationMenu.menuClickListener() {
-                @Override
-                public void delete() {
-                    realm.executeTransaction(realm -> list.remove(bean));
-                    adapter.setNewData(list);
-                }
-
-                @Override
-                public void moveTop() {
-                    realm.executeTransaction(realm -> {
-                        list.remove(bean);
-                        list.add(0, bean);
-                    });
-                    adapter.setNewData(list);
-                }
-            });
         });
     }
 
@@ -162,37 +133,7 @@ public class ExploreFragment extends BaseFragment {
             case R.id.action_search:
                 IntentUtils.intentToSearchVideo(mContext);
                 break;
-         /*   case R.id.custom_add_website:
-                AddWebSiteDialog dialog = new AddWebSiteDialog(mContext);
-                dialog.show();
-                dialog.setClickListener((site, url) -> realm.executeTransaction(realm -> {
-                    WebSiteBean bean = realm.createObject(WebSiteBean.class);
-                    bean.setSiteName(site);
-                    bean.setUrl(url);
-                    WebSiteList data = realm.where(WebSiteList.class).findFirst();
-                    if (data != null) {
-                        data.getWebSiteBeanRealmList().add(bean);
-                        showToast("添加成功");
-                        refrshData();
-                    }
-                }));
-                break;
-            case R.id.action_add_to_site:
-                realm.executeTransaction(realm -> {
-                    WebSiteBean bean = realm.createObject(WebSiteBean.class);
-                    bean.setSiteName(webTitle);
-                    bean.setUrl(webUrl);
-                    WebSiteList data = realm.where(WebSiteList.class).findFirst();
-                    if (data != null) {
-                        data.getWebSiteBeanRealmList().add(bean);
-                        showToast("添加成功");
-                        refrshData();
-                    }
-                });
-                break;
-            case R.id.action_add_to_collect:
 
-                break;*/
         }
         return super.onOptionsItemSelected(item);
     }
@@ -223,14 +164,13 @@ public class ExploreFragment extends BaseFragment {
         });
     }
 
-
-    private void refrshData() {
-        WebSiteList realmList = realm.where(WebSiteList.class).findFirst();
-        if (realmList != null) {
-            list = realmList.getWebSiteBeanRealmList();
-            adapter.setNewData(list);
-        }
+    @Override
+    public void returnFail(String message) {
+        showToast(message);
     }
 
-
+    @Override
+    public void returnResult(List<ExploreMultiItemBean> list) {
+        adapter.setNewData(list);
+    }
 }

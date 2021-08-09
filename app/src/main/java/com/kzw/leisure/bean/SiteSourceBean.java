@@ -43,5 +43,21 @@ public class SiteSourceBean implements Serializable {
         public void setUrl(String url) {
             this.url = url;
         }
+
+        @Override
+        public String toString() {
+            return "ListDTO{" +
+                    "siteName='" + siteName + '\'' +
+                    ", url='" + url + '\'' +
+                    '}';
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "SiteSourceBean{" +
+                "list=" + list +
+                ", listName='" + listName + '\'' +
+                '}';
     }
 }

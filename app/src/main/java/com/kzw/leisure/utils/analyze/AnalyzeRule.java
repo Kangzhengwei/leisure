@@ -1,5 +1,14 @@
 package com.kzw.leisure.utils.analyze;
 
+import static android.text.TextUtils.isEmpty;
+import static com.kzw.leisure.utils.Constant.EXP_PATTERN;
+import static com.kzw.leisure.utils.Constant.JS_PATTERN;
+import static com.kzw.leisure.utils.Constant.MAP_STRING;
+import static com.kzw.leisure.utils.Constant.SCRIPT_ENGINE;
+import static com.kzw.leisure.utils.Constant.getPattern;
+import static com.kzw.leisure.utils.Constant.headerPattern;
+import static com.kzw.leisure.utils.Constant.putPattern;
+
 import android.annotation.SuppressLint;
 
 import androidx.annotation.Keep;
@@ -17,15 +26,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.script.SimpleBindings;
-
-import static android.text.TextUtils.isEmpty;
-import static com.kzw.leisure.utils.Constant.EXP_PATTERN;
-import static com.kzw.leisure.utils.Constant.JS_PATTERN;
-import static com.kzw.leisure.utils.Constant.MAP_STRING;
-import static com.kzw.leisure.utils.Constant.SCRIPT_ENGINE;
-import static com.kzw.leisure.utils.Constant.getPattern;
-import static com.kzw.leisure.utils.Constant.headerPattern;
-import static com.kzw.leisure.utils.Constant.putPattern;
 
 
 /**

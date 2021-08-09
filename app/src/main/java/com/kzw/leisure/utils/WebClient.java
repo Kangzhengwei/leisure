@@ -24,11 +24,6 @@ public class WebClient extends WebViewClient {
         if (listener != null) {
             listener.requestResult(view.getTitle(), url);
         }
-        boolean isLaunch = SPUtils.getInstance().getBoolean("isLaunch");
-        if (isLaunch) {
-            SPUtils.getInstance().putBoolean("isLaunch", false);
-            view.loadUrl(Constant.URL);
-        }
     }
 
     @Override
