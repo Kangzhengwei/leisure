@@ -3,6 +3,7 @@ package com.kzw.leisure.base;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
+import android.graphics.PixelFormat;
 import android.media.AudioManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +23,7 @@ import com.kzw.leisure.utils.WebClient;
 import com.kzw.leisure.widgets.X5WebView;
 import com.tencent.smtt.export.external.interfaces.IX5WebChromeClient;
 import com.tencent.smtt.export.external.interfaces.JsResult;
+import com.tencent.smtt.sdk.CookieSyncManager;
 import com.tencent.smtt.sdk.WebChromeClient;
 import com.tencent.smtt.sdk.WebView;
 
@@ -47,6 +49,16 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
 
     @Override
     protected int getContentView() {
+        getWindow().setFormat(PixelFormat.TRANSLUCENT);
+        try {
+            if (Integer.parseInt(android.os.Build.VERSION.SDK) >= 11) {
+                getWindow()
+                        .setFlags(
+                                android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
+                                android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
+            }
+        } catch (Exception e) {
+        }
         return getInitView();
     }
 
@@ -146,6 +158,8 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
                 enablePageVideoFunc(webView);
             }
         }, "Android");
+        CookieSyncManager.createInstance(this);
+        CookieSyncManager.getInstance().sync();
     }
 
     public void loadUrl(String url) {
