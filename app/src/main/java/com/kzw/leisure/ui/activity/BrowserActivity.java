@@ -64,7 +64,6 @@ public class BrowserActivity extends BaseWebViewActivity {
 
     @Override
     protected int getInitView() {
-        getWindow().setFormat(PixelFormat.TRANSLUCENT);
         return R.layout.activity_browser;
     }
 

@@ -49,16 +49,6 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
 
     @Override
     protected int getContentView() {
-        getWindow().setFormat(PixelFormat.TRANSLUCENT);
-        try {
-            if (Integer.parseInt(android.os.Build.VERSION.SDK) >= 11) {
-                getWindow()
-                        .setFlags(
-                                android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED,
-                                android.view.WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED);
-            }
-        } catch (Exception e) {
-        }
         return getInitView();
     }
 
