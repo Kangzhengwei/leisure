@@ -34,27 +34,26 @@ public class X5WebView extends WebView {
     }
 
     private void initWebViewSettings() {
-        WebSettings webSetting = this.getSettings();
-        webSetting.setJavaScriptEnabled(true);
-        webSetting.setJavaScriptCanOpenWindowsAutomatically(true);
+        WebSettings webSetting = getSettings();
         webSetting.setAllowFileAccess(true);
         webSetting.setLayoutAlgorithm(WebSettings.LayoutAlgorithm.NARROW_COLUMNS);
         webSetting.setSupportZoom(true);
-        webSetting.setBuiltInZoomControls(false);
+        webSetting.setBuiltInZoomControls(true);
         webSetting.setUseWideViewPort(true);
-        //webSetting.setSupportMultipleWindows(true);
-        webSetting.setLoadWithOverviewMode(true);
-        webSetting.setAppCacheEnabled(false);
-        webSetting.setDatabaseEnabled(false);
-        webSetting.setDomStorageEnabled(false);
+        webSetting.setSupportMultipleWindows(false);
+        // webSetting.setLoadWithOverviewMode(true);
+        webSetting.setAppCacheEnabled(true);
+        // webSetting.setDatabaseEnabled(true);
+        webSetting.setDomStorageEnabled(true);
+        webSetting.setJavaScriptEnabled(true);
         webSetting.setGeolocationEnabled(true);
-        webSetting.setAppCacheMaxSize(Long.MIN_VALUE);
-        //webSetting.setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);
+        webSetting.setAppCacheMaxSize(Long.MAX_VALUE);
+        webSetting.setAppCachePath(getContext().getDir("appcache", 0).getPath());
+        webSetting.setDatabasePath(getContext().getDir("databases", 0).getPath());
+        webSetting.setGeolocationDatabasePath(getContext().getDir("geolocation", 0)
+                .getPath());
+        // webSetting.setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);
         webSetting.setPluginState(WebSettings.PluginState.ON_DEMAND);
-        // webSetting.setRenderPriority(WebSettings.RenderPriority.HIGH);
-        webSetting.setCacheMode(WebSettings.LOAD_NO_CACHE);
-        // this.getSettingsExtension().setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY);//extension
-        // settings 的设计
     }
 
 
