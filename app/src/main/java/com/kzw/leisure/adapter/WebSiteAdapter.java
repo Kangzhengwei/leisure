@@ -59,6 +59,7 @@ public class WebSiteAdapter extends BaseMultiItemQuickAdapter<ExploreMultiItemBe
                 helper.setText(R.id.tv_site_name, item.getBean().getSiteName());
                 helper.setText(R.id.site_url, item.getBean().getUrl());
                 cardView.setOnClickListener(view -> IntentUtils.intentToBrowserActivity(mContext, item.getBean().getUrl()));
+               // cardView.setOnClickListener(view -> mContext.startActivity(new Intent(mContext, TextX5Activity.class)));
                 break;
         }
     }

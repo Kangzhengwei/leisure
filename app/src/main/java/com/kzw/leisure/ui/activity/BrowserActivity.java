@@ -2,6 +2,7 @@ package com.kzw.leisure.ui.activity;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.PixelFormat;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
@@ -63,6 +64,7 @@ public class BrowserActivity extends BaseWebViewActivity {
 
     @Override
     protected int getInitView() {
+        getWindow().setFormat(PixelFormat.TRANSLUCENT);
         return R.layout.activity_browser;
     }
 
@@ -172,6 +174,9 @@ public class BrowserActivity extends BaseWebViewActivity {
 
     @Override
     protected void loadFinish() {
+        if(this.isFinishing()){
+            return;
+        }
         editText.setText(webTitle);
         addHistory();
     }
