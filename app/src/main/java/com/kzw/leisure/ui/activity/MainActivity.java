@@ -39,10 +39,10 @@ public class MainActivity extends BaseActivity {
     }
 
     @Override
-    protected void initPresenter() { }
+    protected void initPresenter() {}
 
     @Override
-    public void initData() { }
+    public void initData() {}
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

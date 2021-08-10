@@ -7,9 +7,13 @@ import com.kzw.leisure.bean.SiteSourceBean;
 import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.GsonUtil;
 
+import org.reactivestreams.Publisher;
+
 import java.util.List;
 
 import io.reactivex.Flowable;
+import io.reactivex.annotations.NonNull;
+import io.reactivex.functions.Function;
 import retrofit2.Retrofit;
 
 /**
@@ -49,16 +53,18 @@ public class RetrofitHelper {
                 .get(path);
     }
 
-    /* public Flowable<List<SiteSourceBean>> getSiteSource() {
-         return createRetrofit(Constant.SOURCE_URL)
-                 .create(ApiService.class)
-                 .getWebSiteSource();
-     }*/
     public Flowable<List<SiteSourceBean>> getSiteSource() {
+        return createRetrofit(Constant.SOURCE_URL)
+                .create(ApiService.class)
+                .getWebSiteSource().map(s -> GsonUtil.getInstance().fromJson(s, new TypeToken<List<SiteSourceBean>>() {
+                }.getType()));
+    }
+
+  /*  public Flowable<List<SiteSourceBean>> getSiteSource() {
         List<SiteSourceBean> list = GsonUtil.getInstance().fromJson(Constant.source, new TypeToken<List<SiteSourceBean>>() {
         }.getType());
         return Flowable.just(list);
-    }
+    }*/
 
 
     public Flowable<String> getResponse(Query query) {

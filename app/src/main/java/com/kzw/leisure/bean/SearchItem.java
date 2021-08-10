@@ -19,7 +19,7 @@ public class SearchItem implements Serializable {
     public String name;
     public String url;
     public String siteName;
-    public int type;//0是解析，1是采集
+    public int type;//0是解析，1是采集，2是跳转到网页播放(拼接)3采集官方资源
     private Map<String, String> variableMap;
     private String variable;
 

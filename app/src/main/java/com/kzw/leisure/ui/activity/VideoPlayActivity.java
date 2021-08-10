@@ -27,6 +27,7 @@ import com.kzw.leisure.realm.VideoWatchTypeSeriesRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.AdMobUtils;
 import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.utils.StatusBarUtil;
@@ -237,11 +238,17 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         adapter = new SeriesAdapter();
         recyclerView.setAdapter(adapter);
         adapter.setOnClickListener((item, list, urlType, position) -> {
-            videoPlayer.setUp(item.getVideoUrl(), true, item.getVideoSeries());
-            videoPlayer.startPlayLogic();
-            seriesPopWindow.setData(list);
-            videoUrlType = urlType;
-            updateData(item, urlType, position);
+            if (this.item != null && this.item.getType() == 2) {
+                IntentUtils.intentToBrowserActivity(mContext, Constant.LE_DUO_API + item.getVideoUrl());
+            } else if (this.item != null && this.item.getType() == 3) {
+                IntentUtils.intentToBrowserActivity(mContext,  item.getVideoUrl());
+            } else {
+                videoPlayer.setUp(item.getVideoUrl(), true, item.getVideoSeries());
+                videoPlayer.startPlayLogic();
+                seriesPopWindow.setData(list);
+                videoUrlType = urlType;
+                updateData(item, urlType, position);
+            }
         });
     }
 

@@ -23,6 +23,15 @@ public class QuerySearchVideoBean  {
     private String ruleVideoName;
     private String ruleVideoImage;
     private int sourceType;//分为列表式和父子式
+    private int type;//0是解析，1是采集，2是跳转到网页播放
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
+    }
 
     public int getSourceType() {
         return sourceType;
