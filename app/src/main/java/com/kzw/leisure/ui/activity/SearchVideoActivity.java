@@ -243,8 +243,6 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
     }
 
     @Override
-    public void returnFail(String message) {
-        showToast(message);
-    }
+    public void returnFail(String message) { }
 
 }

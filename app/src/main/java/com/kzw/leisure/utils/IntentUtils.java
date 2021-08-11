@@ -57,8 +57,8 @@ public class IntentUtils {
         context.startActivity(new Intent(context, MainActivity.class));
     }
 
-    public static void intentToBrowserActivity(Context context, String url) {
-        context.startActivity(new Intent(context, BrowserActivity.class).putExtra("url", url));
+    public static void intentToBrowserActivity(Context context, String url,int type) {
+        context.startActivity(new Intent(context, BrowserActivity.class).putExtra("url", url).putExtra("type",type));
     }
 
     public static void intentToCollectAndHistoryActivity(Activity context) {

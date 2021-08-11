@@ -61,6 +61,11 @@
         <item name="android:windowExitAnimation">@anim/pop_diss</item>
     </style>
 
+    <style name="bottom_anim" parent="android:Animation">
+        <item name="android:windowEnterAnimation">@anim/anim_readbook_bottom_in</item>
+        <item name="android:windowExitAnimation">@anim/anim_readbook_bottom_out</item>
+    </style>
+
     <style name="alertDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert" />
 
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -239,9 +239,9 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         recyclerView.setAdapter(adapter);
         adapter.setOnClickListener((item, list, urlType, position) -> {
             if (this.item != null && this.item.getType() == 2) {
-                IntentUtils.intentToBrowserActivity(mContext, Constant.LE_DUO_API + item.getVideoUrl());
+                IntentUtils.intentToBrowserActivity(mContext, Constant.LE_DUO_API + item.getVideoUrl(),0);
             } else if (this.item != null && this.item.getType() == 3) {
-                IntentUtils.intentToBrowserActivity(mContext,  Constant.URL+item.getVideoUrl());
+                IntentUtils.intentToBrowserActivity(mContext,  item.getVideoUrl(),1);
             } else {
                 videoPlayer.setUp(item.getVideoUrl(), true, item.getVideoSeries());
                 videoPlayer.startPlayLogic();
@@ -389,9 +389,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     }
 
     @Override
-    public void returnFail(String message) {
-        showToast(message);
-    }
+    public void returnFail(String message) { }
 
 
     private void saveData() {

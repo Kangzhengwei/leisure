@@ -16,18 +16,23 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.appbar.AppBarLayout;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.gson.reflect.TypeToken;
 import com.kzw.leisure.R;
 import com.kzw.leisure.base.BaseWebViewActivity;
+import com.kzw.leisure.bean.LineBean;
 import com.kzw.leisure.realm.CollectDataBean;
 import com.kzw.leisure.realm.CollectDataList;
 import com.kzw.leisure.realm.HistoryDataBean;
 import com.kzw.leisure.realm.HistoryDataList;
 import com.kzw.leisure.utils.BarHide;
 import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.ImmersionBar;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.RealmHelper;
+import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.utils.StringUtils;
+import com.kzw.leisure.widgets.popwindow.SourceLinePopWindow;
 
 import java.util.List;
 
@@ -64,6 +69,9 @@ public class BrowserActivity extends BaseWebViewActivity {
     @BindView(R.id.floatingActionButton)
     FloatingActionButton floatingActionButton;
 
+    private String webUrl;
+    private List<LineBean> lists;
+    private int type;
 
     @Override
     protected int getInitView() {
@@ -73,9 +81,32 @@ public class BrowserActivity extends BaseWebViewActivity {
     @Override
     protected void initWidgets() {
         ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR).init();
-        String url = getIntent().getStringExtra("url");
+        webUrl = getIntent().getStringExtra("url");
+        type = getIntent().getIntExtra("type", 0);
+        loadData();
+    }
+
+    private void loadData() {
+        String url;
+        if (type == 1) {
+            floatingActionButton.show();
+            String lineSource = SPUtils.getInstance().getString("lineSource");
+            if (!StringUtils.isTrimEmpty(lineSource)) {
+                url = lineSource + webUrl;
+            } else {
+                url = Constant.URL + webUrl;
+            }
+        } else {
+            url = webUrl;
+        }
         initToolBar(url);
         loadUrl(url);
+    }
+
+    @Override
+    public void initData() {
+        lists = GsonUtil.getInstance().fromJson(Constant.lineSource, new TypeToken<List<LineBean>>() {
+        }.getType());
     }
 
     private void initToolBar(String url) {
@@ -103,7 +134,7 @@ public class BrowserActivity extends BaseWebViewActivity {
         });
     }
 
-    @OnClick({R.id.top_bar_left, R.id.top_bar_right, R.id.btn_cancel, R.id.btn_left, R.id.btn_right, R.id.btn_menu, R.id.btn_home, R.id.btn_collect})
+    @OnClick({R.id.top_bar_left, R.id.top_bar_right, R.id.btn_cancel, R.id.btn_left, R.id.btn_right, R.id.btn_menu, R.id.btn_home, R.id.btn_collect, R.id.floatingActionButton})
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.top_bar_left:
@@ -142,36 +173,15 @@ public class BrowserActivity extends BaseWebViewActivity {
                 }
                 collect();
                 break;
+            case R.id.floatingActionButton:
+                SourceLinePopWindow.builder(this).setData(lists).setItemClickListener(this::handleData).show(bottomBar);
+                break;
         }
     }
 
-    private void collect() {
-        RealmHelper.getInstance().getRealm().executeTransaction(realm -> {
-            boolean ishas = false;
-            List<CollectDataBean> list = realm.where(CollectDataBean.class).findAll();
-            if (list != null && list.size() > 0) {
-                for (CollectDataBean bean : list) {
-                    if (!TextUtils.isEmpty(bean.getUrl()) && bean.getUrl().equals(webUrl)) {
-                        ishas = true;
-                        showSnackBar("该链接已收藏", bottomBar);
-                        break;
-                    }
-                }
-            }
-            if (!ishas) {
-                CollectDataBean data = realm.createObject(CollectDataBean.class);
-                data.setUrl(webUrl);
-                data.setUrlTitle(webTitle);
-                CollectDataList dataList = realm.where(CollectDataList.class).findFirst();
-                if (dataList != null) {
-                    dataList.getCollectList().add(data);
-                } else {
-                    CollectDataList newList = realm.createObject(CollectDataList.class);
-                    newList.getCollectList().add(data);
-                }
-                showSnackBar("收藏成功", bottomBar);
-            }
-        });
+    private void handleData(LineBean lineBean) {
+        loadUrl(lineBean.getUrl() + webUrl);
+        SPUtils.getInstance().putString("lineSource", lineBean.getUrl());
     }
 
     @Override
@@ -218,6 +228,35 @@ public class BrowserActivity extends BaseWebViewActivity {
                     HistoryDataList newList = realm.createObject(HistoryDataList.class);
                     newList.getHistoryDataBeanRealmList().add(data);
                 }
+            }
+        });
+    }
+
+    private void collect() {
+        RealmHelper.getInstance().getRealm().executeTransaction(realm -> {
+            boolean ishas = false;
+            List<CollectDataBean> list = realm.where(CollectDataBean.class).findAll();
+            if (list != null && list.size() > 0) {
+                for (CollectDataBean bean : list) {
+                    if (!TextUtils.isEmpty(bean.getUrl()) && bean.getUrl().equals(webUrl)) {
+                        ishas = true;
+                        showSnackBar("该链接已收藏", bottomBar);
+                        break;
+                    }
+                }
+            }
+            if (!ishas) {
+                CollectDataBean data = realm.createObject(CollectDataBean.class);
+                data.setUrl(webUrl);
+                data.setUrlTitle(webTitle);
+                CollectDataList dataList = realm.where(CollectDataList.class).findFirst();
+                if (dataList != null) {
+                    dataList.getCollectList().add(data);
+                } else {
+                    CollectDataList newList = realm.createObject(CollectDataList.class);
+                    newList.getCollectList().add(data);
+                }
+                showSnackBar("收藏成功", bottomBar);
             }
         });
     }

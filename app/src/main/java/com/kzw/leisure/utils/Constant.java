@@ -20,7 +20,7 @@ public class Constant {
     public static final String KEY_URL = "https://z1.m1907.cn/api/v/";
     public static final String FRONT_DOWNLOAD_URL = "https://www.jianguoyun.com/p/DXyqo6IQ0Zb6Bxj2ibEC";
     public static final String LE_DUO_API = "https://api.leduotv.com/wp-api/ifr.php?vid=";
-    public static final String SOURCE_URL="https://raw.githubusercontent.com/";
+    public static final String SOURCE_URL = "https://raw.githubusercontent.com/";
 
     public static final Pattern putPattern = Pattern.compile("@put:(\\{[^}]+?\\})", Pattern.CASE_INSENSITIVE);
     public static final Pattern getPattern = Pattern.compile("@get:\\{([^}]+?)\\}", Pattern.CASE_INSENSITIVE);
@@ -370,5 +370,11 @@ public class Constant {
             "    \"listName\": \"导航\"\n" +
             "  }\n" +
             "]";
+
+
+    public static String lineSource = "[{\n" +
+            "\t\"name\": \"线路一\",\n" +
+            "\t\"url\": \"https://z1.m1907.cn/?jx=\"\n" +
+            "}]";
 
 }

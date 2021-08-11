@@ -58,7 +58,7 @@ public class WebSiteAdapter extends BaseMultiItemQuickAdapter<ExploreMultiItemBe
                 helper.setBackgroundColor(R.id.tv_tag, Color.parseColor(StringUtils.getRandColor()));
                 helper.setText(R.id.tv_site_name, item.getBean().getSiteName());
                 helper.setText(R.id.site_url, item.getBean().getUrl());
-                cardView.setOnClickListener(view -> IntentUtils.intentToBrowserActivity(mContext, item.getBean().getUrl()));
+                cardView.setOnClickListener(view -> IntentUtils.intentToBrowserActivity(mContext, item.getBean().getUrl(),0));
                 break;
         }
     }

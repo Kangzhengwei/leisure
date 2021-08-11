@@ -91,6 +91,7 @@
         android:layout_marginTop="12dp"
         android:layout_marginEnd="12dp"
         android:contentDescription="@string/source_change"
+        android:visibility="gone"
         app:elevation="4dp"
         app:srcCompat="@mipmap/ic_action_reload" />
 
