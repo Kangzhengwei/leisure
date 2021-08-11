@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -10,7 +10,8 @@
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/top_bar"
@@ -48,6 +49,7 @@
                     android:imeOptions="actionSearch"
                     android:inputType="textPersonName"
                     android:paddingStart="4dp"
+                    android:paddingEnd="4dp"
                     android:textColor="@color/blank"
                     android:textColorHint="@color/gray"
                     android:textSize="14sp" />
@@ -80,16 +82,30 @@
             android:progressDrawable="@drawable/progressbar_video" />
     </com.google.android.material.appbar.AppBarLayout>
 
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/app_bar"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:contentDescription="@string/source_change"
+        app:elevation="4dp"
+        app:srcCompat="@mipmap/ic_action_reload" />
+
     <com.kzw.leisure.widgets.X5WebView
         android:id="@+id/webView"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1.0" />
+        android:layout_height="match_parent"
+        android:layout_above="@+id/bottom_bar"
+        android:layout_below="@+id/app_bar" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:layout_alignParentBottom="true"
         android:layout_gravity="bottom"
         android:background="@color/white"
         android:theme="@style/ToolBar.Theme"
@@ -152,4 +168,4 @@
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.appcompat.widget.Toolbar>
-</LinearLayout>
+</RelativeLayout>

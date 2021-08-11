@@ -11,8 +11,8 @@ android {
         applicationId "com.kzw.leisure"
         minSdkVersion 19
         targetSdkVersion 30
-        versionCode 100
-        versionName "1.1.5"
+        versionCode 18
+        versionName "1.1.6"
         multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         ndk {

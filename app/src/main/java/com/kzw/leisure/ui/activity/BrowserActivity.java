@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.inputmethod.EditorInfo;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatButton;
@@ -14,6 +15,7 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.Toolbar;
 
 import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kzw.leisure.R;
 import com.kzw.leisure.base.BaseWebViewActivity;
 import com.kzw.leisure.realm.CollectDataBean;
@@ -59,6 +61,8 @@ public class BrowserActivity extends BaseWebViewActivity {
     AppBarLayout appBarLayout;
     @BindView(R.id.btn_collect)
     AppCompatImageView btnCollect;
+    @BindView(R.id.floatingActionButton)
+    FloatingActionButton floatingActionButton;
 
 
     @Override
@@ -75,7 +79,7 @@ public class BrowserActivity extends BaseWebViewActivity {
     }
 
     private void initToolBar(String url) {
-        LinearLayout.LayoutParams params = (LinearLayout.LayoutParams) appBarLayout.getLayoutParams();
+        RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams) appBarLayout.getLayoutParams();
         params.topMargin = ImmersionBar.getStatusBarHeight(this);
         appBarLayout.setLayoutParams(params);
         editText.setText(url);

@@ -53,18 +53,18 @@ public class RetrofitHelper {
                 .get(path);
     }
 
-    public Flowable<List<SiteSourceBean>> getSiteSource() {
+/*    public Flowable<List<SiteSourceBean>> getSiteSource() {
         return createRetrofit(Constant.SOURCE_URL)
                 .create(ApiService.class)
                 .getWebSiteSource().map(s -> GsonUtil.getInstance().fromJson(s, new TypeToken<List<SiteSourceBean>>() {
                 }.getType()));
-    }
+    }*/
 
-  /*  public Flowable<List<SiteSourceBean>> getSiteSource() {
+    public Flowable<List<SiteSourceBean>> getSiteSource() {
         List<SiteSourceBean> list = GsonUtil.getInstance().fromJson(Constant.source, new TypeToken<List<SiteSourceBean>>() {
         }.getType());
         return Flowable.just(list);
-    }*/
+    }
 
 
     public Flowable<String> getResponse(Query query) {

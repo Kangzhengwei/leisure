@@ -25,9 +25,12 @@ import com.kzw.leisure.contract.WebSiteSourceContract;
 import com.kzw.leisure.model.WebSiteSourceModel;
 import com.kzw.leisure.presenter.WebSiteSourcePresenter;
 import com.kzw.leisure.utils.CacheUtils;
+import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.PermessionUtil;
+import com.kzw.leisure.utils.WebClient;
+import com.kzw.leisure.widgets.X5WebView;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 
 import java.util.ArrayList;
@@ -48,6 +51,8 @@ public class ExploreFragment extends BaseFragment<WebSiteSourcePresenter, WebSit
     RelativeLayout slideMenu;
     @BindView(R.id.navigation)
     NavigationView navigationView;
+    @BindView(R.id.webView)
+    X5WebView webView;
 
     private ActionBarDrawerToggle mDrawerToggle;
     private List<ExploreMultiItemBean> list = new ArrayList<>();
@@ -75,6 +80,12 @@ public class ExploreFragment extends BaseFragment<WebSiteSourcePresenter, WebSit
         mDrawerToggle = new ActionBarDrawerToggle(mActivity, drawer, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawerToggle.syncState();
         drawer.addDrawerListener(mDrawerToggle);
+        initWebView();
+    }
+
+    private void initWebView() {
+        webView.setWebViewClient(new WebClient());
+        webView.loadUrl(Constant.DEFAULT_URL);
     }
 
     @Override
@@ -92,7 +103,7 @@ public class ExploreFragment extends BaseFragment<WebSiteSourcePresenter, WebSit
         GridLayoutManager gridLayoutManager = new GridLayoutManager(mContext, 2);
         recyclerview.setLayoutManager(gridLayoutManager);
         recyclerview.setItemAnimator(new DefaultItemAnimator());
-        adapter = new WebSiteAdapter(list,mActivity);
+        adapter = new WebSiteAdapter(list, mActivity);
         recyclerview.setAdapter(adapter);
         gridLayoutManager.setSpanSizeLookup(new GridLayoutManager.SpanSizeLookup() {
             @Override

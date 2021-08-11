@@ -24,6 +24,13 @@
             app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/OverflowMenuStyle" />
 
+        <com.kzw.leisure.widgets.X5WebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/toolbar"
+            android:visibility="gone" />
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"
             android:layout_width="match_parent"

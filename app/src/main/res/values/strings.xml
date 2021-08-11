@@ -81,4 +81,5 @@
     <string name="alipay_pay">支付宝转账</string>
     <string name="disclaimer">免责声明</string>
     <string name="action_explore">探索</string>
+    <string name="source_change">切换</string>
 </resources>

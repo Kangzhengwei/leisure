@@ -281,24 +281,6 @@ public class Constant {
             "}," +
             "{" +
             "\"sourceType\":\"0\"," +
-            "\"type\":\"3\"," +
-            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"index.php/vod/search.html?wd=ruleKeyword&submit=search\"," +
-            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
-            "\"ruleItem\":\"li\"," +
-            "\"ruleSeriesName\":\"li@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h3@text\"," +
-            "\"ruleTypeList\":\"h3\"," +
-            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
-            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
-            "\"siteName\":\"全网影视官方资源\"," +
-            "\"videoSourceUrl\":\"http://hao123.daicuo.cc/\"" +
-            "}," +
-            "{" +
-            "\"sourceType\":\"0\"," +
             "\"type\":\"1\"," +
             "\"ruleSearchList\":\"class.clearfix@class.title@tag.a\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
@@ -360,16 +342,8 @@ public class Constant {
             "        \"url\": \"https://zy.7kjx.com/\"\n" +
             "      },\n" +
             "      {\n" +
-            "        \"siteName\": \"电影先生\",\n" +
-            "        \"url\": \"http://www.dianyingim.com/\"\n" +
-            "      },\n" +
-            "      {\n" +
             "        \"siteName\": \"1231\",\n" +
             "        \"url\": \"https://www.1231d.com/\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"siteName\": \"唯爱\",\n" +
-            "        \"url\": \"https://www.movie520.cn/\"\n" +
             "      },\n" +
             "      {\n" +
             "        \"siteName\": \"芒果影院\",\n" +

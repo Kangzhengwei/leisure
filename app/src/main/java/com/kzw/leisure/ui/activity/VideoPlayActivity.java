@@ -241,7 +241,7 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
             if (this.item != null && this.item.getType() == 2) {
                 IntentUtils.intentToBrowserActivity(mContext, Constant.LE_DUO_API + item.getVideoUrl());
             } else if (this.item != null && this.item.getType() == 3) {
-                IntentUtils.intentToBrowserActivity(mContext,  item.getVideoUrl());
+                IntentUtils.intentToBrowserActivity(mContext,  Constant.URL+item.getVideoUrl());
             } else {
                 videoPlayer.setUp(item.getVideoUrl(), true, item.getVideoSeries());
                 videoPlayer.startPlayLogic();
