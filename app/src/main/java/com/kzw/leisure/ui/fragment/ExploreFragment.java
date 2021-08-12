@@ -165,6 +165,7 @@ public class ExploreFragment extends BaseFragment<WebSiteSourcePresenter, WebSit
                     }
                     break;
                 case R.id.action_about:
+                    IntentUtils.intentToDisclaimersActivity(mContext);
                     break;
 
             }

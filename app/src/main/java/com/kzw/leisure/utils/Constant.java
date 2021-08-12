@@ -325,6 +325,10 @@ public class Constant {
             "        \"url\": \"https://z1.m1907.cn/?jx=\"\n" +
             "      },\n" +
             "      {\n" +
+            "        \"siteName\": \"小小\",\n" +
+            "        \"url\": \"http://tv.hzwdd.cn/\"\n" +
+            "      },\n" +
+            "      {\n" +
             "        \"siteName\": \"鲨鱼TV\",\n" +
             "        \"url\": \"https://www.sharktv.cn/\"\n" +
             "      }\n" +
@@ -346,6 +350,10 @@ public class Constant {
             "        \"url\": \"https://www.1231d.com/\"\n" +
             "      },\n" +
             "      {\n" +
+            "        \"siteName\": \"嗯li嗯li\",\n" +
+            "        \"url\": \"https://enlienli.com/\"\n" +
+            "      },\n" +
+            "      {\n" +
             "        \"siteName\": \"芒果影院\",\n" +
             "        \"url\": \"https://www.mguomovie.com/\"\n" +
             "      }\n" +
@@ -363,6 +371,10 @@ public class Constant {
             "        \"url\": \"https://movie.coolzhanweb.com/\"\n" +
             "      },\n" +
             "      {\n" +
+            "        \"siteName\": \"龙轩导航\",\n" +
+            "        \"url\": \"http://ilxdh.com/cat/167\"\n" +
+            "      },\n" +
+            "      {\n" +
             "        \"siteName\": \"小森林导航2\",\n" +
             "        \"url\": \"http://www.xsldh.vip/\"\n" +
             "      }\n" +
@@ -372,9 +384,19 @@ public class Constant {
             "]";
 
 
-    public static String lineSource = "[{\n" +
+    public static String lineSource = "[" +
+            "{\n" +
             "\t\"name\": \"线路一\",\n" +
             "\t\"url\": \"https://z1.m1907.cn/?jx=\"\n" +
-            "}]";
+            "}," +
+            "{\n" +
+            "\t\"name\": \"线路二\",\n" +
+            "\t\"url\": \"https://jx.m3u8.tv/jiexi/?url=\"\n" +
+            "}," +
+            "{\n" +
+            "\t\"name\": \"线路三\",\n" +
+            "\t\"url\": \"https://www.pangujiexi.com/jiexi/?url=\"\n" +
+            "}" +
+            "]";
 
 }

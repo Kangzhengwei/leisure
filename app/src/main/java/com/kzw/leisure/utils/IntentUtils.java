@@ -9,6 +9,7 @@ import com.kzw.leisure.bean.SearchItem;
 import com.kzw.leisure.ui.activity.BookDetailActivity;
 import com.kzw.leisure.ui.activity.BrowserActivity;
 import com.kzw.leisure.ui.activity.CollectAndHistoryActivity;
+import com.kzw.leisure.ui.activity.DisclaimersActivity;
 import com.kzw.leisure.ui.activity.DonateActivity;
 import com.kzw.leisure.ui.activity.DownloadFrontActivity;
 import com.kzw.leisure.ui.activity.MainActivity;
@@ -57,12 +58,16 @@ public class IntentUtils {
         context.startActivity(new Intent(context, MainActivity.class));
     }
 
-    public static void intentToBrowserActivity(Context context, String url,int type) {
-        context.startActivity(new Intent(context, BrowserActivity.class).putExtra("url", url).putExtra("type",type));
+    public static void intentToBrowserActivity(Context context, String url, int type) {
+        context.startActivity(new Intent(context, BrowserActivity.class).putExtra("url", url).putExtra("type", type));
     }
 
     public static void intentToCollectAndHistoryActivity(Activity context) {
         context.startActivityForResult(new Intent(context, CollectAndHistoryActivity.class), Constant.ACTIVITY_REQUEST_CODE);
+    }
+
+    public static void intentToDisclaimersActivity(Context context) {
+        context.startActivity(new Intent(context, DisclaimersActivity.class));
     }
 
 

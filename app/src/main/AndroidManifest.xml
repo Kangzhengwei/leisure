@@ -22,6 +22,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".ui.activity.DisclaimersActivity"/>
         <activity
             android:name=".ui.activity.CollectAndHistoryActivity"
             android:screenOrientation="portrait" />
@@ -76,7 +77,6 @@
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
             android:value="ca-app-pub-2169493091779977~5470210413" />
-
     </application>
 
 </manifest>
