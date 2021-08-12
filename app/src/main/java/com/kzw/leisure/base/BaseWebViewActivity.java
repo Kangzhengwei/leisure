@@ -164,7 +164,7 @@ public abstract class BaseWebViewActivity extends BaseActivity implements WebCli
         setFullScreen();
         getWindow().getDecorView();
         FrameLayout decor = (FrameLayout) getWindow().getDecorView();
-        fullscreenContainer = new BaseWebViewFragment.FullscreenHolder(this);
+        fullscreenContainer = new FullscreenHolder(this);
         fullscreenContainer.addView(view, COVER_SCREEN_PARAMS);
         decor.addView(fullscreenContainer, COVER_SCREEN_PARAMS);
         customView = view;
