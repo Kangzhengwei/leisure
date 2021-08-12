@@ -2,7 +2,9 @@ package com.kzw.leisure.base;
 
 import android.app.Application;
 import android.content.Context;
+
 import androidx.multidex.MultiDex;
+
 import com.kzw.leisure.realm.MyMigration;
 import com.kzw.leisure.utils.AdMobUtils;
 import com.kzw.leisure.utils.AppUtils;

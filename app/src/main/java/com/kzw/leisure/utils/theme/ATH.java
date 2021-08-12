@@ -1,7 +1,5 @@
 package com.kzw.leisure.utils.theme;
 
-import static android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.ActivityManager;
@@ -16,6 +14,8 @@ import androidx.appcompat.app.AlertDialog;
 
 import com.kzw.leisure.utils.ColorUtil;
 import com.kzw.leisure.utils.Selector;
+
+import static android.view.View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR;
 
 /**
  * @author Karim Abou Zeid (kabouzeid)

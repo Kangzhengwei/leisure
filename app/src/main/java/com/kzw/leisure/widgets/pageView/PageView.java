@@ -1,7 +1,5 @@
 package com.kzw.leisure.widgets.pageView;
 
-import static com.kzw.leisure.utils.ScreenUtils.getDisplayMetrics;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -33,6 +31,8 @@ import com.zia.easybook.widget.TxtPage;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.kzw.leisure.utils.ScreenUtils.getDisplayMetrics;
 
 
 /**

@@ -1,7 +1,5 @@
 package com.kzw.leisure.utils;
 
-import static android.text.TextUtils.isEmpty;
-
 import androidx.annotation.NonNull;
 
 import org.jsoup.Jsoup;
@@ -13,6 +11,8 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStream;
 import java.net.URL;
+
+import static android.text.TextUtils.isEmpty;
 
 /**
  * <Detect encoding .> Copyright (C) <2009> <Fluck,ACC http://androidos.cc/dev>

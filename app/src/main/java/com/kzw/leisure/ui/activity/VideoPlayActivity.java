@@ -2,7 +2,6 @@ package com.kzw.leisure.ui.activity;
 
 
 import android.app.Activity;
-import android.app.AlertDialog;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -26,7 +25,6 @@ import com.kzw.leisure.realm.VideoWatchTypeRealm;
 import com.kzw.leisure.realm.VideoWatchTypeSeriesRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.AdMobUtils;
-import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.LogUtils;

@@ -1,7 +1,5 @@
 package com.kzw.leisure.utils;
 
-import static android.content.Context.POWER_SERVICE;
-
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Context;
@@ -9,6 +7,8 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.PowerManager;
 import android.provider.Settings;
+
+import static android.content.Context.POWER_SERVICE;
 
 public class SystemUtil {
 

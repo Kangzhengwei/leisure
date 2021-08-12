@@ -1,7 +1,5 @@
 package com.kzw.leisure.utils;
 
-import static android.text.TextUtils.isEmpty;
-
 import android.annotation.SuppressLint;
 import android.text.TextUtils;
 import android.util.Base64;
@@ -24,6 +22,8 @@ import java.util.HashMap;
 import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static android.text.TextUtils.isEmpty;
 
 @SuppressWarnings({"unused", "WeakerAccess"})
 public class StringUtils {

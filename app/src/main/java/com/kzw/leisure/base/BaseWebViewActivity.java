@@ -24,7 +24,6 @@ import com.kzw.leisure.interfaces.WebViewJavaScriptFunction;
 import com.kzw.leisure.utils.WebClient;
 import com.kzw.leisure.widgets.X5WebView;
 
-
 import butterknife.BindView;
 
 @SuppressLint("NonConstantResourceId")

@@ -11,7 +11,6 @@ import com.kzw.leisure.R;
 import com.kzw.leisure.base.BaseActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class DisclaimersActivity extends BaseActivity {
 

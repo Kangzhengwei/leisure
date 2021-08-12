@@ -1,8 +1,6 @@
 package com.kzw.leisure.base;
 
 
-import static android.content.Context.AUDIO_SERVICE;
-
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.media.AudioManager;
@@ -25,6 +23,8 @@ import com.kzw.leisure.utils.WebClient;
 import com.kzw.leisure.widgets.X5WebView;
 
 import butterknife.BindView;
+
+import static android.content.Context.AUDIO_SERVICE;
 
 /**
  * author: kang4

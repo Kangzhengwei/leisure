@@ -1,8 +1,6 @@
 //Copyright (c) 2017. 章钦豪. All rights reserved.
 package com.kzw.leisure.widgets.pageView;
 
-import static com.kzw.leisure.widgets.pageView.PageLoader.DEFAULT_MARGIN_WIDTH;
-
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -25,6 +23,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
+import static com.kzw.leisure.widgets.pageView.PageLoader.DEFAULT_MARGIN_WIDTH;
 
 
 public class ReadBookControl {

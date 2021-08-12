@@ -1,7 +1,5 @@
 package com.kzw.leisure.utils;
 
-import static android.graphics.BlurMaskFilter.Blur;
-
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -61,6 +59,8 @@ import java.io.InputStream;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.ref.WeakReference;
+
+import static android.graphics.BlurMaskFilter.Blur;
 
 /**
  * <pre>

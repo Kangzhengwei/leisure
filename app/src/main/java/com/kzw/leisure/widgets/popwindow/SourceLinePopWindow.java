@@ -1,7 +1,6 @@
 package com.kzw.leisure.widgets.popwindow;
 
 import android.content.Context;
-import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,11 +10,9 @@ import android.widget.RelativeLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.kzw.leisure.R;
 import com.kzw.leisure.adapter.SourceLineAdapter;
 import com.kzw.leisure.bean.LineBean;
-import com.kzw.leisure.bean.VideoBean;
 
 import java.util.List;
 

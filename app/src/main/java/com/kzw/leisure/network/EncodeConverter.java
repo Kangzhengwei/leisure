@@ -1,7 +1,5 @@
 package com.kzw.leisure.network;
 
-import static android.text.TextUtils.isEmpty;
-
 import android.text.TextUtils;
 
 import com.kzw.leisure.utils.EncodingDetect;
@@ -14,6 +12,8 @@ import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
+
+import static android.text.TextUtils.isEmpty;
 
 public class EncodeConverter extends Converter.Factory {
     private String encode;

@@ -27,7 +27,6 @@ import com.kzw.leisure.presenter.WebSiteSourcePresenter;
 import com.kzw.leisure.utils.CacheUtils;
 import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.IntentUtils;
-import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.PermessionUtil;
 import com.kzw.leisure.utils.WebClient;
 import com.kzw.leisure.widgets.X5WebView;

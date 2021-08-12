@@ -1,7 +1,5 @@
 package com.kzw.leisure.utils.analyze;
 
-import static android.text.TextUtils.isEmpty;
-
 import android.text.TextUtils;
 
 import org.jsoup.Jsoup;
@@ -15,6 +13,8 @@ import org.seimicrawler.xpath.JXNode;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import static android.text.TextUtils.isEmpty;
 
 /**
  * Created by GKF on 2018/1/25.
