@@ -36,6 +36,7 @@ import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.StatusBarUtil;
 import com.kzw.leisure.utils.StringUtils;
+import com.kzw.leisure.widgets.dialog.AwardAdTipDialog;
 import com.makeramen.roundedimageview.RoundedImageView;
 
 import java.util.ArrayList;
@@ -246,13 +247,10 @@ public class BookDetailActivity extends BaseActivity<BookDetailPresenter, BookDe
 
 
     private void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("添加到书架");
-        builder.setMessage("观看一段视频添加到书架");
-        builder.setPositiveButton("确定", (dialogInterface, i) -> AdMobUtils.getInstance().showAd(this, this::addToLibrary));
-        builder.setNegativeButton("取消", (dialogInterface, i) -> {
-        });
-        builder.create().show();
+        AwardAdTipDialog.builder(this)
+                .setMessage(getString(R.string.tip_addToLibrary))
+                .setPositiveClickListener(() -> AdMobUtils.getInstance().showAd(this, this::addToLibrary))
+                .show();
     }
 
 }

@@ -83,4 +83,8 @@
     <string name="action_explore">探索</string>
     <string name="source_change">切换</string>
     <string name="string_disclaimers">&#8195;&#8195;&#8195;该APP给影视和阅读爱好者提供学习交流，不提供资源的上传，下载，存储。所有资源均来自互联网，所有版权皆属原公司所有，如果认为本APP侵犯了您的版权，请联系476793909@qq.com或搜索阅影微信公众号联系我们，我们会立即删除。</string>
+    <string name="message_tip">消息提示</string>
+    <string name="confirm">确定</string>
+    <string name="tip_fullscreen_award">观看一段视频，全屏观看，体验更佳</string>
+    <string name="tip_addToLibrary">观看一段视频添加到书架</string>
 </resources>

@@ -26,6 +26,7 @@ import com.kzw.leisure.realm.VideoWatchTypeRealm;
 import com.kzw.leisure.realm.VideoWatchTypeSeriesRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.AdMobUtils;
+import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.Constant;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.LogUtils;
@@ -34,6 +35,7 @@ import com.kzw.leisure.utils.SPUtils;
 import com.kzw.leisure.utils.StatusBarUtil;
 import com.kzw.leisure.widgets.ToastUtil;
 import com.kzw.leisure.widgets.VideoPlayer;
+import com.kzw.leisure.widgets.dialog.AwardAdTipDialog;
 import com.kzw.leisure.widgets.popwindow.CheckSeriesPopWindow;
 import com.shuyu.gsyvideoplayer.GSYVideoManager;
 import com.shuyu.gsyvideoplayer.builder.GSYVideoOptionBuilder;
@@ -241,9 +243,9 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
         adapter.setOnClickListener((item, list, urlType, position) -> {
             LogUtils.d(item.getVideoUrl());
             if (this.item != null && this.item.getType() == 2) {
-                IntentUtils.intentToBrowserActivity(mContext, Constant.LE_DUO_API + item.getVideoUrl(),0);
+                IntentUtils.intentToBrowserActivity(mContext, Constant.LE_DUO_API + item.getVideoUrl(), 0);
             } else if (this.item != null && this.item.getType() == 3) {
-                IntentUtils.intentToBrowserActivity(mContext,  item.getVideoUrl(),1);
+                IntentUtils.intentToBrowserActivity(mContext, item.getVideoUrl(), 1);
             } else {
                 videoPlayer.setUp(item.getVideoUrl(), true, item.getVideoSeries());
                 videoPlayer.startPlayLogic();
@@ -391,7 +393,8 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     }
 
     @Override
-    public void returnFail(String message) { }
+    public void returnFail(String message) {
+    }
 
 
     private void saveData() {
@@ -496,12 +499,9 @@ public class VideoPlayActivity extends BaseActivity<VideoSeriesPresenter, VideoS
     }
 
     private void showDialog() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(mContext);
-        builder.setTitle("全屏观看");
-        builder.setMessage("观看一段视频，全屏观看，体验更佳");
-        builder.setPositiveButton("确定", (dialogInterface, i) -> AdMobUtils.getInstance().showAd(this, () -> videoPlayer.startWindowFullscreen(mContext, false, true)));
-        builder.setNegativeButton("取消", (dialogInterface, i) -> {
-        });
-        builder.create().show();
+        AwardAdTipDialog.builder(this)
+                .setMessage(getString(R.string.tip_fullscreen_award))
+                .setPositiveClickListener(() -> AdMobUtils.getInstance().showAd(this, () -> videoPlayer.startWindowFullscreen(mContext, false, true)))
+                .show();
     }
 }
