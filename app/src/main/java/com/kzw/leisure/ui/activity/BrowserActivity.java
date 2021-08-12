@@ -116,7 +116,7 @@ public class BrowserActivity extends BaseWebViewActivity {
         editText.setText(url);
         editText.setOnFocusChangeListener((v, hasFocus) -> {
             if (hasFocus) {
-                editText.setText("");
+                editText.setText(webUrl);
                 btnCancel.setVisibility(View.VISIBLE);
                 topBarRight.setVisibility(View.GONE);
             } else {

@@ -9,6 +9,9 @@ import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.CrashCatchUtil;
 import com.kzw.leisure.utils.NetworkUtils;
 import com.kzw.leisure.utils.SPUtils;
+import com.shuyu.gsyvideoplayer.player.PlayerFactory;
+import com.shuyu.gsyvideoplayer.player.SystemPlayerManager;
+
 import io.realm.Realm;
 import io.realm.RealmConfiguration;
 
@@ -27,6 +30,11 @@ public class BaseApplication extends Application {
         instance = this;
         init();
         initDataBase();
+        initPlayer();
+    }
+
+    private void initPlayer() {
+        PlayerFactory.setPlayManager(SystemPlayerManager.class);
     }
 
     public static Application getInstance() {

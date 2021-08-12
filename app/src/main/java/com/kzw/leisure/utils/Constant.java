@@ -246,24 +246,6 @@ public class Constant {
             "{" +
             "\"sourceType\":\"0\"," +
             "\"type\":\"3\"," +
-            "\"ruleSearchList\":\"class.title@tag.a\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"index.php/vod/search.html?wd=ruleKeyword&submit=\"," +
-            "\"ruleSeriesList\":\"class.stui-content__playlist clearfix\"," +
-            "\"ruleItem\":\"li\"," +
-            "\"ruleSeriesName\":\"li@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h3@text\"," +
-            "\"ruleTypeList\":\"class.stui-pannel__head clearfix@class.title\"," +
-            "\"ruleVideoName\":\"class.stui-content__detail@tag.h1@text\"," +
-            "\"ruleVideoImage\":\"class.thumb@tag.img@src\"," +
-            "\"siteName\":\"蘑菇官方资源\"," +
-            "\"videoSourceUrl\":\"http://www.moguzyw.com:520/\"" +
-            "}," +
-            "{" +
-            "\"sourceType\":\"0\"," +
-            "\"type\":\"3\"," +
             "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
@@ -303,6 +285,24 @@ public class Constant {
             "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
+            "\"ruleSearchUrl\":\"/index.php/vod/search.html?wd=ruleKeyword&submit=search\"," +
+            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
+            "\"ruleItem\":\"li\"," +
+            "\"ruleSeriesName\":\"li@text\"," +
+            "\"ruleSeriesNoteUrl\":\"  \"," +
+            "\"rulePlayType\":\"h3@text\"," +
+            "\"ruleTypeList\":\"h3\"," +
+            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
+            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
+            "\"siteName\":\"天空资源网\"," +
+            "\"videoSourceUrl\":\"http://tiankongzy.cc/\"" +
+            "}," +
+            "{" +
+            "\"sourceType\":\"0\"," +
+            "\"type\":\"1\"," +
+            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
+            "\"ruleSearchName\":\"tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
             "\"ruleSearchUrl\":\"index.php?m=vod-search@submit=search&wd=ruleKeyword\"," +
             "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
             "\"ruleItem\":\"li\"," +
@@ -327,10 +327,6 @@ public class Constant {
             "      {\n" +
             "        \"siteName\": \"小小\",\n" +
             "        \"url\": \"http://tv.hzwdd.cn/\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"siteName\": \"鲨鱼TV\",\n" +
-            "        \"url\": \"https://www.sharktv.cn/\"\n" +
             "      }\n" +
             "    ],\n" +
             "    \"listName\": \"解析\"\n" +
@@ -352,6 +348,10 @@ public class Constant {
             "      {\n" +
             "        \"siteName\": \"嗯li嗯li\",\n" +
             "        \"url\": \"https://enlienli.com/\"\n" +
+            "      },\n" +
+            "      {\n" +
+            "        \"siteName\": \"鲨鱼TV\",\n" +
+            "        \"url\": \"https://www.sharktv.cn/\"\n" +
             "      },\n" +
             "      {\n" +
             "        \"siteName\": \"芒果影院\",\n" +
@@ -386,6 +386,10 @@ public class Constant {
 
     public static String lineSource = "[" +
             "{\n" +
+            "\t\"name\": \"线路三\",\n" +
+            "\t\"url\": \"https://vip.parwix.com:4433/player/analysis.php?v=\"\n" +
+            "}," +
+            "{\n" +
             "\t\"name\": \"线路一\",\n" +
             "\t\"url\": \"https://z1.m1907.cn/?jx=\"\n" +
             "}," +
@@ -394,9 +398,46 @@ public class Constant {
             "\t\"url\": \"https://jx.m3u8.tv/jiexi/?url=\"\n" +
             "}," +
             "{\n" +
-            "\t\"name\": \"线路三\",\n" +
+            "\t\"name\": \"线路四\",\n" +
+            "\t\"url\": \"https://thinkibm.now.sh/?url=\"\n" +
+            "}," +
+            "{\n" +
+            "\t\"name\": \"线路五\",\n" +
+            "\t\"url\": \"https://www.mgtv.com.favnow.com/?token=sharktv&v=\"\n" +
+            "}," +
+            "{\n" +
+            "\t\"name\": \"线路六\",\n" +
+            "\t\"url\": \"https://okjx.cc/?url=\"\n" +
+            "}," +
+            "{\n" +
+            "\t\"name\": \"线路七\",\n" +
+            "\t\"url\": \"https://jx.7kjx.com/?url=\"\n" +
+            "}," +
+            "{\n" +
+            "\t\"name\": \"线路八\",\n" +
             "\t\"url\": \"https://www.pangujiexi.com/jiexi/?url=\"\n" +
             "}" +
             "]";
+
+
+    /*
+                "{" +
+                        "\"sourceType\":\"0\"," +
+                        "\"type\":\"3\"," +
+                        "\"ruleSearchList\":\"class.title@tag.a\"," +
+                        "\"ruleSearchName\":\"tag.a@text\"," +
+                        "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
+                        "\"ruleSearchUrl\":\"index.php/vod/search.html?wd=ruleKeyword&submit=\"," +
+                        "\"ruleSeriesList\":\"class.stui-content__playlist clearfix\"," +
+                        "\"ruleItem\":\"li\"," +
+                        "\"ruleSeriesName\":\"li@text\"," +
+                        "\"ruleSeriesNoteUrl\":\"  \"," +
+                        "\"rulePlayType\":\"h3@text\"," +
+                        "\"ruleTypeList\":\"class.stui-pannel__head clearfix@class.title\"," +
+                        "\"ruleVideoName\":\"class.stui-content__detail@tag.h1@text\"," +
+                        "\"ruleVideoImage\":\"class.thumb@tag.img@src\"," +
+                        "\"siteName\":\"蘑菇官方资源\"," +
+                        "\"videoSourceUrl\":\"http://www.moguzyw.com:520/\"" +
+                        "}," +*/
 
 }
