@@ -96,7 +96,7 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
 
             @Override
             public void afterTextChanged(Editable editable) {
-                if(editable.length()==0){
+                if (editable.length() == 0) {
                     getHistoryKey();
                     wrapLayout.setVisibility(View.VISIBLE);
                     searchRecyclerView.setVisibility(View.GONE);
@@ -104,6 +104,9 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
             }
         });
         adapter.setOnItemClickListener((adapter, view, position) -> {
+            if (position < 0 || position >= itemList.size()) {
+                return;
+            }
             SearchItem item = itemList.get(position);
             IntentUtils.intentToVideoPlay(mContext, item);
         });
@@ -134,7 +137,7 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
                 e.printStackTrace();
             }
         }
-        mPresenter.getList(Constant.QUERY_SEARCH.replace("KEYWORD",keyword));
+        mPresenter.getList(Constant.QUERY_SEARCH.replace("KEYWORD", keyword));
         saveKeyWord(keyword);
     }
 
@@ -243,6 +246,7 @@ public class SearchVideoActivity extends BaseActivity<SearchVideoPresenter, Sear
     }
 
     @Override
-    public void returnFail(String message) { }
+    public void returnFail(String message) {
+    }
 
 }

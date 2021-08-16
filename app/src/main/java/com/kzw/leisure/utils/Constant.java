@@ -17,10 +17,14 @@ public class Constant {
 
     public static final String DEFAULT_URL = "https://z1.m1907.cn/?jx=%E6%96%97%E7%A0%B4%E8%8B%8D%E7%A9%B9%E7%AC%AC%E5%9B%9B%E5%AD%A3";
     public static final String URL = "https://z1.m1907.cn/?jx=";
-    public static final String KEY_URL = "https://z1.m1907.cn/api/v/";
+    public static final String KEY_URL = "https://a1.m1907.cn/api/v/";
     public static final String FRONT_DOWNLOAD_URL = "https://www.jianguoyun.com/p/DXyqo6IQ0Zb6Bxj2ibEC";
     public static final String LE_DUO_API = "https://api.leduotv.com/wp-api/ifr.php?vid=";
     public static final String SOURCE_URL = "https://raw.githubusercontent.com/";
+
+    public static String QUERY_SEARCH = "search_prompt?k=KEYWORD";
+    public static String QUERY_VIDEO = "v/?z=TOKEN&jx=KEYWORD";
+    public static String QUERY_BASE = "https://a1.m1907.cn/api/";
 
     public static final Pattern putPattern = Pattern.compile("@put:(\\{[^}]+?\\})", Pattern.CASE_INSENSITIVE);
     public static final Pattern getPattern = Pattern.compile("@get:\\{([^}]+?)\\}", Pattern.CASE_INSENSITIVE);
@@ -32,21 +36,18 @@ public class Constant {
     public static final ScriptEngine SCRIPT_ENGINE = new ScriptEngineManager().getEngineByName("rhino");
     public static final Pattern pagePattern = Pattern.compile("\\{(.*?)\\}");
 
-    public static String QUERY_SEARCH = "search_prompt?k=KEYWORD";
-    public static String QUERY_VIDEO = "v/?z=TOKEN&jx=KEYWORD";
-    public static String QUERY_BASE = "https://z1.m1907.cn/api/";
 
     public static final int ACTIVITY_REQUEST_CODE = 10;
     public static final int ACTIVITY_RESULT_CODE = 20;
 
 
     //测试广告ID
-    //public static final String FULL_SCREEN_AD_ID = "ca-app-pub-3940256099942544/1033173712";
-    //public static final String AWARD_AD_ID = "ca-app-pub-3940256099942544/5354046379";
+    public static final String FULL_SCREEN_AD_ID = "ca-app-pub-3940256099942544/1033173712";
+    public static final String AWARD_AD_ID = "ca-app-pub-3940256099942544/5354046379";
 
     //正式广告ID
-    public static final String FULL_SCREEN_AD_ID = "ca-app-pub-2169493091779977/7029514724";
-    public static final String AWARD_AD_ID = "ca-app-pub-2169493091779977/8131484035";
+    //public static final String FULL_SCREEN_AD_ID = "ca-app-pub-2169493091779977/7029514724";
+    //public static final String AWARD_AD_ID = "ca-app-pub-2169493091779977/8131484035";
 
     public static final String bookRuleSource = "[" +
             "{" +
@@ -416,6 +417,10 @@ public class Constant {
             "{\n" +
             "\t\"name\": \"线路八\",\n" +
             "\t\"url\": \"https://www.pangujiexi.com/jiexi/?url=\"\n" +
+            "}," +
+            "{\n" +
+            "\t\"name\": \"线路九\",\n" +
+            "\t\"url\": \"https://jx.xmflv.com/?url=\"\n" +
             "}" +
             "]";
 

@@ -68,7 +68,7 @@ public class BrowserActivity extends BaseWebViewActivity {
     @BindView(R.id.floatingActionButton)
     FloatingActionButton floatingActionButton;
 
-    private String webUrl;
+    private String intentUrl;
     private List<LineBean> lists;
     private int type;
 
@@ -80,7 +80,7 @@ public class BrowserActivity extends BaseWebViewActivity {
     @Override
     protected void initWidgets() {
         ImmersionBar.with(this).statusBarColor(R.color.colorPrimary).hideBar(BarHide.FLAG_HIDE_NAVIGATION_BAR).init();
-        webUrl = getIntent().getStringExtra("url");
+        intentUrl = getIntent().getStringExtra("url");
         type = getIntent().getIntExtra("type", 0);
         loadData();
     }
@@ -91,12 +91,12 @@ public class BrowserActivity extends BaseWebViewActivity {
             floatingActionButton.show();
             String lineSource = SPUtils.getInstance().getString("lineSource");
             if (!StringUtils.isTrimEmpty(lineSource)) {
-                url = lineSource + webUrl;
+                url = lineSource + intentUrl;
             } else {
-                url = Constant.URL + webUrl;
+                url = Constant.URL + intentUrl;
             }
         } else {
-            url = webUrl;
+            url = intentUrl;
         }
         initToolBar(url);
         loadUrl(url);
@@ -179,7 +179,7 @@ public class BrowserActivity extends BaseWebViewActivity {
     }
 
     private void handleData(LineBean lineBean) {
-        loadUrl(lineBean.getUrl() + webUrl);
+        loadUrl(lineBean.getUrl() + intentUrl);
         SPUtils.getInstance().putString("lineSource", lineBean.getUrl());
     }
 
