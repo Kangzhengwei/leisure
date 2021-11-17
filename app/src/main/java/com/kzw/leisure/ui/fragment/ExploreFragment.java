@@ -25,7 +25,7 @@ import com.kzw.leisure.contract.WebSiteSourceContract;
 import com.kzw.leisure.model.WebSiteSourceModel;
 import com.kzw.leisure.presenter.WebSiteSourcePresenter;
 import com.kzw.leisure.utils.CacheUtils;
-import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.constant.Constant;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.PermessionUtil;
 import com.kzw.leisure.utils.WebClient;

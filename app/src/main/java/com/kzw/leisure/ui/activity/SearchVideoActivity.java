@@ -27,7 +27,7 @@ import com.kzw.leisure.contract.SearchVideoContract;
 import com.kzw.leisure.model.SearchVideoModel;
 import com.kzw.leisure.presenter.SearchVideoPresenter;
 import com.kzw.leisure.realm.HistoryKeyWordRealm;
-import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.constant.Constant;
 import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.RealmHelper;

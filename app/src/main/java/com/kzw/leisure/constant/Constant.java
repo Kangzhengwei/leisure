@@ -1,4 +1,4 @@
-package com.kzw.leisure.utils;
+package com.kzw.leisure.constant;
 
 import com.google.gson.reflect.TypeToken;
 
@@ -157,33 +157,6 @@ public class Constant {
             "\"ruleSearchName\":\"class.s2@tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"class.s2@tag.a@href\"," +
             "\"ruleSearchUrl\":\"search.php?keyword=ruleKeyword\"" +
-            "}," +
-            "{" +
-            "\"baseUrl\":\"https://www.xxbiquge.net/\"," +
-            "\"siteName\":\"新笔趣阁\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@text\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.dd\"," +
-            "\"ruleChapterName\":\"tag.a.0@text\"," +
-            "\"ruleChapterUrl\":\"tag.a.0@href\"," +
-            "\"ruleChapterUrlType\":\"1\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"class.result-game-item-info-tag.0@tag.span.1@text\"," +
-            "\"ruleSearchCoverUrl\":\"class.result-game-item-pic@tag.img@src\"," +
-            "\"ruleSearchIntroduce\":\"id.intro@tag.p@textNodes\"," +
-            "\"ruleSearchKind\":\"class.result-game-item-info-tag.1@tag.span.1@text\"," +
-            "\"ruleSearchLastChapter\":\"class.result-game-item-info-tag.3@tag.a.0@text\"," +
-            "\"ruleSearchList\":\"class.result-item\"," +
-            "\"ruleSearchName\":\"class.result-item-title.0@tag.a.0@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.result-item-title.0@tag.a.0@href\"," +
-            "\"ruleSearchUrl\":\"search.php?keyword=ruleKeyword\"" +
             "}" +
             "]\n";
 
@@ -210,21 +183,21 @@ public class Constant {
     public static final String ruleSource = "[" +
             "{" +
             "\"sourceType\":\"0\"," +
-            "\"type\":\"2\"," +
-            "\"ruleSearchList\":\"class.l@tag.a\"," +
+            "\"type\":\"3\"," +
+            "\"ruleSearchList\":\"class.col-md-8@tag.a\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"index.php?m=vod-search@wd=ruleKeyword\"," +
-            "\"ruleSeriesList\":\"class.movievod@tag.ul\"," +
-            "\"ruleItem\":\"li!0\"," +
-            "\"ruleSeriesName\":\"li@text\"," +
+            "\"ruleSearchUrl\":\"search/video/ruleKeyword.html\"," +
+            "\"ruleSeriesList\":\"class.vod-item-playurl\"," +
+            "\"ruleItem\":\"tag.a\"," +
+            "\"ruleSeriesName\":\"tag.a@text\"," +
             "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"li@text\"," +
-            "\"ruleTypeList\":\"class.movievod@tag.ul@tag.li.0\"," +
-            "\"ruleVideoName\":\"class.sa.0@text\"," +
-            "\"ruleVideoImage\":\"class.videoPic@tag.img@src\"," +
-            "\"siteName\":\"乐多资源\"," +
-            "\"videoSourceUrl\":\"http://www.leduozy.com/\"" +
+            "\"rulePlayType\":\"class.text-primary@text\"," +
+            "\"ruleTypeList\":\"class.text-primary\"," +
+            "\"ruleVideoName\":\"class.active@text\"," +
+            "\"ruleVideoImage\":\"class.media-left@tag.img@src\"," +
+            "\"siteName\":\"全网资源影视\"," +
+            "\"videoSourceUrl\":\"http://hao123.daicuo.cc/\"" +
             "}," +
             "{" +
             "\"sourceType\":\"0\"," +
@@ -246,6 +219,60 @@ public class Constant {
             "}," +
             "{" +
             "\"sourceType\":\"0\"," +
+            "\"type\":\"1\"," +
+            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
+            "\"ruleSearchName\":\"tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
+            "\"ruleSearchUrl\":\"index.php/vod/search.html?wd=ruleKeyword&submit=search\"," +
+            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
+            "\"ruleItem\":\"li\"," +
+            "\"ruleSeriesName\":\"li@text\"," +
+            "\"ruleSeriesNoteUrl\":\"  \"," +
+            "\"rulePlayType\":\"h3@text\"," +
+            "\"ruleTypeList\":\"h3\"," +
+            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
+            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
+            "\"siteName\":\"无尽资源\"," +
+            "\"videoSourceUrl\":\"http://wujinzy.net/\"" +
+            "}," +
+            "{" +
+            "\"sourceType\":\"0\"," +
+            "\"type\":\"1\"," +
+            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
+            "\"ruleSearchName\":\"tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
+            "\"ruleSearchUrl\":\"index.php/vod/search.html?wd=ruleKeyword&submit=search\"," +
+            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
+            "\"ruleItem\":\"li\"," +
+            "\"ruleSeriesName\":\"li@text\"," +
+            "\"ruleSeriesNoteUrl\":\"  \"," +
+            "\"rulePlayType\":\"h3@text\"," +
+            "\"ruleTypeList\":\"h3\"," +
+            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
+            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
+            "\"siteName\":\"想看资源网\"," +
+            "\"videoSourceUrl\":\"http://xiangkanzy.com/\"" +
+            "}," +
+            "{" +
+            "\"sourceType\":\"0\"," +
+            "\"type\":\"3\"," +
+            "\"ruleSearchList\":\"class._infos\"," +
+            "\"ruleSearchName\":\"class.result_title@tag.a@text\"," +
+            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
+            "\"ruleSearchUrl\":\"x/search/?q=ruleKeyword\"," +
+            "\"ruleSeriesList\":\"class.item|class.item current\"," +
+            "\"ruleItem\":\"a\"," +
+            "\"ruleSeriesName\":\"a@text\"," +
+            "\"ruleSeriesNoteUrl\":\"tag.a@href\"," +
+            "\"rulePlayType\":\"a@text\"," +
+            "\"ruleTypeList\":\"class.player_title\"," +
+            "\"ruleVideoName\":\"class.player_title@tag.a@text\"," +
+            "\"ruleVideoImage\":\"\"," +
+            "\"siteName\":\"腾讯视频\"," +
+            "\"videoSourceUrl\":\"https://v.qq.com/\"" +
+            "}," +
+            "{" +
+            "\"sourceType\":\"0\"," +
             "\"type\":\"3\"," +
             "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
             "\"ruleSearchName\":\"tag.a@text\"," +
@@ -261,60 +288,6 @@ public class Constant {
             "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
             "\"siteName\":\"好好官方资源\"," +
             "\"videoSourceUrl\":\"https://haohaozy.com/\"" +
-            "}," +
-            "{" +
-            "\"sourceType\":\"0\"," +
-            "\"type\":\"1\"," +
-            "\"ruleSearchList\":\"class.clearfix@class.title@tag.a\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"vodsearch/-------------.html?wd=ruleKeyword&submit=\"," +
-            "\"ruleSeriesList\":\"class.stui-content__playlist clearfix\"," +
-            "\"ruleItem\":\"li\"," +
-            "\"ruleSeriesName\":\"li@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h3@text\"," +
-            "\"ruleTypeList\":\"class.stui-pannel__head clearfix!0@tag.h3\"," +
-            "\"ruleVideoName\":\"class.stui-content__detail@tag.h1@text\"," +
-            "\"ruleVideoImage\":\"class.thumb@tag.img@src\"," +
-            "\"siteName\":\"橘猫\"," +
-            "\"videoSourceUrl\":\"http://www.zitv.cc/\"" +
-            "}," +
-            "{" +
-            "\"sourceType\":\"0\"," +
-            "\"type\":\"1\"," +
-            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"/index.php/vod/search.html?wd=ruleKeyword&submit=search\"," +
-            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
-            "\"ruleItem\":\"li\"," +
-            "\"ruleSeriesName\":\"li@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h3@text\"," +
-            "\"ruleTypeList\":\"h3\"," +
-            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
-            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
-            "\"siteName\":\"天空资源网\"," +
-            "\"videoSourceUrl\":\"http://tiankongzy.cc/\"" +
-            "}," +
-            "{" +
-            "\"sourceType\":\"0\"," +
-            "\"type\":\"1\"," +
-            "\"ruleSearchList\":\"class.xing_vb4@tag.a\"," +
-            "\"ruleSearchName\":\"tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"index.php?m=vod-search@submit=search&wd=ruleKeyword\"," +
-            "\"ruleSeriesList\":\"class.vodplayinfo@tag.ul\"," +
-            "\"ruleItem\":\"li\"," +
-            "\"ruleSeriesName\":\"li@text\"," +
-            "\"ruleSeriesNoteUrl\":\"  \"," +
-            "\"rulePlayType\":\"h3@text\"," +
-            "\"ruleTypeList\":\"h3\"," +
-            "\"ruleVideoName\":\"class.vodh@tag.h2@text\"," +
-            "\"ruleVideoImage\":\"class.vodImg@tag.img@src\"," +
-            "\"siteName\":\"88电影\"," +
-            "\"videoSourceUrl\":\"http://www.88zyw.net/\"" +
             "}" +
             "]\n";
 
@@ -337,10 +310,6 @@ public class Constant {
             "      {\n" +
             "        \"siteName\": \"娜菲\",\n" +
             "        \"url\": \"https://www.nfmovies.com/\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"siteName\": \"7K\",\n" +
-            "        \"url\": \"https://zy.7kjx.com/\"\n" +
             "      },\n" +
             "      {\n" +
             "        \"siteName\": \"1231\",\n" +
@@ -387,62 +356,37 @@ public class Constant {
 
     public static String lineSource = "[" +
             "{\n" +
-            "\t\"name\": \"线路三\",\n" +
-            "\t\"url\": \"https://vip.parwix.com:4433/player/analysis.php?v=\"\n" +
-            "}," +
-            "{\n" +
             "\t\"name\": \"线路一\",\n" +
-            "\t\"url\": \"https://z1.m1907.cn/?jx=\"\n" +
+            "\t\"url\": \"https://vip.parwix.com:4433/player/?url=\"\n" +
             "}," +
             "{\n" +
             "\t\"name\": \"线路二\",\n" +
             "\t\"url\": \"https://jx.m3u8.tv/jiexi/?url=\"\n" +
             "}," +
             "{\n" +
-            "\t\"name\": \"线路四\",\n" +
-            "\t\"url\": \"https://thinkibm.now.sh/?url=\"\n" +
-            "}," +
-            "{\n" +
-            "\t\"name\": \"线路五\",\n" +
+            "\t\"name\": \"线路三\",\n" +
             "\t\"url\": \"https://www.mgtv.com.favnow.com/?token=sharktv&v=\"\n" +
             "}," +
             "{\n" +
-            "\t\"name\": \"线路六\",\n" +
+            "\t\"name\": \"线路四\",\n" +
             "\t\"url\": \"https://okjx.cc/?url=\"\n" +
             "}," +
             "{\n" +
-            "\t\"name\": \"线路七\",\n" +
+            "\t\"name\": \"线路五\",\n" +
             "\t\"url\": \"https://jx.7kjx.com/?url=\"\n" +
             "}," +
             "{\n" +
-            "\t\"name\": \"线路八\",\n" +
+            "\t\"name\": \"线路六\",\n" +
             "\t\"url\": \"https://www.pangujiexi.com/jiexi/?url=\"\n" +
             "}," +
             "{\n" +
-            "\t\"name\": \"线路九\",\n" +
-            "\t\"url\": \"https://jx.xmflv.com/?url=\"\n" +
+            "\t\"name\": \"线路七\",\n" +
+            "\t\"url\": \"https://z1.m1907.cn/?jx=\"\n" +
+            "}," +
+            "{\n" +
+            "\t\"name\": \"线路八\",\n" +
+            "\t\"url\": \"https://thinkibm.now.sh/?url=\"\n" +
             "}" +
             "]";
-
-
-    /*
-                "{" +
-                        "\"sourceType\":\"0\"," +
-                        "\"type\":\"3\"," +
-                        "\"ruleSearchList\":\"class.title@tag.a\"," +
-                        "\"ruleSearchName\":\"tag.a@text\"," +
-                        "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-                        "\"ruleSearchUrl\":\"index.php/vod/search.html?wd=ruleKeyword&submit=\"," +
-                        "\"ruleSeriesList\":\"class.stui-content__playlist clearfix\"," +
-                        "\"ruleItem\":\"li\"," +
-                        "\"ruleSeriesName\":\"li@text\"," +
-                        "\"ruleSeriesNoteUrl\":\"  \"," +
-                        "\"rulePlayType\":\"h3@text\"," +
-                        "\"ruleTypeList\":\"class.stui-pannel__head clearfix@class.title\"," +
-                        "\"ruleVideoName\":\"class.stui-content__detail@tag.h1@text\"," +
-                        "\"ruleVideoImage\":\"class.thumb@tag.img@src\"," +
-                        "\"siteName\":\"蘑菇官方资源\"," +
-                        "\"videoSourceUrl\":\"http://www.moguzyw.com:520/\"" +
-                        "}," +*/
 
 }

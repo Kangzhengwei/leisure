@@ -11,7 +11,7 @@ import androidx.appcompat.widget.Toolbar;
 
 import com.kzw.leisure.R;
 import com.kzw.leisure.base.BaseActivity;
-import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.constant.Constant;
 import com.kzw.leisure.utils.DocumentHelper;
 import com.kzw.leisure.utils.FileUtils;
 import com.kzw.leisure.widgets.X5WebView;

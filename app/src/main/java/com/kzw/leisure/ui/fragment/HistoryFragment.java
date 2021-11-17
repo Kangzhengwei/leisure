@@ -12,7 +12,7 @@ import com.kzw.leisure.adapter.HistoryAdapter;
 import com.kzw.leisure.base.BaseFragment;
 import com.kzw.leisure.realm.HistoryDataBean;
 import com.kzw.leisure.realm.HistoryDataList;
-import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.constant.Constant;
 import com.kzw.leisure.utils.RealmHelper;
 
 import java.util.ArrayList;

@@ -13,7 +13,7 @@ import com.kzw.leisure.adapter.WebSiteCollectAdapter;
 import com.kzw.leisure.base.BaseFragment;
 import com.kzw.leisure.realm.CollectDataBean;
 import com.kzw.leisure.realm.CollectDataList;
-import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.constant.Constant;
 import com.kzw.leisure.utils.DimenUtil;
 import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.widgets.popwindow.SiteOperationMenu;

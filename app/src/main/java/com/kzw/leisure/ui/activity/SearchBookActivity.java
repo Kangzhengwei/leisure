@@ -31,7 +31,7 @@ import com.kzw.leisure.contract.SearchBookContract;
 import com.kzw.leisure.model.SearchBookModel;
 import com.kzw.leisure.presenter.SearchBookPresenter;
 import com.kzw.leisure.realm.HistoryKeyWordRealm;
-import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.constant.Constant;
 import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.RealmHelper;

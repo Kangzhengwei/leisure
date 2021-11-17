@@ -10,7 +10,7 @@ import com.kzw.leisure.contract.VideoSeriesContract;
 import com.kzw.leisure.network.RetrofitHelper;
 import com.kzw.leisure.rxJava.RxHelper;
 import com.kzw.leisure.rxJava.RxSchedulers;
-import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.constant.Constant;
 import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.StringUtils;

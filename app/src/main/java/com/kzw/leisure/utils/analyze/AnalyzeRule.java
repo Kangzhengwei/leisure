@@ -19,13 +19,13 @@ import java.util.regex.Pattern;
 import javax.script.SimpleBindings;
 
 import static android.text.TextUtils.isEmpty;
-import static com.kzw.leisure.utils.Constant.EXP_PATTERN;
-import static com.kzw.leisure.utils.Constant.JS_PATTERN;
-import static com.kzw.leisure.utils.Constant.MAP_STRING;
-import static com.kzw.leisure.utils.Constant.SCRIPT_ENGINE;
-import static com.kzw.leisure.utils.Constant.getPattern;
-import static com.kzw.leisure.utils.Constant.headerPattern;
-import static com.kzw.leisure.utils.Constant.putPattern;
+import static com.kzw.leisure.constant.Constant.EXP_PATTERN;
+import static com.kzw.leisure.constant.Constant.JS_PATTERN;
+import static com.kzw.leisure.constant.Constant.MAP_STRING;
+import static com.kzw.leisure.constant.Constant.SCRIPT_ENGINE;
+import static com.kzw.leisure.constant.Constant.getPattern;
+import static com.kzw.leisure.constant.Constant.headerPattern;
+import static com.kzw.leisure.constant.Constant.putPattern;
 
 
 /**

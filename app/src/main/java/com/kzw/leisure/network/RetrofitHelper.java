@@ -4,7 +4,7 @@ import com.google.gson.reflect.TypeToken;
 import com.jakewharton.retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import com.kzw.leisure.bean.Query;
 import com.kzw.leisure.bean.SiteSourceBean;
-import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.constant.Constant;
 import com.kzw.leisure.utils.GsonUtil;
 
 import java.util.List;

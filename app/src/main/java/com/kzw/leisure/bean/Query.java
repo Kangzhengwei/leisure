@@ -18,12 +18,12 @@ import java.util.regex.Matcher;
 
 import javax.script.SimpleBindings;
 
-import static com.kzw.leisure.utils.Constant.EXP_PATTERN;
-import static com.kzw.leisure.utils.Constant.JS_PATTERN;
-import static com.kzw.leisure.utils.Constant.MAP_STRING;
-import static com.kzw.leisure.utils.Constant.SCRIPT_ENGINE;
-import static com.kzw.leisure.utils.Constant.headerPattern;
-import static com.kzw.leisure.utils.Constant.pagePattern;
+import static com.kzw.leisure.constant.Constant.EXP_PATTERN;
+import static com.kzw.leisure.constant.Constant.JS_PATTERN;
+import static com.kzw.leisure.constant.Constant.MAP_STRING;
+import static com.kzw.leisure.constant.Constant.SCRIPT_ENGINE;
+import static com.kzw.leisure.constant.Constant.headerPattern;
+import static com.kzw.leisure.constant.Constant.pagePattern;
 
 /**
  * author: kang4

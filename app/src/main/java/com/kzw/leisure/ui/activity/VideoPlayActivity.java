@@ -25,7 +25,7 @@ import com.kzw.leisure.realm.VideoWatchTypeRealm;
 import com.kzw.leisure.realm.VideoWatchTypeSeriesRealm;
 import com.kzw.leisure.rxJava.RxBus;
 import com.kzw.leisure.utils.AdMobUtils;
-import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.constant.Constant;
 import com.kzw.leisure.utils.IntentUtils;
 import com.kzw.leisure.utils.LogUtils;
 import com.kzw.leisure.utils.RealmHelper;

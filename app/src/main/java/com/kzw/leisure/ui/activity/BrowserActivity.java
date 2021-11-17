@@ -24,7 +24,7 @@ import com.kzw.leisure.realm.CollectDataList;
 import com.kzw.leisure.realm.HistoryDataBean;
 import com.kzw.leisure.realm.HistoryDataList;
 import com.kzw.leisure.utils.BarHide;
-import com.kzw.leisure.utils.Constant;
+import com.kzw.leisure.constant.Constant;
 import com.kzw.leisure.utils.GsonUtil;
 import com.kzw.leisure.utils.ImmersionBar;
 import com.kzw.leisure.utils.IntentUtils;

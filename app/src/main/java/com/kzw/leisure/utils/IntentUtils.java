@@ -6,6 +6,7 @@ import android.content.Intent;
 
 import com.kzw.leisure.bean.SearchBookBean;
 import com.kzw.leisure.bean.SearchItem;
+import com.kzw.leisure.constant.Constant;
 import com.kzw.leisure.ui.activity.BookDetailActivity;
 import com.kzw.leisure.ui.activity.BrowserActivity;
 import com.kzw.leisure.ui.activity.CollectAndHistoryActivity;
