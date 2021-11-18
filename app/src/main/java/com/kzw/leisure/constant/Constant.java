@@ -42,12 +42,12 @@ public class Constant {
 
 
     //测试广告ID
-    public static final String FULL_SCREEN_AD_ID = "ca-app-pub-3940256099942544/1033173712";
-    public static final String AWARD_AD_ID = "ca-app-pub-3940256099942544/5354046379";
+    //public static final String FULL_SCREEN_AD_ID = "ca-app-pub-3940256099942544/1033173712";
+    //public static final String AWARD_AD_ID = "ca-app-pub-3940256099942544/5354046379";
 
     //正式广告ID
-    //public static final String FULL_SCREEN_AD_ID = "ca-app-pub-2169493091779977/7029514724";
-    //public static final String AWARD_AD_ID = "ca-app-pub-2169493091779977/8131484035";
+    public static final String FULL_SCREEN_AD_ID = "ca-app-pub-2169493091779977/7029514724";
+    public static final String AWARD_AD_ID = "ca-app-pub-2169493091779977/8131484035";
 
     public static final String bookRuleSource = "[" +
             "{" +
