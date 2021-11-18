@@ -255,21 +255,21 @@ public class Constant {
             "}," +
             "{" +
             "\"sourceType\":\"0\"," +
-            "\"type\":\"3\"," +
-            "\"ruleSearchList\":\"class._infos\"," +
-            "\"ruleSearchName\":\"class.result_title@tag.a@text\"," +
+            "\"type\":\"1\"," +
+            "\"ruleSearchList\":\"class.stui-vodlist clearfix@tag.li\"," +
+            "\"ruleSearchName\":\"tag.a.0@text\"," +
             "\"ruleSearchNoteUrl\":\"tag.a@href\"," +
-            "\"ruleSearchUrl\":\"x/search/?q=ruleKeyword\"," +
-            "\"ruleSeriesList\":\"class.item|class.item current\"," +
-            "\"ruleItem\":\"a\"," +
-            "\"ruleSeriesName\":\"a@text\"," +
-            "\"ruleSeriesNoteUrl\":\"tag.a@href\"," +
-            "\"rulePlayType\":\"a@text\"," +
-            "\"ruleTypeList\":\"class.player_title\"," +
-            "\"ruleVideoName\":\"class.player_title@tag.a@text\"," +
-            "\"ruleVideoImage\":\"\"," +
-            "\"siteName\":\"腾讯视频\"," +
-            "\"videoSourceUrl\":\"https://v.qq.com/\"" +
+            "\"ruleSearchUrl\":\"index.php/vod/search.html?wd=ruleKeyword&submit=\"," +
+            "\"ruleSeriesList\":\"class.stui-content__playlist clearfix\"," +
+            "\"ruleItem\":\"li\"," +
+            "\"ruleSeriesName\":\"tag.a!0@text\"," +
+            "\"ruleSeriesNoteUrl\":\" \"," +
+            "\"rulePlayType\":\"h3@text\"," +
+            "\"ruleTypeList\":\"class.stui-pannel__head clearfix!0\"," +
+            "\"ruleVideoName\":\"class.stui-content__detail@tag.h1@text\"," +
+            "\"ruleVideoImage\":\"class.img-responsive@tag.img@src\"," +
+            "\"siteName\":\"百度资源\"," +
+            "\"videoSourceUrl\":\"http://bdzy.com/\"" +
             "}," +
             "{" +
             "\"sourceType\":\"0\"," +
