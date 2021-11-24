@@ -333,10 +333,6 @@ public class Constant {
             "  {\n" +
             "    \"list\": [\n" +
             "      {\n" +
-            "        \"siteName\": \"小森林导航\",\n" +
-            "        \"url\": \"http://www.uziqaq.com/\"\n" +
-            "      },\n" +
-            "      {\n" +
             "        \"siteName\": \"电影导航\",\n" +
             "        \"url\": \"https://movie.coolzhanweb.com/\"\n" +
             "      },\n" +
