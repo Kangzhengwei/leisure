@@ -9,10 +9,6 @@ import com.kzw.leisure.bean.Chapter;
 import com.kzw.leisure.utils.AppUtils;
 import com.kzw.leisure.utils.ChapterContentHelp;
 import com.kzw.leisure.utils.NetworkUtils;
-import com.zia.easybook.widget.TxtChapter;
-import com.zia.easybook.widget.TxtChar;
-import com.zia.easybook.widget.TxtLine;
-import com.zia.easybook.widget.TxtPage;
 
 import java.util.ArrayList;
 import java.util.List;

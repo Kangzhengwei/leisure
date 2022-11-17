@@ -49,7 +49,7 @@ import com.kzw.leisure.widgets.pageView.PageLoader;
 import com.kzw.leisure.widgets.pageView.PageView;
 import com.kzw.leisure.widgets.pageView.ReadBookControl;
 import com.kzw.leisure.widgets.pageView.TopMenuWidget;
-import com.zia.easybook.widget.TxtChapter;
+import com.kzw.leisure.widgets.pageView.TxtChapter;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;

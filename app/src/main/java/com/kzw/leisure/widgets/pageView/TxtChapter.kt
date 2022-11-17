@@ -1,4 +1,4 @@
-package com.zia.easybook.widget
+package com.kzw.leisure.widgets.pageView
 
 import java.util.*
 import kotlin.math.max

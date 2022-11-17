@@ -27,10 +27,6 @@ import com.kzw.leisure.utils.RealmHelper;
 import com.kzw.leisure.utils.ScreenUtils;
 import com.kzw.leisure.utils.StringUtils;
 import com.kzw.leisure.widgets.anim.PageAnimation;
-import com.zia.easybook.widget.TxtChapter;
-import com.zia.easybook.widget.TxtChar;
-import com.zia.easybook.widget.TxtLine;
-import com.zia.easybook.widget.TxtPage;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

@@ -3,7 +3,13 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/code/leisure/app/src/main/res/drawable/vertical_seek_bar_progress_bg_shape.xml" value="0.39166666666666666" />
         <entry key="..\:/code/leisure/app/src/main/res/layout/activity_book_detail.xml" value="0.41354166666666664" />
+        <entry key="..\:/code/leisure/app/src/main/res/layout/activity_read_book.xml" value="0.391304347826087" />
+        <entry key="..\:/code/leisure/app/src/main/res/layout/bottom_menu_layout.xml" value="0.5375" />
+        <entry key="..\:/code/leisure/app/src/main/res/layout/item_catalog.xml" value="0.5328125" />
+        <entry key="..\:/code/leisure/app/src/main/res/layout/setting_menu_layout.xml" value="0.5375" />
+        <entry key="..\:/code/leisure/app/src/main/res/layout/ui_setting_menu_layout.xml" value="0.5375" />
         <entry key="..\:/workspace/leisure/app/src/main/res/layout/activity_browser.xml" value="0.3078125" />
         <entry key="..\:/workspace/leisure/app/src/main/res/layout/check_pop_layout.xml" value="0.31979166666666664" />
         <entry key="..\:/workspace/leisure/app/src/main/res/layout/explore_list_item.xml" value="0.33" />

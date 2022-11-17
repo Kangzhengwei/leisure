@@ -78,33 +78,6 @@ public class Constant {
             "\"ruleSearchUrl\":\"search.php?q=ruleKeyword|UTF-8\"" +
             "}," +
             "{" +
-            "\"baseUrl\":\"https://www.230book.com/\"," +
-            "\"siteName\":\"顶点小说\"," +
-            "\"ruleBookAuthor\":\"id.info@tag.p.0@text\"," +
-            "\"ruleBookContent\":\"\"," +
-            "\"ruleBookInfoInit\":\"id.intro@tag.p@text\"," +
-            "\"ruleBookKind\":\"\"," +
-            "\"ruleBookLastChapter\":\"id.info@tag.p.3@text\"," +
-            "\"ruleBookName\":\"id.info@tag.h1@text\"," +
-            "\"ruleBookUrlPattern\":\"\"," +
-            "\"ruleCoverUrl\":\"id.fmimg@tag.img@src\"," +
-            "\"ruleChapterList\":\"id.list@tag.li\"," +
-            "\"ruleChapterName\":\"tag.a@text\"," +
-            "\"ruleChapterUrl\":\"tag.a@href\"," +
-            "\"ruleChapterUrlType\":\"0\"," +
-            "\"ruleContentUrl\":\"id.content@textNodes\"," +
-            "\"ruleContentUrlNext\":\"\"," +
-            "\"ruleSearchAuthor\":\"class.odd.1@text\"," +
-            "\"ruleSearchCoverUrl\":\"\"," +
-            "\"ruleSearchIntroduce\":\"\"," +
-            "\"ruleSearchKind\":\"\"," +
-            "\"ruleSearchLastChapter\":\"class.even@text\"," +
-            "\"ruleSearchList\":\"id.nr\"," +
-            "\"ruleSearchName\":\"class.odd@tag.a@text\"," +
-            "\"ruleSearchNoteUrl\":\"class.odd@tag.a@href\"," +
-            "\"ruleSearchUrl\":\"/modules/article/search.php@searchkey=ruleKeyword&searchtype=articlename&action=login&submit=%26%23160%3B%CB%D1%26%23160%3B%26%23160%3B%CB%F7%26%23160%3B|char=GBK\"" +
-            "}," +
-            "{" +
             "\"baseUrl\":\"https://www.69shu.org/\"," +
             "\"siteName\":\"69书吧\"," +
             "\"ruleBookAuthor\":\"id.info@tag.small@tag.a@text\"," +
@@ -308,24 +281,12 @@ public class Constant {
             "  {\n" +
             "    \"list\": [\n" +
             "      {\n" +
-            "        \"siteName\": \"娜菲\",\n" +
-            "        \"url\": \"https://www.nfmovies.com/\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"siteName\": \"1231\",\n" +
-            "        \"url\": \"https://www.1231d.com/\"\n" +
-            "      },\n" +
-            "      {\n" +
             "        \"siteName\": \"嗯li嗯li\",\n" +
             "        \"url\": \"https://enlienli.com/\"\n" +
             "      },\n" +
             "      {\n" +
             "        \"siteName\": \"鲨鱼TV\",\n" +
             "        \"url\": \"https://www.sharktv.cn/\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"siteName\": \"芒果影院\",\n" +
-            "        \"url\": \"https://www.mguomovie.com/\"\n" +
             "      }\n" +
             "    ],\n" +
             "    \"listName\": \"酷站\"\n" +
@@ -339,10 +300,6 @@ public class Constant {
             "      {\n" +
             "        \"siteName\": \"龙轩导航\",\n" +
             "        \"url\": \"http://ilxdh.com/cat/167\"\n" +
-            "      },\n" +
-            "      {\n" +
-            "        \"siteName\": \"小森林导航2\",\n" +
-            "        \"url\": \"http://www.xsldh.vip/\"\n" +
             "      }\n" +
             "    ],\n" +
             "    \"listName\": \"导航\"\n" +
@@ -353,7 +310,7 @@ public class Constant {
     public static String lineSource = "[" +
             "{\n" +
             "\t\"name\": \"线路一\",\n" +
-            "\t\"url\": \"https://vip.parwix.com:4433/player/?url=\"\n" +
+            "\t\"url\": \"https://jx.bozrc.com:4433/player/?url=\"\n" +
             "}," +
             "{\n" +
             "\t\"name\": \"线路二\",\n" +
@@ -361,26 +318,22 @@ public class Constant {
             "}," +
             "{\n" +
             "\t\"name\": \"线路三\",\n" +
-            "\t\"url\": \"https://www.mgtv.com.favnow.com/?token=sharktv&v=\"\n" +
-            "}," +
-            "{\n" +
-            "\t\"name\": \"线路四\",\n" +
             "\t\"url\": \"https://okjx.cc/?url=\"\n" +
             "}," +
             "{\n" +
-            "\t\"name\": \"线路五\",\n" +
+            "\t\"name\": \"线路四\",\n" +
             "\t\"url\": \"https://jx.7kjx.com/?url=\"\n" +
             "}," +
             "{\n" +
-            "\t\"name\": \"线路六\",\n" +
+            "\t\"name\": \"线路五\",\n" +
             "\t\"url\": \"https://www.pangujiexi.com/jiexi/?url=\"\n" +
             "}," +
             "{\n" +
-            "\t\"name\": \"线路七\",\n" +
+            "\t\"name\": \"线路六\",\n" +
             "\t\"url\": \"https://z1.m1907.cn/?jx=\"\n" +
             "}," +
             "{\n" +
-            "\t\"name\": \"线路八\",\n" +
+            "\t\"name\": \"线路七\",\n" +
             "\t\"url\": \"https://thinkibm.now.sh/?url=\"\n" +
             "}" +
             "]";

@@ -24,10 +24,6 @@ import com.kzw.leisure.widgets.anim.PageAnimation;
 import com.kzw.leisure.widgets.anim.ScrollPageAnim;
 import com.kzw.leisure.widgets.anim.SimulationPageAnim;
 import com.kzw.leisure.widgets.anim.SlidePageAnim;
-import com.zia.easybook.widget.TxtChapter;
-import com.zia.easybook.widget.TxtChar;
-import com.zia.easybook.widget.TxtLine;
-import com.zia.easybook.widget.TxtPage;
 
 import java.util.ArrayList;
 import java.util.List;
